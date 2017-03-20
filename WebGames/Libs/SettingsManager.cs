@@ -33,20 +33,34 @@ namespace WebGames.Libs
         {
             if (config != null) return config;
 
-            string path = System.IO.Path.GetDirectoryName((new System.Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath);
-
-            using (var conf = System.IO.File.OpenRead(System.IO.Path.Combine(path, "settings.yml")))
+            try
             {
-                using (var rdr = new System.IO.StreamReader(conf))
+                string path = System.IO.Path.GetDirectoryName((new System.Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath);
+
+                using (var conf = System.IO.File.OpenRead(System.IO.Path.Combine(path, "settings.yml")))
                 {
-                    var deserializer = new YamlDotNet.Serialization.Deserializer(namingConvention: new CamelCaseNamingConvention());
+                    using (var rdr = new System.IO.StreamReader(conf))
+                    {
+                        var deserializer = new YamlDotNet.Serialization.Deserializer(namingConvention: new CamelCaseNamingConvention());
 
-                    config = deserializer.Deserialize<SettingsConfig>(rdr);
+                        config = deserializer.Deserialize<SettingsConfig>(rdr);
 
-                    return config;
+                    }
                 }
             }
+            catch
+            {
+                // stub config
+                config = new SettingsConfig()
+                {
+                    security = new SecurityModel()
+                    {
+                        persistentUsers = new List<PersistentUser>()
+                    }
+                };
+            }
 
+            return config;
         }
     }
 }
