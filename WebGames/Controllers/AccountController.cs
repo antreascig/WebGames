@@ -17,6 +17,7 @@ using LocalAccountsApp.Models;
 using LocalAccountsApp.Providers;
 using LocalAccountsApp.Results;
 using System.Linq;
+using System.Data.Entity.Validation;
 
 namespace LocalAccountsApp.Controllers
 {
@@ -335,16 +336,39 @@ namespace LocalAccountsApp.Controllers
             };
 
             var role = WebGames.Libs.SecurityManager.Roles.FirstOrDefault(m => m.Name == "player");
-            user.Roles.Add(new IdentityUserRole { RoleId = role.Id });
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
+            try
             {
-                return GetErrorResult(result);
-            }
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
-            return Ok();
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                result = await UserManager.AddToRoleAsync(user.Id, "player");
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                return Ok();
+            }
+            catch(DbEntityValidationException exc)
+            {
+                foreach( var entityError in exc.EntityValidationErrors)
+                {
+                    foreach(var valError in entityError.ValidationErrors)
+                    {
+                        ModelState.AddModelError(valError.PropertyName, valError.ErrorMessage);
+                    }
+                }
+            }
+            catch(Exception exc)
+            {
+                ModelState.AddModelError(exc.GetHashCode().ToString(), exc);
+            }
+            return BadRequest(ModelState);
         }
 
         // POST api/Account/RegisterExternal
