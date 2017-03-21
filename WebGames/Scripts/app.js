@@ -23,8 +23,7 @@
             if (response.Message) self.errors.push(response.Message);
             if (response.ModelState) {
                 var modelState = response.ModelState;
-                for (var prop in modelState)
-                {
+                for (var prop in modelState) {
                     if (modelState.hasOwnProperty(prop)) {
                         var msgArr = modelState[prop]; // expect array here
                         if (msgArr.length) {
@@ -42,7 +41,7 @@
         self.result('');
         self.errors.removeAll();
 
-        var token = sessionStorage.getItem(tokenKey);
+        var token = localStorage.getItem(tokenKey);
         var headers = {};
         if (token) {
             headers.Authorization = 'Bearer ' + token;
@@ -61,7 +60,7 @@
         self.result('');
         self.errors.removeAll();
 
-        var token = sessionStorage.getItem(tokenKey);
+        var token = localStorage.getItem(tokenKey);
         var headers = {};
         if (token) {
             headers.Authorization = 'Bearer ' + token;
@@ -114,13 +113,17 @@
         }).done(function (data) {
             self.user(data.userName);
             // Cache the access token in session storage.
-            sessionStorage.setItem(tokenKey, data.access_token);
+            localStorage.setItem(tokenKey, data.access_token);
+
+            var redir = location.origin + "";
+            console.log(redir);
+            window.location.replace(redir);
         }).fail(showError);
     }
 
     self.logout = function () {
         // Log out from the cookie based logon.
-        var token = sessionStorage.getItem(tokenKey);
+        var token = localStorage.getItem(tokenKey);
         var headers = {};
         if (token) {
             headers.Authorization = 'Bearer ' + token;
@@ -133,7 +136,11 @@
         }).done(function (data) {
             // Successfully logged out. Delete the token.
             self.user('');
-            sessionStorage.removeItem(tokenKey);
+            localStorage.removeItem(tokenKey);
+
+            var redir = location.origin;
+            console.log(redir);
+            window.location.replace( redir );
         }).fail(showError);
     }
 }
