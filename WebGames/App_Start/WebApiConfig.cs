@@ -6,7 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
-namespace LocalAccountsApp
+namespace WebGames
 {
     public static class WebApiConfig
     {
@@ -27,7 +27,7 @@ namespace LocalAccountsApp
             );
 
             // Enforce HTTPS
-            config.Filters.Add(new LocalAccountsApp.Filters.RequireHttpsAttribute());
+            config.Filters.Add(new WebGames.Filters.RequireHttpsAttribute());
             // This filter checks whether the user is authenticated. If not, it returns HTTP status code 401 (Unauthorized), without invoking the action.
             //config.Filters.Add(new AuthorizeAttribute());
 

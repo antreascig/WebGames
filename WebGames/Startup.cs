@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(LocalAccountsApp.Startup))]
+[assembly: OwinStartup(typeof(WebGames.Startup))]
 
-namespace LocalAccountsApp
+namespace WebGames
 {
     public partial class Startup
     {

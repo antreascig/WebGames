@@ -1,4 +1,4 @@
-﻿using LocalAccountsApp.Models;
+﻿using WebGames.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,21 +8,16 @@ using System.Web;
 
 namespace WebGames.Models
 {
-    public class UserGameDailyActivity
+    public class UserGameScore
     {
         [Column(Order = 0), Key]
-        public string UserId { get; set; }
-
+        public int GameId{ get; set; }
 
         [Column(Order = 1), Key]
-        public int GameId { get; set; }
+        public string UserId { get; set; }
 
-        [Column(TypeName = "DateTime2")]
-        public DateTime Date { get; set; } // format year/month/day
+        public double Score { get; set; }
 
-        [Column(TypeName = "DateTime2")]
-        public DateTime StartTime { get; set; }
-        
 
         // FKs
         [ForeignKey("GameId")]

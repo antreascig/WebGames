@@ -49,12 +49,12 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/values/Admin',
+            url: '/values/Admin',
             headers: headers
         }).done(function (data) {
             self.result(data);
         }).fail(showError);
-    }
+    };
 
     self.callApiPlayer = function () {
         self.result('');
@@ -68,80 +68,33 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/values/Player',
+            url: '/values/Player',
             headers: headers
         }).done(function (data) {
             self.result(data);
         }).fail(showError);
-    }
+    };
 
-    self.register = function () {
-        self.result('');
-        self.errors.removeAll();
-
-        var data = {
-            Email: self.registerEmail(),
-            Password: self.registerPassword(),
-            ConfirmPassword: self.registerPassword2()
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/api/Account/Register',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function (data) {
-            self.result("Done!");
-        }).fail(showError);
-    }
-
-    self.login = function () {
-        self.result('');
-        self.errors.removeAll();
-
-        var loginData = {
-            grant_type: 'password',
-            username: self.loginEmail(),
-            password: self.loginPassword()
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/Token',
-            data: loginData
-        }).done(function (data) {
-            self.user(data.userName);
-            // Cache the access token in session storage.
-            localStorage.setItem(tokenKey, data.access_token);
-
-            var redir = location.origin + "";
-            console.log(redir);
-            window.location.replace(redir);
-        }).fail(showError);
-    }
 
     self.logout = function () {
-        // Log out from the cookie based logon.
-        var token = localStorage.getItem(tokenKey);
-        var headers = {};
-        if (token) {
-            headers.Authorization = 'Bearer ' + token;
-        }
+         //Log out from the cookie based logon.
+        //var token = localStorage.getItem(tokenKey);
+        //var headers = {};
+        //if (token) {
+        //    headers.Authorization = 'Bearer ' + token;
+        //}
 
         $.ajax({
             type: 'POST',
-            url: '/api/Account/Logout',
-            headers: headers
+            url: '/Account/LogOff',
+            data: {
+                id: "logoutForm"
+            }
+            //headers: headers
         }).done(function (data) {
-            // Successfully logged out. Delete the token.
-            self.user('');
-            localStorage.removeItem(tokenKey);
-
-            var redir = location.origin;
-            console.log(redir);
-            window.location.replace( redir );
+            
         }).fail(showError);
-    }
+    };
 }
 
 var app = new ViewModel();

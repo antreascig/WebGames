@@ -1,15 +1,14 @@
 ﻿function ServerAPi() {
 
-    this.SendRequest = function (type, url, data, requiresAuth, success, fail) {
+    this.SendRequest = function (type, url, data, success, fail) {
 
-        if (requiresAuth) {
-            var token = localStorage.getItem(tokenKey);
-            var headers = {};
-            if (token) {
-                headers.Authorization = 'Bearer ' + token;
-            }
-        }
-
+        //if (requiresAuth) {
+        //    var token = localStorage.getItem(tokenKey);
+        //    var headers = {};
+        //    if (token) {
+        //        headers.Authorization = 'Bearer ' + token;
+        //    }
+        //}
 
         $.ajax({
             type: type,

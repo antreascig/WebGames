@@ -1,1 +1,1 @@
-<%@ Application Codebehind="Global.asax.cs" Inherits="LocalAccountsApp.WebApiApplication" Language="C#" %>
+<%@ Application Codebehind="Global.asax.cs" Inherits="WebGames.WebApiApplication" Language="C#" %>

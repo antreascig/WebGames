@@ -3,32 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.Security;
 
-namespace LocalAccountsApp.Controllers
+namespace WebGames.Controllers
 {
     //[Authorize]
-    [RoutePrefix("api/values")]
-    public class ValuesController : ApiController
+    public class ValuesController : Controller
     {
         // GET api/values/admin
         [Authorize(Roles = "sysadmin")]
-        [Route("Admin")]
-        [HttpGet]
-        public string Admin()
+        public ActionResult Admin()
         {
-            var userName = this.RequestContext.Principal.Identity.Name;
-            return String.Format("Hello Admin, {0}.", userName);
+            var userName = User.Identity.Name;
+            return Content($"Hello Admin, {userName}.");
         }
 
         // GET api/values/player
         [Authorize(Roles = "player")]
-        [Route("Player")]
-        [HttpGet]
-        public string Player()
+        public ActionResult Player()
         {
-            var userName = this.RequestContext.Principal.Identity.Name;
-            return String.Format("Hello Player, {0}.", userName);
+            var userName = User.Identity.Name;
+            return Content($"Hello Player, {userName}.");
+
         }
     }
 

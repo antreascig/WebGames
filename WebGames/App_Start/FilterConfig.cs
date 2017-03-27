@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace LocalAccountsApp
+namespace WebGames
 {
     public class FilterConfig
     {

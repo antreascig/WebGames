@@ -1,4 +1,4 @@
-﻿using LocalAccountsApp.Models;
+﻿using WebGames.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;

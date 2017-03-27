@@ -1,37 +1,65 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LocalAccountsApp.Controllers
+namespace WebGames.Controllers
 {
     public class HomeController : Controller
-    {
-        public ActionResult Register()
+    {     
+        public HomeController()
         {
-            ViewBag.Title = "Registration Page";
-
-            return View("Register");
         }
 
-        public ActionResult Login()
+        public HomeController(ApplicationUserManager userManager)
         {
-            ViewBag.Title = "Login Page";
+            UserManager = userManager;
+        }
 
-            return View("Login");
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
         }
 
         public ActionResult Index()
         {
-            if ( !User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
-                return Login();
+                return RedirectToAction("Login", "Account"); 
+            }
+            ViewBag.Link = TempData["ViewBagLink"];
+
+            if (User.IsInRole("sysadmin") || User.IsInRole("admin"))
+            {
+                //return RedirectToAction("Render", "Dashboard");
             }
 
-            ViewBag.Title = "Home Page";
-
-            return View("Index");
+            return View();
         }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
     }
 }
