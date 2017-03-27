@@ -75,7 +75,6 @@
         }).fail(showError);
     }
 
-
     self.register = function () {
         self.result('');
         self.errors.removeAll();

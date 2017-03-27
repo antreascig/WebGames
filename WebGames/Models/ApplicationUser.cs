@@ -4,6 +4,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Linq;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LocalAccountsApp.Models
 {
@@ -17,18 +19,12 @@ namespace LocalAccountsApp.Models
             // Add custom user claims here
             return userIdentity;
         }
-    }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
+        public string Name { get; set; }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
+        public string PrivateEmail { get; set; }
+
+        [Column(TypeName = "DateTime2")]
+        public DateTime Birthday { get; set; }
     }
 }

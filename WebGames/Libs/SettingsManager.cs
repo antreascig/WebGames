@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace WebGames.Libs
@@ -41,7 +42,9 @@ namespace WebGames.Libs
                 {
                     using (var rdr = new System.IO.StreamReader(conf))
                     {
-                        var deserializer = new YamlDotNet.Serialization.Deserializer(namingConvention: new CamelCaseNamingConvention());
+                        DeserializerBuilder groupIDsDB = new DeserializerBuilder();
+                        groupIDsDB.WithNamingConvention(new CamelCaseNamingConvention());
+                        Deserializer deserializer = groupIDsDB.Build();
 
                         config = deserializer.Deserialize<SettingsConfig>(rdr);
 

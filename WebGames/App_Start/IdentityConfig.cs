@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using LocalAccountsApp.Models;
+using WebGames.Models;
 
 namespace LocalAccountsApp
 {

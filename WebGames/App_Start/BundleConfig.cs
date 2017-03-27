@@ -27,7 +27,9 @@ namespace LocalAccountsApp
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                       "~/Scripts/knockout-{version}.js",
-                      "~/Scripts/app.js"));
+                      "~/Scripts/app.js",
+                      "~/Scripts/ServerAPI.js"
+                      ));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

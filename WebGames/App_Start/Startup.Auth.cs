@@ -9,7 +9,7 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using LocalAccountsApp.Providers;
-using LocalAccountsApp.Models;
+using WebGames.Models;
 
 namespace LocalAccountsApp
 {
