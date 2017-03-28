@@ -196,7 +196,6 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\RequireHttpsAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +207,10 @@
     <Compile Include="Migrations\201703271926494_User_Props_v1.cs" />
     <Compile Include="Migrations\201703271926494_User_Props_v1.Designer.cs">
       <DependentUpon>201703271926494_User_Props_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703281940210_UserBasedOnSpecs.cs" />
+    <Compile Include="Migrations\201703281940210_UserBasedOnSpecs.Designer.cs">
+      <DependentUpon>201703281940210_UserBasedOnSpecs.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -239,9 +242,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\WebGamesTest - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\custom\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\antiForgeryToken.js" />
+    <Content Include="Scripts\custom\views\register.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -257,7 +262,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\ServerAPI.js" />
+    <Content Include="Scripts\custom\serverAPI.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -295,9 +300,11 @@
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Account\LoginAlt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Libs\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -305,6 +312,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703271926494_User_Props_v1.resx">
       <DependentUpon>201703271926494_User_Props_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703281940210_UserBasedOnSpecs.resx">
+      <DependentUpon>201703281940210_UserBasedOnSpecs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -20,13 +20,6 @@ namespace WebGames.Models
             return userIdentity;
         }
 
-        public string Name { get; set; }
-
-        public string PrivateEmail { get; set; }
-
-        [Column(TypeName = "DateTime2")]
-        public DateTime Birthday { get; set; }
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -34,5 +27,17 @@ namespace WebGames.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string FullName { get; set; }
+
+        public string SecondaryEmail { get; set; }
+
+        public string Shop { get; set; }
+
+        public string MaritalStatus { get; set; }
+
+        public string Hobby { get; set; }
+
+        public string Avatar { get; set; }   
     }
 }

@@ -3,6 +3,13 @@
     ViewBag.Title = "Register";
 }
 
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="@Url.Content("~/Scripts/custom/views/register.js")"></script>
+}
+
 <h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -11,31 +18,89 @@
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+    @* UserName *@
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
         </div>
     </div>
+    @* Password *@
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
+    @* Confirm Password *@
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
+    @* FullName *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @* Email *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", data_bind = "value:Email" })
+        </div>
+    </div>
+
+    @* SecondaryEmail *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.SecondaryEmail, new { @class = "col-md-2 control-label" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.SecondaryEmail, new { @class = "form-control", data_bind = "re:Email,disable:UseSameEmailForSecondary()" })
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" data-bind="checked: UseSameEmailForSecondary" id="UseSameEmailForSecondary">
+        </div>
+    </div>
+
+    @* Shop *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Shop, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Shop, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @* MaritalStatus *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.MaritalStatus, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MaritalStatus, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @* Hobby *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Hobby, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Hobby, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @* Avatar *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Avatar, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Avatar, new { @class = "form-control" })
+        </div>
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

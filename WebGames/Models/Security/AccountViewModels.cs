@@ -49,9 +49,9 @@ namespace WebGames.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "UserName")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -65,9 +65,9 @@ namespace WebGames.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -79,6 +79,38 @@ namespace WebGames.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [EmailAddress]
+        [Display(Name = "Secondary Email")]
+        public string SecondaryEmail { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Katastima")]
+        public string Shop { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Oikogeneiaki Katastasi")]
+        public string MaritalStatus { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Hobby")]
+        public string Hobby { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Avatar")]
+        public string Avatar { get; set; }
     }
 
     public class ResetPasswordViewModel

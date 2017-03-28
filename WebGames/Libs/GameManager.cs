@@ -35,7 +35,7 @@ namespace WebGames.Libs
                     GameId = s.GameId,
                     GameName = s.Game.Name,
                     UserId = s.UserId,
-                    UserName = s.User.Name,
+                    UserName = s.User.UserName,
                     Score = s.Score
                 }).ToList();
             }
