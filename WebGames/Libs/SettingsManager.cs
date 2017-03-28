@@ -7,7 +7,7 @@ using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace WebGames.Libs
-{
+{   
     public class SettingsConfig
     {
         public SecurityModel security { get; set; }
@@ -16,8 +16,13 @@ namespace WebGames.Libs
     public class SecurityModel
     {
         public List<PersistentUser> persistentUsers { get; set; }
+        public SecurityAPIs apis { get; set; }
     }
 
+    public class SecurityAPIs
+    {
+        public string SENDGRID_KEY { get; set; }
+    }
 
     public class PersistentUser
     {
@@ -58,7 +63,12 @@ namespace WebGames.Libs
                 {
                     security = new SecurityModel()
                     {
-                        persistentUsers = new List<PersistentUser>()
+                        persistentUsers = new List<PersistentUser>(),
+                        apis = new SecurityAPIs()
+                        {
+                            SENDGRID_KEY = ""
+                        }
+                        
                     }
                 };
             }

@@ -11,6 +11,20 @@ namespace WebGames.Libs
 {
     public class EmailService : IIdentityMessageService
     {
+        static string _SENDGRID_KEY = null;
+        private static string SENDGRID_KEY
+        {
+            get
+            {
+                if (_SENDGRID_KEY == null)
+                {
+                    var config = SettingsManager.GetConfig();
+                    _SENDGRID_KEY = config.security.apis.SENDGRID_KEY ?? "";
+                }
+                return _SENDGRID_KEY;
+            }
+        }
+
         public async Task SendAsync(IdentityMessage message)
         {
             await configSendGridasync(message);
@@ -32,9 +46,8 @@ namespace WebGames.Libs
                 //           ConfigurationManager.AppSettings["mailAccount"],
                 //           ConfigurationManager.AppSettings["mailPassword"]
                 //           );
-                var apiKey = ConfigurationManager.AppSettings["SENDGRID_KEY"];
 
-                var client = new SendGridClient(apiKey);
+                var client = new SendGridClient(SENDGRID_KEY);
 
                 // Send the email.
                 if (client != null)
