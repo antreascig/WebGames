@@ -37,25 +37,25 @@ namespace WebGames.Controllers
         }
 
         // GET: /Manage/RemoveLogin
-        public async Task<ActionResult> GetUserDetails()
-        {
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                using (var db = ApplicationDbContext.Create())
-                {
-                    var activitiesToday = await db.UserGameDailyActivities.FindAsync(user.Id);
-                    return new
-                    {
-                        UserName = user.UserName,
-                        Avatar = user.Avatar,
-                        RemainingTimeInSeconds = 
+        //public async Task<ActionResult> GetUserDetails()
+        //{
+        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //    if (user != null)
+        //    {
+        //        using (var db = ApplicationDbContext.Create())
+        //        {
+        //            var activitiesToday = await db.UserGameDailyActivities.FindAsync(user.Id);
+        //            return new
+        //            {
+        //                UserName = user.UserName,
+        //                Avatar = user.Avatar,
+        //                RemainingTimeInSeconds = 
 
-                    };
-                }
+        //            };
+        //        }
                 
-            }
-        }
+        //    }
+        //}
         //
 
         // GET: /Manage/Index
