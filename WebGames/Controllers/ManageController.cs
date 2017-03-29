@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using WebGames.Libs;
 using WebGames.Models;
 using WebGames.Models.ViewModels;
 
@@ -37,25 +38,13 @@ namespace WebGames.Controllers
         }
 
         // GET: /Manage/RemoveLogin
-        //public async Task<ActionResult> GetUserDetails()
-        //{
-        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-        //    if (user != null)
-        //    {
-        //        using (var db = ApplicationDbContext.Create())
-        //        {
-        //            var activitiesToday = await db.UserGameDailyActivities.FindAsync(user.Id);
-        //            return new
-        //            {
-        //                UserName = user.UserName,
-        //                Avatar = user.Avatar,
-        //                RemainingTimeInSeconds = 
-
-        //            };
-        //        }
-                
-        //    }
-        //}
+        [Authorize(Roles = "player")]
+        public async Task<ActionResult> GetUserDetails()
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var res = UserGameManager.GetUserGameInfo(user);
+            return Json(res);
+        }
         //
 
         // GET: /Manage/Index

@@ -1,6 +1,21 @@
 ﻿function ServerAPi() {
+    var self = this;
 
-    this.SendRequest = function (type, url, data, success, fail, requireAuth) {
+    self.SaveGameTime = function (timeInSeconds, success, fail) {
+        var data = {
+            timeInSeconds: timeInSeconds
+        };
+        self.SendRequest('GET', "/Games/SaveGameTime", data, success, fail, false);
+    }
+
+    self.SaveScore = function (score, success, fail) {
+        var data = {
+            score: score
+        };
+        self.SendRequest('GET', "/Games/SaveScore", data, success, fail, false);
+    }
+
+    self.SendRequest = function (type, url, data, success, fail, requireAuth) {
 
         if (requireAuth) {
             $.custom.AntiForgeryToken["AddAntiForgeryToken"](data);

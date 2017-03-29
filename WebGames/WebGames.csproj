@@ -194,16 +194,24 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Filters\RequireHttpsAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Libs\EmailService.cs" />
-    <Compile Include="Libs\GameManager.cs" />
-    <Compile Include="Libs\SecurityManager.cs" />
-    <Compile Include="Libs\SettingsManager.cs" />
+    <Compile Include="Helpers\DateHelper.cs" />
+    <Compile Include="Helpers\TypeHelper.cs" />
+    <Compile Include="Libs\Email\EmailService.cs" />
+    <Compile Include="Libs\Games\ActivityManager.cs" />
+    <Compile Include="Libs\Games\GameManager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game1.cs" />
+    <Compile Include="Libs\Games\GameTypes\GenericGame.cs" />
+    <Compile Include="Libs\Games\ScoreManager.cs" />
+    <Compile Include="Libs\Security\SecurityManager.cs" />
+    <Compile Include="Libs\Settings\SettingsManager.cs" />
+    <Compile Include="Libs\UserGameManager.cs" />
     <Compile Include="Migrations\201703271926494_User_Props_v1.cs" />
     <Compile Include="Migrations\201703271926494_User_Props_v1.Designer.cs">
       <DependentUpon>201703271926494_User_Props_v1.cs</DependentUpon>
@@ -219,9 +227,10 @@
     <Compile Include="Models\Security\AccountBindingModels.cs" />
     <Compile Include="Models\Security\AccountViewModels.cs" />
     <Compile Include="Models\Entities\ApplicationUser.cs" />
-    <Compile Include="Models\Entities\UserGameDailyActivity.cs" />
+    <Compile Include="Models\Entities\UserDailyActivity.cs" />
     <Compile Include="Models\Entities\UserGameScore.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -304,7 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Libs\Games\" />
+    <Folder Include="Views\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

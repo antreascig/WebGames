@@ -22,7 +22,7 @@ namespace WebGames.Models
 
         public DbSet<GameModel> Games { get; set; }
 
-        public DbSet<UserGameDailyActivity> UserGameDailyActivities { get; set; }
+        public DbSet<UserDailyActivity> UserDailyActivity { get; set; }
 
         public DbSet<UserGameScore> Scores { get; set; }
 
