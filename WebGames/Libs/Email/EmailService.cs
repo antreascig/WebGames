@@ -19,7 +19,7 @@ namespace WebGames.Libs
                 if (_SENDGRID_KEY == null)
                 {
                     var config = SettingsManager.GetConfig();
-                    _SENDGRID_KEY = config.security.apis.SENDGRID_KEY ?? "";
+                    _SENDGRID_KEY = config.security.api.SENDGRID_KEY ?? "";
                 }
                 return _SENDGRID_KEY;
             }

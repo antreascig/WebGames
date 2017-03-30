@@ -65,5 +65,13 @@ namespace WebGames.Helpers
                 }
             }
         }
+
+        public static void JoinWith(this string source, string delimiter, string JoinValue)
+        {
+            if (JoinValue == null) return;
+            source = source ?? "";
+            if ( source != "" ) source += delimiter;
+            source += JoinValue;
+        }
     }
 }

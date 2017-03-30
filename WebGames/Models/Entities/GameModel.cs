@@ -11,12 +11,12 @@ namespace WebGames.Models
         [Key]
         public int GameId { get; set; }
 
-        public string NameKey { get; set; }
+        public string GameKey { get; set; }
 
         public string Name { get; set; }
 
-        public string Page { get; set; }
+        public double Multiplier { get; set; }
 
-        public string MetadataJSON { get; set; } // JSON
+        public string MetadataJSON { get; set; } // JSON - Metadata of each game
     }
 }

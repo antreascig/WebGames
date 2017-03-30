@@ -6,14 +6,14 @@
             timeInSeconds: timeInSeconds
         };
         self.SendRequest('GET', "/Games/SaveGameTime", data, success, fail, false);
-    }
+    };
 
-    self.SaveScore = function (score, success, fail) {
+    self.SaveScoreGame1 = function (score, success, fail) {
         var data = {
             score: score
         };
-        self.SendRequest('GET', "/Games/SaveScore", data, success, fail, false);
-    }
+        self.SendRequest('GET', "/Games/SaveGame1Score", data, success, fail, false);
+    };
 
     self.SendRequest = function (type, url, data, success, fail, requireAuth) {
 
@@ -29,7 +29,7 @@
             url: url,
             data: data
         }).done(function (resData) {
-            success(resData)
+            success(resData);
         }).fail(fail);
     };
 

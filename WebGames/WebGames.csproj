@@ -205,10 +205,11 @@
     <Compile Include="Helpers\TypeHelper.cs" />
     <Compile Include="Libs\Email\EmailService.cs" />
     <Compile Include="Libs\Games\ActivityManager.cs" />
+    <Compile Include="Libs\Games\GameHelper.cs" />
     <Compile Include="Libs\Games\GameManager.cs" />
-    <Compile Include="Libs\Games\GameTypes\Game1.cs" />
-    <Compile Include="Libs\Games\GameTypes\GenericGame.cs" />
-    <Compile Include="Libs\Games\ScoreManager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game2_Manager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game1_Manager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game6_Manager.cs" />
     <Compile Include="Libs\Security\SecurityManager.cs" />
     <Compile Include="Libs\Settings\SettingsManager.cs" />
     <Compile Include="Libs\UserGameManager.cs" />
@@ -220,15 +221,30 @@
     <Compile Include="Migrations\201703281940210_UserBasedOnSpecs.Designer.cs">
       <DependentUpon>201703281940210_UserBasedOnSpecs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703302106290_New_Game_Models.cs" />
+    <Compile Include="Migrations\201703302106290_New_Game_Models.Designer.cs">
+      <DependentUpon>201703302106290_New_Game_Models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703302202029_GameModel_Multiplier.cs" />
+    <Compile Include="Migrations\201703302202029_GameModel_Multiplier.Designer.cs">
+      <DependentUpon>201703302202029_GameModel_Multiplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Dtos\UserScore.cs" />
+    <Compile Include="Models\Entities\DayActiveGame.cs" />
     <Compile Include="Models\Entities\GameModel.cs" />
+    <Compile Include="Models\Entities\Scores\Game1_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Game2_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Game3_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Game4_1_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Game4_2_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Game4_3_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Game5_Score.cs" />
     <Compile Include="Models\Security\AccountBindingModels.cs" />
     <Compile Include="Models\Security\AccountViewModels.cs" />
     <Compile Include="Models\Entities\ApplicationUser.cs" />
     <Compile Include="Models\Entities\UserDailyActivity.cs" />
-    <Compile Include="Models\Entities\UserGameScore.cs" />
+    <Compile Include="Models\Entities\Scores\Game6_Score.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,6 +265,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\WebGamesTest - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\custom\app.js" />
@@ -286,9 +305,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="settings.yml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
@@ -310,10 +326,10 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Account\LoginAlt.cshtml" />
+    <Content Include="Views\Games\NoActiveGame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -324,6 +340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703281940210_UserBasedOnSpecs.resx">
       <DependentUpon>201703281940210_UserBasedOnSpecs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703302106290_New_Game_Models.resx">
+      <DependentUpon>201703302106290_New_Game_Models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703302202029_GameModel_Multiplier.resx">
+      <DependentUpon>201703302202029_GameModel_Multiplier.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

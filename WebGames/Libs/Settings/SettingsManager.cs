@@ -16,7 +16,7 @@ namespace WebGames.Libs
     public class SecurityModel
     {
         public List<PersistentUser> persistentUsers { get; set; }
-        public SecurityAPIs apis { get; set; }
+        public SecurityAPIs api { get; set; }
     }
 
     public class SecurityAPIs
@@ -43,20 +43,16 @@ namespace WebGames.Libs
             {
                 string path = System.IO.Path.GetDirectoryName((new System.Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath);
 
-                using (var conf = System.IO.File.OpenRead(System.IO.Path.Combine(path, "settings.yml")))
+                using (var conf = System.IO.File.OpenRead(System.IO.Path.Combine(path, "settings.json")))
                 {
                     using (var rdr = new System.IO.StreamReader(conf))
                     {
-                        DeserializerBuilder groupIDsDB = new DeserializerBuilder();
-                        groupIDsDB.WithNamingConvention(new CamelCaseNamingConvention());
-                        Deserializer deserializer = groupIDsDB.Build();
-
-                        config = deserializer.Deserialize<SettingsConfig>(rdr);
-
+                        string readText = rdr.ReadToEnd();
+                        config = Newtonsoft.Json.JsonConvert.DeserializeObject<SettingsConfig>(readText);
                     }
                 }
             }
-            catch
+            catch (Exception exc)
             {
                 // stub config
                 config = new SettingsConfig()
@@ -64,7 +60,7 @@ namespace WebGames.Libs
                     security = new SecurityModel()
                     {
                         persistentUsers = new List<PersistentUser>(),
-                        apis = new SecurityAPIs()
+                        api = new SecurityAPIs()
                         {
                             SENDGRID_KEY = ""
                         }

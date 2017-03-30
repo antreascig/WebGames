@@ -8,22 +8,11 @@ using System.Web;
 
 namespace WebGames.Models
 {
-    public class UserGameScore
+    public class Game6_UserScore
     {
-        [Column(Order = 0), Key]
-        public int GameId{ get; set; }
-
-        [Column(Order = 1), Key]
+        [Key]
         public string UserId { get; set; }
 
         public double Score { get; set; }
-
-
-        // FKs
-        [ForeignKey("GameId")]
-        public GameModel Game { get; set; }
-
-        [ForeignKey("UserId")]
-        public ApplicationUser User { get; set; }
     }
 }

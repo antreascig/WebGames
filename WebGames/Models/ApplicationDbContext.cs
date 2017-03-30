@@ -24,7 +24,18 @@ namespace WebGames.Models
 
         public DbSet<UserDailyActivity> UserDailyActivity { get; set; }
 
-        public DbSet<UserGameScore> Scores { get; set; }
+        public DbSet<DayActiveGame> DaysActiveGames { get; set; }
+
+
+        public DbSet<Game1_UserScore> Game1_Scores { get; set; }
+        public DbSet<Game2_UserScore> Game2_Scores { get; set; }
+        public DbSet<Game3_UserScore> Game3_Scores { get; set; }
+        public DbSet<Game4_1_UserScore> Game4_1_Scores { get; set; }
+        public DbSet<Game4_2_UserScore> Game4_2_Scores { get; set; }
+        public DbSet<Game4_3_UserScore> Game4_3_Scores { get; set; }
+        public DbSet<Game5_UserScore> Game5_Scores { get; set; }
+        public DbSet<Game6_UserScore> Game6_Scores { get; set; }
+
 
     }
 }
