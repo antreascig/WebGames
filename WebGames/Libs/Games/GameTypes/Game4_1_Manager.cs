@@ -7,12 +7,12 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games.GameTypes
 {
-    public class Game2MetaData
+    public class Game4_1_MetaData
     {
         //public double Multiplier { get; set; }
     }
 
-    public class Game2_UserScore_Dto
+    public class Game4_1_UserScore_Dto
     {
         public int GameId { get; set; }
         public string UserId { get; set; }
@@ -20,9 +20,9 @@ namespace WebGames.Libs.Games.GameTypes
         public double Computed_Score { get; set; }
     }
 
-    public class Game2_Manager
+    public class Game4_1_Manager
     {
-        public static string GameKey = "Game2";
+        public static string GameKey = "Game4_1";
 
         private static double StageScore = 1;
 
@@ -41,16 +41,16 @@ namespace WebGames.Libs.Games.GameTypes
             Stages = Stages ?? new string[] { };
             using (var db = ApplicationDbContext.Create())
             {
-                var Entity = db.Game2_Scores.Find(UserId);
+                var Entity = db.Game4_1_Scores.Find(UserId);
                 if (Entity == null)
                 {
-                    Entity = new Models.Game2_UserScore()
+                    Entity = new Models.Game4_1_UserScore()
                     {
                         UserId = UserId,
                         StagesCount = Stages.Length,
                         Stages = string.Join(",", Stages)
                     };
-                    db.Entry<Models.Game2_UserScore>(Entity);
+                    db.Entry<Models.Game4_1_UserScore>(Entity);
                 }
                 else if (EnableOverride)
                 {
@@ -67,22 +67,22 @@ namespace WebGames.Libs.Games.GameTypes
                     var finalList = ExistingStages.Union(Stages);
                     // if not then set it accordingly
                     Entity.Stages = string.Join(",", finalList);
-                    Entity.StagesCount = finalList.Count();                    
+                    Entity.StagesCount = finalList.Count();
                 }
 
                 db.SaveChanges();
             }
         }
 
-        public static Game2_UserScore_Dto GetUserScore(string UserId)
+        public static Game4_1_UserScore_Dto GetUserScore(string UserId)
         {
-            var res = new Game2_UserScore_Dto();
+            var res = new Game4_1_UserScore_Dto();
             using (var db = ApplicationDbContext.Create())
             {
-                var ScoreEntity = (from gs in db.Game2_Scores where gs.UserId == UserId select gs).ToList().FirstOrDefault();
+                var ScoreEntity = (from gs in db.Game4_1_Scores where gs.UserId == UserId select gs).ToList().FirstOrDefault();
                 if (ScoreEntity == null)
                 {
-                    ScoreEntity = new Models.Game2_UserScore()
+                    ScoreEntity = new Models.Game4_1_UserScore()
                     {
                         UserId = UserId,
                         Stages = "",
@@ -101,25 +101,25 @@ namespace WebGames.Libs.Games.GameTypes
             return res;
         }
 
-        public static List<Game2_UserScore_Dto> GetUsersScore()
+        public static List<Game4_1_UserScore_Dto> GetUsersScore()
         {
-            var res = new List<Game2_UserScore_Dto>();
+            var res = new List<Game4_1_UserScore_Dto>();
             using (var db = ApplicationDbContext.Create())
             {
                 var Game = GameHelper.GetGame(GameId, db);
                 if (Game != null)
                 {
-                    res = (from gs in db.Game2_Scores select gs).Select(gs => GenerateUserScore(gs.UserId, gs.Stages, gs.StagesCount, Game.Multiplier)).ToList();
+                    res = (from gs in db.Game4_1_Scores select gs).Select(gs => GenerateUserScore(gs.UserId, gs.Stages, gs.StagesCount, Game.Multiplier)).ToList();
                 }
             }
 
             return res;
         }
 
-        private static Game2_UserScore_Dto GenerateUserScore(string UserId, string stages, int StagesCount,  double Multiplier)
+        private static Game4_1_UserScore_Dto GenerateUserScore(string UserId, string stages, int StagesCount, double Multiplier)
         {
             //var numberOfStagesCompleted = (stages ?? "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Length;
-            var res = new Game2_UserScore_Dto()
+            var res = new Game4_1_UserScore_Dto()
             {
                 GameId = GameId,
                 UserId = UserId,

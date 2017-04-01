@@ -207,9 +207,15 @@
     <Compile Include="Libs\Games\ActivityManager.cs" />
     <Compile Include="Libs\Games\GameHelper.cs" />
     <Compile Include="Libs\Games\GameManager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game5_Manager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game3_Manager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game4_3_Manager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game4_2_Manager.cs" />
+    <Compile Include="Libs\Games\GameTypes\Game4_1_Manager.cs" />
     <Compile Include="Libs\Games\GameTypes\Game2_Manager.cs" />
     <Compile Include="Libs\Games\GameTypes\Game1_Manager.cs" />
     <Compile Include="Libs\Games\GameTypes\Game6_Manager.cs" />
+    <Compile Include="Libs\Logger.cs" />
     <Compile Include="Libs\Security\SecurityManager.cs" />
     <Compile Include="Libs\Settings\SettingsManager.cs" />
     <Compile Include="Libs\UserGameManager.cs" />

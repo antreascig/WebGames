@@ -8,8 +8,8 @@ namespace WebGames.Models
         [Key]
         public string UserId { get; set; }
 
-        public double Score { get; set; }
-
         public string Stages { get; set; }
+
+        public int StagesCount { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace WebGames.Models
 
         public bool Completed { get; set; }
 
-        public string Stages { get; set; }
+        public int Attempts { get; set; }
     }
 }

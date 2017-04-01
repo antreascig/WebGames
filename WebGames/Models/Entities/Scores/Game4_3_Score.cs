@@ -10,5 +10,7 @@ namespace WebGames.Models
         //public double Score { get; set; }
 
         public string Stages { get; set; }
+
+        public int StagesCount { get; set; }
     }
 }

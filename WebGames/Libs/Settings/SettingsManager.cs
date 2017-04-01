@@ -54,6 +54,8 @@ namespace WebGames.Libs
             }
             catch (Exception exc)
             {
+                Logger.Log(exc.Message, LogType.CRITICAL);
+
                 // stub config
                 config = new SettingsConfig()
                 {

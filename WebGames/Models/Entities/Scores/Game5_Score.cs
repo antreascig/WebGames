@@ -9,6 +9,11 @@ namespace WebGames.Models
 
         //public double Score { get; set; }
 
-        public string QuestionsAnswered { get; set; }
+        public string Answers { get; set; }
+
+        public int CorrectCount { get; set; }
+
+        public int IncorrectCount { get; set; }
+
     }
 }

@@ -6,7 +6,7 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games.GameTypes
 {
-    public class Game1MetaData
+    public class Game1_MetaData
     {
         //public double Multiplier { get; set; }
     }
@@ -24,6 +24,14 @@ namespace WebGames.Libs.Games.GameTypes
         public static string GameKey = "Game1";
 
         //public static int Score_Limit { get; set; }
+
+        public static int GameId
+        {
+            get
+            {
+                return GameManager.GameDict[GameKey];
+            }
+        }
 
         public static void SetUserScore(string UserId, double Score, bool EnableOverride = false)
         {
@@ -66,11 +74,11 @@ namespace WebGames.Libs.Games.GameTypes
                         Score = 0
                     };
                 }
-                var Game = GameHelper.GetGame(GameManager.GameDict[GameKey], db);
+                var Game = GameHelper.GetGame(GameId, db);
 
                 if (Game != null)
                 {
-                    res = GetUserScore(UserId, ScoreEntity.Score, Game.Multiplier);
+                    res = GenerateUserScore(UserId, ScoreEntity.Score, Game.Multiplier);
                 }
             }
 
@@ -82,21 +90,21 @@ namespace WebGames.Libs.Games.GameTypes
             var res = new List<Game1_UserScore_Dto>();
             using (var db = ApplicationDbContext.Create())
             {
-                var Game = GameHelper.GetGame(GameManager.GameDict[GameKey], db);
+                var Game = GameHelper.GetGame(GameId, db);
                 if (Game != null)
                 {
-                    res = (from gs in db.Game1_Scores select gs).Select(gs => GetUserScore(gs.UserId, gs.Score, Game.Multiplier)).ToList();
+                    res = (from gs in db.Game1_Scores select gs).Select(gs => GenerateUserScore(gs.UserId, gs.Score, Game.Multiplier)).ToList();
                 }
             }
 
             return res;
         }
 
-        private static Game1_UserScore_Dto GetUserScore(string UserId, double Score, double Multiplier)
+        private static Game1_UserScore_Dto GenerateUserScore(string UserId, double Score, double Multiplier)
         {
             var res = new Game1_UserScore_Dto()
             {
-                GameId = GameManager.GameDict[GameKey],
+                GameId = GameId,
                 UserId = UserId,
                 Score = Score,
                 Computed_Score = Multiplier * Score
