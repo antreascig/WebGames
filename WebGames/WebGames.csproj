@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201703302202029_GameModel_Multiplier.Designer.cs">
       <DependentUpon>201703302202029_GameModel_Multiplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704011412277_More_Game_Model_Changes.cs" />
+    <Compile Include="Migrations\201704011412277_More_Game_Model_Changes.Designer.cs">
+      <DependentUpon>201704011412277_More_Game_Model_Changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Entities\DayActiveGame.cs" />
@@ -352,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703302202029_GameModel_Multiplier.resx">
       <DependentUpon>201703302202029_GameModel_Multiplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704011412277_More_Game_Model_Changes.resx">
+      <DependentUpon>201704011412277_More_Game_Model_Changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
