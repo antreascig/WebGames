@@ -32,8 +32,9 @@ namespace WebGames.Controllers
         }
 
         #region Game1
+
         [Authorize(Roles = "player")]
-        public ActionResult SaveGame1Score(int score)
+        public ActionResult Save_Game1_Score(int score)
         {
 
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
@@ -50,10 +51,161 @@ namespace WebGames.Controllers
 
         #endregion
 
+        #region Game2
+
+        [Authorize(Roles = "player")]
+        public ActionResult Save_Game2_Score(string stage)
+        {
+
+            // Security - Check if Game is the currently active one - cannot set the score for a non active game
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            if (CurrentActiveGameKey != Game1_Manager.GameKey)
+            {
+                return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
+            }
+            var UserId = User.Identity.GetUserId();
+            var stages = new string[] { stage };
+            Game2_Manager.SetUserScore(UserId, stages, EnableOverride: false); // Cannot override the score - once is set the done
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Game3
+        [Authorize(Roles = "player")]
+        public ActionResult Save_Game3_Score(bool completed, int attempts)
+        {
+
+            // Security - Check if Game is the currently active one - cannot set the score for a non active game
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            if (CurrentActiveGameKey != Game1_Manager.GameKey)
+            {
+                return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
+            }
+            var UserId = User.Identity.GetUserId();
+            Game3_Manager.SetUserScore(UserId, completed, attempts, EnableOverride: false); // Cannot override the score - once is set the done
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Get_Random_Game3_Solution()
+        {
+            var Rnd = new Random( DateTime.UtcNow.Second );
+
+            var res = new int[4];
+            for (int i = 0; i < res.Length; i++)
+            {
+                res[i] = Rnd.Next(1, 7);
+            }
+
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Game4_1
+
+        [Authorize(Roles = "player")]
+        public ActionResult Save_Game4_1_Score(string stage)
+        {
+
+            // Security - Check if Game is the currently active one - cannot set the score for a non active game
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            if (CurrentActiveGameKey != Game1_Manager.GameKey)
+            {
+                return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
+            }
+            var UserId = User.Identity.GetUserId();
+            var stages = new string[] { stage };
+            Game4_1_Manager.SetUserScore(UserId, stages, EnableOverride: false); // Cannot override the score - once is set the done
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Game4_2
+
+        [Authorize(Roles = "player")]
+        public ActionResult Save_Game4_2Score(string stage)
+        {
+
+            // Security - Check if Game is the currently active one - cannot set the score for a non active game
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            if (CurrentActiveGameKey != Game1_Manager.GameKey)
+            {
+                return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
+            }
+            var UserId = User.Identity.GetUserId();
+            var stages = new string[] { stage };
+            Game4_2_Manager.SetUserScore(UserId, stages, EnableOverride: false); // Cannot override the score - once is set the done
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Game4_1
+
+        [Authorize(Roles = "player")]
+        public ActionResult Save_Game4_3_Score(string stage)
+        {
+
+            // Security - Check if Game is the currently active one - cannot set the score for a non active game
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            if (CurrentActiveGameKey != Game1_Manager.GameKey)
+            {
+                return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
+            }
+            var UserId = User.Identity.GetUserId();
+            var stages = new string[] { stage };
+            Game4_3_Manager.SetUserScore(UserId, stages, EnableOverride: false); // Cannot override the score - once is set the done
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Game5
+
+        [Authorize(Roles = "player")]
+        public ActionResult Save_Game5_Score(Dictionary<int,int> answers)
+        {
+            // Security - Check if Game is the currently active one - cannot set the score for a non active game
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            if (CurrentActiveGameKey != Game6_Manager.GameKey)
+            {
+                return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
+            }
+
+            var UserId = User.Identity.GetUserId();
+            Game5_Manager.HandleUserAnswers(UserId, answers, EnableOverride: false); // Cannot override the score - once is set the done
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CheckQuestion(int questionId, int answerIndex)
+        {
+            // Security - Check if Game is the currently active one - cannot set the score for a non active game
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            if (CurrentActiveGameKey != Game6_Manager.GameKey)
+            {
+                return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
+            }
+
+            var UserId = User.Identity.GetUserId();
+            var IsCorrect = Game5_Manager.CheckQuestionAnswer( questionId, answerIndex ); // Cannot override the score - once is set the done
+
+            return Json(new { success = true, isCorrect = IsCorrect }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
         #region Game6
 
         [Authorize(Roles = "player")]
-        public ActionResult SaveGame6Score(int score)
+        public ActionResult Save_Game6_Score(int score)
         {
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
             var CurrentActiveGameKey = GameManager.GetActiveGameKey();
@@ -68,9 +220,7 @@ namespace WebGames.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-
         #endregion
-
 
         [Authorize(Roles = "player")]
         public ActionResult SaveGameTime(int timeInSeconds)

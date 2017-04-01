@@ -36,7 +36,7 @@ namespace WebGames.Libs.Games.GameTypes
 
         //public static int Score_Limit { get; set; }
 
-        public static void SetUserScore(string UserId, double Score, string[] Stages, bool EnableOverride = false)
+        public static void SetUserScore(string UserId, string[] Stages, bool EnableOverride = false)
         {
             Stages = Stages ?? new string[] { };
             using (var db = ApplicationDbContext.Create())
