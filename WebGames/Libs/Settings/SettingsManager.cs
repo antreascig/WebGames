@@ -66,7 +66,6 @@ namespace WebGames.Libs
                         {
                             SENDGRID_KEY = ""
                         }
-                        
                     }
                 };
             }

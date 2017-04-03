@@ -28,7 +28,10 @@ namespace WebGames.Controllers
                 PageToDisplay = "NoActiveGame";
             }
 
-            return View(PageToDisplay); 
+            // FOR TESTING
+            PageToDisplay = "mastermind/Cosmoplay";
+            //return new FilePathResult(PageToDisplay, "text/html");
+            return View(PageToDisplay);
         }
 
         #region Game1
