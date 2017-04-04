@@ -317,7 +317,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\custom\serverAPI.js" />
-    <None Include="Views\Games\mastermind\Cosmoplay.cshtml" />
+    <Content Include="Views\Games\mastermind\Cosmoplay.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
