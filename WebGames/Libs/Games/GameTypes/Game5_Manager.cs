@@ -6,12 +6,13 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games.GameTypes
 {
-    public class GameQuestionView
-    {
-        public int QuestionId { get; set; }
-        public int QuestionText { get; set; }
-        public List<string> Options { get; set; }
-    }
+    //public class GameQuestionView
+    //{
+    //    public int QuestionId { get; set; }
+    //    public int QuestionText { get; set; }
+    //    public List<string> Options { get; set; }
+    //    public int AnswerIndex { get; set; }
+    //}
 
     public class GameQuestionModel
     {
@@ -47,20 +48,15 @@ namespace WebGames.Libs.Games.GameTypes
         }
 
         //public static int Score_Limit { get; set; }
-        public static List<GameQuestionView> GetQuestions(int NumberOfQuestions)
+        public static List<GameQuestionModel> GetQuestions(int NumberOfQuestions)
         {
-            var res = new List<GameQuestionView>();
+            var res = new List<GameQuestionModel>();
             try
             {
                 var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
                 if (GameMetadata != null && GameMetadata.Questions != null)
                 {
-                    res.AddRange(GameMetadata.Questions.Where(q => q.Value.Active).Select(q => new GameQuestionView()
-                    {
-                        QuestionId = q.Value.QuestionId,
-                        QuestionText = q.Value.QuestionText ,
-                        Options = q.Value.Options,
-                    }));
+                    res.AddRange(GameMetadata.Questions.Where(q => q.Value.Active).Select(q => q.Value));
                 }
             }
             catch(Exception exc)
