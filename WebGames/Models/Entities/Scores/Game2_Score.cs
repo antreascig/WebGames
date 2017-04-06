@@ -11,5 +11,8 @@ namespace WebGames.Models
         public string Stages { get; set; }
 
         public int StagesCount { get; set; }
+
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 }

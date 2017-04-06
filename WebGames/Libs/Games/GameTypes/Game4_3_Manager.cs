@@ -24,7 +24,7 @@ namespace WebGames.Libs.Games.GameTypes
     {
         public static string GameKey = "Game4_3";
 
-        private static double StageScore = 1;
+        //private static double StageScore = 1;
 
         public static int GameId
         {

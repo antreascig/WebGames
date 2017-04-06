@@ -93,7 +93,7 @@ namespace WebGames.Libs.Games.GameTypes
                 var Game = GameHelper.GetGame(GameId, db);
                 if (Game != null)
                 {
-                    res = (from gs in db.Game1_Scores select gs).Select(gs => GenerateUserScore(gs.UserId, gs.Score, Game.Multiplier)).ToList();
+                    res = ( from gs in db.Game1_Scores orderby gs.Score descending select gs).ToList().Select(gs => GenerateUserScore(gs.UserId, gs.Score, Game.Multiplier)).ToList();
                 }
             }
 

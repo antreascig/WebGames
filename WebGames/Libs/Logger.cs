@@ -19,5 +19,15 @@ namespace WebGames.Libs
         {
 
         }
+
+        public static void Log(Exception exc)
+        {
+
+        }
+
+        public static void Log(Exception exc, string msg)
+        {
+
+        }
     }
 }

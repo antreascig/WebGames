@@ -6,13 +6,12 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games.GameTypes
 {
-    //public class GameQuestionView
-    //{
-    //    public int QuestionId { get; set; }
-    //    public int QuestionText { get; set; }
-    //    public List<string> Options { get; set; }
-    //    public int AnswerIndex { get; set; }
-    //}
+    public class GameQuestionView
+    {
+        public int QuestionId { get; set; }
+        public int QuestionText { get; set; }
+        public List<string> Options { get; set; }
+    }
 
     public class GameQuestionModel
     {
@@ -47,8 +46,30 @@ namespace WebGames.Libs.Games.GameTypes
             }
         }
 
+        public static List<GameQuestionView> GetPlayerQuestions(int NumberOfQuestions)
+        {
+            var res = new List<GameQuestionView>();
+            try
+            {
+                var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
+                if (GameMetadata != null && GameMetadata.Questions != null)
+                {
+                    res.AddRange(GameMetadata.Questions.Where(q => q.Value.Active).Take(NumberOfQuestions).Select(q =>  new GameQuestionView() {
+                        QuestionId = q.Value.QuestionId,
+                        QuestionText = q.Value.QuestionText,
+                        Options = q.Value.Options,
+                    }));
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc.Message, LogType.ERROR);
+            }
+            return res;
+        }
+
         //public static int Score_Limit { get; set; }
-        public static List<GameQuestionModel> GetQuestions(int NumberOfQuestions)
+        public static List<GameQuestionModel> GetQuestions()
         {
             var res = new List<GameQuestionModel>();
             try
@@ -56,7 +77,7 @@ namespace WebGames.Libs.Games.GameTypes
                 var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
                 if (GameMetadata != null && GameMetadata.Questions != null)
                 {
-                    res.AddRange(GameMetadata.Questions.Where(q => q.Value.Active).Select(q => q.Value));
+                    res.AddRange(GameMetadata.Questions.Select(q => q.Value));
                 }
             }
             catch(Exception exc)
@@ -64,6 +85,20 @@ namespace WebGames.Libs.Games.GameTypes
                 Logger.Log(exc.Message, LogType.ERROR);
             }
             return res;
+        }
+
+        public static void SaveQuestions(List<GameQuestionModel> Questions)
+        {
+            using (var db = ApplicationDbContext.Create())
+            {
+                var Game = GameHelper.GetGame(GameId, db);
+
+                var md = new Game5_MetaData()
+                {
+                    Questions = Questions.ToDictionary(k => k.QuestionId)
+                };
+                Game.MetadataJSON = Newtonsoft.Json.JsonConvert.SerializeObject(md);
+            }
         }
 
         public static bool CheckQuestionAnswer(int QuestionId, int AnswerIndex, GameModel Game = null)

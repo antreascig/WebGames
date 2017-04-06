@@ -6,8 +6,8 @@ namespace WebGames.Models
 {
     public class DayActiveGame
     {
-        [Column(TypeName = "DateTime2"), Key]
-        public DateTime Day { get; set; }
+        [Key]
+        public string Day { get; set; } // yyyy-mm-dd
 
         public string GameKey { get; set; }
     }

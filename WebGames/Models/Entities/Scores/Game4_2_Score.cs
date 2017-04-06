@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebGames.Models
 {
@@ -12,5 +13,8 @@ namespace WebGames.Models
         public string Stages { get; set; }
 
         public int StagesCount { get; set; }
+
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 }

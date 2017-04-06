@@ -14,5 +14,8 @@ namespace WebGames.Models
         public string UserId { get; set; }
 
         public double Score { get; set; }
+
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 }

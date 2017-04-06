@@ -5,6 +5,8 @@ using System.Web;
 using WebGames.Models;
 using WebGames.Helpers;
 using WebGames.Libs.Games.GameTypes;
+using WebGames.Libs.Games;
+using WebGames.Models.ViewModels;
 
 namespace WebGames.Libs
 {
@@ -21,12 +23,56 @@ namespace WebGames.Libs
         public static string GetActiveGameKey()
         {
             var Today = DateHelper.GetGreekDate(DateTime.UtcNow, onlyDate: true);
-            using (var db = ApplicationDbContext.Create())
-            {
-                var Active = (from ag in db.DaysActiveGames where ag.Day == Today select ag).FirstOrDefault();
-                if (Active == null) return null;
-                return Active.GameKey;
-            }
+            return GameDayScheduleManager.GetActiveGame(Today);
         }
+
+        public static List<GameSettings> GetGameSettings()
+        {
+            var settings = new List<GameSettings>();
+            try
+            {
+                using (var db = ApplicationDbContext.Create())
+                {
+                    settings.AddRange((from game in db.Games select game)
+                                        .Select(g => new GameSettings()
+                                        {
+                                            GameId = g.GameId,
+                                            Name = g.Name,
+                                            Multiplier = g.Multiplier
+                                        }));
+                }
+            }
+            catch(Exception exc)
+            {
+                Logger.Log(exc);
+            }
+            
+            return settings;
+        }
+
+        public static void SetGameSettings(GameSettings model )
+        {
+            if (model == null) return;
+            try
+            {
+                using (var db = ApplicationDbContext.Create())
+                {
+                    var Game = GameHelper.GetGame(model.GameId, db);
+                    if (Game == null) throw new ArgumentNullException($"Game {model.Name} - {model.GameId} does not exist");
+                    // Copy the settings to the model
+                    Game.Multiplier = model.Multiplier;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc);
+                throw exc;
+            }
+
+        }
+
+
+        
     }
 }

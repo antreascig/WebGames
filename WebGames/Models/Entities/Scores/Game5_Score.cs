@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebGames.Models
 {
@@ -15,5 +16,7 @@ namespace WebGames.Models
 
         public int IncorrectCount { get; set; }
 
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 }

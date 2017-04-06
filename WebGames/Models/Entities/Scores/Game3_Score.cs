@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebGames.Models
 {
@@ -10,5 +11,8 @@ namespace WebGames.Models
         public bool Completed { get; set; }
 
         public int Attempts { get; set; }
+
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 }
