@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mvc.JQuery.DataTables;
 using WebGames.Libs;
 using WebGames.Libs.Games;
 using WebGames.Libs.Games.GameTypes;
@@ -12,7 +13,7 @@ using WebGames.Models.ViewModels;
 
 namespace WebGames.Controllers
 {
-    [Authorize(Roles = "sysadmin,admin")]
+    //[Authorize(Roles = "sysadmin,admin")]
     public class DashboardController : Controller
     {
         // General Game Settings
@@ -21,7 +22,7 @@ namespace WebGames.Controllers
             try
             {
                 var settings = GameManager.GetGameSettings();
-                return Json(new { succsess = true, data = settings });
+                return Json(new { success = true, data = settings });
             }
             catch (Exception exc)
             {
@@ -102,28 +103,22 @@ namespace WebGames.Controllers
             }
         }
 
-        #region Scores
-
-        public ActionResult GetGame1Scores()
+        // Scores
+        public DataTablesResult GetScores(string GameKey, DataTablesParam dataTableParam)
         {
-            try
-            {
-                var scores = Game1_Manager.GetUsersScore().Select( s => new UserScoreViewModel()
-                {
-                    UserId = s.UserId,
-                    Rank = -1,
-                    Name = s.
-                });
-                return Json( scores );
-            }
-            catch (Exception exc)
-            {
-                Logger.Log(exc);
-                return Json(new { succsess = false, message = exc.Message });
-            }
+
+            var response = GameManager.GameDict[GameKey].SM.GetUserScores(dataTableParam);
+
+            return response;
         }
 
-        #endregion
+        // Scores
+        public DataTablesResult GetUsers(DataTablesParam dataTableParam)
+        {
+            var response = DataTableManager.GetUsers(dataTableParam);
+
+            return response;
+        }
     }
 
 }

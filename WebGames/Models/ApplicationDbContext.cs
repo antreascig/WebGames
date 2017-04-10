@@ -26,7 +26,6 @@ namespace WebGames.Models
 
         public DbSet<DayActiveGame> DaysActiveGames { get; set; }
 
-
         public DbSet<Game1_UserScore> Game1_Scores { get; set; }
         public DbSet<Game2_UserScore> Game2_Scores { get; set; }
         public DbSet<Game3_UserScore> Game3_Scores { get; set; }
@@ -36,6 +35,9 @@ namespace WebGames.Models
         public DbSet<Game5_UserScore> Game5_Scores { get; set; }
         public DbSet<Game6_UserScore> Game6_Scores { get; set; }
 
+        public DbSet<Allowed_Email> Alowed_Emails { get; set; }
+
+        public DbSet<UserQuestion> Game5_User_Questions { get; set; }
 
     }
 }

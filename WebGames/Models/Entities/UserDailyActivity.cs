@@ -17,6 +17,8 @@ namespace WebGames.Models
         public DateTime Date { get; set; } // format year/month/day
 
         public int TimePlayed { get; set; }
+
+        public long Timestamp { get; set; }
         
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }

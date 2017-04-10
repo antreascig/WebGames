@@ -13,22 +13,19 @@ namespace WebGames.Libs
     {
         const int TIME_LIMIT_PER_DAY = 5 * 60; // 300 seconds / 5 minutes
 
-        public static UserGameInfo GetUserGameInfo(ApplicationUser User)
+        public static UserGameInfo GetUserGameInfo(string UserId)
         {
-            if (User == null) return null;
-
             var Today = DateHelper.GetGreekDate(DateTime.UtcNow, onlyDate: true);
 
             // Get Remaining Play time for today
-            var timePlayed = ActivityManager.GetGameTime(User.Id, Today);
-            var RemainingTime = TIME_LIMIT_PER_DAY - timePlayed;
+            var gameTime = ActivityManager.GetGameTime(UserId, Today);
+            var RemainingTime = TIME_LIMIT_PER_DAY - gameTime.timeInSeconds;
             if (RemainingTime < 0) RemainingTime = 0;
 
             var res = new UserGameInfo()
             {
-                UserName = User.UserName,
-                Avatar = User.Avatar,
                 RemainingTimeInSeconds = RemainingTime,
+                timeStamp = gameTime.timeStamp
             };
             return res;
         }

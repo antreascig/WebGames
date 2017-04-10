@@ -8,14 +8,8 @@ using System.Web;
 
 namespace WebGames.Models
 {
-    public class Game6_UserScore
+    public class Game6_UserScore : A_UserScore
     {
-        [Key]
-        public string UserId { get; set; }
 
-        public double Score { get; set; }
-
-        [ForeignKey("UserId")]
-        public ApplicationUser User { get; set; }
     }
 }

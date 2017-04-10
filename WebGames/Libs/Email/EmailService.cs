@@ -6,6 +6,9 @@ using SendGrid.Helpers.Mail;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using WebGames.Models;
+using System.Linq;
 
 namespace WebGames.Libs
 {

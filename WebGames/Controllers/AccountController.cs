@@ -130,36 +130,49 @@ namespace WebGames.Controllers
                     UserName = model.UserName,
                     FullName = model.FullName,
                     Email = model.Email,
-                    SecondaryEmail = model.SecondaryEmail,
                     Shop = model.Shop,
                     MaritalStatus = model.MaritalStatus,
                     Hobby = model.Hobby,
                     Avatar = model.Avatar
                 };
 
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                bool EmailAllowed = true;
+                // Check if email is correct
+                //using (var db = ApplicationDbContext.Create())
+                //{
+                //    var emailToCheck = (user.Email ?? "").ToLower();
+                //    EmailAllowed = (from all_email in db.Alowed_Emails where all_email.Email == emailToCheck select all_email).SingleOrDefault() != null;
+                //}
 
-                if (result.Succeeded)
+                if (EmailAllowed)
                 {
-                    result = await UserManager.AddToRoleAsync(user.Id, "player");
+                    IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
                     if (result.Succeeded)
                     {
-                        //  Comment the following line to prevent log in until the user is confirmed.
-                        //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                        result = await UserManager.AddToRoleAsync(user.Id, "player");
+                        if (result.Succeeded)
+                        {
+                            //  Comment the following line to prevent log in until the user is confirmed.
+                            //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                        string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+                            string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
 
 
-                        ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
-                                        + "before you can log in.";
+                            ViewBag.Message = @"Ελέγξτε το email σας και επιβεβαιώστε τον λογαριασμό σας. Η επιβεβαίωση είναι αναγκαία για να συνδεθείτε!";
 
-                        // For local debug only
-                        ViewBag.Link = callbackUrl;
+                            // For local debug only
+                            ViewBag.Link = callbackUrl;
 
-                        return View("Info");
+                            return View("Info");
+                        }
                     }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+                else
+                {
+                    AddErrors(new IdentityResult("Παρακαλω χρησιμοποιήστε το εταιρικό σας Email"));
+                }
             }
 
             // If we got this far, something failed, redisplay form

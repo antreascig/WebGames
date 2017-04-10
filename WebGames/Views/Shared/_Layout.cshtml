@@ -8,10 +8,13 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     <script src="@Url.Content("~/Scripts/knockout-3.2.0.js")"></script>
+    <script src="@Url.Content("~/Scripts/custom/jquery.dataTables.js")"></script>
 
-
+    @{
+        var pageName = ViewContext.RouteData.Values["controller"].ToString() + "_" +ViewContext.RouteData.Values["action"].ToString();
+    }
 </head>
-<body>
+<body class="@pageName">
     @*used for ajax in AddAntiForgeryToken()*@
     <form id="__AjaxAntiForgeryForm" action="#" method="post">@Html.AntiForgeryToken()</form>
 

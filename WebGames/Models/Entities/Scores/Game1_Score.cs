@@ -3,14 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebGames.Models
 {
-    public class Game1_UserScore
+    public class Game1_UserScore : A_UserScore
     {
-        [Key]
-        public string UserId { get; set; }
 
-        public double Score { get; set; }
-
-        [ForeignKey("UserId")]
-        public ApplicationUser User { get; set; }
     }
 }

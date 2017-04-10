@@ -39,10 +39,9 @@ namespace WebGames.Controllers
 
         // GET: /Manage/RemoveLogin
         [Authorize(Roles = "player")]
-        public async Task<ActionResult> GetUserDetails()
+        public ActionResult GetUserDetails()
         {
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            var res = UserGameManager.GetUserGameInfo(user);
+            var res = UserGameManager.GetUserGameInfo(User.Identity.GetUserId());
             return Json(res);
         }
         //

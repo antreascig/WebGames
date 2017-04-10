@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGames", "WebGames\WebGames.csproj", "{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGamesTests", "WebGamesTests\WebGamesTests.csproj", "{6167A5FE-1A23-4193-9518-FF2E89197BFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +16,10 @@ Global
 		{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F8B7418-4CC3-40D4-92E8-0AB82285C32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6167A5FE-1A23-4193-9518-FF2E89197BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6167A5FE-1A23-4193-9518-FF2E89197BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6167A5FE-1A23-4193-9518-FF2E89197BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6167A5FE-1A23-4193-9518-FF2E89197BFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

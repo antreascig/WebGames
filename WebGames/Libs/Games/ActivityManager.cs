@@ -7,14 +7,20 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games
 {
+    public class GameTime
+    {
+        public int timeInSeconds { get; set; }
+        public long timeStamp { get; set; }
+    }
+
     public class ActivityManager
     {
-        public static void AddPlayedTimeForToday(string UserId, int timeInSeconds)
+        public static void SyncPlayedTimeForToday(string UserId, int timeInSeconds, long timeStamp)
         {
-            AddPlayedTime(UserId, DateTime.UtcNow.Date, timeInSeconds);
+            SyncPlayedTime(UserId, DateTime.UtcNow.Date, timeInSeconds, timeStamp);
         }
 
-        public static void AddPlayedTime(string UserId, DateTime Day, int timeInSeconds)
+        public static void SyncPlayedTime(string UserId, DateTime Day, int timeInSeconds, long timeStamp)
         {
             if (timeInSeconds < 0) return;
 
@@ -22,9 +28,13 @@ namespace WebGames.Libs.Games
             {
                 UserDailyActivity activity = GetorCreateActivity(UserId, Day, db, CreateIfNotExists:true);
 
-                activity.TimePlayed += timeInSeconds;
+                if (timeStamp > activity.Timestamp)
+                {
+                    activity.TimePlayed = timeInSeconds;
+                    activity.Timestamp = timeStamp;
 
-                db.SaveChanges();
+                    db.SaveChanges();
+                }               
             }
         }
        
@@ -37,21 +47,29 @@ namespace WebGames.Libs.Games
                 UserDailyActivity activity = GetorCreateActivity(UserId, Day, db, CreateIfNotExists: true);
 
                 activity.TimePlayed = timeInSeconds;
+                activity.Timestamp = DateHelper.GetGreekDate(DateTime.UtcNow, onlyDate: true).Ticks;
 
                 db.SaveChanges();
             }
         }
 
-        public static int GetGameTime(string UserId, DateTime Day)
+        public static GameTime GetGameTime(string UserId, DateTime Day)
         {
-            int timeInSeconds = 0;
+            var res = new GameTime()
+            {
+                timeInSeconds = 0,
+                timeStamp = 0
+            };
             using (var db = ApplicationDbContext.Create())
             {
                 UserDailyActivity activity = GetorCreateActivity(UserId, Day, db, CreateIfNotExists: false);
                 if (activity != null)
-                    timeInSeconds = activity.TimePlayed;
+                {
+                    res.timeInSeconds = activity.TimePlayed;
+                    res.timeStamp = activity.Timestamp;
+                }
             }
-            return timeInSeconds;
+            return res;
         }
 
         private static UserDailyActivity GetorCreateActivity(string UserId, DateTime Day, ApplicationDbContext db, bool CreateIfNotExists = false)
@@ -63,7 +81,7 @@ namespace WebGames.Libs.Games
             {
                 activity.Date = localizedDate;
                 activity = new UserDailyActivity();
-                db.Entry<UserDailyActivity>(activity);
+                db.UserDailyActivity.Add(activity);
             }
 
             return activity;

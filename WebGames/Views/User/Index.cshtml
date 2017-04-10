@@ -1,0 +1,32 @@
+﻿@model WebGames.Models.ViewModels.UserScoreInfo
+@{
+   ViewBag.Title = "Info";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div>
+
+    <table class="table table-striped table-bordered table-hover" id="gamescores">
+
+        <thead>
+            <tr>
+                <th>Παιχνίδι</th>
+                <th>Σκορ</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var game in Model.GameScores)
+            {
+                <tr>
+                    <td>@game.Name</td>
+                    <td>@game.Score</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

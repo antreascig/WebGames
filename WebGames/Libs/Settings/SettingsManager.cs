@@ -22,6 +22,8 @@ namespace WebGames.Libs
     public class SecurityAPIs
     {
         public string SENDGRID_KEY { get; set; }
+        public string Sendgrid_User_Name { get; set; }
+        public string Sendgrid_Password { get; set; }
     }
 
     public class PersistentUser
