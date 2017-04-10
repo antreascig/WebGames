@@ -10,9 +10,9 @@ using WebGames.Libs.Games.GameTypes;
 
 namespace WebGames.Controllers
 {
+    [Authorize(Roles = "player")]
     public class GamesController: Controller
     {
-        [Authorize(Roles = "player")]
         public ActionResult ActiveGame()
         {
             var PageToDisplay = "";
@@ -34,7 +34,6 @@ namespace WebGames.Controllers
             return View(PageToDisplay);
         }
 
-        [Authorize(Roles = "player")]
         public ActionResult Save_Game_Score(int score)
         {
 
@@ -70,7 +69,6 @@ namespace WebGames.Controllers
 
         #region Game5
 
-        [Authorize(Roles = "player")]
         public ActionResult CheckQuestion(int questionId, int answerIndex)
         {
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
@@ -81,7 +79,7 @@ namespace WebGames.Controllers
             }
 
             var UserId = User.Identity.GetUserId();
-            var IsCorrect = Game5_Manager.CheckQuestionAnswer( questionId, answerIndex ); // Cannot override the score - once is set the done
+            var IsCorrect = Game5_Manager.CheckAndSaveQuestionAnswer(UserId, questionId, answerIndex ); // Cannot override the score - once is set the done
 
             return Json(new { success = true, isCorrect = IsCorrect }, JsonRequestBehavior.AllowGet);
         }
@@ -102,7 +100,6 @@ namespace WebGames.Controllers
 
         #endregion
 
-        [Authorize(Roles = "player")]
         public ActionResult SaveGameTime(int timeInSeconds, long timestamp)
         {
             var UserId = User.Identity.GetUserId();       

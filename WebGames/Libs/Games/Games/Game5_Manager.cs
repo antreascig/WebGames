@@ -152,21 +152,38 @@ namespace WebGames.Libs.Games.GameTypes
             }
         }
 
-        public static bool CheckQuestionAnswer(int QuestionId, int AnswerIndex, GameModel Game = null)
+        public static bool CheckAndSaveQuestionAnswer(string UserId, int QuestionId, int AnswerIndex)
         {
             try
             {
-                var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
-                // Check that is the correct question
-                if (GameMetadata == null
-                    || GameMetadata.Questions == null
-                    || !GameMetadata.Questions.ContainsKey(QuestionId)
-                    || GameMetadata.Questions[QuestionId].QuestionId != QuestionId
-                    || GameMetadata.Questions[QuestionId].AnswerIndex != AnswerIndex)
+                var isCorrect = false;
+                using (var db = ApplicationDbContext.Create())
                 {
-                    return false;
+                    var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData), db);
+                    // Check that is the correct question
+                    if (GameMetadata == null
+                        || GameMetadata.Questions == null
+                        || !GameMetadata.Questions.ContainsKey(QuestionId)
+                        || GameMetadata.Questions[QuestionId].QuestionId != QuestionId
+                        || GameMetadata.Questions[QuestionId].AnswerIndex != AnswerIndex)
+                    {
+                        isCorrect = false;
+                    }
+                    else
+                    {
+                        isCorrect = true;
+                    }
+
+                    // Save question is as answered
+                    var User_Questions = (from q in db.Game5_User_Questions where q.UserId == UserId select q).SingleOrDefault();
+                    var Existing = (User_Questions.Answered ?? "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                    Existing.Add(QuestionId.ToString());
+                    User_Questions.Answered = string.Join(",", Existing);
+
+                    db.SaveChanges();
                 }
-                return true;
+                
+                return isCorrect;
             }
             catch (Exception exc)
             {
