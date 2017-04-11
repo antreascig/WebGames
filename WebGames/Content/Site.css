@@ -10,11 +10,6 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
 
 .error-messages {
     color: red;
@@ -25,11 +20,253 @@ label.avatar > input { /* HIDE RADIO */
     position: absolute; /* Remove input from document flow */
 }
 
-label.avatar > input + img { /* IMAGE STYLES */
-    cursor: pointer;
-    border: 2px solid transparent;
+    label.avatar > input + img { /* IMAGE STYLES */
+        cursor: pointer;
+        border: 2px solid transparent;
+    }
+
+    label.avatar > input:checked + img { /* (RADIO CHECKED) IMAGE STYLES */
+        border: 2px solid #f00;
+    }
+
+
+@font-face {
+    font-family: 'GFS';
+    src: url('../fonts/GFSTheokritos-Regular.eot');
+    src: url('../fonts/GFSTheokritos-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/GFSTheokritos-Regular.woff') format('woff'), url('../fonts/GFSTheokritos-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-label.avatar > input:checked + img { /* (RADIO CHECKED) IMAGE STYLES */
-    border: 2px solid #f00;
+.navbar.navbar-inverse {
+    background: none;
+    border: none;
+}
+
+.navbar a {
+    font-family: 'GFS';
+    color: white !important;
+}
+
+body {
+    height: 100vh;
+}
+
+.Home_Index,
+.User_Index {
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) top center no-repeat;
+}
+
+.Account_Login {
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center -100px no-repeat;
+}
+
+.Account_Register {
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center top no-repeat;
+}
+
+    .Account_Register .form-horizontal {
+        background: transparent url(images/regform.png?v=2) top center no-repeat;
+    }
+
+    .Account_Register h2, .Account_Register h4 {
+        display: none;
+    }
+
+.nav.navbar-nav {
+    display: none;
+}
+
+    .nav.navbar-nav.navbar-right {
+        display: block;
+    }
+
+.Account_Login .navbar-right,
+.Account_Register .navbar-right {
+    display: none;
+    opacity: 0;
+}
+
+.Account_Register label {
+    display: none;
+}
+
+.Account_Login h2 {
+    display: none;
+}
+
+.Account_Register form {
+    display: block;
+    padding-left: 400px;
+    padding-right: 155px;
+    padding-top: 100px;
+    box-sizing: border-box;
+    width: 1178px;
+}
+
+.Account_Register .form-control {
+    border-radius: 0;
+    border: 2px solid #cc2536;
+    padding: 10px;
+    height: 55px;
+}
+
+.Account_Register .col-md-10 {
+    width: 100%;
+}
+
+#loginForm {
+    width: 400px;
+    padding-top: 240px;
+    margin: 0 auto;
+}
+
+    #loginForm h4 {
+        display: none;
+    }
+
+    #loginForm .col-md-2,
+    #loginForm .col-md-10 {
+        width: 100%;
+        text-align: left;
+        float: none;
+        margin-right: none;
+    }
+
+    #loginForm .form-group {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
+
+    #loginForm p:nth-last-child(2) {
+        display: none;
+    }
+
+.Account_Register .form-group:nth-last-child(2) {
+    background: #0b4159;
+    padding: 10px 10px 10px 10px;
+    width: 621px;
+    margin-left: 0px;
+}
+
+    .Account_Register .form-group:nth-last-child(2):before {
+        display: block;
+        content: "διαλεξε τον αρτιστα που σου ταιριαζει:";
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'GFS';
+        font-size: 20px;
+    }
+
+#loginForm p {
+    text-align: center;
+    padding-top: 10px;
+}
+
+    #loginForm p a {
+        color: white;
+    }
+
+#loginForm .btn {
+    background: transparent url(images/loginbtn.png) top center no-repeat;
+    width: 254px;
+    height: 143px;
+    font-size: 0;
+    margin-left: 56px;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+    transition: all ease 0.2s
+}
+
+    #loginForm .btn:hover {
+        transform: translateY(-10px)
+    }
+
+#loginForm .checkbox input[type="checkbox"] {
+    margin-left: 0px;
+    width: 25px;
+    height: 25px;
+}
+
+#loginForm .checkbox label {
+    display: block;
+    padding-top: 7px;
+    padding-left: 33px;
+    padding-bottom: 15px;
+    color: white;
+}
+
+#loginForm .col-md-offset-2.col-md-10 {
+    margin-left: 0;
+    width: 100%;
+}
+
+.Account_Login .col-md-8 {
+    width: 100%;
+}
+
+#loginForm .form-control {
+    padding: 15px !important;
+    height: 50px;
+}
+
+.jumbotron {
+    background: none;
+    text-align: center;
+}
+
+    .jumbotron h1 {
+        display: none;
+    }
+
+.container hr {
+    display: none !impotant;
+    width: 0;
+}
+
+.jumbotron .btn {
+    background: transparent url(https://amusegr.eu/images/startbtn.png) top center no-repeat;
+    width: 254px;
+    height: 143px;
+    font-size: 0;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+    margin-top: 450px;
+    transition: all ease 0.2s
+}
+
+    .jumbotron .btn:hover {
+        margin-top: 440px;
+    }
+
+.Account_Register input[type="submit"] {
+    background: transparent url(images/registerbtn.png) top center no-repeat;
+    width: 198px;
+    height: 121px;
+    font-size: 0;
+    float: right;
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    margin-right: 105px;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+    transition: all ease 0.2s;
+    z-index: 100;
+}
+
+    .Account_Register input[type="submit"]:hover {
+        transform: translateY(-10px) !important;
+        cursor: pointer;
+    }
+
+#__AjaxAntiForgeryForm {
+    padding: 0;
 }

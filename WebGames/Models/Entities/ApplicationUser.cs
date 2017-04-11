@@ -32,7 +32,7 @@ namespace WebGames.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
 
-            userIdentity.AddClaim(new Claim("Avatar", this.Avatar));
+            userIdentity.AddClaim(new Claim("Avatar", this.Avatar ?? ""));
 
             // Add custom user claims here
             return userIdentity;

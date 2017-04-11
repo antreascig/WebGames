@@ -219,6 +219,7 @@
     <Compile Include="Libs\Games\GameHelper.cs" />
     <Compile Include="Libs\Games\GameManager.cs" />
     <Compile Include="Libs\Games\Games\Game5_Manager.cs" />
+    <Compile Include="Libs\Games\Games\Game6_Manager.cs" />
     <Compile Include="Libs\Games\ScoreManager.cs" />
     <Compile Include="Libs\Logger.cs" />
     <Compile Include="Libs\Security\SecurityManager.cs" />
@@ -300,6 +301,9 @@
     <Content Include="Content\Games\mastermind\card6.png" />
     <Content Include="Content\Games\jquery.mCustomScrollbar.css" />
     <Content Include="Content\Games\mastermind\style.css" />
+    <Content Include="Content\images\loginbtn.png" />
+    <Content Include="Content\images\regform.png" />
+    <Content Include="Content\images\registerbtn.png" />
     <Content Include="Content\jquery-datatables-column-filter\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\jquery-datatables-column-filter\jquery-ui-timepicker-addon.js" />
     <Content Include="Content\jquery-datatables-column-filter\media\css\demo_page.css" />
@@ -408,7 +412,7 @@
     <Content Include="Content\ComingSoon\img\parallels-logo.png" />
     <Content Include="Content\ComingSoon\img\th.png" />
     <Content Include="Content\ComingSoon\img\top-bottom.png" />
-    <None Include="Views\ComingSoon\Index.cshtml" />
+    <Content Include="Views\ComingSoon\Index.cshtml" />
     <Content Include="Content\ComingSoon\screens.css" />
     <Content Include="Content\ComingSoon\test\apacheasp\test.asp" />
     <Content Include="Content\ComingSoon\test\apacheasp\test.html" />

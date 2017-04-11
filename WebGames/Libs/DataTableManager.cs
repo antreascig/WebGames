@@ -24,14 +24,12 @@ namespace WebGames.Libs
             {
                 using (var db = ApplicationDbContext.Create())
                 {
-                    var exceptIds = Roles.GetUsersInRole("sysadmin").ToList();
-                    //exceptIds.AddRange(Roles.GetUsersInRole("admin"));
-
+                    var RoleId = (from role in db.Roles where role.Name == "player" select role).SingleOrDefault().Id;
                     var searchValue = dataTableParam.sSearch ?? "";
-                    var q = db.Users.AsQueryable();
+                    var q = db.Users.Where(u => u.Roles.Select(y => y.RoleId).Contains(RoleId)).AsQueryable();
                     if (searchValue != "")
                     {
-                        q = q.Where(u => u.FullName.Contains(searchValue) && !exceptIds.Contains(u.Id) );
+                        q = q.Where(u => u.FullName.Contains(searchValue));
                     }
 
                     var users = q.ToList().Select(row => new UserDTModel()

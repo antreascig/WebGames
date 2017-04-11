@@ -8,6 +8,13 @@ using System.Web;
 
 namespace WebGames.Models
 {
+    public class Game6_User_Group
+    {
+        public string UserId { get; set; }
+
+        public int GroupNumber { get; set; }
+    }
+
     public class Game6_UserScore : A_UserScore
     {
 

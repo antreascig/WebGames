@@ -39,5 +39,7 @@ namespace WebGames.Models
 
         public DbSet<UserQuestion> Game5_User_Questions { get; set; }
 
+        public DbSet<Game6_User_Group> Game6_User_Groups { get; set; }
+
     }
 }

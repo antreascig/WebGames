@@ -6,6 +6,7 @@ using WebGames.Models;
 using WebGames.Helpers;
 using WebGames.Libs.Games;
 using WebGames.Models.ViewModels;
+using WebGames.Libs.Games.Games;
 
 namespace WebGames.Libs
 {
@@ -38,7 +39,14 @@ namespace WebGames.Libs
         {
             var Games = new List<GameData>()
             {
-                new GameData() { GameKey = GameKeys.GAME_1, Name = "Game 1", Page = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) }
+                new GameData() { GameKey = GameKeys.GAME_1, Name = "Game 1", Page = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) },
+                new GameData() { GameKey = GameKeys.GAME_2, Name = "Game 2", Page = GameKeys.GAME_2, SM = new ScoreManager<Game2_UserScore>(GameKeys.GAME_2) },
+                new GameData() { GameKey = GameKeys.GAME_3, Name = "Game 3", Page = GameKeys.GAME_3, SM = new ScoreManager<Game3_UserScore>(GameKeys.GAME_3) },
+                new GameData() { GameKey = GameKeys.GAME_4_1, Name = "Game 4-1", Page = GameKeys.GAME_4_1, SM = new ScoreManager<Game4_1_UserScore>(GameKeys.GAME_4_1) },
+                new GameData() { GameKey = GameKeys.GAME_4_2, Name = "Game 4-2", Page = GameKeys.GAME_4_2, SM = new ScoreManager<Game4_2_UserScore>(GameKeys.GAME_4_2) },
+                new GameData() { GameKey = GameKeys.GAME_4_3, Name = "Game 4-3", Page = GameKeys.GAME_4_3, SM = new ScoreManager<Game4_3_UserScore>(GameKeys.GAME_4_3) },
+                new GameData() { GameKey = GameKeys.GAME_5, Name = "Game 5", Page = GameKeys.GAME_5, SM = new ScoreManager<Game5_UserScore>(GameKeys.GAME_5) },
+                new GameData() { GameKey = GameKeys.GAME_6, Name = "Game 6", Page = GameKeys.GAME_6, SM = new ScoreManager<Game6_UserScore>(GameKeys.GAME_6) },
             };
             using (var db = ApplicationDbContext.Create())
             {
@@ -70,11 +78,22 @@ namespace WebGames.Libs
             }
         }
 
-        public static string GetActiveGameKey()
+        public static string GetActiveGameKey(string UserId)
         {
             var Today = DateHelper.GetGreekDate(DateTime.UtcNow, onlyDate: true);
             var ActiveGame = GameDayScheduleManager.GetActiveGame(Today) ?? "";
             if (!GameDict.ContainsKey(ActiveGame)) return "";
+
+            // If game6 check if user is allowed to play it
+            if (ActiveGame == GameKeys.GAME_6)
+            {
+                var Group = Game6_Manager.GetUserGroup(UserId);
+                if (Group == -1)
+                {
+                    ActiveGame = "";
+                }
+            }
+
             return ActiveGame;
         }
 
@@ -88,10 +107,11 @@ namespace WebGames.Libs
                     settings.AddRange((from game in db.Games select game)
                                         .Select(g => new GameSettings()
                                         {
+                                            GameId = g.GameId,
                                             GameKey = g.GameKey,
                                             Name = g.Name,
                                             Multiplier = g.Multiplier
-                                        }));
+                                        }).ToList().Where(g => GameManager.GameDict.ContainsKey(g.GameKey)));
                 }
             }
             catch(Exception exc)

@@ -75,7 +75,7 @@ namespace WebGames.Libs.Games.GameTypes
                         // get the score of the user in order to calculate the required number of questions to retrieve
                         var scores = ScoreManager.GetUserTotalScores(UserId);
                         var GamesRequired = new string[] { GameKeys.GAME_1, GameKeys.GAME_2, GameKeys.GAME_3, GameKeys.GAME_4_1, GameKeys.GAME_4_2, GameKeys.GAME_4_3 };
-                        var totalScore = scores.Where(s=> GamesRequired.Contains(s.Key) ).Sum(s => s.Value);
+                        var totalScore = scores.Where(s=> GamesRequired.Contains(s.Key) ).Sum(s => s.Value.Score);
                         int NumberOfQuestions = (int) Math.Ceiling( totalScore / GameMetadata.PointsPerQustion );
 
                         // if not any ids stored in db them choose randomly

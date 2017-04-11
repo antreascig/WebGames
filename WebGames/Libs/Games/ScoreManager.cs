@@ -15,15 +15,26 @@ namespace WebGames.Libs.Games
     public class UserScore
     {
         public int GameId { get; set; }
-        public string GameName { get; set; }        
+        public string GameName { get; set; }
         public string UserId { get; set; }
-        public string Name { get; set; }
         public double Score { get; set; }
     }
 
     public class UserScore_Admin : UserScore
     {
         public int Tokens { get; set; }
+    }
+
+    public class UserScoreVM : UserScore
+    {
+        public string User_FullName { get; set; }
+    }
+
+    public class UserTotalScore
+    {
+        public string UserId { get; set; }
+        public string User_FullName { get; set; }
+        public double Score { get; set; }
     }
 
     public abstract class ScoreManager
@@ -36,30 +47,78 @@ namespace WebGames.Libs.Games
             Game.SM.SetUserScore(UserId, Tokens, Override);
         }
 
-        public static Dictionary<string, double> GetUserTotalScores(string UserId)
+        public static Dictionary<string, UserScore_Admin> GetUserTotalScores(string UserId)
         {
-            var res = new Dictionary<string, double>();
+            var res = new Dictionary<string, UserScore_Admin>();
             using (var db = ApplicationDbContext.Create())
             {
                 var User = (from u in db.Users where u.Id == UserId select u).SingleOrDefault();
                 if (User != null)
                 {
-                    foreach ( var game in GameManager.GameDict)
+                    foreach (var game in GameManager.GameDict)
                     {
-                        res.Add(game.Key, 0);
+                        res.Add(game.Key, new UserScore_Admin()
+                        {
+                            UserId = UserId,
+                            GameId = game.Value.GameId,
+                            GameName = game.Value.Name,
+                            Score = 0,
+                            Tokens = 0
+                        });
                         var Game1Score = game.Value.SM.GetUserScore(User);
-                        if (Game1Score != null) res[game.Key] = Game1Score.Score;
+                        if (Game1Score != null)
+                        {
+                            res[game.Key].Score = Game1Score.Score;
+                            res[game.Key].Tokens = Game1Score.Tokens;
+                        }
                     }
-                }               
+                }
+            }
+            return res;
+        }
+
+        public static List<UserTotalScore> GetUsersTotalScoresForGames(string[] selectedGameKeys )
+        {
+            var res = new List<UserTotalScore>();
+
+            using (var db = ApplicationDbContext.Create())
+            {
+                var Games = (from game in db.Games select game).ToList();
+                var Users = (from user in db.Users select new { UserId = user.Id, Full_Name = user.FullName }).ToList();
+                var ScoreDict = Users.ToDictionary(k => k.UserId, v => (double)0);
+
+                foreach( var gameKey in selectedGameKeys)
+                {
+                    var Game = Games.FirstOrDefault(g => g.GameKey == gameKey);
+                    if (!GameManager.GameDict.ContainsKey(gameKey) || Game == null) continue;
+
+                    var Game_Scores = GameManager.GameDict[gameKey].SM.GetUsersScore().ToList();
+
+                    Game_Scores.ForEach(sc =>
+                    {
+                        if (ScoreDict.ContainsKey(sc.UserId))
+                        {
+                            ScoreDict[sc.UserId] += CalculateScore(Game, sc.Tokens);
+                        }
+                    });
+                }
+                res.AddRange(Users.Select(u => new UserTotalScore()
+                {
+                    UserId = u.UserId,
+                    User_FullName = u.Full_Name,
+                    Score = ScoreDict[u.UserId]
+                }));
             }
             return res;
         }
 
         public abstract void SetUserScore(string UserId, int Tokens, bool EnableOverride = false);
 
-        public abstract DataTablesResult GetUserScores(DataTablesParam dataTableParam);
+        public abstract DataTablesResult GetUsersScoresDT(DataTablesParam dataTableParam);
 
-        public abstract UserScore GetUserScore(ApplicationUser User);
+        public abstract UserScore_Admin GetUserScore(ApplicationUser User);
+
+        public abstract List<A_UserScore> GetUsersScore();
 
         // HELPERS
         public static UserScore_Admin GenerateUserScore(GameModel Game, ApplicationUser User, int Tokens)
@@ -69,15 +128,19 @@ namespace WebGames.Libs.Games
                 GameId = Game.GameId,
                 GameName = Game.Name,
                 UserId = User.Id,
-                Name = User.FullName,
                 Tokens = Tokens,
-                Score = Game.Multiplier * Tokens
+                Score = CalculateScore(Game, Tokens)
             };
             return res;
         }
+
+        public static double CalculateScore(GameModel Game, int tokens)
+        {
+            return Game.Multiplier * tokens;
+        }
     }
 
-    public class ScoreManager<T>: ScoreManager where T: A_UserScore, new()
+    public class ScoreManager<T> : ScoreManager where T : A_UserScore, new()
     {
         string GameKey { get; set; }
         public ScoreManager(string GK)
@@ -85,7 +148,7 @@ namespace WebGames.Libs.Games
             GameKey = GK;
         }
 
-        public override UserScore GetUserScore(ApplicationUser User)
+        public override UserScore_Admin GetUserScore(ApplicationUser User)
         {
             try
             {
@@ -113,23 +176,41 @@ namespace WebGames.Libs.Games
             }
         }
 
-        public override DataTablesResult GetUserScores(DataTablesParam dataTableParam)
+        public override DataTablesResult GetUsersScoresDT(DataTablesParam dataTableParam)
         {
             try
             {
                 var GameData = GameManager.GameDict[GameKey];
-                using ( var db = ApplicationDbContext.Create() )
+                using (var db = ApplicationDbContext.Create())
                 {
                     var Game = (from game in db.Games where game.GameId == GameData.GameId select game).SingleOrDefault();
-
-                    var data = db.Users.Join(db.Set<T>(), u => u.Id, s => s.UserId, (i,o) => new
+                    var counter = 1;
+                    var data = db.Set<T>().Join(db.Users, score => score.UserId, u => u.Id, (i, o) => new
                     {
-                        UserId = i.Id,
-                        Name = i.FullName,
-                        Tokens = o.Tokens
-                    }).ToList();
+                        UserId = i.UserId,
+                        Name = o.FullName,
+                        Tokens = i.Tokens,
+                        Shop = o.Shop
+                    }).ToList().Select(i => new
+                    {
+                        Rank = counter++,
+                        UserId = i.UserId,
+                        Name = i.Name,
+                        Shop = i.Shop,
+                        Tokens = i.Tokens,
+                        Score = 0
+                    }).ToList().AsQueryable();
+
                     var ScoreData = db.Set<T>().Include("User").AsQueryable();
-                    var res = DataTablesResult.Create<T>(ScoreData, dataTableParam, row => GenerateUserScore(Game, row.User, row.Tokens ));
+                    var res = DataTablesResult.Create(data, dataTableParam, row => new
+                    {
+                        Rank = row.Rank,
+                        UserId = row.UserId,
+                        Name = row.Name,
+                        Shop = row.Shop,
+                        Tokens = row.Tokens,
+                        Score = CalculateScore(Game, row.Tokens)
+                    });
                     return res;
                 }
             }
@@ -140,6 +221,14 @@ namespace WebGames.Libs.Games
             }
         }
 
+        public override List<A_UserScore> GetUsersScore()
+        {
+            using (var db = ApplicationDbContext.Create())
+            {
+                var data = db.Set<T>().ToList().Select(d => d as A_UserScore).ToList();
+                return data;
+            }
+        }
         public override void SetUserScore(string UserId, int Tokens, bool EnableOverride = false)
         {
             try
@@ -161,19 +250,14 @@ namespace WebGames.Libs.Games
                     {
                         Entity.Tokens = Tokens;
                     }
-                    else if (GameKey == "Game2")
+                    else
                     {
                         Entity.Tokens += Tokens;
                     }
-                    else
-                    {
-                        return;
-                    }
-
                     db.SaveChanges();
                 }
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Logger.Log(exc);
             }

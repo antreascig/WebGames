@@ -22,28 +22,28 @@
     <div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.UserName) })
         </div>
     </div>
     @* Password *@
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Password) })
         </div>
     </div>
     @* Confirm Password *@
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.ConfirmPassword) })
         </div>
     </div>
     @* FullName *@
     <div class="form-group">
         @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.FullName) })
         </div>
     </div>
 
@@ -51,7 +51,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", data_bind = "value:Email" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", data_bind = "value:Email", placeholder = Html.DisplayNameFor(n => n.Email) })
         </div>
     </div>
 
@@ -59,7 +59,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Shop, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Shop, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Shop, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Shop) })
         </div>
     </div>
 
@@ -67,7 +67,10 @@
     <div class="form-group">
         @Html.LabelFor(m => m.MaritalStatus, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.MaritalStatus, new { @class = "form-control" })
+            @Html.DropDownListFor(
+           model => model.MaritalStatus,
+           new SelectList( new List<string>{ "Ελεύθερος/η", "Παντρεμενενος/η"})
+        )
         </div>
     </div>
 
@@ -75,7 +78,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Hobby, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Hobby, new { @class = "form-control" })
+            @Html.TextAreaFor(m => m.Hobby, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Hobby) })
         </div>
     </div>
 
@@ -88,28 +91,28 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar" type="radio" checked="checked" value="avatar1">
-                        <img src="avatar1" alt="avatar1" />
+                        <label for="Avatar" class="STRONGMAN"></label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar" type="radio" value="avatar2">
-                        <img src="avatar2" alt="avatar2" />
+                        <label for="Avatar" class="ACROBAT"></label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar" type="radio" value="avatar3">
-                        <img src="avatar3" alt="avatar3" />
+                        <label for="Avatar" class="MAGICIAN"></label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar" type="radio" value="avatar4">
-                        <img src="avatar4" alt="avatar4" />
+                        <label for="Avatar" class="KOMPER"></label>
                     </label>
                 </div>
 

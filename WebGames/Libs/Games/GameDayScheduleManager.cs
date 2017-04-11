@@ -73,7 +73,9 @@ namespace WebGames.Libs.Games
             {
                 using (var db = ApplicationDbContext.Create())
                 {
-                    var Active = (from ag in db.DaysActiveGames where ag.Day == Today.ToString("yyyy,MM,dd") select ag).FirstOrDefault();
+                    var toDayStr = Today.ToString("yyyy-MM-dd");
+
+                    var Active = (from ag in db.DaysActiveGames where ag.Day == toDayStr select ag).FirstOrDefault();
                     if (Active != null) 
                         ActiveGameKey = Active.GameKey;
                 }

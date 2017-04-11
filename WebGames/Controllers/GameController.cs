@@ -17,7 +17,7 @@ namespace WebGames.Controllers
         {
             var PageToDisplay = "";
 
-            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey(User.Identity.GetUserId());
 
             if ((CurrentActiveGameKey ?? "") != "" && GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
             {
@@ -29,22 +29,22 @@ namespace WebGames.Controllers
             }
 
             // FOR TESTING
-            PageToDisplay = "mastermind/Cosmoplay";
+            //PageToDisplay = "mastermind/Cosmoplay";
             //return new FilePathResult(PageToDisplay, "text/html");
             return View(PageToDisplay);
         }
 
         public ActionResult Save_Game_Score(int score)
         {
+            var UserId = User.Identity.GetUserId();
 
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
-            var ActiveGameKey = GameManager.GetActiveGameKey();
+            var ActiveGameKey = GameManager.GetActiveGameKey(UserId);
             if (ActiveGameKey == "" )
             {
                 return Json(new { success = false, message = "No Game is Active" }, JsonRequestBehavior.AllowGet);
             }
 
-            var UserId = User.Identity.GetUserId();
             GameManager.GameDict[ActiveGameKey].SM.SetUserScore(UserId, score, EnableOverride: false); // Cannot override the score - once is set the done
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -71,14 +71,14 @@ namespace WebGames.Controllers
 
         public ActionResult CheckQuestion(int questionId, int answerIndex)
         {
+            var UserId = User.Identity.GetUserId();
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
-            var CurrentActiveGameKey = GameManager.GetActiveGameKey();
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey(UserId);
             if ( CurrentActiveGameKey != Game5_Manager.GameKey )
             { 
                 return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
             }
 
-            var UserId = User.Identity.GetUserId();
             var IsCorrect = Game5_Manager.CheckAndSaveQuestionAnswer(UserId, questionId, answerIndex ); // Cannot override the score - once is set the done
 
             return Json(new { success = true, isCorrect = IsCorrect }, JsonRequestBehavior.AllowGet);
