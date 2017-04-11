@@ -21,7 +21,7 @@ namespace WebGames.Controllers
 
             if ((CurrentActiveGameKey ?? "") != "" && GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
             {
-                PageToDisplay = GameManager.GameDict[CurrentActiveGameKey].Page;
+                PageToDisplay = GameManager.GameDict[CurrentActiveGameKey].PageFolder;
             }
             else
             {
@@ -31,6 +31,40 @@ namespace WebGames.Controllers
             // FOR TESTING
             //PageToDisplay = "mastermind/Cosmoplay";
             //return new FilePathResult(PageToDisplay, "text/html");
+            return View(PageToDisplay);
+        }
+
+        public ActionResult ActiveGameMap()
+        {
+            var PageToDisplay = "";
+
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey(User.Identity.GetUserId());
+
+            if ((CurrentActiveGameKey ?? "") != "" && GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+            {
+                PageToDisplay = $"{GameManager.GameDict[CurrentActiveGameKey].PageFolder}/Map";
+            }
+            else
+            {
+                PageToDisplay = "NoActiveGame";
+            }
+            return View(PageToDisplay);
+        }
+
+        public ActionResult ActiveExplainer()
+        {
+            var PageToDisplay = "";
+
+            var CurrentActiveGameKey = GameManager.GetActiveGameKey(User.Identity.GetUserId());
+
+            if ((CurrentActiveGameKey ?? "") != "" && GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+            {
+                PageToDisplay = $"{GameManager.GameDict[CurrentActiveGameKey].PageFolder}/Explainer";
+            }
+            else
+            {
+                PageToDisplay = "NoActiveGame";
+            }
             return View(PageToDisplay);
         }
 

@@ -1,6 +1,6 @@
 ﻿@model WebGames.Models.ViewModels.UserScoreInfo
 @{
-   ViewBag.Title = "Info";
+   ViewBag.Title = "Σκορ";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -21,7 +21,7 @@
             @foreach (var game in Model.GameScores)
             {
                 <tr>
-                    <td>@game.Name</td>
+                    <td>@game.GameName</td>
                     <td>@game.Score</td>
                 </tr>
             }

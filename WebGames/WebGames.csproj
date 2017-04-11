@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ComingSoonController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -257,6 +258,10 @@
     <Compile Include="Migrations\201704101947049_More_Stuff.Designer.cs">
       <DependentUpon>201704101947049_More_Stuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704112147049_game_grouping.cs" />
+    <Compile Include="Migrations\201704112147049_game_grouping.Designer.cs">
+      <DependentUpon>201704112147049_game_grouping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\DatatableViewModels\UserScoreViewModel.cs" />
@@ -286,21 +291,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="addon.css" />
-    <Content Include="Content\Games\music\deal.mp3" />
-    <Content Include="Content\Games\music\mastermind.mp3" />
-    <Content Include="Content\Games\music\win.mp3" />
+    <Content Include="App_Data\contestants.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\demo\images\plan-02.png" />
+    <Content Include="Content\demo\images\screen1.jpg" />
+    <Content Include="Content\demo\images\screen2-text.png" />
+    <Content Include="Content\demo\images\startbutton.png" />
+    <Content Include="Content\demo\screens.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Games\mastermind\card1.png" />
-    <Content Include="Content\Games\mastermind\card2.png" />
-    <Content Include="Content\Games\mastermind\card3.png" />
-    <Content Include="Content\Games\mastermind\card4.png" />
-    <Content Include="Content\Games\mastermind\card5.png" />
-    <Content Include="Content\Games\mastermind\card6.png" />
-    <Content Include="Content\Games\jquery.mCustomScrollbar.css" />
-    <Content Include="Content\Games\mastermind\style.css" />
     <Content Include="Content\images\loginbtn.png" />
     <Content Include="Content\images\regform.png" />
     <Content Include="Content\images\registerbtn.png" />
@@ -354,11 +356,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\custom\jquery.dataTables.js" />
-    <Content Include="Scripts\Games\jquery.easyaudioeffects.1.0.0.min.js" />
-    <Content Include="Scripts\Games\jquery.mCustomScrollbar.min.js" />
-    <Content Include="Scripts\Games\jquery.min.js" />
-    <Content Include="Scripts\Games\jquery.mousewheel.min.js" />
-    <Content Include="Scripts\Games\mastermind.init.js" />
     <Content Include="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -426,7 +423,6 @@
     <Content Include="Content\ComingSoon\test\python\test.html" />
     <Content Include="Content\ComingSoon\test\ssi\test.html" />
     <Content Include="Content\ComingSoon\test\ssi\test.shtml" />
-    <Content Include="Views\Games\mastermind\Cosmoplay.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -470,9 +466,18 @@
     <Content Include="Content\ComingSoon\test\miva\test.mvc" />
     <Content Include="Content\ComingSoon\test\perl\test.pl" />
     <Content Include="Content\ComingSoon\test\python\test.py" />
+    <Content Include="Views\Demo\Explainer.cshtml" />
+    <Content Include="Views\Demo\Map.cshtml" />
+    <Content Include="Views\Games\Mastermind.cshtml" />
+    <Content Include="Views\Games\Outoftime.cshtml" />
+    <Content Include="Views\Demo\Outoftime.cshtml" />
+    <Content Include="Views\Demo\Mastermind.cshtml" />
+    <Content Include="Views\Games\Mastermind\Explainer.cshtml" />
+    <Content Include="Views\Games\Mastermind\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Content\Games\" />
+    <Folder Include="Scripts\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -501,6 +506,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704101947049_More_Stuff.resx">
       <DependentUpon>201704101947049_More_Stuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704112147049_game_grouping.resx">
+      <DependentUpon>201704112147049_game_grouping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

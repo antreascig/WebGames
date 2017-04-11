@@ -1,98 +1,92 @@
-﻿body {
+﻿
+body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 20px
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 15px
 }
-
-/* Set width on the form input elements since they're 100% wide by default */
 
 .error-messages {
-    color: red;
+    color: #000
 }
 
-label.avatar > input { /* HIDE RADIO */
-    visibility: hidden; /* Makes input not-clickable */
-    position: absolute; /* Remove input from document flow */
+label.avatar > input {
+    visibility: hidden;
+    position: absolute
 }
 
-    label.avatar > input + img { /* IMAGE STYLES */
+    label.avatar > input + img {
         cursor: pointer;
-        border: 2px solid transparent;
+        border: 2px solid transparent
     }
 
-    label.avatar > input:checked + img { /* (RADIO CHECKED) IMAGE STYLES */
-        border: 2px solid #f00;
+    label.avatar > input:checked + img {
+        border: 2px solid red
     }
-
 
 @font-face {
     font-family: 'GFS';
     src: url('../fonts/GFSTheokritos-Regular.eot');
-    src: url('../fonts/GFSTheokritos-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/GFSTheokritos-Regular.woff') format('woff'), url('../fonts/GFSTheokritos-Regular.ttf') format('truetype');
+    src: url('../fonts/GFSTheokritos-Regular.eot?#iefix') format('embedded-opentype'),url('../fonts/GFSTheokritos-Regular.woff') format('woff'),url('../fonts/GFSTheokritos-Regular.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal;
+    font-style: normal
 }
 
 .navbar.navbar-inverse {
     background: none;
-    border: none;
+    border: none
 }
 
 .navbar a {
     font-family: 'GFS';
-    color: white !important;
+    color: #fff !important
 }
 
 body {
-    height: 100vh;
+    height: 100vh
 }
 
-.Home_Index,
-.User_Index {
-    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) top center no-repeat;
+.Home_Index, .User_Index {
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) top center no-repeat
 }
 
 .Account_Login {
-    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center -100px no-repeat;
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center -100px no-repeat
 }
 
 .Account_Register {
-    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center top no-repeat;
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center top no-repeat
 }
 
     .Account_Register .form-horizontal {
-        background: transparent url(images/regform.png?v=2) top center no-repeat;
+        background: transparent url(images/regform.png?v=2) top center no-repeat
     }
 
     .Account_Register h2, .Account_Register h4 {
-        display: none;
+        display: none
     }
 
 .nav.navbar-nav {
-    display: none;
+    display: none
 }
 
     .nav.navbar-nav.navbar-right {
-        display: block;
+        display: block
     }
 
-.Account_Login .navbar-right,
-.Account_Register .navbar-right {
+.Account_Login .navbar-right, .Account_Register .navbar-right {
     display: none;
-    opacity: 0;
+    opacity: 0
 }
 
 .Account_Register label {
-    display: none;
 }
 
 .Account_Login h2 {
-    display: none;
+    display: none
 }
 
 .Account_Register form {
@@ -101,7 +95,7 @@ body {
     padding-right: 155px;
     padding-top: 100px;
     box-sizing: border-box;
-    width: 1178px;
+    width: 1178px
 }
 
 .Account_Register .form-control {
@@ -109,65 +103,81 @@ body {
     border: 2px solid #cc2536;
     padding: 10px;
     height: 55px;
+    font-family: 'GFS';
+    font-size: 18px;
+}
+
+#MaritalStatus {
+    border-radius: 0;
+    border: 2px solid #cc2536;
+    padding: 10px;
+    height: 55px;
+    font-family: 'GFS';
+    font-size: 18px;
+    width: 100%;
 }
 
 .Account_Register .col-md-10 {
-    width: 100%;
+    width: 100%
 }
 
 #loginForm {
     width: 400px;
     padding-top: 240px;
-    margin: 0 auto;
+    margin: 0 auto
 }
 
     #loginForm h4 {
-        display: none;
+        display: none
     }
 
-    #loginForm .col-md-2,
-    #loginForm .col-md-10 {
+    #loginForm .col-md-2, #loginForm .col-md-10 {
         width: 100%;
         text-align: left;
         float: none;
-        margin-right: none;
+        margin-right: none
     }
 
     #loginForm .form-group {
         position: relative;
         display: block;
         width: 100%;
-        margin: 0;
+        margin: 0
     }
 
     #loginForm p:nth-last-child(2) {
-        display: none;
+        display: none
     }
 
 .Account_Register .form-group:nth-last-child(2) {
     background: #0b4159;
     padding: 10px 10px 10px 10px;
     width: 621px;
-    margin-left: 0px;
+    text-align: center;
+    margin-left: 0
 }
+
+    .Account_Register .form-group:nth-last-child(2) .col-md-3.col-sm-3.col-xs-12 {
+        width: auto !important;
+    }
 
     .Account_Register .form-group:nth-last-child(2):before {
         display: block;
         content: "διαλεξε τον αρτιστα που σου ταιριαζει:";
-        color: white;
+        color: #fff;
         text-transform: uppercase;
         text-align: center;
         font-family: 'GFS';
-        font-size: 20px;
+        font-size: 20px
     }
 
 #loginForm p {
     text-align: center;
-    padding-top: 10px;
+    padding-top: 10px
 }
 
     #loginForm p a {
-        color: white;
+        color: #fff
     }
 
 #loginForm .btn {
@@ -179,7 +189,7 @@ body {
     border: none;
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
-    transition: all ease 0.2s
+    transition: all ease .2s
 }
 
     #loginForm .btn:hover {
@@ -187,9 +197,9 @@ body {
     }
 
 #loginForm .checkbox input[type="checkbox"] {
-    margin-left: 0px;
+    margin-left: 0;
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 #loginForm .checkbox label {
@@ -197,35 +207,35 @@ body {
     padding-top: 7px;
     padding-left: 33px;
     padding-bottom: 15px;
-    color: white;
+    color: #fff
 }
 
 #loginForm .col-md-offset-2.col-md-10 {
     margin-left: 0;
-    width: 100%;
+    width: 100%
 }
 
 .Account_Login .col-md-8 {
-    width: 100%;
+    width: 100%
 }
 
 #loginForm .form-control {
     padding: 15px !important;
-    height: 50px;
+    height: 50px
 }
 
 .jumbotron {
     background: none;
-    text-align: center;
+    text-align: center
 }
 
     .jumbotron h1 {
-        display: none;
+        display: none
     }
 
 .container hr {
     display: none !impotant;
-    width: 0;
+    width: 0
 }
 
 .jumbotron .btn {
@@ -237,11 +247,11 @@ body {
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
     margin-top: 450px;
-    transition: all ease 0.2s
+    transition: all ease .2s
 }
 
     .jumbotron .btn:hover {
-        margin-top: 440px;
+        margin-top: 440px
     }
 
 .Account_Register input[type="submit"] {
@@ -258,15 +268,68 @@ body {
     border: none;
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
-    transition: all ease 0.2s;
-    z-index: 100;
+    transition: all ease .2s;
+    z-index: 100
 }
 
     .Account_Register input[type="submit"]:hover {
         transform: translateY(-10px) !important;
-        cursor: pointer;
+        cursor: pointer
     }
 
 #__AjaxAntiForgeryForm {
-    padding: 0;
+    padding: 0
+}
+
+.avatar {
+    display: block;
+}
+
+.Account_Register label {
+    font-family: 'GFS';
+    font-size: 24px;
+    font-weight: normal;
+    display: inline;
+}
+
+label.STRONGMAN,
+label.ACROBAT,
+label.MAGICIAN,
+label.KOMPER {
+    cursor: pointer !important;
+}
+
+.col-md-3:hover label.STRONGMAN:after,
+.col-md-3:hover label.ACROBAT:after,
+.col-md-3:hover label.MAGICIAN:after,
+.col-md-3:hover label.KOMPER:after {
+    color: #ffcf27;
+}
+
+label.STRONGMAN:after {
+    content: 'STRONGMAN';
+    display: block;
+    color: #1479a5;
+}
+
+label.ACROBAT:after {
+    content: 'ACROBAT';
+    display: block;
+    color: #1479a5;
+}
+
+label.MAGICIAN:after {
+    content: 'MAGICIAN';
+    display: block;
+    color: #1479a5;
+}
+
+label.KOMPER:after {
+    content: 'KOMPER';
+    display: block;
+    color: #1479a5;
+}
+
+input[type="radio"]:checked + label:after {
+    color: #ffcf27
 }

@@ -10,6 +10,7 @@ namespace WebGames.Models
 {
     public class Game6_User_Group
     {
+        [Key]
         public string UserId { get; set; }
 
         public int GroupNumber { get; set; }

@@ -15,7 +15,7 @@ namespace WebGames.Libs
         public int GameId { get; set; }
         public string GameKey{ get; set; }
         public string Name { get; set; }
-        public string Page { get; set; }
+        public string PageFolder { get; set; }
         public ScoreManager SM { get; set; }
     }
 
@@ -39,14 +39,14 @@ namespace WebGames.Libs
         {
             var Games = new List<GameData>()
             {
-                new GameData() { GameKey = GameKeys.GAME_1, Name = "Game 1", Page = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) },
-                new GameData() { GameKey = GameKeys.GAME_2, Name = "Game 2", Page = GameKeys.GAME_2, SM = new ScoreManager<Game2_UserScore>(GameKeys.GAME_2) },
-                new GameData() { GameKey = GameKeys.GAME_3, Name = "Game 3", Page = GameKeys.GAME_3, SM = new ScoreManager<Game3_UserScore>(GameKeys.GAME_3) },
-                new GameData() { GameKey = GameKeys.GAME_4_1, Name = "Game 4-1", Page = GameKeys.GAME_4_1, SM = new ScoreManager<Game4_1_UserScore>(GameKeys.GAME_4_1) },
-                new GameData() { GameKey = GameKeys.GAME_4_2, Name = "Game 4-2", Page = GameKeys.GAME_4_2, SM = new ScoreManager<Game4_2_UserScore>(GameKeys.GAME_4_2) },
-                new GameData() { GameKey = GameKeys.GAME_4_3, Name = "Game 4-3", Page = GameKeys.GAME_4_3, SM = new ScoreManager<Game4_3_UserScore>(GameKeys.GAME_4_3) },
-                new GameData() { GameKey = GameKeys.GAME_5, Name = "Game 5", Page = GameKeys.GAME_5, SM = new ScoreManager<Game5_UserScore>(GameKeys.GAME_5) },
-                new GameData() { GameKey = GameKeys.GAME_6, Name = "Game 6", Page = GameKeys.GAME_6, SM = new ScoreManager<Game6_UserScore>(GameKeys.GAME_6) },
+                new GameData() { GameKey = GameKeys.GAME_1, Name = "Game 1", PageFolder = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) },
+                new GameData() { GameKey = GameKeys.GAME_2, Name = "Game 2", PageFolder = GameKeys.GAME_2, SM = new ScoreManager<Game2_UserScore>(GameKeys.GAME_2) },
+                new GameData() { GameKey = GameKeys.GAME_3, Name = "Mastermind", PageFolder = "Mastermind", SM = new ScoreManager<Game3_UserScore>(GameKeys.GAME_3) },
+                new GameData() { GameKey = GameKeys.GAME_4_1, Name = "Game 4-1", PageFolder = GameKeys.GAME_4_1, SM = new ScoreManager<Game4_1_UserScore>(GameKeys.GAME_4_1) },
+                new GameData() { GameKey = GameKeys.GAME_4_2, Name = "Game 4-2", PageFolder = GameKeys.GAME_4_2, SM = new ScoreManager<Game4_2_UserScore>(GameKeys.GAME_4_2) },
+                new GameData() { GameKey = GameKeys.GAME_4_3, Name = "Game 4-3", PageFolder = GameKeys.GAME_4_3, SM = new ScoreManager<Game4_3_UserScore>(GameKeys.GAME_4_3) },
+                new GameData() { GameKey = GameKeys.GAME_5, Name = "Game 5", PageFolder = GameKeys.GAME_5, SM = new ScoreManager<Game5_UserScore>(GameKeys.GAME_5) },
+                new GameData() { GameKey = GameKeys.GAME_6, Name = "Game 6", PageFolder = GameKeys.GAME_6, SM = new ScoreManager<Game6_UserScore>(GameKeys.GAME_6) },
             };
             using (var db = ApplicationDbContext.Create())
             {

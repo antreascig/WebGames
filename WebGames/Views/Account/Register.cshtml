@@ -18,55 +18,46 @@
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    @* UserName *@
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @* UserName *@
+        <div class="col-md-6">
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.UserName) })
         </div>
-    </div>
-    @* Password *@
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @* Password *@
+        <div class="col-md-6">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Password) })
         </div>
     </div>
     @* Confirm Password *@
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.ConfirmPassword) })
         </div>
     </div>
     @* FullName *@
     <div class="form-group">
-        @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.FullName) })
         </div>
     </div>
 
     @* Email *@
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", data_bind = "value:Email", placeholder = Html.DisplayNameFor(n => n.Email) })
         </div>
     </div>
 
     @* Shop *@
     <div class="form-group">
-        @Html.LabelFor(m => m.Shop, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.TextBoxFor(m => m.Shop, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Shop) })
         </div>
     </div>
 
     @* MaritalStatus *@
     <div class="form-group">
-        @Html.LabelFor(m => m.MaritalStatus, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.DropDownListFor(
            model => model.MaritalStatus,
            new SelectList( new List<string>{ "Ελεύθερος/η", "Παντρεμενενος/η"})
@@ -76,43 +67,41 @@
 
     @* Hobby *@
     <div class="form-group">
-        @Html.LabelFor(m => m.Hobby, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             @Html.TextAreaFor(m => m.Hobby, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Hobby) })
         </div>
     </div>
 
     @* Avatar *@
     <div class="form-group">
-        @Html.LabelFor(m => m.Avatar, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="row">
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
-                        <input name="Avatar" class="form-control" id="Avatar" type="radio" checked="checked" value="avatar1">
-                        <label for="Avatar" class="STRONGMAN"></label>
+                        <input name="Avatar" class="form-control" id="Avatar1" type="radio" checked="checked" value="strongman">
+                        <label for="Avatar1" class="STRONGMAN"></label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
-                        <input name="Avatar" class="form-control" id="Avatar" type="radio" value="avatar2">
-                        <label for="Avatar" class="ACROBAT"></label>
+                        <input name="Avatar" class="form-control" id="Avatar2" type="radio" value="acrobat">
+                        <label for="Avatar2" class="ACROBAT"></label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
-                        <input name="Avatar" class="form-control" id="Avatar" type="radio" value="avatar3">
-                        <label for="Avatar" class="MAGICIAN"></label>
+                        <input name="Avatar" class="form-control" id="Avatar3" type="radio" value="magician">
+                        <label for="Avatar3" class="MAGICIAN"></label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
-                        <input name="Avatar" class="form-control" id="Avatar" type="radio" value="avatar4">
-                        <label for="Avatar" class="KOMPER"></label>
+                        <input name="Avatar" class="form-control" id="Avatar4" type="radio" value="komper">
+                        <label for="Avatar4" class="KOMPER"></label>
                     </label>
                 </div>
 
@@ -121,7 +110,7 @@
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-offset-2 col-md-12">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>

@@ -9,7 +9,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "User", routeValues: null, htmlAttributes: new { title = "User" })
+            @Html.ActionLink("Γειά " + User.Identity.GetUserName() + "!", "Index", "User", routeValues: null, htmlAttributes: new { title = "User" })
         </li>
         <li>
             <img src="@( "~/Content/images" +User.Identity.GetAvatar() + ".png")"/>

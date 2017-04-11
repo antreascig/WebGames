@@ -20,11 +20,7 @@ namespace WebGames
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
-            //var SM = new Libs.Games.ScoreManager<Models.Game1_UserScore>();
-            //var UserId = "ea46d952-c92f-4ad4-9d22-0971a9128e95";
-            //SM.SetUserScore(UserId, 5, false);
-
-            //SM.SetUserScore(UserId, 10, true);
+            //Helpers.ReadAllowedEmailsHelper.InitAllowedEmails();
         }
     }
 }

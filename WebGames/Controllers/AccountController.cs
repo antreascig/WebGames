@@ -138,11 +138,11 @@ namespace WebGames.Controllers
 
                 bool EmailAllowed = true;
                 // Check if email is correct
-                //using (var db = ApplicationDbContext.Create())
-                //{
-                //    var emailToCheck = (user.Email ?? "").ToLower();
-                //    EmailAllowed = (from all_email in db.Alowed_Emails where all_email.Email == emailToCheck select all_email).SingleOrDefault() != null;
-                //}
+                using (var db = ApplicationDbContext.Create())
+                {
+                    var emailToCheck = (user.Email ?? "").ToLower();
+                    EmailAllowed = (from all_email in db.Alowed_Emails where all_email.Email == emailToCheck select all_email).SingleOrDefault() != null;
+                }
 
                 if (EmailAllowed)
                 {
@@ -157,7 +157,6 @@ namespace WebGames.Controllers
                             //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                             string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
-
 
                             ViewBag.Message = @"Ελέγξτε το email σας και επιβεβαιώστε τον λογαριασμό σας. Η επιβεβαίωση είναι αναγκαία για να συνδεθείτε!";
 

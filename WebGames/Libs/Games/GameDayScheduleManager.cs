@@ -40,7 +40,7 @@ namespace WebGames.Libs.Games
                 {
                     if ( !ScheduleDict.ContainsKey(key) )
                     {
-                        db.DaysActiveGames.Remove(ScheduleDict[key]);
+                        db.DaysActiveGames.Remove(CurrentSchedule[key]);
                     }
                 }
 
