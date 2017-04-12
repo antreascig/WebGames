@@ -20,17 +20,17 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @* UserName *@
-        <div class="col-md-6">
+        <div class="col-md-12">
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.UserName) })
         </div>
+    </div>
+    <div class="form-group">
         @* Password *@
         <div class="col-md-6">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Password) })
         </div>
-    </div>
-    @* Confirm Password *@
-    <div class="form-group">
-        <div class="col-md-12">
+        @* Confirm Password *@
+        <div class="col-md-6">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.ConfirmPassword) })
         </div>
     </div>
@@ -60,7 +60,7 @@
         <div class="col-md-12">
             @Html.DropDownListFor(
            model => model.MaritalStatus,
-           new SelectList( new List<string>{ "Ελεύθερος/η", "Παντρεμενενος/η"})
+           new SelectList(new List<string> { "Ελεύθερος/η", "Παντρεμενενος/η" })
         )
         </div>
     </div>
@@ -80,28 +80,28 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar1" type="radio" checked="checked" value="strongman">
-                        <label for="Avatar1" class="STRONGMAN"></label>
+                        <label for="Avatar1" class="STRONGMAN">STRONGMAN</label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar2" type="radio" value="acrobat">
-                        <label for="Avatar2" class="ACROBAT"></label>
+                        <label for="Avatar2" class="ACROBAT">ACROBAT</label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar3" type="radio" value="magician">
-                        <label for="Avatar3" class="MAGICIAN"></label>
+                        <label for="Avatar3" class="MAGICIAN">MAGICIAN</label>
                     </label>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <label class="avatar">
                         <input name="Avatar" class="form-control" id="Avatar4" type="radio" value="komper">
-                        <label for="Avatar4" class="KOMPER"></label>
+                        <label for="Avatar4" class="KOMPER">KOMPER</label>
                     </label>
                 </div>
 

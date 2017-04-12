@@ -84,6 +84,14 @@ namespace WebGames.Libs
             var ActiveGame = GameDayScheduleManager.GetActiveGame(Today) ?? "";
             if (!GameDict.ContainsKey(ActiveGame)) return "";
 
+            // Check for remaining time
+
+            var remTime = UserGameManager.GetUserGameInfo(UserId);
+            if (remTime == null || remTime.RemainingTimeInSeconds <= 0)
+            {
+                ActiveGame = "Outoftime";
+            }
+
             // If game6 check if user is allowed to play it
             if (ActiveGame == GameKeys.GAME_6)
             {

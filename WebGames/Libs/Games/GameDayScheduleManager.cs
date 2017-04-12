@@ -6,6 +6,15 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games
 {
+    public class DayActiveGameView
+    {
+        public string Day { get; set; } // yyyy-mm-dd
+
+        public string GameKey { get; set; }
+
+        public string GameName { get; set; }
+    }
+
     public class GameDayScheduleManager
     {
         public static void SaveSchedule(List<DayActiveGame> Schedule)
@@ -48,14 +57,20 @@ namespace WebGames.Libs.Games
             }
         }
 
-        public static List<DayActiveGame> GetSchedule()
+        public static List<DayActiveGameView> GetSchedule()
         {
-            var schedule = new List<DayActiveGame>();
+            var schedule = new List<DayActiveGameView>();
             try
             {
                 using (var db = ApplicationDbContext.Create())
                 {
-                    schedule.AddRange(from ag in db.DaysActiveGames select ag);
+                    var tmp = (from ag in db.DaysActiveGames select ag).ToList();
+                    schedule.AddRange(tmp.Where(d => GameManager.GameDict.ContainsKey(d.GameKey)).Select( d => new DayActiveGameView()
+                    {
+                        Day = d.Day,
+                        GameKey = d.GameKey,
+                        GameName = GameManager.GameDict[d.GameKey].Name
+                    }));
                 }
             }
             catch (Exception exc)

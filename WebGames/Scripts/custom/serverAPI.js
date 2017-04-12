@@ -3,9 +3,14 @@
 
     self.SaveGameTime = function (timeInSeconds, success, fail) {
         var data = {
-            timeInSeconds: timeInSeconds
+            timeInSeconds: timeInSeconds,
+            timestamp: new Date().getTime()
         };
         self.SendRequest('GET', "/Games/SaveGameTime", data, success, fail, false);
+    };
+
+    self.GetGameTime = function ( success, fail) {
+        self.SendRequest('GET', "/Games/GetGameTime", {}, success, fail, false);
     };
 
     self.SaveScoreGame1 = function (score, success, fail) {
@@ -23,6 +28,12 @@
         //if ((type || "").toLowerCase() == "get") {
         //    data = JSON.stringify(data);
         //}
+        if (!fail) {
+            fail = function () {
+                console.log("error");
+            };
+        }
+
 
         $.ajax({
             type: type,

@@ -50,7 +50,7 @@ namespace WebGames.Controllers
             catch (Exception exc)
             {
                 Logger.Log(exc);
-                return Json(new { succsess = false, message = exc.Message });
+                return Json(new { success = false, message = exc.Message });
             }
         }
 
@@ -59,12 +59,12 @@ namespace WebGames.Controllers
             try
             {
                 GameManager.SetGameSettings(model);
-                return Json(new { succsess = true });
+                return Json(new { success = true });
             }
             catch (Exception exc)
             {
                 Logger.Log(exc);
-                return Json(new { succsess = false, message = exc.Message });
+                return Json(new { success = false, message = exc.Message });
             }
         }
 
@@ -74,12 +74,12 @@ namespace WebGames.Controllers
             try
             {
                 var Schedule = GameDayScheduleManager.GetSchedule();
-                return Json(new { succsess = true, data = Schedule });
+                return Json(new { success = true, data = Schedule });
             }
             catch (Exception exc)
             {
                 Logger.Log(exc.Message, LogType.ERROR);
-                return Json(new { succsess = false, message = exc.Message });
+                return Json(new { success = false, message = exc.Message });
             }
         }
 
@@ -88,12 +88,12 @@ namespace WebGames.Controllers
             try
             {
                 GameDayScheduleManager.SaveSchedule(schedule);
-                return Json(new { succsess = true });
+                return Json(new { success = true });
             }
             catch (Exception exc)
             {
                 Logger.Log(exc.Message, LogType.ERROR);
-                return Json(new { succsess = false, message = exc.Message });
+                return Json(new { success = false, message = exc.Message });
             }
         }
         
@@ -103,12 +103,12 @@ namespace WebGames.Controllers
             try
             {
                 var Questions = Game5_Manager.GetQuestions();
-                return Json(new { succsess = true, data = Questions });
+                return Json(new { success = true, data = Questions });
             }
             catch (Exception exc)
             {
                 Logger.Log(exc);
-                return Json(new { succsess = false, message = exc.Message });
+                return Json(new { success = false, message = exc.Message });
             }
         }
 
@@ -117,12 +117,12 @@ namespace WebGames.Controllers
             try
             {
                 Game5_Manager.SaveQuestions(questions);
-                return Json(new { succsess = true });
+                return Json(new { success = true });
             }
             catch (Exception exc)
             {
                 Logger.Log(exc);
-                return Json(new { succsess = false, message = exc.Message });
+                return Json(new { success = false, message = exc.Message });
             }
         }
 

@@ -294,15 +294,49 @@
     <Content Include="App_Data\contestants.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\demo\images\plan-02.png" />
-    <Content Include="Content\demo\images\screen1.jpg" />
-    <Content Include="Content\demo\images\screen2-text.png" />
-    <Content Include="Content\demo\images\startbutton.png" />
-    <Content Include="Content\demo\screens.css" />
+    <Content Include="Content\Games\mastermind\images\outoftime.png" />
+    <Content Include="Content\Games\mastermind\images\plan-02.png" />
+    <Content Include="Content\Games\mastermind\images\screen1.jpg" />
+    <Content Include="Content\Games\mastermind\images\screen2-text.png" />
+    <Content Include="Content\Games\mastermind\images\startbutton.png" />
+    <Content Include="Content\Games\mastermind\screens.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Games\mastermind\css\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\Games\mastermind\fonts\demo.html" />
+    <Content Include="Content\Games\mastermind\fonts\stylesheet.css" />
+    <Content Include="Content\Games\mastermind\images\bg.jpg" />
+    <Content Include="Content\Games\mastermind\images\cosmoplay.png" />
+    <Content Include="Content\Games\mastermind\images\mastermind-bg.jpg" />
+    <Content Include="Content\Games\mastermind\images\mastermind\card1.png" />
+    <Content Include="Content\Games\mastermind\images\mastermind\card2.png" />
+    <Content Include="Content\Games\mastermind\images\mastermind\card3.png" />
+    <Content Include="Content\Games\mastermind\images\mastermind\card4.png" />
+    <Content Include="Content\Games\mastermind\images\mastermind\card5.png" />
+    <Content Include="Content\Games\mastermind\images\mastermind\card6.png" />
+    <Content Include="Content\Games\mastermind\images\remove.png" />
+    <Content Include="Content\Games\mastermind\js\jquery.easyaudioeffects.1.0.0.min.js" />
+    <Content Include="Content\Games\mastermind\js\jquery.glow.js" />
+    <Content Include="Content\Games\mastermind\js\jquery.mCustomScrollbar.min.js" />
+    <Content Include="Content\Games\mastermind\js\jquery.mousewheel.min.js" />
+    <Content Include="Content\Games\mastermind\js\mastermind.init.js" />
+    <Content Include="Content\Games\mastermind\music\click.mp3" />
+    <Content Include="Content\Games\mastermind\music\close.mp3" />
+    <Content Include="Content\Games\mastermind\music\correct.mp3" />
+    <Content Include="Content\Games\mastermind\music\deal.mp3" />
+    <Content Include="Content\Games\mastermind\music\forrest.mp3" />
+    <Content Include="Content\Games\mastermind\music\forrest_old.mp3" />
+    <Content Include="Content\Games\mastermind\music\lockbg.mp3" />
+    <Content Include="Content\Games\mastermind\music\locked.mp3" />
+    <Content Include="Content\Games\mastermind\music\loop.mp3" />
+    <Content Include="Content\Games\mastermind\music\mastermind.mp3" />
+    <Content Include="Content\Games\mastermind\music\number.mp3" />
+    <Content Include="Content\Games\mastermind\music\poof.mp3" />
+    <Content Include="Content\Games\mastermind\music\unlock.mp3" />
+    <Content Include="Content\Games\mastermind\music\win.mp3" />
+    <Content Include="Content\Games\mastermind\style.css" />
     <Content Include="Content\images\loginbtn.png" />
     <Content Include="Content\images\regform.png" />
     <Content Include="Content\images\registerbtn.png" />
@@ -359,6 +393,16 @@
     <Content Include="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Games\mastermind\fonts\GFSTheokritos-Regular.eot" />
+    <Content Include="Content\Games\mastermind\fonts\GFSTheokritos-Regular.ttf" />
+    <Content Include="Content\Games\mastermind\fonts\GFSTheokritos-Regular.woff" />
+    <Content Include="Content\Games\mastermind\music\click.ogg" />
+    <Content Include="Content\Games\mastermind\music\click.xmp" />
+    <Content Include="Content\Games\mastermind\music\close.ogg" />
+    <Content Include="Content\Games\mastermind\music\close.xmp" />
+    <Content Include="Content\Games\mastermind\music\deal.ogg" />
+    <Content Include="Content\Games\mastermind\music\number.ogg" />
+    <Content Include="Content\Games\mastermind\music\number.xmp" />
     <None Include="Properties\PublishProfiles\WebGamesTest - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\custom\app.js" />
@@ -476,7 +520,6 @@
     <Content Include="Views\Games\Mastermind\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Games\" />
     <Folder Include="Scripts\Games\" />
   </ItemGroup>
   <ItemGroup>

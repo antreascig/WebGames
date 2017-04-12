@@ -19,9 +19,12 @@ namespace WebGames.Controllers
 
             var CurrentActiveGameKey = GameManager.GetActiveGameKey(User.Identity.GetUserId());
 
-            if ((CurrentActiveGameKey ?? "") != "" && GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+            if ((CurrentActiveGameKey ?? "") != "")
             {
-                PageToDisplay = GameManager.GameDict[CurrentActiveGameKey].PageFolder;
+                if (GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+                    PageToDisplay = GameManager.GameDict[CurrentActiveGameKey].PageFolder;
+                else
+                    PageToDisplay = "Outoftime";
             }
             else
             {
@@ -40,9 +43,12 @@ namespace WebGames.Controllers
 
             var CurrentActiveGameKey = GameManager.GetActiveGameKey(User.Identity.GetUserId());
 
-            if ((CurrentActiveGameKey ?? "") != "" && GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+            if ((CurrentActiveGameKey ?? "") != "")
             {
-                PageToDisplay = $"{GameManager.GameDict[CurrentActiveGameKey].PageFolder}/Map";
+                if (GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+                    PageToDisplay = $"{GameManager.GameDict[CurrentActiveGameKey].PageFolder}/Map";
+                else
+                    PageToDisplay = "Outoftime";
             }
             else
             {
@@ -57,9 +63,12 @@ namespace WebGames.Controllers
 
             var CurrentActiveGameKey = GameManager.GetActiveGameKey(User.Identity.GetUserId());
 
-            if ((CurrentActiveGameKey ?? "") != "" && GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+            if ((CurrentActiveGameKey ?? "") != "")
             {
-                PageToDisplay = $"{GameManager.GameDict[CurrentActiveGameKey].PageFolder}/Explainer";
+                if (GameManager.GameDict.ContainsKey(CurrentActiveGameKey))
+                    PageToDisplay = $"{GameManager.GameDict[CurrentActiveGameKey].PageFolder}/Explainer";
+                else
+                    PageToDisplay = "Outoftime";
             }
             else
             {
@@ -139,6 +148,13 @@ namespace WebGames.Controllers
             var UserId = User.Identity.GetUserId();       
             ActivityManager.SyncPlayedTimeForToday(UserId, timeInSeconds, timestamp); // Cannot override the score - once is set the done
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetGameTime()
+        {
+            var UserId = User.Identity.GetUserId();
+            var res = UserGameManager.GetUserGameInfo(User.Identity.GetUserId());
+            return Json(new { success = true, time = res }, JsonRequestBehavior.AllowGet);
         }
 
     }
