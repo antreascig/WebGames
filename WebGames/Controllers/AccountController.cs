@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -9,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebGames;
+using WebGames.Helpers;
 using WebGames.Models;
 
 namespace WebGames.Controllers
@@ -79,14 +81,22 @@ namespace WebGames.Controllers
             var user = UserManager.Find(model.UserName, model.Password);
             if (user != null)
             {
+                if (!UserManager.IsInRole(user.Id, "player"))
+                {
+                    AddErrors( new IdentityResult("Ο λογαριασμός σου δεν αντιστοιχεί σε παίκτη."));
+                    return View(model);
+                }
+
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Επιβεβαίωση Λογαριασμου - Επαναποστολή"); // "Confirm your account-Resend"
 
                     // Uncomment to debug locally  
                     ViewBag.Link = callbackUrl;
-                    ViewBag.errorMessage = "You must have a confirmed email to log on. "
-                                         + "The confirmation token has been resent to your email account.";
+                    ViewBag.errorMessage = @"Επιβεβαίωση λογαριασμού είναι αναγκαία πριν από την σύνδεση. 
+                                             Μήνυμα επιβεβαίωσης έχει αποσταλεί στην ηλεκτρονική σας διεύθυνση.";
+                    //ViewBag.errorMessage = "You must have a confirmed email to log on. "
+                    //                     + "The confirmation token has been resent to your email account.";
                     return View("Error");
                 }
             }
@@ -166,7 +176,10 @@ namespace WebGames.Controllers
                             return View("Info");
                         }
                     }
-                    AddErrors(result);
+                    // Fix errors
+                    List<string> fixedErrors = ErrorMessageHelper.FixErrors(result.Errors);
+
+                    AddErrors(new IdentityResult(fixedErrors));
                 }
                 else
                 {
@@ -177,6 +190,8 @@ namespace WebGames.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+       
 
         //
         // GET: /Account/ConfirmEmail
@@ -279,46 +294,6 @@ namespace WebGames.Controllers
             return View();
         }
         //
-
-        // GET: /Account/SendCode
-        [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
-        {
-            var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null)
-            {
-                return View("Error");
-            }
-            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
-            var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
-        }
-
-        //
-        // POST: /Account/SendCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SendCode(SendCodeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
-            // Generate the token and send it
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
-            {
-                return View("Error");
-            }
-            return RedirectToAction("VerifyCode", new
-            {
-                Provider = model.SelectedProvider,
-                ReturnUrl = model.ReturnUrl,
-                RememberMe = model.RememberMe
-            });
-        }
-
 
         // POST: /Account/LogOff
         [HttpPost]

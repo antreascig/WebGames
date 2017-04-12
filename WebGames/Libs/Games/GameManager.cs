@@ -78,10 +78,28 @@ namespace WebGames.Libs
             }
         }
 
-        public static string GetActiveGameKey(string UserId)
+        public static string GetActiveGameKeyToday()
         {
             var Today = DateHelper.GetGreekDate(DateTime.UtcNow, onlyDate: true);
             var ActiveGame = GameDayScheduleManager.GetActiveGame(Today) ?? "";
+            if (!GameDict.ContainsKey(ActiveGame)) return "";
+
+            return ActiveGame;
+        }
+
+        public static string GetActiveGameKey(DateTime Date)
+        {
+            var Today = DateHelper.GetGreekDate(Date, onlyDate: true);
+            var ActiveGame = GameDayScheduleManager.GetActiveGame(Today) ?? "";
+            if (!GameDict.ContainsKey(ActiveGame)) return "";
+
+            return ActiveGame;
+        }
+
+
+        public static string GetActiveGameKey(string UserId)
+        {
+            var ActiveGame = GetActiveGameKeyToday();
             if (!GameDict.ContainsKey(ActiveGame)) return "";
 
             // Check for remaining time

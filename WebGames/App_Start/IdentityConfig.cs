@@ -26,7 +26,7 @@ namespace WebGames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = true,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = true,
             };
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator

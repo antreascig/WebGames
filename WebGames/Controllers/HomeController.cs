@@ -41,7 +41,7 @@ namespace WebGames.Controllers
 
             if (User.IsInRole("sysadmin") || User.IsInRole("admin"))
             {
-                //return RedirectToAction("Render", "Dashboard");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             return View();

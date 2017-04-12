@@ -6,29 +6,22 @@ namespace WebGames.Models
 {
     // Models used as parameters to AccountController actions.
 
-    public class AddExternalLoginBindingModel
-    {
-        [Required]
-        [Display(Name = "External access token")]
-        public string ExternalAccessToken { get; set; }
-    }
-
     public class ChangePasswordBindingModel
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Υπάρχων password")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Ο {0} πρέπει να περιέχει τουλάχιστων {2} χαρακτήρες.", MinimumLength = 6)] // The {0} must be at least {2} characters long.
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Νεο password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Επιβεβαίωση νέου κωδικού")]
+        [Compare("NewPassword", ErrorMessage = "Ο νέος κωδικός δεν είναι ίδιος με την επιβεβαίωση κωδικού.")]// The new password and confirmation password do not match.
         public string ConfirmPassword { get; set; }
     }
 
@@ -39,46 +32,28 @@ namespace WebGames.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Ο {0} πρέπει να περιέχει τουλάχιστων {2} χαρακτήρες.", MinimumLength = 6)] // The {0} must be at least {2} characters long.
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Επιβεβαίωση Password")]
+        [Compare("Password", ErrorMessage = "Ο κωδικός δεν είναι ίδιος με την επιβεβαίωση κωδικού.")]// The password and confirmation password do not match.
         public string ConfirmPassword { get; set; }
-    }
-
-    public class RegisterExternalBindingModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-    }
-
-    public class RemoveLoginBindingModel
-    {
-        [Required]
-        [Display(Name = "Login provider")]
-        public string LoginProvider { get; set; }
-
-        [Required]
-        [Display(Name = "Provider key")]
-        public string ProviderKey { get; set; }
     }
 
     public class SetPasswordBindingModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Ο {0} πρέπει να περιέχει τουλάχιστων {2} χαρακτήρες.", MinimumLength = 6)] // The {0} must be at least {2} characters long.
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Νεο password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Επιβεβαίωση νέου κωδικού")]
+        [Compare("NewPassword", ErrorMessage = "Ο νέος κωδικός δεν είναι ίδιος με την επιβεβαίωση κωδικού.")]// The new password and confirmation password do not match.
         public string ConfirmPassword { get; set; }
     }
 }

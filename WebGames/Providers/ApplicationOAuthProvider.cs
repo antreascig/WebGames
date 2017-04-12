@@ -35,7 +35,7 @@ namespace WebGames.Providers
 
             if (user == null)
             {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                context.SetError("invalid_grant", "Το user name ή το password είναι λάθος."); // The user name or password is incorrect. 
                 return;
             }
 

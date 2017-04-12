@@ -209,6 +209,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DateHelper.cs" />
+    <Compile Include="Helpers\ErrorMessageHelper.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\ReadAllowedEmailsHelper.cs" />
     <Compile Include="Helpers\TypeHelper.cs" />
@@ -262,9 +263,13 @@
     <Compile Include="Migrations\201704112147049_game_grouping.Designer.cs">
       <DependentUpon>201704112147049_game_grouping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704121739515_fk_user.cs" />
+    <Compile Include="Migrations\201704121739515_fk_user.Designer.cs">
+      <DependentUpon>201704121739515_fk_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\DatatableViewModels\UserScoreViewModel.cs" />
+    <Compile Include="Models\DatatableViewModels\ScoreViewModels.cs" />
     <Compile Include="Models\Entities\DayActiveGame.cs" />
     <Compile Include="Models\Entities\GameModel.cs" />
     <Compile Include="Models\Entities\Scores\Game1_Score.cs" />
@@ -281,6 +286,7 @@
     <Compile Include="Models\Entities\ApplicationUser.cs" />
     <Compile Include="Models\Entities\UserDailyActivity.cs" />
     <Compile Include="Models\Entities\Scores\Game6_Score.cs" />
+    <Compile Include="Models\ViewModels\DashboardModels.cs" />
     <Compile Include="Models\ViewModels\GameSettings.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\UserInfoModel.cs" />
@@ -294,6 +300,14 @@
     <Content Include="App_Data\contestants.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\animate.min.css" />
+    <Content Include="Content\pnotify.css" />
+    <Content Include="Content\DashBoard\js\viewmodels\game5.js" />
+    <Content Include="Content\DashBoard\js\viewmodels\generalsettings.js" />
+    <Content Include="Content\DashBoard\js\viewmodels\schedule.js" />
+    <Content Include="Content\DashBoard\js\viewmodels\scores.js" />
+    <Content Include="Content\DashBoard\js\viewmodels\users.js" />
+    <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\Games\mastermind\images\outoftime.png" />
     <Content Include="Content\Games\mastermind\images\plan-02.png" />
     <Content Include="Content\Games\mastermind\images\screen1.jpg" />
@@ -382,6 +396,7 @@
     <Content Include="Content\jquery-datatables-column-filter\media\js\jquery.dataTables.columnFilter.js" />
     <Content Include="Content\jquery-datatables-column-filter\media\js\jquery.multiselect.js" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -390,6 +405,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\custom\jquery.dataTables.js" />
+    <Content Include="Scripts\pnotify.js" />
     <Content Include="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -403,6 +419,11 @@
     <Content Include="Content\Games\mastermind\music\deal.ogg" />
     <Content Include="Content\Games\mastermind\music\number.ogg" />
     <Content Include="Content\Games\mastermind\music\number.xmp" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\WebGamesTest - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\custom\app.js" />
@@ -467,6 +488,22 @@
     <Content Include="Content\ComingSoon\test\python\test.html" />
     <Content Include="Content\ComingSoon\test\ssi\test.html" />
     <Content Include="Content\ComingSoon\test\ssi\test.shtml" />
+    <Content Include="Content\DashBoard\css\custom.min.css" />
+    <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <None Include="Views\Dashboard\Game5.cshtml" />
+    <None Include="Views\Dashboard\GeneralSettings.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Content\DashBoard\js\custom.js" />
+    <Content Include="Scripts\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\daterangepicker.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\knockout-mapping.min.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <None Include="Views\Dashboard\Login.cshtml" />
+    <None Include="Views\Dashboard\Schedule.cshtml" />
+    <None Include="Views\Dashboard\Scores.cshtml" />
+    <None Include="Views\Dashboard\Users.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -510,14 +547,11 @@
     <Content Include="Content\ComingSoon\test\miva\test.mvc" />
     <Content Include="Content\ComingSoon\test\perl\test.pl" />
     <Content Include="Content\ComingSoon\test\python\test.py" />
-    <Content Include="Views\Demo\Explainer.cshtml" />
-    <Content Include="Views\Demo\Map.cshtml" />
     <Content Include="Views\Games\Mastermind.cshtml" />
     <Content Include="Views\Games\Outoftime.cshtml" />
-    <Content Include="Views\Demo\Outoftime.cshtml" />
-    <Content Include="Views\Demo\Mastermind.cshtml" />
     <Content Include="Views\Games\Mastermind\Explainer.cshtml" />
     <Content Include="Views\Games\Mastermind\Map.cshtml" />
+    <Content Include="Views\Shared\_DashbordLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />
@@ -552,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704112147049_game_grouping.resx">
       <DependentUpon>201704112147049_game_grouping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704121739515_fk_user.resx">
+      <DependentUpon>201704121739515_fk_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

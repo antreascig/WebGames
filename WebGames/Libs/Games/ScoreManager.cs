@@ -229,6 +229,7 @@ namespace WebGames.Libs.Games
                 return data;
             }
         }
+
         public override void SetUserScore(string UserId, int Tokens, bool EnableOverride = false)
         {
             try

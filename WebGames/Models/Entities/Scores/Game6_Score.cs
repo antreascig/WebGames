@@ -14,6 +14,9 @@ namespace WebGames.Models
         public string UserId { get; set; }
 
         public int GroupNumber { get; set; }
+
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 
     public class Game6_UserScore : A_UserScore
