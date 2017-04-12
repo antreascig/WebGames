@@ -145,7 +145,14 @@ namespace WebGames.Controllers
                 {
                     var Date = startingDate.ToString("yyyy-MM-dd");
                     var Game = GameManager.GetActiveGameKey(startingDate);
-                    if ((Game ?? "") == "") Game = "-";
+                    if (GameManager.GameDict.ContainsKey(Game ?? "") )
+                    {
+                        Game = GameManager.GameDict[Game].Name;
+                    }
+                    else
+                    {
+                        Game = "-";
+                    }
                     model.ScheduleDays.Add(Date);
                     model.ScheduleGames.Add(Game);
                     i++;

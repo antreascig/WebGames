@@ -30,6 +30,7 @@ namespace WebGames.Libs
     {
         public string username { get; set; }
         public string password { get; set; }
+        public string email { get; set; }
         public List<string> roles { get; set; }
     }
 

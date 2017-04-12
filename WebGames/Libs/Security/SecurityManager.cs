@@ -55,7 +55,7 @@ namespace WebGames.Libs
                         user = new ApplicationUser()
                         {
                             UserName = persUser.username,
-                            Email = persUser.username,
+                            Email = persUser.email,
                         };
 
                         using (var UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context)))
