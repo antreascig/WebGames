@@ -57,6 +57,11 @@ namespace WebGames.Controllers
             return View(PageToDisplay);
         }
 
+        public ActionResult Outoftime()
+        {
+            return View();
+        }
+
         public ActionResult ActiveExplainer()
         {
             var PageToDisplay = "";

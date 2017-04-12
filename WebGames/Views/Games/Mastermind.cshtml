@@ -155,7 +155,7 @@
 					    	if (correctCard == 4) {
                                 isPaused = true;
 
-                                $.custom.Server.GetGameTime(timeRemaining, function (res) {
+                                $.custom.Server.SaveGameTime(timeRemaining, function (res) {
 
                                 });
 					    		localStorage.setItem("mastemindTime", timeRemaining);

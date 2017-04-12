@@ -19,7 +19,7 @@ namespace WebGames.Helpers
             {
                 String line = (sr.ReadToEnd() ?? "").Trim();
 
-                emails = line.Split('\n').Select(e => new Allowed_Email() { Email = e }).ToList();
+                emails = line.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Select(e => new Allowed_Email() { Email = e.ToLower() }).ToList();
             }
 
             using (var db = ApplicationDbContext.Create())

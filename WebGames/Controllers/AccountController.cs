@@ -141,7 +141,7 @@ namespace WebGames.Controllers
                 using (var db = ApplicationDbContext.Create())
                 {
                     var emailToCheck = (user.Email ?? "").ToLower();
-                    EmailAllowed = (from all_email in db.Alowed_Emails where all_email.Email == emailToCheck select all_email).SingleOrDefault() != null;
+                    EmailAllowed = (from email in db.Alowed_Emails where email.Email == emailToCheck select email).SingleOrDefault() != null;
                 }
 
                 if (EmailAllowed)

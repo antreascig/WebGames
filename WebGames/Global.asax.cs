@@ -20,7 +20,7 @@ namespace WebGames
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
-            //Helpers.ReadAllowedEmailsHelper.InitAllowedEmails();
+            Helpers.ReadAllowedEmailsHelper.InitAllowedEmails();
         }
     }
 }

@@ -20,6 +20,10 @@
         self.SendRequest('GET', "/Games/SaveGame1Score", data, success, fail, false);
     };
 
+    self.Get_Random_Mastermind_Solution = function (success, fail) {
+        self.SendRequest('GET', "/Games/Get_Random_Game3_Solution", {}, success, fail, false);
+    };
+
     self.SendRequest = function (type, url, data, success, fail, requireAuth) {
 
         if (requireAuth) {
