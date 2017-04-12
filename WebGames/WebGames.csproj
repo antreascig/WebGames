@@ -491,8 +491,8 @@
     <Content Include="Content\DashBoard\css\custom.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <None Include="Views\Dashboard\Game5.cshtml" />
-    <None Include="Views\Dashboard\GeneralSettings.cshtml" />
+    <Content Include="Views\Dashboard\Game5.cshtml" />
+    <Content Include="Views\Dashboard\GeneralSettings.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Content\DashBoard\js\custom.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
@@ -500,10 +500,10 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\knockout-mapping.min.js" />
     <Content Include="Scripts\moment.min.js" />
-    <None Include="Views\Dashboard\Login.cshtml" />
-    <None Include="Views\Dashboard\Schedule.cshtml" />
-    <None Include="Views\Dashboard\Scores.cshtml" />
-    <None Include="Views\Dashboard\Users.cshtml" />
+    <Content Include="Views\Dashboard\Login.cshtml" />
+    <Content Include="Views\Dashboard\Schedule.cshtml" />
+    <Content Include="Views\Dashboard\Scores.cshtml" />
+    <Content Include="Views\Dashboard\Users.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
