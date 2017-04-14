@@ -83,7 +83,8 @@ body {
     padding-right: 155px;
     padding-top: 100px;
     box-sizing: border-box;
-    width: 1178px
+    width: 1178px;
+    margin: 0 auto;
 }
 
 .Account_Register .form-control {
@@ -331,9 +332,149 @@ input[type="radio"]:checked + label {
 
 
 .navbar-nav li img {
-    display: none;
+    display: block;
+    height: 50px
+}
+
+.navbar-collapse {
+    padding-top: 10px;
 }
 
 .avatar .form-control {
     height: 0px;
 }
+
+.validation-summary-errors {
+    background-color: #0b4159;
+}
+
+    .validation-summary-errors ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .validation-summary-errors li {
+        padding: 10px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+.LayoutInfo {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'GFS';
+    color: white;
+    padding-top: 460px;
+    text-shadow: 0 2px 2px black;
+}
+
+footer .text-danger {
+    text-align: center;
+    color: white;
+}
+
+.Games_ActiveExplainer .container,
+.Games_ActiveGame .container,
+.Games_ActiveGameMap .container {
+    width: 100%;
+    padding: 0;
+    margin: 0
+}
+
+.Games_ActiveExplainer .navbar,
+.Games_ActiveGame .navbar,
+.Games_ActiveGameMap .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 51px;
+}
+
+    .Games_ActiveExplainer .navbar .container,
+    .Games_ActiveGame .navbar .container,
+    .Games_ActiveGameMap .navbar .container {
+        max-width: 960px;
+        margin: 0 auto
+    }
+
+.Games_ActiveExplainer footer,
+.Games_ActiveGame footer,
+.Games_ActiveGameMap footer {
+    display: none;
+}
+
+.Games_ActiveExplainer hr,
+.Games_ActiveGame hr,
+.Games_ActiveGameMap hr {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: -1px 0 0 0;
+}
+
+.User_Index {
+    padding-top: 100px;
+}
+
+    .User_Index h2 {
+        color: white;
+        font-size: 30px;
+        font-family: 'GFS';
+    }
+
+    .User_Index table {
+        box-shadow: 0 0 80px rgb(180, 32, 56), 0 0 80px rgb(180, 32, 56);
+        border: 3px solid rgb(180, 32, 56);
+    }
+
+    .User_Index td {
+        padding: 22px 15px !important;
+    }
+
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    border: none;
+}
+
+.table-striped > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+}
+
+.User_Index thead {
+    color: white;
+    font-family: 'GFS';
+    background: rgb(180, 32, 56);
+}
+
+    .User_Index thead th {
+        height: 45px;
+        padding-left: 15px !important;
+    }
+
+.Account_Register .navbar-nav {
+    float: right;
+}
+
+.Home_Info, .Home_TnC {
+    padding-top: 150px;
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center top no-repeat
+}
+
+    .Home_Info .container, .Home_TnC .container {
+        background: rgba(0,0,0,.8);
+        color: #fff;
+        line-height: 26px
+    }
+
+    .Home_Info .container {
+        padding-top: 30px;
+        text-align: center;
+    }

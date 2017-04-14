@@ -27,7 +27,7 @@
     function InitDatable() {
         table = $('#datatable-users').DataTable({
             // "ajax": "/Dashboard/" + view.url,
-            "ajax": "https://localhost:44305/Dashboard/GetUsers",
+            "ajax": "/Dashboard/GetUsers",
             "columns": columns
         });
     };

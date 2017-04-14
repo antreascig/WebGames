@@ -5,17 +5,17 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Γειά " + User.Identity.GetUserName() + "!", "Index", "User", routeValues: null, htmlAttributes: new { title = "User" })
-        </li>
-        <li>
-            <img src="@( "~/Content/images" +User.Identity.GetAvatar() + ".png")"/>
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Αποσύνδεσηf</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Γειά " + User.Identity.GetUserName() + "!", "Index", "User", routeValues: null, htmlAttributes: new { title = "User" })
+            </li>
+            <li>
+                <img src="@( "/Content/" +User.Identity.GetAvatar() + ".png")" />
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Αποσύνδεση</a></li>
+        </ul>
     }
 }
 else

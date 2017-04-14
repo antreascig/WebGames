@@ -211,6 +211,7 @@
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\ErrorMessageHelper.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
+    <Compile Include="Helpers\QuestionsHelper.cs" />
     <Compile Include="Helpers\ReadAllowedEmailsHelper.cs" />
     <Compile Include="Helpers\TypeHelper.cs" />
     <Compile Include="Libs\DataTableManager.cs" />
@@ -300,7 +301,19 @@
     <Content Include="App_Data\contestants.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\acrobat.png" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\demo\images\plan-02.png" />
+    <Content Include="Content\demo\images\screen1.jpg" />
+    <Content Include="Content\demo\images\screen2-text.png" />
+    <Content Include="Content\demo\images\startbutton.png" />
+    <Content Include="Content\demo\screens.css" />
+    <Content Include="Content\fonts\demo.html" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\stylesheet.css" />
+    <Content Include="Content\komper.png" />
+    <Content Include="Content\magician.png" />
     <Content Include="Content\pnotify.css" />
     <Content Include="Content\DashBoard\js\viewmodels\game5.js" />
     <Content Include="Content\DashBoard\js\viewmodels\generalsettings.js" />
@@ -395,6 +408,7 @@
     <Content Include="Content\jquery-datatables-column-filter\media\js\jquery.dataTables.columnFilter.css" />
     <Content Include="Content\jquery-datatables-column-filter\media\js\jquery.dataTables.columnFilter.js" />
     <Content Include="Content\jquery-datatables-column-filter\media\js\jquery.multiselect.js" />
+    <Content Include="Content\strongman.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -424,6 +438,18 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\GFSTheokritos-Regular.eot" />
+    <Content Include="Content\fonts\GFSTheokritos-Regular.ttf" />
+    <Content Include="Content\fonts\GFSTheokritos-Regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="App_Data\questions.xlsx" />
     <None Include="Properties\PublishProfiles\WebGamesTest - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\custom\app.js" />
@@ -552,6 +578,8 @@
     <Content Include="Views\Games\Mastermind\Explainer.cshtml" />
     <Content Include="Views\Games\Mastermind\Map.cshtml" />
     <Content Include="Views\Shared\_DashbordLayout.cshtml" />
+    <Content Include="Views\Home\TnC.cshtml" />
+    <Content Include="Views\Home\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />
@@ -593,6 +621,35 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

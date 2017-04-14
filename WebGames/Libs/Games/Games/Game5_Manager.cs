@@ -9,7 +9,7 @@ namespace WebGames.Libs.Games.GameTypes
     public class GameQuestionView
     {
         public int QuestionId { get; set; }
-        public int QuestionText { get; set; }
+        public string QuestionText { get; set; }
         public List<string> Options { get; set; }
     }
 
@@ -17,7 +17,7 @@ namespace WebGames.Libs.Games.GameTypes
     {
         public int QuestionId { get; set; }
         public bool Active { get; set; }
-        public int QuestionText { get; set; }
+        public string QuestionText { get; set; }
         public List<string> Options { get; set; }
         public int AnswerIndex { get; set; }
     }
@@ -39,12 +39,10 @@ namespace WebGames.Libs.Games.GameTypes
 
     public class Game5_Manager
     {
-        public static string GameKey = "Game5";
-
         public static int GameId {
             get
             {
-                return GameManager.GameDict[GameKey].GameId;
+                return GameManager.GameDict[GameKeys.GAME_5].GameId;
             }
         }
 
@@ -192,35 +190,35 @@ namespace WebGames.Libs.Games.GameTypes
             }
         }
 
-        public static void HandleUserAnswers(string UserId, Dictionary<int, int> Answers, bool EnableOverride = false)
-        {
-            try
-            {
-                var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
-                if (GameMetadata == null || GameMetadata.Questions == null) return;
-                int Correct = 0;
-                int Incorrect = 0;
-                foreach ( var answer in Answers)
-                {
-                    if (GameMetadata.Questions.ContainsKey(answer.Key))
-                    {
-                        if ( GameMetadata.Questions[answer.Key].AnswerIndex == answer.Value)
-                        {
-                            Correct++;
-                        }
-                        else
-                        {
-                            Incorrect++;
-                        }
-                    }
-                }
-                GameManager.GameDict[GameKey].SM.SetUserScore(UserId, Answers.Count, EnableOverride);
-            }
-            catch (Exception exc)
-            {
-                Logger.Log(exc.Message, LogType.ERROR);
+        //public static void HandleUserAnswers(string UserId, Dictionary<int, int> Answers, bool EnableOverride = false)
+        //{
+        //    try
+        //    {
+        //        var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
+        //        if (GameMetadata == null || GameMetadata.Questions == null) return;
+        //        int Correct = 0;
+        //        int Incorrect = 0;
+        //        foreach ( var answer in Answers)
+        //        {
+        //            if (GameMetadata.Questions.ContainsKey(answer.Key))
+        //            {
+        //                if ( GameMetadata.Questions[answer.Key].AnswerIndex == answer.Value)
+        //                {
+        //                    Correct++;
+        //                }
+        //                else
+        //                {
+        //                    Incorrect++;
+        //                }
+        //            }
+        //        }
+        //        GameManager.GameDict[GameKey].SM.SetUserScore(UserId, Answers.Count, EnableOverride);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        Logger.Log(exc.Message, LogType.ERROR);
 
-            }
-        }      
+        //    }
+        //}      
     }
 }

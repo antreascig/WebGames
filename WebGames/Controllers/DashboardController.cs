@@ -112,7 +112,7 @@ namespace WebGames.Controllers
 
             if (User.IsInRole("player"))
             {
-                return RedirectToAction("Home", "Dashboard");
+                return RedirectToAction("Index", "Home");
             }
 
             var model = new DashBoardIndexModel()
@@ -275,12 +275,12 @@ namespace WebGames.Controllers
             try
             {
                 var Questions = Game5_Manager.GetQuestions();
-                return Json(new { success = true, data = Questions });
+                return Json(new { success = true, data = Questions }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception exc)
             {
                 Logger.Log(exc);
-                return Json(new { success = false, message = exc.Message });
+                return Json(new { success = false, message = exc.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 

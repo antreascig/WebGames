@@ -22,11 +22,13 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <!-- Datatable-->
+    <link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="~/Content/DashBoard/css/custom.min.css" rel="stylesheet">
 
     @*<link href="~/Content/pnotify.css" media="all" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="~/Scripts/pnotify.js"></script>*@
+        <script type="text/javascript" src="~/Scripts/pnotify.js"></script>*@
 
 </head>
 
@@ -119,7 +121,7 @@
                                         <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
                                     <li>
-                                        <a class="" data-bind="click: GetGameQuestions"><i class="fa fa-refresh"></i></a>
+                                        <a class="" data-bind="click: RefreshGames"><i class="fa fa-refresh"></i></a>
                                     </li>
                                 </ul>
 
@@ -131,37 +133,38 @@
 
                                 <div class="clearfix"></div>
                                 <br>
+                                <table id="datatable-questions" class="table table-striped table-bordered" style="width:100%!important"></table>
 
-                                <table id="datatable-buttons" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Ερώτηση</th>
-                                            <th>Ρυθμίσεις</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- ko foreach: GameQuestions -->
-                                        <tr>
-                                            <td data-bind="text: QuestionId()"></td>
-                                            <td data-bind="text: QuestionText"></td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#questionEditorModal" data-bind="click: $root.EditQuestion.bind($root, $data)">Αλλαγή</button>
-                                                <button type="button" class="btn btn-danger" data-bind="click: $root.RemoveQuestion.bind($root, QuestionId)">Διαγραφή</button>
-                                            </td>
-                                        </tr>
-                                        <!-- /ko -->
-                                        <!-- ko if: (GameQuestions() || []).length == 0  -->
-                                        <tr>
-                                            <td colspan="3">
-                                                <br>
-                                                <p class="text-center">Δεν υπάρχουν ακόμη ερωτήσεις</p>
-                                            </td>
-                                        </tr>
-                                        <!-- /ko -->
+                                @*<table id="datatable-buttons" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Ερώτηση</th>
+                                                <th>Ρυθμίσεις</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- ko foreach: GameQuestions -->
+                                            <tr>
+                                                <td data-bind="text: QuestionId()"></td>
+                                                <td data-bind="text: QuestionText"></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#questionEditorModal" data-bind="click: $root.EditQuestion.bind($root, $data)">Αλλαγή</button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: $root.RemoveQuestion.bind($root, QuestionId)">Διαγραφή</button>
+                                                </td>
+                                            </tr>
+                                            <!-- /ko -->
+                                            <!-- ko if: (GameQuestions() || []).length == 0  -->
+                                            <tr>
+                                                <td colspan="3">
+                                                    <br>
+                                                    <p class="text-center">Δεν υπάρχουν ακόμη ερωτήσεις</p>
+                                                </td>
+                                            </tr>
+                                            <!-- /ko -->
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>*@
 
                                 <div class="modal fade" id="questionEditorModal" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
@@ -201,15 +204,15 @@
 
                                                     <!-- ko foreach: Options -->
                                                     <div class="row">
-                                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                                        <div class="col-md-8 col-sm-8 col-xs-12">
                                                             <textarea id="question-text" required="required" class="form-control" data-bind="value: $data" style="max-width: 100%"> </textarea>
                                                         </div>
-                                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                                        <div class="col-md-2 col-sm-2 col-xs-6">
                                                             <div class="radio">
 
                                                                 <div class="radio">
                                                                     <label>
-                                                                        <input type="radio" name="answerRadios" data-bind="value: $index(), checked: $parent.AnswerIndex ">
+                                                                        <input type="radio" name="answerRadios" data-bind="value: ($index() + 1), checked: $parent.AnswerIndex ">
                                                                         Σωστή Απάντηση
                                                                     </label>
 
@@ -221,6 +224,9 @@
                                                                     </label>-->
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                                            <button type="button" class="btn btn-default" data-bind="click: $root.RemoveOption.bind($root, $index())"><i class="fa fa-times" aria-hidden="true"></i></button>
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
@@ -266,6 +272,9 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- Datatables -->
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="~/Content/DashBoard/js/custom.js"></script>
     <script src="~/Content/DashBoard/js/viewmodels/game5.js"></script>

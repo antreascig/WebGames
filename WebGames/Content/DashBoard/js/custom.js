@@ -253,7 +253,7 @@ $.custom['Logger'] = new Logger();
 function ServerAPi() {
     var self = this;
 
-    self.SendRequest = function (type, url, data, success, fail, requireAuth) {
+    self.SendRequest = function (type, url, data, success, fail, requireAuth, dataType) {
 
         if (requireAuth) {
             $.custom.AntiForgeryToken["AddAntiForgeryToken"](data);
@@ -261,8 +261,9 @@ function ServerAPi() {
 
         $.ajax({
             type: type,
-            url: "https://localhost:44305" + url,
-            data: data
+            url: url,
+            data: data,
+            dataType: dataType
         }).done(function (resData) {
             success(resData);
         }).fail(fail);

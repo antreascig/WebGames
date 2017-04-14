@@ -13,16 +13,25 @@
         self.SendRequest('GET', "/Games/GetGameTime", {}, success, fail, false);
     };
 
-    self.SaveScoreGame1 = function (score, success, fail) {
+    self.SaveScoreGame = function (score, success, fail) {
         var data = {
             score: score
         };
-        self.SendRequest('GET', "/Games/SaveGame1Score", data, success, fail, false);
+        self.SendRequest('GET', "/Games/Save_Game_Score", data, success, fail, false);
     };
 
     self.Get_Random_Mastermind_Solution = function (success, fail) {
         self.SendRequest('GET', "/Games/Get_Random_Game3_Solution", {}, success, fail, false);
     };
+
+    self.CheckQuestion = function (questionId, answerIndex, success, fail) {
+        var data = {
+            questionId: questionId,
+            answerIndex: answerIndex
+        };
+        self.SendRequest('GET', "/Games/CheckQuestion", data, success, fail, false);
+    };
+
 
     self.SendRequest = function (type, url, data, success, fail, requireAuth) {
 

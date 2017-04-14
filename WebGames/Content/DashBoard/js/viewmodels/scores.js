@@ -57,15 +57,22 @@
                     table = $('#datatable-games').DataTable({
                         "fnServerData": function (sSource, aoData, fnCallback) {
                             // debugger
-                            $.ajax({
-                                "dataType": 'json',
-                                "type": "POST",
-                                "url": "https://localhost:44305/Dashboard/GetScores?GameKey=" + vm.ActiveGameKey(),
-                                "data": aoData,
-                                "success": function (a, b, c, d) {
+
+                            $.custom.Server["SendRequest"]("POST", "/Dashboard/GetScores?GameKey=" + vm.ActiveGameKey(), aoData,
+                                function (a, b, c, d) {
                                     fnCallback(a, b, c, d);
-                                }
-                            });
+                                },
+                                function (error, hrx, code) { }, false, 'json');
+
+                            // $.ajax({
+                            //     "dataType": 'json',
+                            //     "type": "POST",
+                            //     "url": "/Dashboard/GetScores?GameKey=" + vm.ActiveGameKey(),
+                            //     "data": aoData,
+                            //     "success":function (a, b, c, d) {
+                            //         fnCallback(a, b, c, d);
+                            //     } 
+                            // });
                         },
                         // "ajax": "/production/data.json",
                         "columns": columns
@@ -82,15 +89,22 @@
             "lengthMenu": [12],
             "fnServerData": function (sSource, aoData, fnCallback) {
                 // debugger
-                $.ajax({
-                    "dataType": 'json',
-                    "type": "POST",
-                    "url": "https://localhost:44305/Dashboard/GetGroupScores?group=" + vm.ActiveGroupNumber(),
-                    "data": aoData,
-                    "success": function (a, b, c, d) {
+
+                $.custom.Server["SendRequest"]("POST", "/Dashboard/GetGroupScores?group=" + vm.ActiveGroupNumber(), aoData,
+                    function (a, b, c, d) {
                         fnCallback(a, b, c, d);
-                    }
-                });
+                    },
+                    function (error, hrx, code) { }, false, 'json');
+
+                // $.ajax({
+                //     "dataType": 'json',
+                //     "type": "POST",
+                //     "url": "/Dashboard/GetGroupScores?group=" + vm.ActiveGroupNumber(),
+                //     "data": aoData,
+                //     "success": function (a, b, c, d) {
+                //         fnCallback(a, b, c, d);
+                //     }
+                // });
             },
             // "ajax": "/production/data.json",
             "columns": group_columns

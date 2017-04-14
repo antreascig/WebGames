@@ -110,7 +110,7 @@ namespace WebGames.Controllers
                 res[i] = Rnd.Next(1, 7);
             }
 
-            return Json(res, JsonRequestBehavior.AllowGet);
+            return Json( res, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -122,7 +122,7 @@ namespace WebGames.Controllers
             var UserId = User.Identity.GetUserId();
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
             var CurrentActiveGameKey = GameManager.GetActiveGameKey(UserId);
-            if ( CurrentActiveGameKey != Game5_Manager.GameKey )
+            if ( CurrentActiveGameKey != GameKeys.GAME_5)
             { 
                 return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
             }

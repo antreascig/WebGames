@@ -10,6 +10,14 @@ namespace WebGames.Libs.Games.Games
 {
     public class Game6_Manager
     {
+        public static int GameId
+        {
+            get
+            {
+                return GameManager.GameDict[GameKeys.GAME_5].GameId;
+            }
+        }
+
         public static bool Groups_Generated = false;
 
         public static int GetUserGroup(string UserId)
@@ -91,7 +99,7 @@ namespace WebGames.Libs.Games.Games
                 var UserGroups = (from ug in db.Game6_User_Groups select ug).Include("User").ToList();
                 if (UserGroups.Any())
                 {
-                    var Game6 = (from game in db.Games where game.GameId == GameManager.GameDict[GameKeys.GAME_6].GameId select game).SingleOrDefault();
+                    var Game6 = (from game in db.Games where game.GameId == GameId select game).SingleOrDefault();
                     // Get the scores 
                     var scores = (from score in db.Game6_Scores select score).ToList();
                     foreach (var user in UserGroups)

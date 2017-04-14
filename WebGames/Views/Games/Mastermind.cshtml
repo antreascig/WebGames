@@ -1,18 +1,9 @@
-﻿@{
-    Layout = null;
-}
+﻿<div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Cosmoplay</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="/Content/Games/mastermind/style.css">
     <link rel="stylesheet" href="/Content/Games/mastermind/css/jquery.mCustomScrollbar.css">
-</head>
-<body>
+
     <audio autoplay preload='auto' loop id="myAudio">
         <source src="/Content/Games/mastermind/music/mastermind.mp3" type="audio/mpeg">
     </audio>
@@ -77,143 +68,142 @@
     <script src="/Scripts/custom/serverAPI.js"></script>
 
     <script>
-		var solution = [2,4,6,1];
-		var correctCard = null;
-		var correctSlot = null;
-		var openSlot = null;
-		var removeSlot = null;
-		var slotClass = null;
-		var guess = null;
-		var slot1guess = null;
-		var slot2guess = null;
-		var slot3guess = null;
-		var slot4guess = null;
-		var lastGuess = null;
-		var lastHint = null;
-		var attempts = 20;
-		var attempt = 0;
-		var success = $("#deal")[0];
-		var success = $("#win")[0];
-		$(document).ready(function() {
+        var solution = [2, 4, 6, 1];
+        var correctCard = null;
+        var correctSlot = null;
+        var openSlot = null;
+        var removeSlot = null;
+        var slotClass = null;
+        var guess = null;
+        var slot1guess = null;
+        var slot2guess = null;
+        var slot3guess = null;
+        var slot4guess = null;
+        var lastGuess = null;
+        var lastHint = null;
+        var attempts = 20;
+        var attempt = 0;
+        var success = $("#deal")[0];
+        var success = $("#win")[0];
+        $(document).ready(function () {
 
-			$('.cards').on('click', '.card', function(event) {
-				event.preventDefault();
-				$('.card').removeClass('selected');
-				$(this).addClass('selected');
-			});
-
-
-			$('.slots').on('click', '.slot', function(event) {
-				event.preventDefault();
-				openSlot = $(this).data('slot');
-				slotClass = 'on' + openSlot;
-				$('.card.selected').removeClass('selected').addClass(slotClass).addClass('added');
-				if ($( ".card" ).hasClass( slotClass )) {
-					deal.play();
-					$(".remove[data-remove='"+ slotClass +"']").addClass('active');
-				}
-			});
+            $('.cards').on('click', '.card', function (event) {
+                event.preventDefault();
+                $('.card').removeClass('selected');
+                $(this).addClass('selected');
+            });
 
 
-			$('.slots').on('click', '.remove', function(event) {
-				event.preventDefault();
-				removeSlot = $(this).data('remove');
-				$('.'+ removeSlot).removeClass(removeSlot).removeClass('added');
-				$(this).removeClass('active');
-			});
-
-			$('#solve').click(function(event) {
-				if (attempt == attempts) {
-		    		$('#fail').fadeIn(500);
-					isPaused = true;
-					return;
-				}
-				attempt++;
-				$('#attempt span').html(attempt);
-				var correctCard = 0;
-				var correctSlot = 0;
-
-				var slot1guess = $('.card.on1').data('card');
-				var slot2guess = $('.card.on2').data('card');
-				var slot3guess = $('.card.on3').data('card');
-				var slot4guess = $('.card.on4').data('card');
-				lastGuess = '<div class="prevguess">';
-                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card'+ slot1guess + '.png"/>' ;
-                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card'+ slot2guess + '.png"/>' ;
-                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card'+ slot3guess + '.png"/>' ;
-                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card'+ slot4guess + '.png"/>' ;
+            $('.slots').on('click', '.slot', function (event) {
+                event.preventDefault();
+                openSlot = $(this).data('slot');
+                slotClass = 'on' + openSlot;
+                $('.card.selected').removeClass('selected').addClass(slotClass).addClass('added');
+                if ($(".card").hasClass(slotClass)) {
+                    deal.play();
+                    $(".remove[data-remove='" + slotClass + "']").addClass('active');
+                }
+            });
 
 
+            $('.slots').on('click', '.remove', function (event) {
+                event.preventDefault();
+                removeSlot = $(this).data('remove');
+                $('.' + removeSlot).removeClass(removeSlot).removeClass('added');
+                $(this).removeClass('active');
+            });
 
-				if (undefined != slot1guess && undefined != slot2guess && undefined != slot3guess && undefined != slot4guess) {
-					guess = [slot1guess,slot2guess,slot3guess,slot4guess];
-					console.log(guess);
+            $('#solve').click(function (event) {
+                if (attempt == attempts) {
+                    $('#fail').fadeIn(500);
+                    isPaused = true;
+                    return;
+                }
+                attempt++;
+                $('#attempt span').html(attempt);
+                var correctCard = 0;
+                var correctSlot = 0;
 
-					for ( var i = 0, l = solution.length; i < l; i++ ) {
-					    if (solution[ i ] == guess[ i ]) {
-					    	correctCard++;
-					    	if (correctCard == 4) {
+                var slot1guess = $('.card.on1').data('card');
+                var slot2guess = $('.card.on2').data('card');
+                var slot3guess = $('.card.on3').data('card');
+                var slot4guess = $('.card.on4').data('card');
+                lastGuess = '<div class="prevguess">';
+                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card' + slot1guess + '.png"/>';
+                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card' + slot2guess + '.png"/>';
+                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card' + slot3guess + '.png"/>';
+                lastGuess += '<img src="/Content/Games/mastermind/images/mastermind/card' + slot4guess + '.png"/>';
+
+
+
+                if (undefined != slot1guess && undefined != slot2guess && undefined != slot3guess && undefined != slot4guess) {
+                    guess = [slot1guess, slot2guess, slot3guess, slot4guess];
+                    console.log(guess);
+
+                    for (var i = 0, l = solution.length; i < l; i++) {
+                        if (solution[i] == guess[i]) {
+                            correctCard++;
+                            if (correctCard == 4) {
                                 isPaused = true;
 
                                 $.custom.Server.SaveGameTime(timeRemaining, function (res) {
 
                                 });
-					    		localStorage.setItem("mastemindTime", timeRemaining);
-					    		$('#success').fadeIn(500);
-					    		win.play();
-					    		return;
-					    	}
-					    }
-					    for ( var s = 0, l = solution.length; s < l; s++ ) {
-					    	if (solution[ i ] == guess[ s ]) {
-					    		correctSlot++
-					    	}
-					    }
-					    if (i == 3) {
+                                localStorage.setItem("mastemindTime", timeRemaining);
+                                $('#success').fadeIn(500);
+                                win.play();
+                                return;
+                            }
+                        }
+                        for (var s = 0, l = solution.length; s < l; s++) {
+                            if (solution[i] == guess[s]) {
+                                correctSlot++
+                            }
+                        }
+                        if (i == 3) {
 
-							lastHint = '<div class="lasthint">';
-						    for ( var m = 0, l = correctCard; m < l; m++ ) {
-					    		lastHint += '<span class="blackDot"></span>';
-						    }
-						    for ( var n = 0, l = correctSlot - correctCard; n < l; n++ ) {
-					    		lastHint += '<span class="whiteDot"></span>';
-						    }
-					    	lastHint += '</div>';
+                            lastHint = '<div class="lasthint">';
+                            for (var m = 0, l = correctCard; m < l; m++) {
+                                lastHint += '<span class="blackDot"></span>';
+                            }
+                            for (var n = 0, l = correctSlot - correctCard; n < l; n++) {
+                                lastHint += '<span class="whiteDot"></span>';
+                            }
+                            lastHint += '</div>';
 
-							lastGuess += lastHint;
-							lastGuess += '</div>';
+                            lastGuess += lastHint;
+                            lastGuess += '</div>';
 
-							$('.mCSB_container').append(lastGuess);
-					    	// console.log('there are ' + correctCard + ' cards in the correct position');
-					    	// console.log('there are ' + correctSlot + ' correct cards');
-					    }
+                            $('.mCSB_container').append(lastGuess);
+                            // console.log('there are ' + correctCard + ' cards in the correct position');
+                            // console.log('there are ' + correctSlot + ' correct cards');
+                        }
 
-					}
+                    }
 
 
-				}
-				/* Act on the event */
-				event.preventDefault();
-			});
+                }
+                /* Act on the event */
+                event.preventDefault();
+            });
 
             jQuery(function ($) {
 
                 $.custom.Server.GetGameTime(function (res) {
                     if (res && res.success && res.time) {
-                        gameTime = res.time.RemainingTimeInSeconds;                   
+                        gameTime = res.time.RemainingTimeInSeconds;
                     }
                     else if (localStorage.getItem("mastemindTime") == null) {
-                        gameTime = 60 * 5 ;
+                        gameTime = 60 * 5;
                     } else {
                         gameTime = localStorage.getItem("mastemindTime");
                     }
 
                     display = $('#time');
                     startTimer(gameTime, display);
-                });			 
-			});
+                });
+            });
 
-		});
+        });
     </script>
-</body>
-</html>
+</div>
