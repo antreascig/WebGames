@@ -8,6 +8,7 @@
         CancelEditing: CancelEditing,
         SaveUser: SaveUser,
         ResetTokens: ResetTokens,
+        resetTime: resetTime
     };
 
     var columns = [
@@ -40,6 +41,9 @@
     function EditPlayer(rowIndex) {
         var data = table.row(rowIndex).data();
         var id = data[0];
+        var name = data[1];
+        $('#modalUserName').text(name);
+
         $.custom.Server["SendRequest"]("GET", "/Dashboard/GetUserDetails", { userId: id },
             function (res) { //success
                 // debugger
@@ -51,9 +55,13 @@
                         var obs = ko.mapping.fromJS(res.Games[key]);
                         gs.push(obs);
                     }
+
+                    var PlayTimeToday = parseInt(res.PlayTimeToday / 60) + ' λεπτά ' + (res.PlayTimeToday % 60) + ' δευτερόλεπτα';
+
                     vm.SelectedUser({
                         UserId: id,
-                        GameScores: gs
+                        GameScores: gs,
+                        PlayTimeToday: ko.observable(PlayTimeToday)
                     });
                 }
             },
@@ -89,6 +97,22 @@
             function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
         vm.SelectedUser(null);
 
+    };
+
+    function resetTime() {
+        var User = vm.SelectedUser();
+        $.custom.Server["SendRequest"]("POST", "/Dashboard/ResetGameTime", { userId: User.UserId },
+            function (res) { //success
+                // debugger
+                if (res.success) {
+                    $.custom['Logger'].Success("Ο χρόνος διαγράφηκε", "");
+                    User.PlayTimeToday('0 λεπτά 0 δευτερόλεπτα');
+                }
+                else {
+                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
+                }
+            },
+            function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
     };
 
     return vm;

@@ -96,7 +96,7 @@ namespace WebGames.Helpers
             }
             catch (Exception exc)
             {
-
+                Logger.Log(exc);
             }
             finally
             {

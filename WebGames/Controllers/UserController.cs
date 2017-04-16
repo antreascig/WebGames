@@ -39,39 +39,18 @@ namespace WebGames.Controllers
         }
 
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var model = new UserScoreInfo { GameScores = new List<UserScore>() };
 
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user == null)
+            var userId = User.Identity.GetUserId();
+
+            foreach (var game in GameManager.GameDict)
             {
-                return View(model);
+                var Game_Score = game.Value.SM.GetUserScore(userId);
+
+                model.GameScores.Add(Game_Score);
             }
-            var Game1_Score = GameManager.GameDict[GameKeys.GAME_1].SM.GetUserScore(user);
-            //var Game2_Score = GameManager.GameDict[GameKeys.GAME_2].SM.GetUserScore(user);
-            //var Game3_Score = GameManager.GameDict[GameKeys.GAME_3].SM.GetUserScore(user);
-            //var Game4_1_Score = GameManager.GameDict[GameKeys.GAME_4_1"].SM.GetUserScore(user);
-            //var Game4_2_Score = GameManager.GameDict["GameKeys.GAME_4_1"].SM.GetUserScore(user);
-            //var Game4_3_Score = GameManager.GameDict["GameKeys.GAME_4_3"].SM.GetUserScore(user);
-            //var Game5_Score = GameManager.GameDict["GameKeys.GAME_5"].SM.GetUserScore(user);
-            //var Game6_Score = GameManager.GameDict["GameKeys.GAME_6"].SM.GetUserScore(user);
-
-            //var Game4_Score = new UserScore()
-            //{
-            //    GameId = -1,
-            //    GameName = "",
-            //    Name = "Escape Room",
-            //    Score = Game4_1_Score.Score + Game4_2_Score.Score + Game4_3_Score.Score,
-            //    UserId = user.Id
-            //};
-
-            model.GameScores.Add(Game1_Score);
-            //model.GameScores.Add(Game2_Score);
-            //model.GameScores.Add(Game3_Score);
-            //model.GameScores.Add(Game4_Score);
-            //model.GameScores.Add(Game5_Score);
-            //model.GameScores.Add(Game6_Score);
 
             return View(model);
         }

@@ -14,6 +14,8 @@ namespace WebGames.Models
 
         public int Tokens { get; set; }
 
+        public int Levels{ get; set; }
+
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
     }

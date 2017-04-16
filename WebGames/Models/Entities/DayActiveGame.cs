@@ -10,5 +10,11 @@ namespace WebGames.Models
         public string Day { get; set; } // yyyy-mm-dd
 
         public string GameKey { get; set; }
+
+        public string SuccessMessage { get; set; }
+
+        public string FailMesssage { get; set; }
+
+        public string OutOfTimeMessage { get; set; }
     }
 }

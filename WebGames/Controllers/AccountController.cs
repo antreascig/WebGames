@@ -92,7 +92,7 @@ namespace WebGames.Controllers
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Επιβεβαίωση Λογαριασμου - Επαναποστολή"); // "Confirm your account-Resend"
 
                     // Uncomment to debug locally  
-                    ViewBag.Link = callbackUrl;
+                    //ViewBag.Link = callbackUrl;
                     ViewBag.errorMessage = @"Επιβεβαίωση λογαριασμού είναι αναγκαία πριν από την σύνδεση. 
                                              Μήνυμα επιβεβαίωσης έχει αποσταλεί στην ηλεκτρονική σας διεύθυνση.";
                     //ViewBag.errorMessage = "You must have a confirmed email to log on. "
@@ -114,7 +114,7 @@ namespace WebGames.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Μη έγκυρη προσπάθεια σύνδεσης.");
                     return View(model);
             }
         }
@@ -370,7 +370,7 @@ namespace WebGames.Controllers
             var callbackUrl = Url.Action("ConfirmEmail", "Account",
                new { userId = userID, code = code }, protocol: Request.Url.Scheme);
             await UserManager.SendEmailAsync(userID, subject,
-               "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+               "Παρακαλώ επιβεβαίωσε το λογαριασμό σου πατώντας <a href=\"" + callbackUrl + "\">εδώ</a>");
 
             return callbackUrl;
         }

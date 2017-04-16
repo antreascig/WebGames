@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebGames.Helpers;
 using WebGames.Models;
 
 namespace WebGames.Libs.Games
@@ -13,6 +14,12 @@ namespace WebGames.Libs.Games
         public string GameKey { get; set; }
 
         public string GameName { get; set; }
+
+        public string SuccessMessage { get; set; }
+
+        public string FailMesssage { get; set; }
+
+        public string OutOfTimeMessage { get; set; }
     }
 
     public class GameDayScheduleManager
@@ -21,7 +28,7 @@ namespace WebGames.Libs.Games
         {
             using (var db = ApplicationDbContext.Create())
             {
-                var CurrentSchedule = (from ag in db.DaysActiveGames select ag).ToDictionary(k => k.Day);
+                var CurrentSchedule = (from ag in db.DaysActiveGames select ag).ToList().ToDictionary(k => k.Day);
                 foreach (var daySchedule in Schedule)
                 {
                     // Make sure the day is in correct format
@@ -35,6 +42,9 @@ namespace WebGames.Libs.Games
                     {
                         // change the gamekey
                         CurrentSchedule[daySchedule.Day].GameKey = daySchedule.GameKey;
+                        CurrentSchedule[daySchedule.Day].SuccessMessage = daySchedule.SuccessMessage;
+                        CurrentSchedule[daySchedule.Day].FailMesssage = daySchedule.FailMesssage;
+                        CurrentSchedule[daySchedule.Day].OutOfTimeMessage = daySchedule.OutOfTimeMessage;
                     }
                     else
                     {
@@ -69,7 +79,10 @@ namespace WebGames.Libs.Games
                     {
                         Day = d.Day,
                         GameKey = d.GameKey,
-                        GameName = GameManager.GameDict[d.GameKey].Name
+                        GameName = GameManager.GameDict[d.GameKey].Name,
+                        SuccessMessage = d.SuccessMessage,
+                        FailMesssage = d.FailMesssage,
+                        OutOfTimeMessage = d.OutOfTimeMessage
                     }));
                 }
             }
@@ -81,9 +94,11 @@ namespace WebGames.Libs.Games
 
         }
 
-        public static string GetActiveGame(DateTime Today)
+        public static ActiveGameData GetActiveGame(DateTime Date)
         {
-            string ActiveGameKey = null;
+            var Today = DateHelper.GetGreekDate(Date, onlyDate: true);
+
+            ActiveGameData ActiveGameKey = null;
             try
             {
                 using (var db = ApplicationDbContext.Create())
@@ -91,8 +106,19 @@ namespace WebGames.Libs.Games
                     var toDayStr = Today.ToString("yyyy-MM-dd");
 
                     var Active = (from ag in db.DaysActiveGames where ag.Day == toDayStr select ag).FirstOrDefault();
-                    if (Active != null) 
-                        ActiveGameKey = Active.GameKey;
+                    if (Active != null)
+                    {
+                        ActiveGameKey = new ActiveGameData()
+                        {
+                            ActiveGameKey = Active.GameKey,
+                            Messages = new Dictionary<string, string>()
+                            {
+                                { "success", Active.SuccessMessage ?? "" },
+                                { "fail", Active.FailMesssage ?? ""},
+                                { "outoftime", Active.OutOfTimeMessage ?? ""}
+                            }
+                        };
+                    }
                 }
             }
             catch (Exception exc)

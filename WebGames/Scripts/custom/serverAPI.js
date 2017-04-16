@@ -1,9 +1,9 @@
 ﻿function ServerAPi() {
     var self = this;
 
-    self.SaveGameTime = function (timeInSeconds, success, fail) {
+    self.SaveGameTime = function (remainingTime, success, fail) {
         var data = {
-            timeInSeconds: timeInSeconds,
+            remainingTime: remainingTime,
             timestamp: new Date().getTime()
         };
         self.SendRequest('GET', "/Games/SaveGameTime", data, success, fail, false);
@@ -13,7 +13,7 @@
         self.SendRequest('GET', "/Games/GetGameTime", {}, success, fail, false);
     };
 
-    self.SaveScoreGame = function (score, success, fail) {
+    self.SaveGameScore = function (score, success, fail) {
         var data = {
             score: score
         };

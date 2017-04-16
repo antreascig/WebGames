@@ -125,10 +125,10 @@ namespace WebGames.Controllers
 
             try
             {
-                var activeGameKey = GameManager.GetActiveGameKeyToday();
-                if (GameManager.GameDict.ContainsKey(activeGameKey))
+                var activeGameData = GameDayScheduleManager.GetActiveGame(DateTime.UtcNow);
+                if (activeGameData != null && GameManager.GameDict.ContainsKey(activeGameData.ActiveGameKey))
                 {
-                    model.ActiveGame = GameManager.GameDict[activeGameKey].Name;
+                    model.ActiveGame = GameManager.GameDict[activeGameData.ActiveGameKey].Name;
                 }
 
                 using (var db = ApplicationDbContext.Create())
@@ -141,20 +141,22 @@ namespace WebGames.Controllers
                 var daysToCheckForActiveGame = 5;
                 var i = -1;
                 var startingDate = DateTime.UtcNow;
+                var GameName = "";
                 do
                 {
                     var Date = startingDate.ToString("yyyy-MM-dd");
-                    var Game = GameManager.GetActiveGameKey(startingDate);
-                    if (GameManager.GameDict.ContainsKey(Game ?? "") )
+                    var activeGameDataModel = GameDayScheduleManager.GetActiveGame(startingDate);
+                    var ActiveGameKey = activeGameDataModel != null ? activeGameDataModel.ActiveGameKey : "";
+                    if (GameManager.GameDict.ContainsKey(ActiveGameKey ?? "") )
                     {
-                        Game = GameManager.GameDict[Game].Name;
+                        GameName = GameManager.GameDict[ActiveGameKey].Name;
                     }
                     else
                     {
-                        Game = "-";
+                        GameName = "-";
                     }
                     model.ScheduleDays.Add(Date);
-                    model.ScheduleGames.Add(Game);
+                    model.ScheduleGames.Add(GameName);
                     i++;
                     startingDate = startingDate.AddDays(1);
                 } while (i < daysToCheckForActiveGame);
@@ -360,10 +362,18 @@ namespace WebGames.Controllers
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
 
+            var PlayTimeToday = 0;
+            var time = ActivityManager.GetGameTime(userId, DateTime.UtcNow); 
+            if (time != null)
+            {
+                PlayTimeToday = time.timeInSeconds;
+            }
+
             var res = new
             {
                 success = true,
-                Games = ScoreManager.GetUserTotalScores(userId)
+                Games = ScoreManager.GetUserTotalScores(userId),
+                PlayTimeToday = PlayTimeToday
             };
             return Json(res, JsonRequestBehavior.AllowGet);
         }
@@ -390,6 +400,31 @@ namespace WebGames.Controllers
                 {
                     GameManager.GameDict[game.Key].SM.SetUserScore(userId, game.Value, true);
                 }
+
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc);
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Authorize(Roles = "sysadmin,admin")]
+        public ActionResult ResetGameTime(string userId)
+        {
+            try
+            {
+                var user = UserManager.FindByIdAsync(userId ?? "");
+                if (user == null)
+                {
+                    return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+                }
+
+                // calculate timestamp yourDateObject.getTime()
+                long timeStamp = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 1);
+
+                ActivityManager.SavePlayTime(userId, DateTime.UtcNow, 0, timeStamp, true);
 
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }

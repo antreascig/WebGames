@@ -41,7 +41,7 @@ namespace WebGames.Controllers
         [Authorize(Roles = "player")]
         public ActionResult GetUserDetails()
         {
-            var res = UserGameManager.GetUserGameInfo(User.Identity.GetUserId());
+            var res = UserGameManager.GetUserRemainingTime(User.Identity.GetUserId());
             return Json(res);
         }
         //

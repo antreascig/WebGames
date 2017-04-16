@@ -21,38 +21,38 @@ body {
     height: 100vh
 }
 
-.Home_Index, .User_Index {
+.home_index, .user_index {
     background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) top center no-repeat
 }
 
-.Account_Login, .Account_ForgotPassword, .Account_ConfirmEmail {
+.account_login, .account_forgotpassword, .account_confirmemail {
     background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center -100px no-repeat
 }
 
-.Account_Register {
+.account_register {
     background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center top no-repeat
 }
 
-    .Account_Register .form-horizontal {
+    .account_register .form-horizontal {
         background: transparent url(images/regform.png?v=2) top center no-repeat
     }
 
-    .Account_Register h2, .Account_Register h4 {
+    .account_register h2, .account_register h4 {
         display: none
     }
 
-.Account_ConfirmEmail .container.body-content {
+.account_confirmemail .container.body-content {
     text-align: center;
     color: white;
     padding-top: 360px;
 }
 
-.Account_ConfirmEmail h2 {
+.account_confirmemail h2 {
     font-family: 'GFS';
     text-shadow: 0 2px 2px black;
 }
 
-.Account_ConfirmEmail a {
+.account_confirmemail a {
     color: white;
     text-decoration: underline;
 }
@@ -65,19 +65,19 @@ body {
         display: block
     }
 
-.Account_Login .navbar-right, .Account_Register .navbar-right {
+.account_login .navbar-right, .account_register .navbar-right {
     display: none;
     opacity: 0
 }
 
-.Account_Register label {
+.account_register label {
 }
 
-.Account_Login h2 {
+.account_login h2 {
     display: none
 }
 
-.Account_Register form {
+.account_register form {
     display: block;
     padding-left: 400px;
     padding-right: 155px;
@@ -87,7 +87,7 @@ body {
     margin: 0 auto;
 }
 
-.Account_Register .form-control {
+.account_register .form-control {
     border-radius: 0;
     border: 2px solid #cc2536;
     padding: 10px;
@@ -106,7 +106,7 @@ body {
     width: 100%
 }
 
-.Account_Register .col-md-10 {
+.account_register .col-md-10 {
     width: 100%
 }
 
@@ -134,7 +134,7 @@ body {
         margin: 0
     }
 
-.Account_Register .form-group:nth-last-child(2) {
+.account_register .form-group:nth-last-child(2) {
     background: #0b4159;
     padding: 10px 10px 10px 10px;
     width: 621px;
@@ -142,11 +142,11 @@ body {
     margin-left: 0
 }
 
-    .Account_Register .form-group:nth-last-child(2) .col-md-3.col-sm-3.col-xs-12 {
+    .account_register .form-group:nth-last-child(2) .col-md-3.col-sm-3.col-xs-12 {
         width: auto !important
     }
 
-    .Account_Register .form-group:nth-last-child(2):before {
+    .account_register .form-group:nth-last-child(2):before {
         display: block;
         content: "διαλεξε τον αρτιστα που σου ταιριαζει:";
         color: #fff;
@@ -200,7 +200,7 @@ body {
     width: 100%
 }
 
-.Account_Login .col-md-8 {
+.account_login .col-md-8 {
     width: 100%
 }
 
@@ -239,7 +239,7 @@ body {
         margin-top: 440px
     }
 
-.Account_Register input[type="submit"] {
+.account_register input[type="submit"] {
     background: transparent url(images/registerbtn.png) top center no-repeat;
     width: 198px;
     height: 121px;
@@ -257,7 +257,7 @@ body {
     z-index: 100
 }
 
-    .Account_Register input[type="submit"]:hover {
+    .account_register input[type="submit"]:hover {
         transform: translateY(-10px) !important;
         cursor: pointer
     }
@@ -270,7 +270,7 @@ body {
     display: block
 }
 
-.Account_Register label {
+.account_register label {
     font-family: 'GFS';
     font-size: 24px;
     font-weight: normal;
@@ -294,29 +294,29 @@ input[type="radio"]:checked + label {
     margin-bottom: 15px
 }
 
-.Account_Register .container.body-content {
+.account_register .container.body-content {
     width: 100% !important
 }
 
-.Account_ForgotPassword form {
+.account_forgotpassword form {
     padding-top: 300px;
     width: 400px;
     margin: 0 auto
 }
 
-    .Account_ForgotPassword form input {
+    .account_forgotpassword form input {
         width: 100%;
         height: 50px
     }
 
-.Account_ForgotPassword h2 {
+.account_forgotpassword h2 {
     color: #fff;
     font-family: 'GFS';
     text-align: center;
     text-shadow: 0 0 10px black,0 4px 0 rgba(0,0,0,.5)
 }
 
-.Account_ForgotPassword .btn {
+.account_forgotpassword .btn {
     font-weight: bold;
     font-size: 0;
     height: 70px;
@@ -326,7 +326,7 @@ input[type="radio"]:checked + label {
     transition: all ease .2s
 }
 
-    .Account_ForgotPassword .btn:hover {
+    .account_forgotpassword .btn:hover {
         transform: translateY(-4px)
     }
 
@@ -362,6 +362,15 @@ input[type="radio"]:checked + label {
         margin-bottom: 10px;
     }
 
+/*.field-validation-error {
+    padding: 4px;
+    text-align: center;
+    background-color: #0b4159;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+}*/
+
 .LayoutInfo {
     max-width: 600px;
     margin: 0 auto;
@@ -377,17 +386,17 @@ footer .text-danger {
     color: white;
 }
 
-.Games_ActiveExplainer .container,
-.Games_ActiveGame .container,
-.Games_ActiveGameMap .container {
+.games_activeexplainer .container,
+.games_activegame .container,
+.games_activegamemap .container {
     width: 100%;
     padding: 0;
     margin: 0
 }
 
-.Games_ActiveExplainer .navbar,
-.Games_ActiveGame .navbar,
-.Games_ActiveGameMap .navbar {
+.games_activeexplainer .navbar,
+.games_activegame .navbar,
+.games_activegamemap .navbar {
     position: absolute;
     top: 0;
     left: 0;
@@ -395,44 +404,44 @@ footer .text-danger {
     height: 51px;
 }
 
-    .Games_ActiveExplainer .navbar .container,
-    .Games_ActiveGame .navbar .container,
-    .Games_ActiveGameMap .navbar .container {
+    .games_activeexplainer .navbar .container,
+    .games_activegame .navbar .container,
+    .games_activegamemap .navbar .container {
         max-width: 960px;
         margin: 0 auto
     }
 
-.Games_ActiveExplainer footer,
-.Games_ActiveGame footer,
-.Games_ActiveGameMap footer {
+.games_activeexplainer footer,
+.games_activegame footer,
+.games_activegamemap footer {
     display: none;
 }
 
-.Games_ActiveExplainer hr,
-.Games_ActiveGame hr,
-.Games_ActiveGameMap hr {
+.games_activeexplainer hr,
+.games_activegame hr,
+.games_activegamemap hr {
     width: 0;
     height: 0;
     padding: 0;
     margin: -1px 0 0 0;
 }
 
-.User_Index {
+.user_index {
     padding-top: 100px;
 }
 
-    .User_Index h2 {
+    .user_index h2 {
         color: white;
         font-size: 30px;
         font-family: 'GFS';
     }
 
-    .User_Index table {
+    .user_index table {
         box-shadow: 0 0 80px rgb(180, 32, 56), 0 0 80px rgb(180, 32, 56);
         border: 3px solid rgb(180, 32, 56);
     }
 
-    .User_Index td {
+    .user_index td {
         padding: 22px 15px !important;
     }
 
@@ -448,33 +457,33 @@ footer .text-danger {
     border: none;
 }
 
-.User_Index thead {
+.user_index thead {
     color: white;
     font-family: 'GFS';
     background: rgb(180, 32, 56);
 }
 
-    .User_Index thead th {
+    .user_index thead th {
         height: 45px;
         padding-left: 15px !important;
     }
 
-.Account_Register .navbar-nav {
+.account_register .navbar-nav {
     float: right;
 }
 
-.Home_Info, .Home_TnC {
+.home_info, .home_tnc {
     padding-top: 150px;
     background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center top no-repeat
 }
 
-    .Home_Info .container, .Home_TnC .container {
+    .home_info .container, .home_tnc .container {
         background: rgba(0,0,0,.8);
         color: #fff;
         line-height: 26px
     }
 
-    .Home_Info .container {
+    .home_info .container {
         padding-top: 30px;
         text-align: center;
     }

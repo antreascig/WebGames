@@ -11,7 +11,7 @@
     <script src="@Url.Content("~/Scripts/custom/jquery.dataTables.js")"></script>
 
     @{
-        var pageName = ViewContext.RouteData.Values["controller"].ToString() + "_" + ViewContext.RouteData.Values["action"].ToString();
+        var pageName = (ViewContext.RouteData.Values["controller"].ToString() + "_" + ViewContext.RouteData.Values["action"].ToString()).ToLower();
     }
 </head>
 <body class="@pageName">
@@ -31,12 +31,9 @@
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav" style="display:block!important;">
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Κεντρική", "Index", "Home")</li>
-                    }
-                    <li>@Html.ActionLink("Οροι & Προϋποθέσεις", "TnC", "Home")</li>
-                    <li>@Html.ActionLink("Γενικά", "Info", "Home")</li>
+                    <li>@Html.ActionLink("Κεντρική", "index", "home")</li>
+                    <li>@Html.ActionLink("Οροι & Προϋποθέσεις", "tnc", "home")</li>
+                    <li>@Html.ActionLink("Oδηγίες", "info", "home")</li>
 
                 </ul>
 
@@ -48,20 +45,9 @@
         @RenderBody()
         <hr />
         <footer>
-            @{
-                if (!String.IsNullOrEmpty(ViewBag.Link))
-                {
-                    <p class="text-danger">
-                        For local debug  only: confirmation link: <a href="@ViewBag.Link">link</a>
-                    </p>
-                }
-                if (!String.IsNullOrEmpty(ViewBag.Code))
-                {
-                    <p class="text-danger">
-                        For local debug only: @ViewBag.Code
-                    </p>
-                }
-            }
+
+
+
         </footer>
 
     </div>

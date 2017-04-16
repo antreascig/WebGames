@@ -18,6 +18,7 @@ namespace WebGames.Libs.Games
         public string GameName { get; set; }
         public string UserId { get; set; }
         public double Score { get; set; }
+        public int Levels { get; set; }
     }
 
     public class UserScore_Admin : UserScore
@@ -63,13 +64,15 @@ namespace WebGames.Libs.Games
                             GameId = game.Value.GameId,
                             GameName = game.Value.Name,
                             Score = 0,
-                            Tokens = 0
+                            Tokens = 0,
+                            Levels = 0
                         });
-                        var Game1Score = game.Value.SM.GetUserScore(User);
+                        var Game1Score = game.Value.SM.GetUserScore(UserId, User);
                         if (Game1Score != null)
                         {
                             res[game.Key].Score = Game1Score.Score;
                             res[game.Key].Tokens = Game1Score.Tokens;
+                            res[game.Key].Levels = Game1Score.Levels;
                         }
                     }
                 }
@@ -116,12 +119,12 @@ namespace WebGames.Libs.Games
 
         public abstract DataTablesResult GetUsersScoresDT(DataTablesParam dataTableParam);
 
-        public abstract UserScore_Admin GetUserScore(ApplicationUser User);
+        public abstract UserScore_Admin GetUserScore(string UserId, ApplicationUser User = null);
 
         public abstract List<A_UserScore> GetUsersScore();
 
         // HELPERS
-        public static UserScore_Admin GenerateUserScore(GameModel Game, ApplicationUser User, int Tokens)
+        public static UserScore_Admin GenerateUserScore(GameModel Game, ApplicationUser User, int Tokens, int Levels)
         {
             var res = new UserScore_Admin()
             {
@@ -129,7 +132,8 @@ namespace WebGames.Libs.Games
                 GameName = Game.Name,
                 UserId = User.Id,
                 Tokens = Tokens,
-                Score = CalculateScore(Game, Tokens)
+                Score = CalculateScore(Game, Tokens),
+                Levels = Levels
             };
             return res;
         }
@@ -148,24 +152,31 @@ namespace WebGames.Libs.Games
             GameKey = GK;
         }
 
-        public override UserScore_Admin GetUserScore(ApplicationUser User)
+        public override UserScore_Admin GetUserScore(string UserId, ApplicationUser User = null)
         {
             try
             {
                 var GameData = GameManager.GameDict[GameKey];
                 using (var db = ApplicationDbContext.Create())
                 {
+                    if (User == null)
+                    {
+                        User = (from user in db.Users where user.Id == UserId select user).Single();
+                    }
+
                     var Game = (from game in db.Games where game.GameId == GameData.GameId select game).SingleOrDefault();
 
                     var data = (from score in db.Set<T>() where score.UserId == User.Id select score).SingleOrDefault();
 
                     var Tokens = 0;
+                    var Levels = 0;
                     if (data != null)
                     {
                         Tokens = data.Tokens;
+                        Levels = data.Levels;
                     }
 
-                    var res = GenerateUserScore(Game, User, Tokens);
+                    var res = GenerateUserScore(Game, User, Tokens, Levels);
                     return res;
                 }
             }
@@ -254,6 +265,7 @@ namespace WebGames.Libs.Games
                     else
                     {
                         Entity.Tokens += Tokens;
+                        Entity.Levels += 1;
                     }
                     db.SaveChanges();
                 }

@@ -25,7 +25,7 @@ function ViewModel() {
     function RefreshSchedule() {
         $.custom.Server["SendRequest"]("POST", "/Dashboard/GetSchedule", {},
             function (res) { //success
-                    // debugger
+                // debugger
 
                 if (res.success) {
                     var data = ko.mapping.fromJS((res.data || {}));
@@ -42,8 +42,8 @@ function ViewModel() {
                 if (res.success) {
                     // debugger
                     var data = [];
-                    for( var i = 0; i < res.data.length; i++ ) {
-                        var tag = {id: res.data[i].GameKey, text: res.data[i].Name };
+                    for (var i = 0; i < res.data.length; i++) {
+                        var tag = { id: res.data[i].GameKey, text: res.data[i].Name };
                         data.push(tag);
                     }
                     vm.Games(data);
@@ -70,17 +70,27 @@ function ViewModel() {
     function AddDay() {
         var newDay = {
             Day: ko.observable(),
-            GameKey: ko.observable()
+            GameKey: ko.observable(),
+            SuccessMessage: ko.observable(),
+            FailMesssage: ko.observable(),
+            OutOfTimeMessage: ko.observable(),
         };
-        EditDay(newDay);
+        EditDay(newDay, true);
     };
 
-    function EditDay(ScheduleDay) {
-        var tmpQ = ko.mapping.fromJS(ko.toJS(ScheduleDay));
-        vm.SelectedDay(tmpQ);
+    function EditDay(ScheduleDay, isNew) {
+        var toEdit = ScheduleDay;
+        if (!isNew) {
+            toEdit = ko.mapping.fromJS(ko.toJS(ScheduleDay));
+            toEdit.Existing = ScheduleDay;
+            ScheduleDay.Editing = true;
+        }
+
+        vm.SelectedDay(toEdit);
+
         var day = moment();
-        if (tmpQ.Day()) {
-            var stringDay = tmpQ.Day();
+        if (toEdit.Day()) {
+            var stringDay = toEdit.Day();
             day = moment(stringDay);
             $('#single_cal4').val(stringDay);
         }
@@ -114,7 +124,27 @@ function ViewModel() {
     function SaveDay() {
         var value = vm.SelectedDay();
         value.GameName = ko.observable("");
+
+        if (!value.Day()) {
+            alert("Πρέπει να διαλέξεις ημερομηνία")
+            return;
+        }
+
+        if (!value.GameKey()) {
+            alert("Πρέπει να διαλέξεις παιχνίδι")
+            return;
+        }
+
+        var counter = 0;
         var tmp = vm.ScheduleDays();
+        for (var i = 0; i < tmp.length; i++) {
+            if (!tmp[i].Editing && tmp[i].Day() == value.Day()) counter++;
+        }
+
+        if (counter > 0) {
+            alert("H επιλεγμένη ημερομηνία υπάρχει ήδη. Παρακαλώ διάλεξε άλλη ημερομηνία ή διάγραψε την υπάρχουσα πρώτα.")
+            return;
+        }
 
         $('#scheduleEditor').modal('hide');
         vm.SelectedDay(null);
@@ -123,19 +153,23 @@ function ViewModel() {
 
         for (var i = 0; i < gameList.length; i++) {
             if (gameList[i].id == value.GameKey()) {
-                value.GameName( gameList[i].text );
+                value.GameName(gameList[i].text);
                 break;
             }
         }
-        for (var i = 0; i < tmp.length; i++) {
-            if (tmp[i].Day() == value.Day()) {
-                tmp[i].GameKey(value.GameKey());
-                //tmp[i].GameName(value.GameName()); 
-                return;
+        if (value.Existing) {
+            var model = ko.mapping.toJS(value);
+            for (var prop in model) {
+                if (prop == "Editing") continue;
+                value.Existing[prop](model[prop]);
             }
+            value.Existing.Editing = false;
         }
-        tmp.push(value);
-        vm.ScheduleDays(tmp);
+        else {
+
+            tmp.push(value);
+            vm.ScheduleDays(tmp);
+        }
     };
 
     return vm;

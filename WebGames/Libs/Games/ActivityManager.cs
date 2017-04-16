@@ -15,41 +15,37 @@ namespace WebGames.Libs.Games
 
     public class ActivityManager
     {
-        public static void SyncPlayedTimeForToday(string UserId, int timeInSeconds, long timeStamp)
-        {
-            SyncPlayedTime(UserId, DateTime.UtcNow.Date, timeInSeconds, timeStamp);
-        }
+        const int allowedTime = 5 * 60; // 5 minutes
 
-        public static void SyncPlayedTime(string UserId, DateTime Day, int timeInSeconds, long timeStamp)
+        public static void SyncPlayedTimeForToday(string UserId, int remainingTime, long timeStamp)
         {
+            var timeInSeconds = allowedTime - remainingTime;
             if (timeInSeconds < 0) return;
+            if (timeInSeconds > allowedTime) timeInSeconds = allowedTime;
 
+            SavePlayTime(UserId, DateTime.UtcNow.Date, timeInSeconds, timeStamp);
+        }
+        // timeStamp = JS Date().getTime() - epoch time
+        public static void SavePlayTime(string UserId, DateTime Day, int TimePlayed, long jsTimeStamp, bool Override = false)
+        {         
             using (var db = ApplicationDbContext.Create())
             {
                 UserDailyActivity activity = GetorCreateActivity(UserId, Day, db, CreateIfNotExists:true);
 
-                if (timeStamp > activity.Timestamp)
+                if (jsTimeStamp > activity.Timestamp && activity.TimePlayed < TimePlayed)
                 {
-                    activity.TimePlayed = timeInSeconds;
-                    activity.Timestamp = timeStamp;
+                    activity.TimePlayed = TimePlayed;
+                    activity.Timestamp = jsTimeStamp;
 
                     db.SaveChanges();
-                }               
-            }
-        }
-       
-        public static void SetGameTime(string UserId, DateTime Day, int timeInSeconds)
-        {
-            if (timeInSeconds < 0) return;
+                }
+                else if (Override)
+                {
+                    activity.TimePlayed = TimePlayed;
+                    activity.Timestamp = jsTimeStamp;
 
-            using (var db = ApplicationDbContext.Create())
-            {
-                UserDailyActivity activity = GetorCreateActivity(UserId, Day, db, CreateIfNotExists: true);
-
-                activity.TimePlayed = timeInSeconds;
-                activity.Timestamp = DateHelper.GetGreekDate(DateTime.UtcNow, onlyDate: true).Ticks;
-
-                db.SaveChanges();
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -79,8 +75,14 @@ namespace WebGames.Libs.Games
             var activity = db.UserDailyActivity.FindAsync(UserId, localizedDate).Result;
             if (activity == null && CreateIfNotExists)
             {
-                activity.Date = localizedDate;
-                activity = new UserDailyActivity();
+                activity = new UserDailyActivity()
+                {
+                    Date = localizedDate,
+                    UserId = UserId,
+                    TimePlayed = 0,
+                    Timestamp = 0
+                };
+
                 db.UserDailyActivity.Add(activity);
             }
 

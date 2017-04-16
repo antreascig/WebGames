@@ -40,7 +40,7 @@ namespace WebGames.Libs
             {
                 var myMessage = new SendGridMessage();
                 myMessage.AddTo(new EmailAddress(message.Destination));
-                myMessage.From = new EmailAddress("info@webgames.com", "Auto-Message");
+                myMessage.From = new EmailAddress("info@cosmoplay.gr", "Auto-Message");
                 myMessage.Subject = message.Subject;
                 myMessage.PlainTextContent = message.Body;
                 myMessage.HtmlContent = message.Body;
