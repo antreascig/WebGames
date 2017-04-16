@@ -15,7 +15,8 @@ namespace WebGames.Libs
         public int GameId { get; set; }
         public string GameKey{ get; set; }
         public string Name { get; set; }
-        public string PageFolder { get; set; }
+        public string Folder { get; set; }
+        public string Page { get; set; }
         public bool LevelAsPage = false;
         public int AvailableLevels { get; set; }
         public ScoreManager SM { get; set; }
@@ -26,18 +27,20 @@ namespace WebGames.Libs
         public const string GAME_1 = "GAME_1";
         public const string GAME_2 = "GAME_2";
         public const string Mastermind = "mastermind";
-        public const string GAME_4_1 = "GAME_4_1";
-        public const string GAME_4_2 = "GAME_4_2";
-        public const string GAME_4_3 = "GAME_4_3";
-        public const string GAME_5 = "GAME_5";
-        public const string GAME_6 = "GAME_6";
+        public const string Escape_1 = "escape_1";
+        public const string Escape_2 = "escape_2";
+        public const string Escape_3 = "escape_3";
+        public const string Whackamole = "whackamole";
+        public const string Questions = "questions";
     }
 
     public class ActiveUserGameInfo
     {
         public ActiveGameData ActiveGameDataModel { get; set; }
 
-        public string PageFolder { get; set; }
+        public string Folder { get; set; }
+
+        public string Page { get; set; }
 
         public int RemainingTime { get; set; }
 
@@ -48,6 +51,8 @@ namespace WebGames.Libs
         public int ActiveLevel{ get; set; }
 
         public int AvailableLevels { get; set; }
+
+        public bool IsDemo { get; set; }
     }
 
     public class ActiveGameData
@@ -65,14 +70,14 @@ namespace WebGames.Libs
         {
             var Games = new List<GameData>()
             {
-                new GameData() { GameKey = GameKeys.GAME_1, Name = "Game 1", PageFolder = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) },
-                new GameData() { GameKey = GameKeys.GAME_2, Name = "Game 2", PageFolder = GameKeys.GAME_2, SM = new ScoreManager<Game2_UserScore>(GameKeys.GAME_2) },
-                new GameData() { GameKey = GameKeys.Mastermind, Name = "Mastermind", PageFolder = "mastermind", SM = new ScoreManager<Game3_UserScore>(GameKeys.Mastermind) },
-                new GameData() { GameKey = GameKeys.GAME_4_1, Name = "Game 4-1", PageFolder = GameKeys.GAME_4_1, SM = new ScoreManager<Game4_1_UserScore>(GameKeys.GAME_4_1), LevelAsPage = true },
-                new GameData() { GameKey = GameKeys.GAME_4_2, Name = "Game 4-2", PageFolder = GameKeys.GAME_4_2, SM = new ScoreManager<Game4_2_UserScore>(GameKeys.GAME_4_2), LevelAsPage = true },
-                new GameData() { GameKey = GameKeys.GAME_4_3, Name = "Game 4-3", PageFolder = GameKeys.GAME_4_3, SM = new ScoreManager<Game4_3_UserScore>(GameKeys.GAME_4_3), LevelAsPage = true },
-                new GameData() { GameKey = GameKeys.GAME_5, Name = "Game 5", PageFolder = GameKeys.GAME_5, SM = new ScoreManager<Game5_UserScore>(GameKeys.GAME_5) },
-                new GameData() { GameKey = GameKeys.GAME_6, Name = "Game 6", PageFolder = GameKeys.GAME_6, SM = new ScoreManager<Game6_UserScore>(GameKeys.GAME_6) },
+                new GameData() { GameKey = GameKeys.GAME_1, Name = "ΑΤΕΛΕΙΩΤΟ ΣΚΟΙΝΑΚΙ", Folder = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) },
+                new GameData() { GameKey = GameKeys.Escape_1, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 1", Folder = "escape", SM = new ScoreManager<Escape_1_UserScore>(GameKeys.Escape_1), LevelAsPage = true },
+                new GameData() { GameKey = GameKeys.Escape_2, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 2", Folder = "escape", SM = new ScoreManager<Escape_2_UserScore>(GameKeys.Escape_2), LevelAsPage = true },
+                new GameData() { GameKey = GameKeys.Escape_3, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 3", Folder = "escape", SM = new ScoreManager<Escape_3_UserScore>(GameKeys.Escape_3), LevelAsPage = true },
+                new GameData() { GameKey = GameKeys.Mastermind, Name = "ΜΑΝΤΕΨΕ ΤΙ ΜΑΝΤΕΨΑ", Folder = "mastermind", Page = "mastermind", SM = new ScoreManager<Mastermind_UserScore>(GameKeys.Mastermind) },
+                new GameData() { GameKey = GameKeys.GAME_2, Name = "ΑΔΕΣΠΩΤΑ ΜΠΑΛΑΚΙΑ", Folder = GameKeys.GAME_2, SM = new ScoreManager<Game2_UserScore>(GameKeys.GAME_2) },
+                new GameData() { GameKey = GameKeys.Whackamole, Name = "WHACK A MOLE", Folder = "whackamole",  Page = "whackamole", SM = new ScoreManager<Whackamole_UserScore>(GameKeys.Whackamole) },
+                new GameData() { GameKey = GameKeys.Questions, Name = "ΚΛΕΙΔΙΑ", Folder = "questions", Page = "questions", SM = new ScoreManager<Questions_UserScore>(GameKeys.Questions) },
             };
             using (var db = ApplicationDbContext.Create())
             {
@@ -135,7 +140,8 @@ namespace WebGames.Libs
 
             var gameData = GameManager.GameDict[ActiveGameKey];
             // Get Page/Folder
-            data.PageFolder = gameData.PageFolder;
+            data.Folder = gameData.Folder;
+            data.Page = gameData.Page;
 
             // Get score for the game
             data.GameScore = gameData.SM.GetUserScore(UserId).Score;
@@ -144,10 +150,10 @@ namespace WebGames.Libs
             // Check if level is showed as different page
             data.LevelAsPage = GameDict[ActiveGameKey].LevelAsPage;
 
-            // If game6 check if user is allowed to play it
-            if (ActiveGameKey == GameKeys.GAME_6)
+            // If Questions game check if user is allowed to play it
+            if (ActiveGameKey == GameKeys.Questions)
             {
-                var Group = Game6_Manager.GetUserGroup(UserId);
+                var Group = Group_Manager.GetUserGroup(UserId);
                 if (Group == -1)
                 {
                     data.ActiveGameDataModel.ActiveGameKey = "";

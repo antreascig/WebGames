@@ -18,6 +18,13 @@ namespace WebGames.Controllers
         {
             var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId());
 
+            if (Request.QueryString["showDemo"] == "true")
+            {
+                activeGameInfo.IsDemo = true;
+                activeGameInfo.GameScore = 0;
+                activeGameInfo.RemainingTime = 1 * 60; // 1 minute
+            }
+
             return GetPage(activeGameInfo);
         }
 
@@ -33,11 +40,6 @@ namespace WebGames.Controllers
             var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId());
 
             return GetPage(activeGameInfo, "Explainer");
-        }
-
-        public ActionResult ActiveGameDemo()
-        {
-            return View();
         }
 
         public ActionResult ActiveGameAfter()
@@ -88,12 +90,12 @@ namespace WebGames.Controllers
             var UserId = User.Identity.GetUserId();
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
             var CurrentActiveGameKey = GameManager.GetActiveGameInfo(UserId).ActiveGameDataModel.ActiveGameKey;
-            if (CurrentActiveGameKey != GameKeys.GAME_5)
+            if (CurrentActiveGameKey != GameKeys.Questions)
             {
                 return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
             }
 
-            var IsCorrect = Game5_Manager.CheckAndSaveQuestionAnswer(UserId, questionId, answerIndex); // Cannot override the score - once is set the done
+            var IsCorrect = Questions_Manager.CheckAndSaveQuestionAnswer(UserId, questionId, answerIndex); // Cannot override the score - once is set the done
 
             return Json(new { success = true, isCorrect = IsCorrect }, JsonRequestBehavior.AllowGet);
         }
@@ -103,7 +105,7 @@ namespace WebGames.Controllers
             var res = new List<GameQuestionView>();
             try
             {
-                res.AddRange(Game5_Manager.GetPlayerQuestions(User.Identity.GetUserId()));
+                res.AddRange(Questions_Manager.GetPlayerQuestions(User.Identity.GetUserId()));
             }
             catch (Exception exc)
             {
@@ -162,14 +164,14 @@ namespace WebGames.Controllers
                 }
                 else
                 {
-                    string ViewPageToDisplay = gameInfo.PageFolder;
+                    string ViewPageToDisplay = gameInfo.Folder;
                     if (Page != "")
                     {
                         ViewPageToDisplay += $"/{Page}";
                     }
                     else // it's the game so use the PageFolder for the file
                     {
-                        ViewPageToDisplay += $"/{gameInfo.PageFolder}";
+                        ViewPageToDisplay += $"/{gameInfo.Page}";
 
                         // If level is on its own page
                         if (gameInfo.LevelAsPage)

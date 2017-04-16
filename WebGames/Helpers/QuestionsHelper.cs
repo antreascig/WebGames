@@ -61,7 +61,7 @@ namespace WebGames.Helpers
                     Questions.Add(newQuestion);
                 }
 
-                var Game5MetadataModel = new Game5_MetaData()
+                var Game5MetadataModel = new Questions_MetaData()
                 {
                     Questions = Questions.ToDictionary(k => k.QuestionId)
                 };
@@ -69,7 +69,7 @@ namespace WebGames.Helpers
                 // Save Questions 
                 using (var db = ApplicationDbContext.Create())
                 {
-                    var game5 = (from game in db.Games where game.GameKey == GameKeys.GAME_5 select game).SingleOrDefault();
+                    var game5 = (from game in db.Games where game.GameKey == GameKeys.Questions select game).SingleOrDefault();
                     game5.MetadataJSON = Newtonsoft.Json.JsonConvert.SerializeObject(Game5MetadataModel);
                     db.SaveChanges();
                 }

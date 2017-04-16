@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebGames.Models
 {
-    public class Game3_UserScore : A_UserScore
+    public class Escape_1_UserScore : A_UserScore
     {
 
     }

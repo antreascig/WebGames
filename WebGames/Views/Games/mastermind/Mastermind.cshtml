@@ -182,7 +182,16 @@
             var time = @Model.RemainingTime;
 
             display = $('#time');
-            startTimer(time, display);
+
+            var redirUrl = "/Games/ActiveGameAfter?status=outoftime";
+
+            @if ( Model.IsDemo )
+            {
+                @:redirUrl = "/Games/ActiveExplainer";
+            }
+
+
+            startTimer(time, display, redirUrl);
 
             if (isMobile == true) {
                 $('body').addClass('mobile');
@@ -287,6 +296,12 @@
                                 score += points;
                                 localStorage.setItem("mastemindScore", score);
                                 win.play();
+
+                                @if( Model.IsDemo )
+                                {
+                                    @:window.location.replace("/Games/ActiveExplainer");
+                                }
+
                                 $.custom.Server.SaveGameScore(score,
                                     function (res) { // success
                                         if (res && res.success) {
@@ -347,6 +362,10 @@
                 /* Act on the event */
                 event.preventDefault();
             });
+            @if ( Model.IsDemo )
+            {
+                @:return;
+            }
 
             setInterval(function () {
                 $.custom.Server.SaveGameTime(timeRemaining,

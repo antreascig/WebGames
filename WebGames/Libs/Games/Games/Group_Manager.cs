@@ -8,15 +8,15 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games.Games
 {
-    public class Game6_Manager
+    public class Group_Manager
     {
-        public static int GameId
-        {
-            get
-            {
-                return GameManager.GameDict[GameKeys.GAME_5].GameId;
-            }
-        }
+        //public static int GameId
+        //{
+        //    get
+        //    {
+        //        return GameManager.GameDict[GameKeys.GAME_5].GameId;
+        //    }
+        //}
 
         public static bool Groups_Generated = false;
 
@@ -31,7 +31,7 @@ namespace WebGames.Libs.Games.Games
                 {
                     using (var db = ApplicationDbContext.Create())
                     {
-                        var User_Group = (from ug in db.Game6_User_Groups where ug.UserId == UserId select ug).SingleOrDefault();
+                        var User_Group = (from ug in db.User_Groups where ug.UserId == UserId select ug).SingleOrDefault();
                         if (User_Group != null)
                         {
                             return User_Group.GroupNumber;
@@ -72,19 +72,19 @@ namespace WebGames.Libs.Games.Games
 
                 using (var db = ApplicationDbContext.Create())
                 {
-                    var userScores = new List<Game6_User_Group>();
+                    var userScores = new List<User_Group>();
                     foreach (var group in Groups)
                     {
                         foreach (var user in group.Value)
                         {
-                            userScores.Add(new Game6_User_Group()
+                            userScores.Add(new User_Group()
                             {
                                 UserId = user.UserId,
                                 GroupNumber = group.Key,
                             });
                         }
                     }
-                    db.Game6_User_Groups.AddRange(userScores);
+                    db.User_Groups.AddRange(userScores);
                     db.SaveChangesAsync();
                 }
             });
@@ -96,12 +96,12 @@ namespace WebGames.Libs.Games.Games
 
             using (var db = ApplicationDbContext.Create())
             {
-                var UserGroups = (from ug in db.Game6_User_Groups select ug).Include("User").ToList();
+                var UserGroups = (from ug in db.User_Groups select ug).Include("User").ToList();
                 if (UserGroups.Any())
                 {
-                    var Game6 = (from game in db.Games where game.GameId == GameId select game).SingleOrDefault();
+                    var QuestionsGame = (from game in db.Games where game.GameId == GameManager.GameDict[GameKeys.Questions].GameId select game).SingleOrDefault();
                     // Get the scores 
-                    var scores = (from score in db.Game6_Scores select score).ToList();
+                    var scores = (from score in db.Questions_Scores select score).ToList();
                     foreach (var user in UserGroups)
                     {
                         if (!res.ContainsKey(user.GroupNumber))
@@ -117,7 +117,7 @@ namespace WebGames.Libs.Games.Games
                         };
                         if (UserGroupData != null)
                         {
-                            UserScore.Score = ScoreManager.CalculateScore(Game6, UserGroupData.Tokens);
+                            UserScore.Score = ScoreManager.CalculateScore(QuestionsGame, UserGroupData.Tokens);
                         }
                         res[user.GroupNumber].Add(UserScore);
                     }
@@ -126,7 +126,7 @@ namespace WebGames.Libs.Games.Games
                 }
             }
 
-            var AtomicGames = new string[] { GameKeys.GAME_1, GameKeys.GAME_2, GameKeys.Mastermind, GameKeys.GAME_4_1, GameKeys.GAME_4_2, GameKeys.GAME_4_3, GameKeys.GAME_5 };
+            var AtomicGames = new string[] { GameKeys.GAME_1, GameKeys.GAME_2, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3, GameKeys.Whackamole };
             var UserScores = ScoreManager.GetUsersTotalScoresForGames(AtomicGames);
 
             var TopUserScores = UserScores.OrderByDescending(s => s.Score).Take(144).ToList();

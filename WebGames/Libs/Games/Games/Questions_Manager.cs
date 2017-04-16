@@ -22,14 +22,14 @@ namespace WebGames.Libs.Games.GameTypes
         public int AnswerIndex { get; set; }
     }
 
-    public class Game5_MetaData
+    public class Questions_MetaData
     {
         public int PointsPerQustion = 100;
 
         public Dictionary<int, GameQuestionModel> Questions { get; set; }
     }
 
-    public class Game5_UserScore_Dto
+    public class Questions_UserScore_Dto
     {
         public int GameId { get; set; }
         public string UserId { get; set; }
@@ -37,12 +37,12 @@ namespace WebGames.Libs.Games.GameTypes
         public double Computed_Score { get; set; }
     }
 
-    public class Game5_Manager
+    public class Questions_Manager
     {
         public static int GameId {
             get
             {
-                return GameManager.GameDict[GameKeys.GAME_5].GameId;
+                return GameManager.GameDict[GameKeys.Questions].GameId;
             }
         }
 
@@ -56,7 +56,7 @@ namespace WebGames.Libs.Games.GameTypes
                 using (var db = ApplicationDbContext.Create())
                 {
                     // Check if questions have already been assigned to the user
-                    var UserQuestionsModel = (from uq in db.Game5_User_Questions where uq.UserId == UserId select uq).SingleOrDefault();
+                    var UserQuestionsModel = (from uq in db.User_Questions where uq.UserId == UserId select uq).SingleOrDefault();
                     if (UserQuestionsModel != null && (UserQuestionsModel.Questions ?? "") != "")
                     {
                         var answered = (UserQuestionsModel.Answered ?? "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -66,13 +66,13 @@ namespace WebGames.Libs.Games.GameTypes
                                                                  .Select(id => int.Parse(id)) );
                     }
                     // Retrieve the game's metadata
-                    var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
+                    var GameMetadata = (Questions_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Questions_MetaData));
 
                     if (GameMetadata != null && GameMetadata.Questions != null)
                     {
                         // get the score of the user in order to calculate the required number of questions to retrieve
                         var scores = ScoreManager.GetUserTotalScores(UserId);
-                        var GamesRequired = new string[] { GameKeys.GAME_1, GameKeys.GAME_2, GameKeys.Mastermind, GameKeys.GAME_4_1, GameKeys.GAME_4_2, GameKeys.GAME_4_3 };
+                        var GamesRequired = new string[] { GameKeys.GAME_1, GameKeys.GAME_2, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
                         var totalScore = scores.Where(s=> GamesRequired.Contains(s.Key) ).Sum(s => s.Value.Score);
                         int NumberOfQuestions = (int) Math.Ceiling( totalScore / GameMetadata.PointsPerQustion );
 
@@ -91,7 +91,7 @@ namespace WebGames.Libs.Games.GameTypes
                                 }
                             }
 
-                            db.Game5_User_Questions.Add(new UserQuestion()
+                            db.User_Questions.Add(new UserQuestion()
                             {
                                 UserId = UserId,
                                 Questions = string.Join(",", Ids)
@@ -123,7 +123,7 @@ namespace WebGames.Libs.Games.GameTypes
             var res = new List<GameQuestionModel>();
             try
             {
-                var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
+                var GameMetadata = (Questions_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Questions_MetaData));
                 if (GameMetadata != null && GameMetadata.Questions != null)
                 {
                     res.AddRange(GameMetadata.Questions.Select(q => q.Value));
@@ -142,9 +142,9 @@ namespace WebGames.Libs.Games.GameTypes
             {
                 var Game = (from game in db.Games where game.GameId == GameId select game).SingleOrDefault();
 
-                var CurrentMetadata = Newtonsoft.Json.JsonConvert.DeserializeObject<Game5_MetaData>(Game.MetadataJSON ?? "{}");
+                var CurrentMetadata = Newtonsoft.Json.JsonConvert.DeserializeObject<Questions_MetaData>(Game.MetadataJSON ?? "{}");
 
-                var md = new Game5_MetaData()
+                var md = new Questions_MetaData()
                 {
                     Questions = Questions.ToDictionary(k => k.QuestionId),
                     PointsPerQustion = CurrentMetadata.PointsPerQustion
@@ -162,7 +162,7 @@ namespace WebGames.Libs.Games.GameTypes
                 var isCorrect = false;
                 using (var db = ApplicationDbContext.Create())
                 {
-                    var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData), db);
+                    var GameMetadata = (Questions_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Questions_MetaData), db);
                     // Check that is the correct question
                     if (GameMetadata == null
                         || GameMetadata.Questions == null
@@ -178,7 +178,7 @@ namespace WebGames.Libs.Games.GameTypes
                     }
 
                     // Save question is as answered
-                    var User_Questions = (from q in db.Game5_User_Questions where q.UserId == UserId select q).SingleOrDefault();
+                    var User_Questions = (from q in db.User_Questions where q.UserId == UserId select q).SingleOrDefault();
                     var Existing = (User_Questions.Answered ?? "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                     Existing.Add(QuestionId.ToString());
                     User_Questions.Answered = string.Join(",", Existing);
@@ -194,36 +194,6 @@ namespace WebGames.Libs.Games.GameTypes
                 return false;
             }
         }
-
-        //public static void HandleUserAnswers(string UserId, Dictionary<int, int> Answers, bool EnableOverride = false)
-        //{
-        //    try
-        //    {
-        //        var GameMetadata = (Game5_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Game5_MetaData));
-        //        if (GameMetadata == null || GameMetadata.Questions == null) return;
-        //        int Correct = 0;
-        //        int Incorrect = 0;
-        //        foreach ( var answer in Answers)
-        //        {
-        //            if (GameMetadata.Questions.ContainsKey(answer.Key))
-        //            {
-        //                if ( GameMetadata.Questions[answer.Key].AnswerIndex == answer.Value)
-        //                {
-        //                    Correct++;
-        //                }
-        //                else
-        //                {
-        //                    Incorrect++;
-        //                }
-        //            }
-        //        }
-        //        GameManager.GameDict[GameKey].SM.SetUserScore(UserId, Answers.Count, EnableOverride);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        Logger.Log(exc.Message, LogType.ERROR);
-
-        //    }
-        //}      
+   
     }
 }

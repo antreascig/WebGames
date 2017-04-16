@@ -1,5 +1,4 @@
-﻿using WebGames.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +7,7 @@ using System.Web;
 
 namespace WebGames.Models
 {
-    public class Game6_User_Group
+    public class User_Group
     {
         [Key]
         public string UserId { get; set; }
@@ -17,10 +16,5 @@ namespace WebGames.Models
 
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
-    }
-
-    public class Game6_UserScore : A_UserScore
-    {
-
     }
 }

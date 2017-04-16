@@ -45,12 +45,23 @@ namespace WebGames.Controllers
 
             var userId = User.Identity.GetUserId();
 
+            var EscapeKeys = new string[] { GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
+            double EscapeScore = 0;
+
             foreach (var game in GameManager.GameDict)
             {
                 var Game_Score = game.Value.SM.GetUserScore(userId);
 
+                if (EscapeKeys.Contains(game.Key))
+                {
+                    EscapeScore += Game_Score.Score;
+                    continue;
+                }
+
                 model.GameScores.Add(Game_Score);
             }
+
+            model.GameScores.Add(new UserScore() { GameId = -1, GameName = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ", Score = EscapeScore });
 
             return View(model);
         }

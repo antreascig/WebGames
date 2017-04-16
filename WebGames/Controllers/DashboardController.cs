@@ -188,7 +188,7 @@ namespace WebGames.Controllers
         }
 
         [Authorize(Roles = "sysadmin,admin")]
-        public ActionResult Game5()
+        public ActionResult QuestionsSettings()
         {
             return View();
         }
@@ -256,10 +256,14 @@ namespace WebGames.Controllers
         }
 
         [Authorize(Roles = "sysadmin,admin")]
-        public ActionResult SaveSchedule(List<DayActiveGame> schedule)
+        public ActionResult SaveSchedule(string scheduleJSON)
         {
             try
             {
+                scheduleJSON = Server.UrlDecode(scheduleJSON ?? "");
+
+                var schedule = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DayActiveGame>>(scheduleJSON ?? "{}");
+
                 GameDayScheduleManager.SaveSchedule(schedule);
                 return Json(new { success = true });
             }
@@ -276,7 +280,7 @@ namespace WebGames.Controllers
         {
             try
             {
-                var Questions = Game5_Manager.GetQuestions();
+                var Questions = Questions_Manager.GetQuestions();
                 return Json(new { success = true, data = Questions }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception exc)
@@ -291,7 +295,7 @@ namespace WebGames.Controllers
         {
             try
             {
-                Game5_Manager.SaveQuestions(questions);
+                Questions_Manager.SaveQuestions(questions);
                 return Json(new { success = true });
             }
             catch (Exception exc)
@@ -315,7 +319,7 @@ namespace WebGames.Controllers
         public DataTablesResult GetGroupScores(string group, DataTablesParam dataTableParam)
         {
 
-            var groups = Game6_Manager.GetGroups();
+            var groups = Group_Manager.GetGroups();
 
             int groupNumber;
             if (int.TryParse(group, out groupNumber))

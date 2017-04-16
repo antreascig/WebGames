@@ -54,7 +54,7 @@ function ViewModel() {
 
     function SaveSchedule() {
         var schedule = ko.mapping.toJS(vm.ScheduleDays);
-        $.custom.Server["SendRequest"]("POST", "/Dashboard/SaveSchedule", { schedule: schedule },
+        $.custom.Server["SendRequest"]("POST", "/Dashboard/SaveSchedule", { scheduleJSON: encodeURIComponent( JSON.stringify(schedule) ) },
             function (res) { //success
 
                 if (res.success) {

@@ -7,7 +7,7 @@ var isPaused = false;
 var timeRemaining = time;
 var cVal = null;
 var gameTime = null;
-function startTimer(duration, display) {
+function startTimer(duration, display, redirUrl) {
     var timer = duration, minutes, seconds;
 
     setInterval(function () {
@@ -20,7 +20,7 @@ function startTimer(duration, display) {
             display.text(minutes + ":" + seconds);
             if (--timer <= 0) {
                 isPaused = true;
-                endGame();
+                endGame(redirUrl);
                 // timer = duration;
             }
             timeRemaining = timer;
@@ -31,9 +31,9 @@ function startTimer(duration, display) {
 }
 var success = $("#mysoundclip")[0];
 
-function endGame() {
+function endGame(redirUrl) {
     $('.wrapper').fadeOut(2000, function () {
-        window.location.replace("/Games/ActiveGameAfter?status=outoftime");
+        window.location.replace(redirUrl);
     });
 }
 jQuery.fn.center = function () {

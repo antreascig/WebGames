@@ -1,0 +1,90 @@
+﻿<div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="~/Content/Games/css/style2.css">
+    <audio autoplay preload='auto' loop id="myAudio">
+        <source src="/Content/music/loop.mp3" type="audio/mpeg">
+    </audio>
+    <div class="wrapper mapwrap">
+        <div class="logo"></div>
+        <div class="map">
+            <img src="/Content/images/mapoverlay.png" id="mapoverlay">
+            <div class="line"><img src="/Content/images/map/lines.png"></div>
+            <div class="points">
+                <div class="point point1" data-fade="1">
+                    <div class="pop"><img src="/Content/images/map/bubble1.png" alt=""></div>
+                    <div class="boom"></div><img src="/Content/images/map/dot.png">
+                </div>
+                <div class="point point2" data-fade="2">
+                    <div class="pop"><img src="/Content/images/map/bubble2.png" alt=""></div>
+                    <div class="boom"></div><img src="/Content/images/map/dot.png">
+                </div>
+                <div class="point point3" data-fade="3">
+                    <img class="xmark" src="/Content/images/map/x.gif">
+                    <div class="pop"><img src="/Content/images/map/bubble3.png" alt=""></div>
+                    <div class="boom"></div><img src="/Content/images/map/dot.png">
+                </div>
+                <div class="point point4" data-fade="4" data-url="intro4.html">
+                    <div class="pop"><img src="/Content/images/map/bubble4.png" alt=""></div>
+                    <div class="boom"></div><img src="/Content/images/map/dot.png">
+                </div>
+                <div class="point point5" data-fade="5" data-url="intro5.html">
+                    <div class="pop"><img src="/Content/images/map/bubble5.png" alt=""></div>
+                    <div class="boom"></div><img src="/Content/images/map/dot.png">
+                </div>
+                <div class="point point6" data-fade="6" data-url="intro6.html">
+                    <div class="pop"><img src="/Content/images/map/bubble6.png" alt=""></div>
+                    <div class="boom"></div><img src="/Content/images/map/dot.png">
+                </div>
+            </div>
+            <img src="/Content/images/map/map.png" alt="">
+            <a id="mapgo" href="/Games/ActiveExplainer"><img src="/Content/images/continuebtn.png"></a>
+            <div class="titles">
+                <div class="title title1"><img src="/Content/images/map/1.png"></div>
+                <div class="title title2"><img src="/Content/images/map/2.png"></div>
+                <div class="title title3"><img src="/Content/images/map/3.png"></div>
+                <div class="title title4"><img src="/Content/images/map/4.png"></div>
+                <div class="title title5"><img src="/Content/images/map/5.png"></div>
+                <div class="title title6"><img src="/Content/images/map/6.png"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        jQuery.fn.center = function () {
+            this.css("position", "absolute");
+            this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+                $(window).scrollTop()) + "px");
+            this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+                $(window).scrollLeft()) + "px");
+            return this;
+        }
+        $('.screen').center();
+        $(window).on('resize', function () {
+            $('.screen').center();
+        });
+
+        $(document).ready(function () {
+            $('.map').center();
+            $('.wrapper').fadeIn(1000);
+            setTimeout(function () { $('.screen').center(); }, 150);
+            $(".point").on({
+                mouseenter: function () {
+                    var showClass = 'title' + $(this).data('fade');
+                    $('.' + showClass).fadeIn(500, function () {
+
+                    });
+                },
+                mouseleave: function () {
+                    var showClass = 'title' + $(this).data('fade');
+                    $('.' + showClass).fadeOut(500, function () {
+
+                    });
+                }
+            });
+
+        });
+    </script>
+</div>

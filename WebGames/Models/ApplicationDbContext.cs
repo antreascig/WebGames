@@ -28,18 +28,18 @@ namespace WebGames.Models
 
         public DbSet<Game1_UserScore> Game1_Scores { get; set; }
         public DbSet<Game2_UserScore> Game2_Scores { get; set; }
-        public DbSet<Game3_UserScore> Game3_Scores { get; set; }
-        public DbSet<Game4_1_UserScore> Game4_1_Scores { get; set; }
-        public DbSet<Game4_2_UserScore> Game4_2_Scores { get; set; }
-        public DbSet<Game4_3_UserScore> Game4_3_Scores { get; set; }
-        public DbSet<Game5_UserScore> Game5_Scores { get; set; }
-        public DbSet<Game6_UserScore> Game6_Scores { get; set; }
+        public DbSet<Mastermind_UserScore> Mastermind_Scores { get; set; }
+        public DbSet<Escape_1_UserScore> Escape_1_Scores { get; set; }
+        public DbSet<Escape_2_UserScore> Escape_2_Scores { get; set; }
+        public DbSet<Escape_3_UserScore> Escape_3_Scores { get; set; }
+        public DbSet<Whackamole_UserScore> Whackamole_Scores { get; set; }
+        public DbSet<Questions_UserScore> Questions_Scores { get; set; }
 
         public DbSet<Allowed_Email> Alowed_Emails { get; set; }
 
-        public DbSet<UserQuestion> Game5_User_Questions { get; set; }
+        public DbSet<UserQuestion> User_Questions { get; set; }
 
-        public DbSet<Game6_User_Group> Game6_User_Groups { get; set; }
+        public DbSet<User_Group> User_Groups { get; set; }
 
     }
 }

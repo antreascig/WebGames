@@ -220,8 +220,8 @@
     <Compile Include="Libs\Games\GameDayScheduleManager.cs" />
     <Compile Include="Libs\Games\GameHelper.cs" />
     <Compile Include="Libs\Games\GameManager.cs" />
-    <Compile Include="Libs\Games\Games\Game5_Manager.cs" />
-    <Compile Include="Libs\Games\Games\Game6_Manager.cs" />
+    <Compile Include="Libs\Games\Games\Questions_Manager.cs" />
+    <Compile Include="Libs\Games\Games\Group_Manager.cs" />
     <Compile Include="Libs\Games\ScoreManager.cs" />
     <Compile Include="Libs\Logger.cs" />
     <Compile Include="Libs\Security\SecurityManager.cs" />
@@ -271,6 +271,10 @@
     <Compile Include="Migrations\201704151814145_UserScore_ActiveGameInfo.Designer.cs">
       <DependentUpon>201704151814145_UserScore_ActiveGameInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704162142241_Added_Correct_Game_Names.cs" />
+    <Compile Include="Migrations\201704162142241_Added_Correct_Game_Names.Designer.cs">
+      <DependentUpon>201704162142241_Added_Correct_Game_Names.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\DatatableViewModels\ScoreViewModels.cs" />
@@ -278,18 +282,19 @@
     <Compile Include="Models\Entities\GameModel.cs" />
     <Compile Include="Models\Entities\Scores\Game1_Score.cs" />
     <Compile Include="Models\Entities\Scores\Game2_Score.cs" />
-    <Compile Include="Models\Entities\Scores\Game3_Score.cs" />
-    <Compile Include="Models\Entities\Scores\Game4_1_Score.cs" />
-    <Compile Include="Models\Entities\Scores\Game4_2_Score.cs" />
-    <Compile Include="Models\Entities\Scores\Game4_3_Score.cs" />
-    <Compile Include="Models\Entities\Scores\Game5_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Mastermind_UserScore.cs" />
+    <Compile Include="Models\Entities\Scores\Escape_1_UserScore.cs" />
+    <Compile Include="Models\Entities\Scores\Escape_2_UserScore.cs" />
+    <Compile Include="Models\Entities\Scores\Escape_3_UserScore.cs" />
+    <Compile Include="Models\Entities\Scores\Questions_UserScore.cs" />
     <Compile Include="Models\Entities\Scores\A_UserScore.cs" />
+    <Compile Include="Models\Entities\Scores\User_Group.cs" />
     <Compile Include="Models\Entities\UserQuestion.cs" />
     <Compile Include="Models\Security\AccountBindingModels.cs" />
     <Compile Include="Models\Security\AccountViewModels.cs" />
     <Compile Include="Models\Entities\ApplicationUser.cs" />
     <Compile Include="Models\Entities\UserDailyActivity.cs" />
-    <Compile Include="Models\Entities\Scores\Game6_Score.cs" />
+    <Compile Include="Models\Entities\Scores\Whackamole_UserScore.cs" />
     <Compile Include="Models\ViewModels\DashboardModels.cs" />
     <Compile Include="Models\ViewModels\GameSettings.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
@@ -316,8 +321,12 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\stylesheet.css" />
     <Content Include="Content\Games\css\style2.css" />
+    <Content Include="Content\Games\js\cell.init.js" />
     <Content Include="Content\Games\js\mastermind.init.js" />
+    <Content Include="Content\Games\js\mole.init.js" />
     <Content Include="Content\Games\js\pxloader.js" />
+    <Content Include="Content\Games\js\questions.init.js" />
+    <Content Include="Content\Games\js\watch.js" />
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\boom.gif" />
     <Content Include="Content\images\cells-level-1.png" />
@@ -664,7 +673,7 @@
     <Content Include="Content\music\mastermind\unlock.mp3" />
     <Content Include="Content\music\mastermind\win.mp3" />
     <Content Include="Content\pnotify.css" />
-    <Content Include="Content\DashBoard\js\viewmodels\game5.js" />
+    <Content Include="Content\DashBoard\js\viewmodels\questionssettings.js" />
     <Content Include="Content\DashBoard\js\viewmodels\generalsettings.js" />
     <Content Include="Content\DashBoard\js\viewmodels\schedule.js" />
     <Content Include="Content\DashBoard\js\viewmodels\scores.js" />
@@ -831,7 +840,7 @@
     <Content Include="Content\DashBoard\css\custom.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Views\Dashboard\Game5.cshtml" />
+    <Content Include="Views\Dashboard\QuestionsSettings.cshtml" />
     <Content Include="Views\Dashboard\GeneralSettings.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Content\DashBoard\js\custom.js" />
@@ -844,6 +853,23 @@
     <Content Include="Views\Dashboard\Schedule.cshtml" />
     <Content Include="Views\Dashboard\Scores.cshtml" />
     <Content Include="Views\Dashboard\Users.cshtml" />
+    <Content Include="Views\Games\escape\game1-1.html" />
+    <Content Include="Views\Games\escape\game1-2.html" />
+    <Content Include="Views\Games\escape\game1-3.html" />
+    <Content Include="Views\Games\escape\game1-4.html" />
+    <Content Include="Views\Games\escape\game1-5.html" />
+    <Content Include="Views\Games\escape\game2-1.html" />
+    <Content Include="Views\Games\escape\game2-2.html" />
+    <Content Include="Views\Games\escape\game2-3.html" />
+    <Content Include="Views\Games\escape\game2-4.html" />
+    <Content Include="Views\Games\escape\game2-5.html" />
+    <Content Include="Views\Games\escape\game3-1.html" />
+    <Content Include="Views\Games\escape\game3-2.html" />
+    <Content Include="Views\Games\escape\game3-3.html" />
+    <Content Include="Views\Games\escape\game3-4.html" />
+    <Content Include="Views\Games\escape\game3-5.html" />
+    <Content Include="Views\Games\questions\questions.html" />
+    <Content Include="Views\Games\whackamole\whackamole.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -893,6 +919,15 @@
     <Content Include="Views\Shared\_DashbordLayout.cshtml" />
     <Content Include="Views\Home\TnC.cshtml" />
     <Content Include="Views\Home\Info.cshtml" />
+    <Content Include="Views\Games\escape\Explainer.cshtml" />
+    <Content Include="Views\Games\escape\Map.cshtml" />
+    <Content Include="Views\Games\questions\Explainer.cshtml" />
+    <Content Include="Views\Games\questions\Map.cshtml" />
+    <Content Include="Views\Games\whackamole\Explainer.cshtml" />
+    <Content Include="Views\Games\whackamole\Map.cshtml" />
+    <Content Include="Views\Games\escape\ActiveGameAfter.cshtml" />
+    <Content Include="Views\Games\whackamole\ActiveGameAfter.cshtml" />
+    <Content Include="Views\Games\questions\ActiveGameAfter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />
@@ -933,6 +968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704151814145_UserScore_ActiveGameInfo.resx">
       <DependentUpon>201704151814145_UserScore_ActiveGameInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704162142241_Added_Correct_Game_Names.resx">
+      <DependentUpon>201704162142241_Added_Correct_Game_Names.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
