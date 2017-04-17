@@ -18,8 +18,9 @@ namespace WebGames.Helpers
             else
             {
                 var info = TimeZoneInfo.FindSystemTimeZoneById(Localization);
-                DateTimeOffset localServerTime = DateTimeOffset.UtcNow;
-                res = TimeZoneInfo.ConvertTime(localServerTime, info).DateTime;
+
+                DateTimeOffset dtOffset = new DateTimeOffset(Date);
+                res = TimeZoneInfo.ConvertTime(dtOffset, info).DateTime;
             }
 
             if (onlyDate)

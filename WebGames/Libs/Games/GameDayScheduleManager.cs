@@ -96,14 +96,14 @@ namespace WebGames.Libs.Games
 
         public static ActiveGameData GetActiveGame(DateTime Date)
         {
-            var Today = DateHelper.GetGreekDate(Date, onlyDate: true);
+            var GreekDate = DateHelper.GetGreekDate(Date, onlyDate: true);
 
             ActiveGameData ActiveGameKey = null;
             try
             {
                 using (var db = ApplicationDbContext.Create())
                 {
-                    var toDayStr = Today.ToString("yyyy-MM-dd");
+                    var toDayStr = GreekDate.ToString("yyyy-MM-dd");
 
                     var Active = (from ag in db.DaysActiveGames where ag.Day == toDayStr select ag).FirstOrDefault();
                     if (Active != null)
