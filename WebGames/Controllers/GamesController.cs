@@ -18,7 +18,7 @@ namespace WebGames.Controllers
         {
             var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId());
 
-            if (Request.QueryString["showDemo"] == "true")
+            if (Request.QueryString["showdemo"] == "true")
             {
                 activeGameInfo.IsDemo = true;
                 activeGameInfo.GameScore = 0;
@@ -51,8 +51,7 @@ namespace WebGames.Controllers
             if (activeGameInfo.ActiveGameDataModel != null)
             {
                 var message = activeGameInfo.ActiveGameDataModel.Messages.ContainsKey(status) ? activeGameInfo.ActiveGameDataModel.Messages[status] : "";
-                var page = $"{activeGameInfo.ActiveGameDataModel.ActiveGameKey}/ActiveGameAfter";
-                return View(page, new Dictionary<string, string>() { { "message", message } });
+                return View("ActiveGameAfter", new Dictionary<string, string>() { { "message", message } });
             }
             else
             {
@@ -102,10 +101,18 @@ namespace WebGames.Controllers
 
         public ActionResult GetPlayerQuestions()
         {
-            var res = new List<GameQuestionView>();
+            var res = new List<object>();
             try
             {
-                res.AddRange(Questions_Manager.GetPlayerQuestions(User.Identity.GetUserId()));
+                res.AddRange(Questions_Manager.GetPlayerQuestions(User.Identity.GetUserId()).Select(q => new
+                {
+                    id = q.QuestionId,
+                    question = q.QuestionText,
+                    answer1 = q.Options[0],
+                    answer2 = q.Options[1],
+                    answer3 = q.Options[2],
+                    answer4 = q.Options[3],
+                }));
             }
             catch (Exception exc)
             {

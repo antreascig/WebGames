@@ -1,7 +1,7 @@
 ﻿@using WebGames.Libs
 @model ActiveUserGameInfo
 
-@{ 
+@{
 
     var Rnd = new Random(DateTime.UtcNow.Second);
 
@@ -31,17 +31,17 @@
 <div>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="/Content/Games/css/style2.css">
+    <link rel="stylesheet" href="/Content/Games/css/style.css">
     <link rel="stylesheet" href="/Content/Games/css/jquery.mCustomScrollbar.css">
 
     <audio preload='auto' loop id="music">
         <source src="/Content/music/mastermind/mastermind.mp3" type="audio/mpeg">
     </audio>
     <audio id="deal" preload="auto">
-        <source src="/Content/music/mastermind/deal.mp3"/>
+        <source src="/Content/music/mastermind/deal.mp3" />
     </audio>
     <audio id="win" preload="auto">
-        <source src="/Content/music/mastermind/win.mp3"/>
+        <source src="/Content/music/mastermind/win.mp3" />
     </audio>
     <div id="preloader">
         <div class="windows8">
@@ -208,6 +208,7 @@
                 $('#preloader').fadeOut(1000);
                 $('.wrapper').fadeIn(2000);
                 music.play();
+                $('.game').center();
             }
         });
 

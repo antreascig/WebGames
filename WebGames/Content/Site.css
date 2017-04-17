@@ -487,3 +487,34 @@ footer .text-danger {
         padding-top: 30px;
         text-align: center;
     }
+
+
+footer img {
+    max-width: 180px;
+}
+
+
+.navbar-nav > li > a {
+    font-size: 17px;
+}
+
+.games_activegameafter .container {
+    width: 100%;
+    margin: 0px;
+    padding: 0;
+}
+
+.games_activegameafter footer {
+    position: absolute;
+    bottom: 0;
+    padding: 25px;
+}
+
+.games_activegameafter {
+    color: white;
+}
+
+    .games_activegameafter .navbar {
+        max-width: 960px;
+        margin: 0 auto;
+    }

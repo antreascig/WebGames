@@ -1,4 +1,4 @@
-/*** circus css ***/
+﻿/*** circus css ***/
 
 body {
     background: black;
@@ -3078,9 +3078,108 @@ body {
     }
 }
 
-#mapoverlay {
+
+
+#explainer {
+    z-index: 1000000;
     position: absolute;
-    top: -47px;
-    pointer-events: none;
-    left: -35px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    text-align: center;
+    padding: 50px 25px;
+    display: none;
+}
+
+    #explainer h2 {
+        font-family: 'Impact';
+        font-size: 40px;
+        padding-bottom: 25px;
+    }
+
+    #explainer ul > * {
+        vertical-align: middle;
+    }
+
+    #explainer li {
+        width: auto;
+        display: inline-block;
+        clear: both;
+        position: relative;
+        vertical-align: middle;
+    }
+
+        #explainer li:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -20px;
+            top: 16px;
+            margin-right: 10px;
+            width: 10px;
+            height: 10px;
+            position: relative;
+            background: white;
+            border-radius: 10px;
+        }
+
+
+    #explainer .exit {
+        position: absolute;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        top: 20px;
+        right: 20px;
+    }
+
+        #explainer .exit:hover::before, #explainer .exit:hover::after {
+            background: #1ebcc5;
+        }
+
+        #explainer .exit::before, #explainer .exit::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: #fff;
+        }
+
+        #explainer .exit::before {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #explainer .exit::after {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        #explainer .exit::before, #explainer .exit::after {
+            height: 8px;
+            margin-top: -4px;
+        }
+
+.pause {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 32px;
+    right: 263px;
+    background: url(/Content/images/pause.png);
+    background-size: cover;
+    cursor: pointer;
 }

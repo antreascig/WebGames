@@ -65,6 +65,7 @@ namespace WebGames.Libs.Games.GameTypes
                                                                  .Where(id => !answered.Contains(id))
                                                                  .Select(id => int.Parse(id)) );
                     }
+
                     // Retrieve the game's metadata
                     var GameMetadata = (Questions_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Questions_MetaData));
 
@@ -91,11 +92,19 @@ namespace WebGames.Libs.Games.GameTypes
                                 }
                             }
 
-                            db.User_Questions.Add(new UserQuestion()
+                            if (UserQuestionsModel == null)
                             {
-                                UserId = UserId,
-                                Questions = string.Join(",", Ids)
-                            });
+                                db.User_Questions.Add(new UserQuestion()
+                                {
+                                    UserId = UserId,
+                                    Questions = string.Join(",", Ids)
+                                });
+                            }
+                            else
+                            {
+                                UserQuestionsModel.Questions = string.Join(",", Ids);
+                            }
+                            
                             db.SaveChanges();
                         }
                     }

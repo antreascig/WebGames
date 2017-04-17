@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,11 +8,15 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<audio preload='auto' loop id="myAudio">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="/Content/Games/css/style.css">
+
+	<audio  preload='auto' loop id="myAudio">
 	  <source src="music/loop.mp3" type="audio/mpeg" >
 	</audio>
 	<audio id="mysoundclip" preload="auto">
-	    <source src="music/unlock.mp3"></source>
+	    <source src="music/unlock.mp3"/>
 	</audio>
 	<div id="preloader">
 		<div class="windows8">
@@ -35,8 +39,8 @@
 		<img src="images/startbutton.png" id="letsgo">
 	</div>
 	<div class="wrapper">
-		<div class="game cells stage2" data-stage="stage1" data-level="level2">
-            <div class="pause"></div>
+		<div class="game cells level33" data-stage="stage3" data-level="level3">
+		            <div class="pause"></div>
             <div id="explainer">
                 <span class="exit"></span>
                 <h2>Κλουβιά Κλούβια</h2>
@@ -50,7 +54,8 @@
                 <p>Θα χρειαστεί να κάνεις αριθμητικές πράξεις και να κρατήσεις σημειώσεις.</p>
             </div>
 
-			<div id="score">SCORE: <span>0</span></div>
+					<div id="score">SCORE: <span>0</span></div>
+
 			<div class="overlay"></div>
 			<div class="logo"></div>
 				<div id="lock"></div>
@@ -72,26 +77,25 @@
 						ΞΕΚΛΕΙΔΩΣΕ!
 					</button>
 				</div>
-				<img data-clue="3" src="images/cells/3.png" class="item item12">
-				<img data-clue="9" src="images/cells/9.png" class="item item11">
-				<img data-clue="23" src="images/cells/23.png" class="item item10">
-				<img data-clue="42" src="images/cells/42.png" class="item item9">
-				<img data-clue="32" src="images/cells/32.png" class="item item8">
-				<img data-clue="44" src="images/cells/44.png" class="item item7">
+				<img data-clue="7" src="images/cells/7.png" class="item item11">
+				<img data-clue="12" src="images/cells/12.png" class="item item10">
+				<img data-clue="23" src="images/cells/23.png" class="item item9">
+				<img data-clue="26" src="images/cells/26.png" class="item item8">
+				<img data-clue="45" src="images/cells/45.png" class="item item7">
 				<img data-clue="46" src="images/cells/46.png" class="item item6">
-				<img data-clue="49" src="images/cells/49.png" class="item item5">
-				<img data-clue="50" src="images/cells/50.png" class="item item4">
-				<img data-clue="01-pinecone" src="images/cells/01-pinecone.png" class="item item3">
-				<img data-clue="01-ball-big" src="images/cells/01-ball-big.png" class="item item2">
-				<img data-clue="01-chair" src="images/cells/01-chair.png" class="item item1">
+				<img data-clue="47" src="images/cells/47.png" class="item item5">
+				<img data-clue="48" src="images/cells/48.png" class="item item4">
+				<img data-clue="49" src="images/cells/49.png" class="item item3">
+				<img data-clue="52" src="images/cells/52.png" class="item item2">
+				<img data-clue="1" src="images/cells/1.png" class="item item1">
 			</div>
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/Scripts/custom/serverAPI.js"></script>
 	<script src="js/jquery.glow.js"></script>
-	<script src="js/jquery.easyaudioeffects.1.0.0.min.js"></script>
-	<script src="js/pxloader.js"></script>
+	<script src="js/jquery.easyaudioeffects.1.0.0.min.js"></script>	<script src="js/pxloader.js"></script>
+
     <script>
 		var loader = new PxLoader(), 
 		    // backgroundImg = loader.addImage('images/bg.jpg'), 
@@ -109,5 +113,5 @@
 		    audio3 = loader.addAudio('music/unlock.mp3');
 		 
     </script>
-    <script src="js/cell.init.js"></script></body>
-</html>
+    <script src="js/cell.init.js"></script>
+</body>

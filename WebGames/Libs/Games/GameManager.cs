@@ -71,9 +71,9 @@ namespace WebGames.Libs
             var Games = new List<GameData>()
             {
                 new GameData() { GameKey = GameKeys.GAME_1, Name = "ΑΤΕΛΕΙΩΤΟ ΣΚΟΙΝΑΚΙ", Folder = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) },
-                new GameData() { GameKey = GameKeys.Escape_1, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 1", Folder = "escape", SM = new ScoreManager<Escape_1_UserScore>(GameKeys.Escape_1), LevelAsPage = true },
-                new GameData() { GameKey = GameKeys.Escape_2, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 2", Folder = "escape", SM = new ScoreManager<Escape_2_UserScore>(GameKeys.Escape_2), LevelAsPage = true },
-                new GameData() { GameKey = GameKeys.Escape_3, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 3", Folder = "escape", SM = new ScoreManager<Escape_3_UserScore>(GameKeys.Escape_3), LevelAsPage = true },
+                new GameData() { GameKey = GameKeys.Escape_1, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 1", Folder = "escape", Page = "game1", SM = new ScoreManager<Escape_1_UserScore>(GameKeys.Escape_1), LevelAsPage = true },
+                new GameData() { GameKey = GameKeys.Escape_2, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 2", Folder = "escape", Page = "game2", SM = new ScoreManager<Escape_2_UserScore>(GameKeys.Escape_2), LevelAsPage = true },
+                new GameData() { GameKey = GameKeys.Escape_3, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 3", Folder = "escape", Page = "game3", SM = new ScoreManager<Escape_3_UserScore>(GameKeys.Escape_3), LevelAsPage = true },
                 new GameData() { GameKey = GameKeys.Mastermind, Name = "ΜΑΝΤΕΨΕ ΤΙ ΜΑΝΤΕΨΑ", Folder = "mastermind", Page = "mastermind", SM = new ScoreManager<Mastermind_UserScore>(GameKeys.Mastermind) },
                 new GameData() { GameKey = GameKeys.GAME_2, Name = "ΑΔΕΣΠΩΤΑ ΜΠΑΛΑΚΙΑ", Folder = GameKeys.GAME_2, SM = new ScoreManager<Game2_UserScore>(GameKeys.GAME_2) },
                 new GameData() { GameKey = GameKeys.Whackamole, Name = "WHACK A MOLE", Folder = "whackamole",  Page = "whackamole", SM = new ScoreManager<Whackamole_UserScore>(GameKeys.Whackamole) },

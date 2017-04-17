@@ -8,25 +8,10 @@ namespace WebGames.Controllers
 {
     public class DemoController : Controller
     {
-        public ActionResult Map()
-        {
-            return View();
-        }
+        //public ActionResult Questions()
+        //{
 
-        public ActionResult Explainer()
-        {
-            return View();
-        }
-
-        public ActionResult Mastermind()
-        {
-            return View();
-        }
-
-        public ActionResult Outoftime()
-        {
-            return View();
-        }
+        //}
 
     }
 }

@@ -4,10 +4,10 @@ body {
     background: black;
 }
 
-body * {
-    box-sizing: border-box;
-    outline: 0;
-}
+    body * {
+        box-sizing: border-box;
+        outline: 0;
+    }
 
 @font-face {
     font-family: 'GFS';
@@ -24,13 +24,14 @@ body * {
     padding-top: 25px;
     height: 100vh;
 }
-.wrapper.mapwrap {
-    display: none;
-    background: url('/Content/images/map/mapbg.jpg') no-repeat center center;
-    background-size: cover;
-    padding-top: 25px;
-    height:100vh;
-}
+
+    .wrapper.mapwrap {
+        display: none;
+        background: url('/Content/images/map/mapbg.jpg') no-repeat center center;
+        background-size: cover;
+        padding-top: 25px;
+        height: 100vh;
+    }
 
 .clock {
     color: white;
@@ -46,6 +47,7 @@ body * {
     bottom: 10px;
     left: 10px;
 }
+
 #score {
     color: white;
     font-family: 'GFS';
@@ -59,14 +61,15 @@ body * {
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
 
-}
-.master #score { 
+.master #score {
     font-size: 30px;
-    top: 38px!important;
-    left:10px!important;
-    pointer-events:none;
+    top: 38px !important;
+    left: 10px !important;
+    pointer-events: none;
 }
+
 #attempts {
     color: white;
     font-family: 'GFS';
@@ -79,11 +82,13 @@ body * {
     z-index: 100;
     position: absolute;
     top: 15px;
-    left: 15px;    
+    left: 15px;
 }
-#attempts > * {
-    display: inline;
-}
+
+    #attempts > * {
+        display: inline;
+    }
+
 #attempt {
     color: white;
     font-family: 'GFS';
@@ -124,18 +129,22 @@ body * {
     width: 960px;
     height: 540px;
 }
+
 .game.master {
     background: url(/Content/images/mastermind-bg.jpg) no-repeat center center;
     background-size: cover;
 }
+
 .game.questions {
     background: url(/Content/images/locks/bg.jpg) no-repeat center center;
     background-size: cover;
 }
+
 .game.mole {
     background: url(/Content/images/whack/bg.jpg) no-repeat center center;
     background-size: cover;
 }
+
 .overlay {
     display: none;
     background: rgba(0, 0, 0, 0.8);
@@ -175,13 +184,12 @@ body * {
     border: 3px solid #ffb923;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.2);
-      -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently*/
-
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently*/
 }
 
 #c1,
@@ -199,18 +207,19 @@ body * {
     border-radius: 10px;
     font-size: 50px;
     box-shadow: 0 5px 10px black;
-    padding: 10px 21px!important;
+    padding: 10px 21px !important;
     border: none;
     cursor: pointer;
     font-family: 'GFS';
     width: 360px;
     height: 76px;
 }
-#go.wrong {
-    display:block;
-    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
-    transform: translate3d(0, 0, 0);
-}
+
+    #go.wrong {
+        display: block;
+        animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+        transform: translate3d(0, 0, 0);
+    }
 
 #lock {
     width: 114px;
@@ -226,21 +235,19 @@ body * {
     }
 
 @keyframes shake {
-    10%,
-    90% {
+    10%, 90% {
         transform: translate3d(-1px, 0, 0);
     }
-    20%,
-    80% {
+
+    20%, 80% {
         transform: translate3d(2px, 0, 0);
     }
-    30%,
-    50%,
-    70% {
+
+    30%, 50%, 70% {
         transform: translate3d(-4px, 0, 0);
     }
-    40%,
-    60% {
+
+    40%, 60% {
         transform: translate3d(4px, 0, 0);
     }
 }
@@ -333,20 +340,23 @@ body * {
     margin: 0 auto;
     background: black;
     margin-top: 120px;
-    z-index:100;
+    z-index: 100;
     position: absolute;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
-.popup img {
-    display: block;
-}
-.popup .zoom img {
-    display: block;
-    width: 100%;
-}
-.popup .close {
-    padding: 10px 10px 0 0;
-}
+
+    .popup img {
+        display: block;
+    }
+
+    .popup .zoom img {
+        display: block;
+        width: 100%;
+    }
+
+    .popup .close {
+        padding: 10px 10px 0 0;
+    }
 
 
 
@@ -390,7 +400,6 @@ body * {
     top: 309px;
     left: 246px;
     transform: rotateZ(-106deg);
-
 }
 
 .stage2 .item8 {
@@ -413,6 +422,7 @@ body * {
     bottom: 0px;
     right: 148px;
 }
+
 .stage2 .item12 {
     bottom: 0px;
     z-index: 6;
@@ -424,8 +434,8 @@ body * {
 .stage3 .item1 {
     top: 164px;
     z-index: 10;
-    left: 209px;    transform: scale(0.5)
-
+    left: 209px;
+    transform: scale(0.5)
 }
 
 .stage3 .item2 {
@@ -456,7 +466,6 @@ body * {
     bottom: 269px;
     right: -218px;
     transform: rotateZ(-81deg);
-
 }
 
 .stage3 .item7 {
@@ -464,7 +473,6 @@ body * {
     bottom: 111px;
     right: 218px;
     transform: rotateZ(-44deg);
-
 }
 
 .stage3 .item8 {
@@ -487,9 +495,9 @@ body * {
     bottom: 0px;
     right: 23px;
 }
-.stage3 .item12 {
-   transform: scale(0.7);
 
+.stage3 .item12 {
+    transform: scale(0.7);
     bottom: 70px;
     z-index: 6;
     right: 89px;
@@ -503,16 +511,14 @@ body * {
 .stage4 .item1 {
     bottom: 0px;
     z-index: 10;
-    left: 326px;    
+    left: 326px;
     transform: scale(0.7)
-
 }
 
 .stage4 .item2 {
     bottom: 63px;
     left: 464px;
     transform: scale(0.7)
-
 }
 
 .stage4 .item3 {
@@ -520,14 +526,12 @@ body * {
     bottom: 37px;
     left: 141px;
     transform: scale(0.7)
-
 }
 
 .stage4 .item4 {
     bottom: -37px;
     left: 22px;
     transform: scale(0.7)
-
 }
 
 .stage4 .item5 {
@@ -542,8 +546,6 @@ body * {
     bottom: 185px;
     right: -148px;
     transform: rotateZ(-81deg) scale(0.7);
-
-
 }
 
 .stage4 .item7 {
@@ -552,28 +554,24 @@ body * {
     right: 218px;
     transform: rotateZ(-44deg);
     transform: scale(0.6)
-
 }
 
 .stage4 .item8 {
     left: 279px;
     bottom: 81px;
     transform: scale(0.7) rotateZ(-47deg)
-
 }
 
 .stage4 .item9 {
     bottom: 121px;
     right: 154px;
     transform: scale(0.7)
-
 }
 
 .stage4 .item10 {
     bottom: -21px;
     right: 110px;
     transform: scale(0.7)
-
 }
 
 .stage4 .item11 {
@@ -581,11 +579,10 @@ body * {
     right: -52px;
     z-index: 6;
     transform: scale(0.6)
-
 }
-.stage4 .item12 {
-   transform: scale(0.7);
 
+.stage4 .item12 {
+    transform: scale(0.7);
     bottom: -51px;
     z-index: 6;
     right: -44px;
@@ -596,16 +593,14 @@ body * {
 .stage5 .item1 {
     bottom: -48px;
     z-index: 10;
-    left: 126px;    
+    left: 126px;
     transform: scale(0.7)
-
 }
 
 .stage5 .item2 {
     bottom: 17px;
     left: 464px;
     transform: scale(0.7)
-
 }
 
 .stage5 .item3 {
@@ -613,14 +608,12 @@ body * {
     bottom: 37px;
     left: 194px;
     transform: scale(0.7)
-
 }
 
 .stage5 .item4 {
     bottom: 4px;
     left: 22px;
     transform: scale(0.7)
-
 }
 
 .stage5 .item5 {
@@ -635,8 +628,6 @@ body * {
     bottom: 5px;
     right: -148px;
     transform: rotateZ(-0deg) scale(0.7);
-
-
 }
 
 .stage5 .item7 {
@@ -644,28 +635,24 @@ body * {
     top: -52px;
     right: 653px;
     transform: scale(0.6)
-
 }
 
 .stage5 .item8 {
     left: 279px;
     bottom: -28px;
     transform: scale(0.7) rotateZ(-0deg)
-
 }
 
 .stage5 .item9 {
     bottom: 51px;
     right: 209px;
     transform: scale(0.7)
-
 }
 
 .stage5 .item10 {
     bottom: -21px;
     right: 220px;
     transform: scale(0.7)
-
 }
 
 .stage5 .item11 {
@@ -673,11 +660,10 @@ body * {
     right: 2px;
     z-index: 6;
     transform: scale(0.6)
-
 }
-.stage5 .item12 {
-   transform: scale(0.7);
 
+.stage5 .item12 {
+    transform: scale(0.7);
     bottom: -9px;
     z-index: 6;
     right: 90px;
@@ -690,16 +676,14 @@ body * {
 .level21 .item1 {
     bottom: -48px;
     z-index: 10;
-    left: -39px;    
+    left: -39px;
     transform: scale(0.7)
-
 }
 
 .level21 .item2 {
     bottom: 17px;
     left: 464px;
     transform: scale(0.7)
-
 }
 
 .level21 .item3 {
@@ -707,14 +691,12 @@ body * {
     bottom: 37px;
     left: 40px;
     transform: scale(0.7) rotateZ(90deg)
-
 }
 
 .level21 .item4 {
     bottom: 76px;
     right: -93px;
     transform: scale(0.7)
-
 }
 
 .level21 .item5 {
@@ -729,8 +711,6 @@ body * {
     bottom: 5px;
     right: 80px;
     transform: rotateZ(-0deg) scale(0.7);
-
-
 }
 
 .level21 .item7 {
@@ -738,28 +718,24 @@ body * {
     bottom: 82px;
     right: 13px;
     transform: scale(0.6)
-
 }
 
 .level21 .item8 {
     left: 279px;
     bottom: -28px;
     transform: scale(0.7) rotateZ(-0deg)
-
 }
 
 .level21 .item9 {
     bottom: 51px;
     right: 264px;
     transform: scale(0.7)
-
 }
 
 .level21 .item10 {
     bottom: -21px;
     right: 220px;
     transform: scale(0.7)
-
 }
 
 .level21 .item11 {
@@ -767,11 +743,10 @@ body * {
     right: 2px;
     z-index: 6;
     transform: scale(0.6)
-
 }
-.level21 .item12 {
-   transform: scale(0.7);
 
+.level21 .item12 {
+    transform: scale(0.7);
     bottom: -9px;
     z-index: 6;
     right: 90px;
@@ -786,16 +761,14 @@ body * {
 .level22 .item1 {
     bottom: 124px;
     z-index: 10;
-    right: -100px;    
+    right: -100px;
     transform: scale(0.7) rotateZ(-90deg)
-
 }
 
 .level22 .item2 {
     bottom: 17px;
     left: 464px;
     transform: scale(0.7)
-
 }
 
 .level22 .item3 {
@@ -803,14 +776,12 @@ body * {
     bottom: 37px;
     left: 60px;
     transform: scale(0.7) rotateZ(90deg)
-
 }
 
 .level22 .item4 {
     bottom: -3px;
     left: 3px;
     transform: scale(0.7)
-
 }
 
 .level22 .item5 {
@@ -825,8 +796,6 @@ body * {
     bottom: 5px;
     right: 80px;
     transform: rotateZ(-0deg) scale(0.7);
-
-
 }
 
 .level22 .item7 {
@@ -834,28 +803,24 @@ body * {
     bottom: 82px;
     right: 35px;
     transform: scale(0.6)
-
 }
 
 .level22 .item8 {
     left: 112px;
     bottom: -28px;
     transform: scale(0.7) rotateZ(40deg)
-
 }
 
 .level22 .item9 {
     bottom: 51px;
     right: 264px;
     transform: scale(0.7)
-
 }
 
 .level22 .item10 {
     bottom: -21px;
     right: 220px;
     transform: scale(0.7)
-
 }
 
 .level22 .item11 {
@@ -863,11 +828,10 @@ body * {
     right: 59px;
     z-index: 6;
     transform: scale(0.8)
-
 }
-.level22 .item12 {
-   transform: scale(0.7);
 
+.level22 .item12 {
+    transform: scale(0.7);
     bottom: -9px;
     z-index: 6;
     right: 90px;
@@ -885,16 +849,14 @@ body * {
 .level23 .item1 {
     bottom: 212px;
     z-index: 10;
-    right: 33px;    
+    right: 33px;
     transform: scale(0.7) rotateZ(-90deg)
-
 }
 
 .level23 .item2 {
     bottom: 17px;
     left: 464px;
     transform: scale(0.7)
-
 }
 
 .level23 .item3 {
@@ -902,14 +864,12 @@ body * {
     bottom: 126px;
     left: 3px;
     transform: scale(0.7) rotateZ(0deg)
-
 }
 
 .level23 .item4 {
     bottom: -59px;
     left: -48px;
     transform: scale(0.7)
-
 }
 
 .level23 .item5 {
@@ -924,8 +884,6 @@ body * {
     bottom: 61px;
     right: 145px;
     transform: rotateZ(-0deg) scale(0.7);
-
-
 }
 
 .level23 .item7 {
@@ -933,28 +891,24 @@ body * {
     bottom: 42px;
     right: 335px;
     transform: scale(0.6)
-
 }
 
 .level23 .item8 {
     left: 145px;
     bottom: 3px;
     transform: scale(0.7) rotateZ(0deg)
-
 }
 
 .level23 .item9 {
     bottom: 51px;
     right: 264px;
     transform: scale(0.7)
-
 }
 
 .level23 .item10 {
     bottom: 95px;
     right: 144px;
     transform: scale(0.7)
-
 }
 
 .level23 .item11 {
@@ -962,11 +916,10 @@ body * {
     right: 198px;
     z-index: 6;
     transform: scale(0.8)
-
 }
-.level23 .item12 {
-   transform: scale(0.8);
 
+.level23 .item12 {
+    transform: scale(0.8);
     bottom: -40px;
     z-index: 6;
     right: -39px;
@@ -983,30 +936,26 @@ body * {
 .level24 .item1 {
     bottom: 190px;
     z-index: 10;
-    right: -27px;    
+    right: -27px;
     transform: scale(0.7) rotateZ(-150deg)
-
 }
 
 .level24 .item2 {
     bottom: 17px;
     right: -56px;
     transform: scale(0.7)
-
 }
 
 .level24 .item3 {
     bottom: -23px;
     left: 3px;
     transform: scale(0.7) rotateZ(0deg)
-
 }
 
 .level24 .item4 {
     top: -59px;
     left: 1px;
     transform: scale(0.7)
-
 }
 
 .level24 .item5 {
@@ -1021,8 +970,6 @@ body * {
     bottom: 284px;
     right: 18px;
     transform: rotateZ(-99deg) scale(0.7);
-
-
 }
 
 .level24 .item7 {
@@ -1030,7 +977,6 @@ body * {
     bottom: -82px;
     right: 335px;
     transform: scale(0.6)
-
 }
 
 .level24 .item8 {
@@ -1038,21 +984,18 @@ body * {
     left: 25px;
     bottom: 137px;
     transform: scale(0.7) rotateZ(0deg)
-
 }
 
 .level24 .item9 {
     bottom: 51px;
     right: 264px;
     transform: scale(0.7)
-
 }
 
 .level24 .item10 {
     bottom: 95px;
     right: 144px;
     transform: scale(0.7)
-
 }
 
 .level24 .item11 {
@@ -1060,11 +1003,10 @@ body * {
     right: 198px;
     z-index: 6;
     transform: scale(0.8)
-
 }
-.level24 .item12 {
-   transform: scale(0.8) rotateZ(-40deg);
 
+.level24 .item12 {
+    transform: scale(0.8) rotateZ(-40deg);
     bottom: -47px;
     z-index: 6;
     right: 13px;
@@ -1085,30 +1027,26 @@ body * {
 .level25 .item1 {
     left: 190px;
     z-index: 2;
-    bottom: 0px;    
+    bottom: 0px;
     transform: scale(1) rotateZ(-0deg)
-
 }
 
 .level25 .item2 {
     bottom: 17px;
     right: -56px;
     transform: scale(0.7)
-
 }
 
 .level25 .item3 {
     bottom: -30px;
     left: 52px;
     transform: scale(0.8) rotateZ(-7deg)
-
 }
 
 .level25 .item4 {
     bottom: -48px;
     left: 400px;
     transform: scale(0.7)
-
 }
 
 .level25 .item5 {
@@ -1123,8 +1061,6 @@ body * {
     bottom: 284px;
     right: 18px;
     transform: rotateZ(-99deg) scale(0.7);
-
-
 }
 
 .level25 .item7 {
@@ -1132,7 +1068,6 @@ body * {
     bottom: 83px;
     right: 480px;
     transform: scale(0.6)
-
 }
 
 .level25 .item8 {
@@ -1140,7 +1075,6 @@ body * {
     left: 212px;
     bottom: 96px;
     transform: scale(0.7) rotateZ(0deg)
-
 }
 
 .level25 .item9 {
@@ -1148,14 +1082,12 @@ body * {
     bottom: 210px;
     right: -34px;
     transform: scale(0.7)
-
 }
 
 .level25 .item10 {
     bottom: 110px;
     right: 96px;
     transform: scale(0.7)
-
 }
 
 .level25 .item11 {
@@ -1163,11 +1095,10 @@ body * {
     right: 198px;
     z-index: 6;
     transform: scale(0.8)
-
 }
-.level25 .item12 {
-   transform: scale(0.8) rotateZ(-40deg);
 
+.level25 .item12 {
+    transform: scale(0.8) rotateZ(-40deg);
     bottom: -47px;
     z-index: 6;
     right: 13px;
@@ -1180,24 +1111,21 @@ body * {
 .level31 .item1 {
     right: -62px;
     z-index: 2;
-    bottom: 184px;    
+    bottom: 184px;
     transform: scale(0.7) rotateZ(-0deg)
-
 }
 
 .level31 .item2 {
     bottom: 106px;
     right: 79px;
-    z-index:6;
+    z-index: 6;
     transform: scale(0.6) rotateZ(-53deg)
-
 }
 
 .level31 .item3 {
     bottom: -79px;
     left: 246px;
     transform: scale(0.8) rotateZ(-7deg)
-
 }
 
 .level31 .item4 {
@@ -1205,7 +1133,6 @@ body * {
     left: 530px;
     z-index: 6;
     transform: scale(0.7) rotateZ(12deg)
-
 }
 
 .level31 .item5 {
@@ -1220,8 +1147,6 @@ body * {
     bottom: 284px;
     right: 18px;
     transform: rotateZ(-99deg) scale(0.7);
-
-
 }
 
 .level31 .item7 {
@@ -1229,7 +1154,6 @@ body * {
     bottom: -33px;
     right: 578px;
     transform: scale(0.6)
-
 }
 
 .level31 .item8 {
@@ -1237,7 +1161,6 @@ body * {
     right: 146px;
     bottom: -37px;
     transform: scale(0.5) rotateZ(228deg)
-
 }
 
 .level31 .item9 {
@@ -1252,7 +1175,6 @@ body * {
     bottom: 0px;
     right: -31px;
     transform: scale(0.7)
-
 }
 
 .level31 .item11 {
@@ -1260,11 +1182,11 @@ body * {
     right: 155px;
     z-index: 2;
     transform: scale(0.7)
-
 }
+
 .level31 .item12 {
-   transform: scale(0.8) rotateZ(-0deg);
-z-index:5;
+    transform: scale(0.8) rotateZ(-0deg);
+    z-index: 5;
     bottom: 81px;
     z-index: 6;
     right: 247px;
@@ -1278,17 +1200,15 @@ z-index:5;
 .level32 .item1 {
     right: 162px;
     z-index: 6;
-    bottom: 233px;    
+    bottom: 233px;
     transform: scale(0.7) rotateZ(-0deg)
-
 }
 
 .level32 .item2 {
     bottom: 170px;
     right: 473px;
-    z-index:6;
+    z-index: 6;
     transform: scale(0.6) rotateZ(-53deg)
-
 }
 
 .level32 .item3 {
@@ -1296,7 +1216,6 @@ z-index:5;
     left: 162px;
     z-index: 6;
     transform: scale(0.6) rotateZ(-7deg)
-
 }
 
 .level32 .item4 {
@@ -1304,7 +1223,6 @@ z-index:5;
     left: 144px;
     z-index: 4;
     transform: scale(0.7) rotateZ(5deg)
-
 }
 
 .level32 .item5 {
@@ -1319,8 +1237,6 @@ z-index:5;
     bottom: 284px;
     right: 18px;
     transform: rotateZ(-99deg) scale(0.7);
-
-
 }
 
 .level32 .item7 {
@@ -1328,7 +1244,6 @@ z-index:5;
     bottom: -33px;
     right: 578px;
     transform: scale(0.6)
-
 }
 
 .level32 .item8 {
@@ -1336,7 +1251,6 @@ z-index:5;
     right: 146px;
     bottom: -37px;
     transform: scale(0.8) rotateZ(08deg)
-
 }
 
 .level32 .item9 {
@@ -1351,7 +1265,6 @@ z-index:5;
     right: -175px;
     transform: scale(0.7);
     z-index: 6
-
 }
 
 .level32 .item11 {
@@ -1359,11 +1272,11 @@ z-index:5;
     right: 355px;
     z-index: 2;
     transform: scale(0.7)
-
 }
+
 .level32 .item12 {
-   transform: scale(0.6) rotateZ(-0deg);
-z-index:5;
+    transform: scale(0.6) rotateZ(-0deg);
+    z-index: 5;
     bottom: 66px;
     z-index: 6;
     right: 127px;
@@ -1381,17 +1294,15 @@ z-index:5;
 .level33 .item1 {
     right: 162px;
     z-index: 6;
-    bottom: 233px;    
+    bottom: 233px;
     transform: scale(0.7) rotateZ(-0deg)
-
 }
 
 .level33 .item2 {
     bottom: 3px;
     right: 273px;
-    z-index:6;
+    z-index: 6;
     transform: scale(0.6) rotateZ(-0deg)
-
 }
 
 .level33 .item3 {
@@ -1399,7 +1310,6 @@ z-index:5;
     left: 477px;
     z-index: 6;
     transform: scale(0.6) rotateZ(-7deg)
-
 }
 
 .level33 .item4 {
@@ -1407,7 +1317,6 @@ z-index:5;
     left: 144px;
     z-index: 4;
     transform: scale(0.9) rotateZ(0deg)
-
 }
 
 .level33 .item5 {
@@ -1422,8 +1331,6 @@ z-index:5;
     bottom: 44px;
     right: 18px;
     transform: rotateZ(-0deg) scale(0.7);
-
-
 }
 
 .level33 .item7 {
@@ -1431,7 +1338,6 @@ z-index:5;
     bottom: 43px;
     right: 68px;
     transform: scale(0.6)
-
 }
 
 .level33 .item8 {
@@ -1439,7 +1345,6 @@ z-index:5;
     left: 339px;
     top: 72px;
     transform: scale(0.8) rotateZ(08deg)
-
 }
 
 .level33 .item9 {
@@ -1454,7 +1359,6 @@ z-index:5;
     right: -30px;
     transform: scale(0.7);
     z-index: 6
-
 }
 
 .level33 .item11 {
@@ -1462,11 +1366,11 @@ z-index:5;
     right: 355px;
     z-index: 2;
     transform: scale(0.7)
-
 }
+
 .level33 .item12 {
-   transform: scale(0.6) rotateZ(-0deg);
-z-index:5;
+    transform: scale(0.6) rotateZ(-0deg);
+    z-index: 5;
     bottom: 66px;
     z-index: 6;
     right: 127px;
@@ -1485,17 +1389,15 @@ z-index:5;
 .level34 .item1 {
     right: 162px;
     z-index: 6;
-    bottom: -51px;    
+    bottom: -51px;
     transform: scale(0.7) rotateZ(-0deg)
-
 }
 
 .level34 .item2 {
     bottom: 3px;
     right: 273px;
-    z-index:4;
+    z-index: 4;
     transform: scale(0.6) rotateZ(-0deg)
-
 }
 
 .level34 .item3 {
@@ -1503,7 +1405,6 @@ z-index:5;
     left: 498px;
     z-index: 6;
     transform: scale(0.6) rotateZ(-7deg)
-
 }
 
 .level34 .item4 {
@@ -1511,7 +1412,6 @@ z-index:5;
     left: 104px;
     z-index: 4;
     transform: scale(0.9) rotateZ(0deg)
-
 }
 
 .level34 .item5 {
@@ -1526,8 +1426,6 @@ z-index:5;
     bottom: 44px;
     right: 218px;
     transform: rotateZ(-0deg) scale(0.7);
-
-
 }
 
 .level34 .item7 {
@@ -1535,7 +1433,6 @@ z-index:5;
     bottom: 127px;
     right: 168px;
     transform: scale(0.8) rotateZ(-16deg)
-
 }
 
 .level34 .item8 {
@@ -1543,7 +1440,6 @@ z-index:5;
     right: 109px;
     top: 72px;
     transform: scale(0.8) rotateZ(08deg)
-
 }
 
 .level34 .item9 {
@@ -1558,7 +1454,6 @@ z-index:5;
     right: -180px;
     transform: scale(0.7);
     z-index: 6
-
 }
 
 .level34 .item11 {
@@ -1566,11 +1461,11 @@ z-index:5;
     right: 384px;
     z-index: 2;
     transform: scale(0.7) rotateZ(-49deg)
-
 }
+
 .level34 .item12 {
-   transform: scale(0.6) rotateZ(-0deg);
-z-index:5;
+    transform: scale(0.6) rotateZ(-0deg);
+    z-index: 5;
     top: 181px;
     z-index: 6;
     left: 184px;
@@ -1590,17 +1485,15 @@ z-index:5;
 .level35 .item1 {
     right: 59px;
     z-index: 6;
-    bottom: -32px;    
+    bottom: -32px;
     transform: scale(0.9) rotateZ(-0deg)
-
 }
 
 .level35 .item2 {
     bottom: 86px;
     right: 120px;
-    z-index:4;
+    z-index: 4;
     transform: scale(0.8) rotateZ(-0deg)
-
 }
 
 .level35 .item3 {
@@ -1608,7 +1501,6 @@ z-index:5;
     left: 498px;
     z-index: 6;
     transform: scale(0.6) rotateZ(-7deg)
-
 }
 
 .level35 .item4 {
@@ -1616,12 +1508,11 @@ z-index:5;
     right: -69px;
     z-index: 4;
     transform: scale(0.9) rotateZ(-29deg)
-
 }
 
 .level35 .item5 {
     bottom: -46px;
-    left:-69px;
+    left: -69px;
     z-index: 5;
     transform: scale(0.7) rotateZ(-0deg)
 }
@@ -1631,8 +1522,6 @@ z-index:5;
     top: 44px;
     right: 116px;
     transform: rotateZ(-0deg) scale(0.7);
-
-
 }
 
 .level35 .item7 {
@@ -1640,7 +1529,6 @@ z-index:5;
     bottom: 0px;
     right: 168px;
     transform: scale(0.8) rotateZ(-16deg)
-
 }
 
 .level35 .item8 {
@@ -1648,7 +1536,6 @@ z-index:5;
     right: 79px;
     top: 143px;
     transform: scale(0.8) rotateZ(08deg)
-
 }
 
 .level35 .item9 {
@@ -1663,7 +1550,6 @@ z-index:5;
     right: 350px;
     transform: scale(0.7);
     z-index: 6
-
 }
 
 .level35 .item11 {
@@ -1671,11 +1557,11 @@ z-index:5;
     right: 426px;
     z-index: 2;
     transform: scale(1) rotateZ(0deg)
-
 }
+
 .level35 .item12 {
-   transform: scale(1) rotateZ(-0deg);
-z-index:5;
+    transform: scale(1) rotateZ(-0deg);
+    z-index: 5;
     top: 288px;
     z-index: 6;
     left: 398px;
@@ -1692,92 +1578,112 @@ z-index:5;
     box-shadow: 0 0 15px black;
     transition: all ease 0.2s;
 }
+
 .gamewrap {
     height: 540px;
 }
+
 .master .card:hover,
 .master .card.selected {
     box-shadow: 0 0 15px #feb822;
     border: 2px solid #feb822
 }
+
 .master .card1 {
     bottom: -75px;
     left: 140px;
     transform: rotateZ(-20deg);
 }
-.master .card1:hover {
-    transform: translateY(-40px) rotateZ(-20deg);
-}
-.master .card1.selected {
-    bottom: -75px;
-    left: 140px;
-    transform: translateY(-40px) rotateZ(-20deg);
-}
+
+    .master .card1:hover {
+        transform: translateY(-40px) rotateZ(-20deg);
+    }
+
+    .master .card1.selected {
+        bottom: -75px;
+        left: 140px;
+        transform: translateY(-40px) rotateZ(-20deg);
+    }
+
 .master .card2 {
     bottom: -45px;
     left: 240px;
     transform: rotateZ(-10deg);
 }
-.master .card2.selected {
-    bottom: -45px;
-    left: 240px;
-    transform: translateY(-40px) rotateZ(-10deg);
-}
-.master .card2:hover {
-    transform: translateY(-40px) rotateZ(-10deg);
-}
+
+    .master .card2.selected {
+        bottom: -45px;
+        left: 240px;
+        transform: translateY(-40px) rotateZ(-10deg);
+    }
+
+    .master .card2:hover {
+        transform: translateY(-40px) rotateZ(-10deg);
+    }
+
 .master .card3 {
     bottom: -31px;
     left: 340px;
     transform: rotateZ(-3deg);
 }
-.master .card3.selected {
-    bottom: -31px;
-    left: 340px;
-    transform: translateY(-40px) rotateZ(-3deg);
-}
-.master .card3:hover {
-    transform: translateY(-40px) rotateZ(-3deg);
-}
+
+    .master .card3.selected {
+        bottom: -31px;
+        left: 340px;
+        transform: translateY(-40px) rotateZ(-3deg);
+    }
+
+    .master .card3:hover {
+        transform: translateY(-40px) rotateZ(-3deg);
+    }
+
 .master .card4 {
     bottom: -31px;
     left: 440px;
     transform: rotateZ(3deg);
 }
-.master .card4:hover {
-    transform: translateY(-40px) rotateZ(3deg);
-}
-.master .card4.selected {
-    bottom: -31px;
-    left: 440px;
-    transform: translateY(-40px) rotateZ(3deg);
-}
+
+    .master .card4:hover {
+        transform: translateY(-40px) rotateZ(3deg);
+    }
+
+    .master .card4.selected {
+        bottom: -31px;
+        left: 440px;
+        transform: translateY(-40px) rotateZ(3deg);
+    }
+
 .master .card5 {
     bottom: -45px;
     left: 540px;
     transform: rotateZ(10deg);
 }
-.master .card5:hover {
-    transform: translateY(-40px) rotateZ(10deg);
-}
-.master .card5.selected {
-    bottom: -45px;
-    left: 540px;
-    transform: translateY(-40px) rotateZ(10deg);
-}
+
+    .master .card5:hover {
+        transform: translateY(-40px) rotateZ(10deg);
+    }
+
+    .master .card5.selected {
+        bottom: -45px;
+        left: 540px;
+        transform: translateY(-40px) rotateZ(10deg);
+    }
+
 .master .card6 {
     bottom: -75px;
     left: 640px;
     transform: rotateZ(20deg);
 }
-.master .card6:hover {
-    transform: translateY(-40px) rotateZ(20deg);
-}
-.master .card6.selected {
-    bottom: -75px;
-    left: 640px;
-    transform: translateY(-40px) rotateZ(20deg);
-}
+
+    .master .card6:hover {
+        transform: translateY(-40px) rotateZ(20deg);
+    }
+
+    .master .card6.selected {
+        bottom: -75px;
+        left: 640px;
+        transform: translateY(-40px) rotateZ(20deg);
+    }
 
 .master .slot {
     width: 120px;
@@ -1786,43 +1692,52 @@ z-index:5;
     transform: rotateX(-26deg);
     position: absolute;
 }
+
 .slot:hover,
 .slot.selected {
     box-shadow: 0 0 15px #feb822;
     border: 2px solid #feb822;
+}
 
-}
 .card.added {
-    transform: translateY(0px) rotateZ(0deg) rotateX(-18deg) scale(0.7)!important;
+    transform: translateY(0px) rotateZ(0deg) rotateX(-18deg) scale(0.7) !important;
 }
+
 .card.on1 {
     top: 36px;
-    left: 139px!important;
+    left: 139px !important;
 }
+
 .card.on2 {
     top: 36px;
-    left: 282px!important;
+    left: 282px !important;
 }
+
 .card.on3 {
     top: 36px;
-    left: 421px!important;
+    left: 421px !important;
 }
+
 .card.on4 {
     top: 36px;
-    left: 560px!important;
+    left: 560px !important;
 }
+
 .master #slot1 {
     top: 78px;
     left: 156px;
 }
+
 .master #slot2 {
     top: 78px;
     left: 299px;
 }
+
 .master #slot3 {
     top: 78px;
     left: 440px;
 }
+
 .master #slot4 {
     top: 78px;
     left: 581px;
@@ -1838,33 +1753,52 @@ z-index:5;
     background: url(/Content/images/remove.png) no-repeat center center;
     background-size: cover;
 }
-.slots .remove.active {
-    display: block;
+
+    .slots .remove.active {
+        display: block;
+    }
+
+.slots #remove1 {
+    top: 240px;
+    left: 197px;
 }
-.slots #remove1 { top: 240px; left: 197px; }
-.slots #remove2 { top: 240px; left: 337px; }
-.slots #remove3 { top: 240px; left: 479px; }
-.slots #remove4 { top: 240px; left: 625px; }
+
+.slots #remove2 {
+    top: 240px;
+    left: 337px;
+}
+
+.slots #remove3 {
+    top: 240px;
+    left: 479px;
+}
+
+.slots #remove4 {
+    top: 240px;
+    left: 625px;
+}
 
 #solCont {
     display: block;
-    position:absolute;
+    position: absolute;
     width: 406px;
     height: 430px;
     position: absolute;
-    top:80px;
+    top: 80px;
     right: -5px;
-    z-index:0!important;
+    z-index: 0 !important;
 }
-#solCont:hover {
-    z-index: 5!important;
-}
+
+    #solCont:hover {
+        z-index: 5 !important;
+    }
+
 .mCSB_inside > .mCSB_container {
-    margin-right: 15px!important;
+    margin-right: 15px !important;
 }
+
 .mCSB_container {
     padding-left: 306px;
-
 }
 
 #solutions {
@@ -1874,27 +1808,31 @@ z-index:5;
     height: 430px;
     position: relative;
 }
-#solutions .prevguess {
-    width: 100%;
-    margin-bottom: 1%;
-    transition: all ease 0.3s;
-    text-align: right;
-    z-index: 1000;
-    position: relative;
-}
-#solutions .prevguess img {
-    display: inline-block;
-    width: 24%;
-    margin-right:1%;
-}
-#solutions .prevguess:hover {
-    width: 300px;
-    z-index: 10;
-    margin-left:-219px;
-}
-#solutions .prevguess:hover img {
-    box-shadow: 0 0 12px black;
-}
+
+    #solutions .prevguess {
+        width: 100%;
+        margin-bottom: 1%;
+        transition: all ease 0.3s;
+        text-align: right;
+        z-index: 1000;
+        position: relative;
+    }
+
+        #solutions .prevguess img {
+            display: inline-block;
+            width: 24%;
+            margin-right: 1%;
+        }
+
+        #solutions .prevguess:hover {
+            width: 300px;
+            z-index: 10;
+            margin-left: -219px;
+        }
+
+            #solutions .prevguess:hover img {
+                box-shadow: 0 0 12px black;
+            }
 
 #solve {
     cursor: pointer;
@@ -1915,10 +1853,9 @@ z-index:5;
     box-shadow: 0 5px 10px rgba(0,0,0,0.6);
 }
 
-#solve:hover {
-    background: rgb(247, 212, 56);
-
-}
+    #solve:hover {
+        background: rgb(247, 212, 56);
+    }
 
 .blackDot, .whiteDot {
     display: block;
@@ -1928,21 +1865,25 @@ z-index:5;
     margin-right: 10px;
     border-radius: 5px;
 }
+
 .lasthint {
     position: absolute;
-    width:50px;
+    width: 50px;
     top: -2px;
-    left:-44px;
+    left: -44px;
     display: block;
     margin: 0 auto;
 }
+
 .blackDot {
     background: #35812a;
 }
+
 .whiteDot {
     background: white;
     border: 1px solid white;
 }
+
 .wrong {
     display: block;
     width: 10px;
@@ -1951,53 +1892,58 @@ z-index:5;
     margin-right: 10px;
     border-radius: 0px;
 }
-.wrong img {
-    display: block;
-    width: 10px!important;
-    height: 10px;
-}
+
+    .wrong img {
+        display: block;
+        width: 10px !important;
+        height: 10px;
+    }
+
 #success, #fail {
     display: none;
     position: absolute;
     z-index: 100000;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     right: 0;
-    bottom:0;
+    bottom: 0;
     background: rgba(0,0,0,0.7);
-    color:white;
+    color: white;
     font-family: "GFS";
     text-transform: uppercase;
     text-align: center;
     padding-top: 160px;
 }
-#success h1, #fail h1 {
-    color: #feb822;
-    font-size: 56px;
-    margin-bottom: -10px;
-}
+
+    #success h1, #fail h1 {
+        color: #feb822;
+        font-size: 56px;
+        margin-bottom: -10px;
+    }
 
 .cards {
     z-index: 2;
     position: relative;
-    
 }
-.slots{
+
+.slots {
     z-index: 3;
     position: relative;
-    
 }
+
 .cards {
-    pointer-events:none;
+    pointer-events: none;
     height: 540px;
 }
+
 .card {
-    pointer-events:auto;
+    pointer-events: auto;
 }
 
 #solCont, #solutions {
     pointer-events: none;
 }
+
 .prevguess {
     pointer-events: auto;
 }
@@ -2005,255 +1951,293 @@ z-index:5;
 
 /****** questions ******/
 #attempts {
-    color:white;
+    color: white;
 }
 
 #quiz {
     width: 450px;
     height: auto;
-    position:Absolute;
-    background:rgba(0,0,0,0.8);
-    left:50%;
+    position: Absolute;
+    background: rgba(0,0,0,0.8);
+    left: 50%;
     margin-left: -225px;
     margin-top: 74px;
     padding: 25px;
     display: none;
-    z-index:2;
+    z-index: 2;
     border-radius: 16px;
 }
-#quiz #question {
-    color: white;
-    text-align: center;
-    padding-bottom: 20px;
-    font-size: 23px;
-}
-#quiz .answer {
-    display: block;
-    width: 100%;
-    padding: 15px 10px;
-    margin-bottom: 20px;
-    border: 1px solid #feb822;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feb822+0,d99300+100 */
-background: rgb(254,184,34); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(254,184,34,1) 0%, rgba(217,147,0,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(254,184,34,1) 0%,rgba(217,147,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(254,184,34,1) 0%,rgba(217,147,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', endColorstr='#d99300',GradientType=0 ); /* IE6-9 */
-    color:black;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 24px;
-    cursor: pointer;
-}
-#quiz .answer:hover {
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feb822+0,c48200+100 */
-background: rgb(254,184,34); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(254,184,34,1) 0%, rgba(196,130,0,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(254,184,34,1) 0%,rgba(196,130,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(254,184,34,1) 0%,rgba(196,130,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', endColorstr='#c48200',GradientType=0 ); /* IE6-9 */
 
-}
-#quiz:after {
-    content:'';
-    display:block;
-    width: 450px;
-    height: 100px;
-    background:transparent;
-    position:absolute;
-    bottom:0;
-    left: 0;
-    z-index:-1;
-    box-shadow: 0 0 80px rgba(0,0,0,1);
-}
+    #quiz #question {
+        color: white;
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 23px;
+    }
 
-#quiz .answer.correct {
-    background: #00f200;
-}
-#quiz .answer.wrong {
-    background: red;
-}
+    #quiz .answer {
+        display: block;
+        width: 100%;
+        padding: 15px 10px;
+        margin-bottom: 20px;
+        border: 1px solid #feb822;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feb822+0,d99300+100 */
+        background: rgb(254,184,34); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(254,184,34,1) 0%, rgba(217,147,0,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(254,184,34,1) 0%,rgba(217,147,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(254,184,34,1) 0%,rgba(217,147,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', endColorstr='#d99300',GradientType=0 ); /* IE6-9 */
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 24px;
+        cursor: pointer;
+    }
+
+        #quiz .answer:hover {
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feb822+0,c48200+100 */
+            background: rgb(254,184,34); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(254,184,34,1) 0%, rgba(196,130,0,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(254,184,34,1) 0%,rgba(196,130,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(254,184,34,1) 0%,rgba(196,130,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', endColorstr='#c48200',GradientType=0 ); /* IE6-9 */
+        }
+
+    #quiz:after {
+        content: '';
+        display: block;
+        width: 450px;
+        height: 100px;
+        background: transparent;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        box-shadow: 0 0 80px rgba(0,0,0,1);
+    }
+
+    #quiz .answer.correct {
+        background: #00f200;
+    }
+
+    #quiz .answer.wrong {
+        background: red;
+    }
 
 .blocked button {
     pointer-events: none;
 }
 
 .lock {
-    position:absolute;
+    position: absolute;
     display: block;
     -webkit-filter: drop-shadow(0px 25px 10px #222);
-    filter:         drop-shadow(0px 25px 10px #222); 
-
+    filter: drop-shadow(0px 25px 10px #222);
 }
+
 .clicked {
     opacity: 0.3;
     pointer-events: none;
 }
+
 #lock1 {
     top: 60px;
-    left:0px;
+    left: 0px;
     transform: scale(0.4);
 }
+
 #lock2 {
     top: 145px;
-    left:0px;
+    left: 0px;
     transform: scale(0.4);
 }
+
 #lock3 {
     top: 272px;
-    left:0px;
+    left: 0px;
     transform: scale(0.4);
 }
+
 #lock4 {
     top: 16px;
     left: 54px;
     transform: scale(0.4);
 }
+
 #lock5 {
     top: -43px;
     left: 170px;
     transform: scale(0.4);
 }
+
 #lock6 {
     top: -22px;
     left: 257px;
     transform: scale(0.4);
 }
+
 #lock7 {
     top: 19px;
     left: 378px;
     transform: scale(0.4);
 }
+
 #lock8 {
     top: 187px;
     left: 512px;
     transform: scale(0.4);
 }
+
 #lock9 {
     top: 58px;
     left: 477px;
     transform: scale(0.4);
 }
+
 #lock10 {
     top: 314px;
     left: 468px;
     transform: scale(0.4);
 }
+
 #lock11 {
     top: 146px;
     left: 84px;
     transform: scale(0.4);
 }
+
 #lock12 {
     top: 112px;
     left: 194px;
     transform: scale(0.4);
 }
+
 #lock13 {
     top: 15px;
     left: 54px;
     transform: scale(0.4);
 }
+
 #lock14 {
     top: 359px;
     left: 304px;
     transform: scale(0.4);
 }
+
 #lock15 {
     top: 339px;
     left: 380px;
     transform: scale(0.4);
 }
+
 #lock16 {
     top: 146px;
     left: 318px;
     transform: scale(0.4);
 }
+
 #lock17 {
     top: 121px;
     left: 465px;
     transform: scale(0.4);
 }
+
 #lock18 {
     top: 213px;
     left: 297px;
     transform: scale(0.4);
 }
+
 #lock19 {
     top: 244px;
     left: 200px;
     transform: scale(0.4);
 }
+
 #lock20 {
     top: 100px;
     left: 368px;
     transform: scale(0.4);
 }
+
 #lock21 {
     top: 205px;
     left: 396px;
     transform: scale(0.4);
 }
+
 #lock22 {
     top: 284px;
     left: 118px;
     transform: scale(0.4);
 }
+
 #lock23 {
     top: 305px;
     left: 555px;
     transform: scale(0.4);
 }
+
 #lock24 {
     top: 267px;
     left: 90px;
     transform: scale(0.4);
 }
+
 #lock24 {
     top: 52px;
     left: 531px;
     transform: scale(0.4);
 }
+
 #lock25 {
     top: 303px;
     left: 769px;
     transform: scale(0.4);
 }
+
 #lock26 {
     top: -12px;
     left: 633px;
     transform: scale(0.4);
 }
+
 #lock27 {
     top: 172px;
     left: 613px;
     transform: scale(0.4);
 }
+
 #lock28 {
     top: 133px;
     left: 712px;
     transform: scale(0.4);
 }
+
 #lock29 {
     top: 328px;
     left: 672px;
     transform: scale(0.4);
 }
+
 #lock30 {
     top: 224px;
     left: 694px;
     transform: scale(0.4);
 }
+
 #lock31 {
     top: 267px;
     left: 90px;
     transform: scale(0.4);
 }
+
 #lock32 {
     top: -9px;
     left: 743px;
     transform: scale(0.4);
 }
+
 #lock33 {
     top: 133px;
     left: 798px;
@@ -2263,93 +2247,207 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 
 /****** whack a mole *****/
 .mole * {
-      -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently*/
-
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently*/
 }
+
 .enemy {
     width: 100px;
     height: 100px;
     display: inline-block;
     position: absolute;
     transition: all ease 0.2s;
-    background-size: cover!important;
-
+    background-size: cover !important;
 }
+
 .monster1 {
-    background:url('images/whack/skeleton.gif') no-repeat center center;
-    height: 117px!important;
+    background: url('images/whack/skeleton.gif') no-repeat center center;
+    height: 117px !important;
     width: 116px;
 }
-.monster2 {
-    background:url('images/whack/goblin.gif') no-repeat center center;
-    width:73px;
-}
-.monster3 {
-    background:url('images/whack/box.gif') no-repeat center center;
-    width:73px;
 
+.monster2 {
+    background: url('images/whack/goblin.gif') no-repeat center center;
+    width: 73px;
 }
+
+.monster3 {
+    background: url('images/whack/box.gif') no-repeat center center;
+    width: 73px;
+}
+
 .monster4 {
-    background:url('images/whack/zombie.gif') no-repeat center center;
-    width:100px;
-    margin-left:-25px;
-    height: 171px!important;
+    background: url('images/whack/zombie.gif') no-repeat center center;
+    width: 100px;
+    margin-left: -25px;
+    height: 171px !important;
 }
+
 .monster5 {
-    background:url('images/whack/star.gif') no-repeat center center;
-    width:73px;
+    background: url('images/whack/star.gif') no-repeat center center;
+    width: 73px;
 }
+
 .enemy img {
-    display:block;
+    display: block;
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
 }
+
 .enemy.hide {
-    height:0px;
+    height: 0px;
     transform: translateY(100px);
 }
 
-.mole .pos1 { top: 191px; left: 109px; z-index:1}
-.mole .pos2 { top: 207px; left: 336px;z-index:1}
-.mole .pos3 { top: 191px; left: 565px;z-index:1}
-.mole .pos4 { top: 178px; left: 779px;z-index:1}
-.mole .pos5 { top: 320px; left: 200px;z-index:3}
-.mole .pos6 { top: 313px; left: 456px;z-index:3}
-.mole .pos7 { top: 310px; left: 759px;z-index:3}
-.mole .pos8 { top: 457px; left: 79px;z-index:4}
-.mole .pos9 { top: 450px; left: 367px;z-index:4}
-.mole .pos10 { top:435px; left: 580px;z-index:4}
-.mole .pos11 { top:451px; left: 826px;z-index:4}
+.mole .pos1 {
+    top: 191px;
+    left: 109px;
+    z-index: 1
+}
+
+.mole .pos2 {
+    top: 207px;
+    left: 336px;
+    z-index: 1
+}
+
+.mole .pos3 {
+    top: 191px;
+    left: 565px;
+    z-index: 1
+}
+
+.mole .pos4 {
+    top: 178px;
+    left: 779px;
+    z-index: 1
+}
+
+.mole .pos5 {
+    top: 320px;
+    left: 200px;
+    z-index: 3
+}
+
+.mole .pos6 {
+    top: 313px;
+    left: 456px;
+    z-index: 3
+}
+
+.mole .pos7 {
+    top: 310px;
+    left: 759px;
+    z-index: 3
+}
+
+.mole .pos8 {
+    top: 457px;
+    left: 79px;
+    z-index: 4
+}
+
+.mole .pos9 {
+    top: 450px;
+    left: 367px;
+    z-index: 4
+}
+
+.mole .pos10 {
+    top: 435px;
+    left: 580px;
+    z-index: 4
+}
+
+.mole .pos11 {
+    top: 451px;
+    left: 826px;
+    z-index: 4
+}
 
 .boom {
     display: block;
-    position:absolute;
+    position: absolute;
 }
-.boom.position1 { top: 19px; left: 72px;z-index:2;}
-.boom.position2 { top: 25px; left: 302px;z-index:2;}
-.boom.position3 { top: 13px; left: 531px;z-index:2;}
-.boom.position4 { top: 3px; left: 753px;z-index:2;}
-.boom.position5 { top: 130px; left: 170px;z-index:4;}
-.boom.position6 { top: 130px; left: 425px;z-index:4;}
-.boom.position7 { top: 140px; left: 725px;z-index:4;}
-.boom.position8 { top: 280px; left: 45px;z-index:4;}
-.boom.position9 { top: 280px; left: 338px;z-index:4;}
-.boom.position10 { top: 258px; left: 548px;z-index:4;}
-.boom.position11 { top: 285px; left: 788px;z-index:4;}
+
+    .boom.position1 {
+        top: 19px;
+        left: 72px;
+        z-index: 2;
+    }
+
+    .boom.position2 {
+        top: 25px;
+        left: 302px;
+        z-index: 2;
+    }
+
+    .boom.position3 {
+        top: 13px;
+        left: 531px;
+        z-index: 2;
+    }
+
+    .boom.position4 {
+        top: 3px;
+        left: 753px;
+        z-index: 2;
+    }
+
+    .boom.position5 {
+        top: 130px;
+        left: 170px;
+        z-index: 4;
+    }
+
+    .boom.position6 {
+        top: 130px;
+        left: 425px;
+        z-index: 4;
+    }
+
+    .boom.position7 {
+        top: 140px;
+        left: 725px;
+        z-index: 4;
+    }
+
+    .boom.position8 {
+        top: 280px;
+        left: 45px;
+        z-index: 4;
+    }
+
+    .boom.position9 {
+        top: 280px;
+        left: 338px;
+        z-index: 4;
+    }
+
+    .boom.position10 {
+        top: 258px;
+        left: 548px;
+        z-index: 4;
+    }
+
+    .boom.position11 {
+        top: 285px;
+        left: 788px;
+        z-index: 4;
+    }
 
 
 #myCanvas {
-    position:absolute;
-    bottom:0;
-    height:400px;
-    pointer-events:none;
-    z-index:50;
+    position: absolute;
+    bottom: 0;
+    height: 400px;
+    pointer-events: none;
+    z-index: 50;
 }
 
 .mole #layer1 {
@@ -2388,108 +2486,111 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 .map {
     width: 802px;
     height: 590px;
-    position:relative;
+    position: relative;
     -webkit-filter: drop-shadow(0px 25px 10px rgba(0,0,0,0.4));
-    filter:         drop-shadow(0px 25px 10px rgba(0,0,0,0.4)); 
-}
-.map a {
-    position: absolute;
-    display:block;
-    bottom:-13px;
-    right: 140px;
-    -webkit-filter: drop-shadow(0px 25px 10px rgba(0,0,0,0.4));
-    filter:         drop-shadow(0px 25px 10px rgba(0,0,0,0.4)); 
-    transition:all ease 0.2s;
-}
-.map a:hover {
-    transform: scale(1.05);
+    filter: drop-shadow(0px 25px 10px rgba(0,0,0,0.4));
 }
 
-.map .point {
-    position:absolute;
+    .map a {
+        position: absolute;
+        display: block;
+        bottom: -13px;
+        right: 140px;
+        -webkit-filter: drop-shadow(0px 25px 10px rgba(0,0,0,0.4));
+        filter: drop-shadow(0px 25px 10px rgba(0,0,0,0.4));
+        transition: all ease 0.2s;
+    }
 
-}
+        .map a:hover {
+            transform: scale(1.05);
+        }
 
-.map .point1 {
-    top: 180px;
-    left:126px;
-}
+    .map .point {
+        position: absolute;
+    }
 
-.map .point2 {
-    top: 218px;
-    left:240px;
-}
+    .map .point1 {
+        top: 180px;
+        left: 126px;
+    }
 
-.map .point3 {
-    top: 230px;
-    left:386px;
-}
+    .map .point2 {
+        top: 218px;
+        left: 240px;
+    }
 
-.map .point4 {
-    top: 269px;
-    left:498px;
-}
-.map .point5 {
-    top: 370px;
-    left:543px;
-}
-.map .point6 {
-    top: 450px;
-    left:666px;
-}
+    .map .point3 {
+        top: 230px;
+        left: 386px;
+    }
 
-.map .point .boom {
-    width: 57px;
-    height: 58px;
-    display:none;
-    background:url(/Content/images/map/boom.png) no-repeat;
-    position:absolute;
-    top:-13px;
-    left:-15px; 
-}
+    .map .point4 {
+        top: 269px;
+        left: 498px;
+    }
 
-.map .point:hover .boom
-,.map .point:hover .pop {
-    display:block;
-    cursor: pointer;
-    max-height:500;
-    opacity: 1;
-}
+    .map .point5 {
+        top: 370px;
+        left: 543px;
+    }
 
-.map .point .xmark {
-    width:72px;
-    height: 63px;
-    display:block;
-    position:absolute;
-    top:-18px;
-    left:-29px; 
-    z-index: 1
-}
+    .map .point6 {
+        top: 450px;
+        left: 666px;
+    }
+
+    .map .point .boom {
+        width: 57px;
+        height: 58px;
+        display: none;
+        background: url(/Content/images/map/boom.png) no-repeat;
+        position: absolute;
+        top: -13px;
+        left: -15px;
+    }
+
+    .map .point:hover .boom, .map .point:hover .pop {
+        display: block;
+        cursor: pointer;
+        max-height: 500;
+        opacity: 1;
+    }
+
+    .map .point .xmark {
+        width: 72px;
+        height: 63px;
+        display: block;
+        position: absolute;
+        top: -18px;
+        left: -29px;
+        z-index: 1
+    }
 
 .point .pop {
-    width:158px;
+    width: 158px;
     height: 121px;
-    display:block;
-    position:absolute;
-    top:-128px;
-    left:-68px;
-    z-index:2;
+    display: block;
+    position: absolute;
+    top: -128px;
+    left: -68px;
+    z-index: 2;
     max-height: 0px;
-    opacity:0;
+    opacity: 0;
     transition: all ease .2s;
     pointer-events: none;
 }
+
 .map .line {
     position: absolute;
     top: 191px;
-    left:149px;
+    left: 149px;
     background: url(/Content/images/map/lines.png) center center no-repeat;
     mix-blend-mode: multiply;
-    }
-
-.map .line img {
-    opacity: 0;
 }
+
+    .map .line img {
+        opacity: 0;
+    }
 
 
 
@@ -2500,22 +2601,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
     margin-right: 15px;
     transform: scale(0.8)
 }
+
 #weapons img {
     display: block;
 }
+
 #weapons .selected {
-    box-shadow: 0 0 2px #c32a76, 0 0 10px #c32a76,  0 0 20px #c32a76;
+    box-shadow: 0 0 2px #c32a76, 0 0 10px #c32a76, 0 0 20px #c32a76;
     transform: scale(1)
 }
+
 #weapons {
     display: block;
-    position:absolute;
-    bottom:3px;
+    position: absolute;
+    bottom: 3px;
     z-index: 5000;
     left: 380px;
     width: 255px;
     cursor: pointer;
 }
+
 .weapon3 {
     margin-right: 0;
 }
@@ -2538,17 +2643,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
     left: 100px;
     display: none;
 }
+
 .title.visible {
-    display: block!important;
-    opacity: 1!important;
+    display: block !important;
+    opacity: 1 !important;
 }
 
 /****** preloader */
 #preloader {
-    position:fixed;
+    position: fixed;
     background: black;
     top: 0px;
-    left:0px;
+    left: 0px;
     right: 0px;
     bottom: 0px;
     z-index: 9999999999999;
@@ -2557,16 +2663,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 .windows8 {
     position: relative;
     width: 42px;
-    height:42px;
-    margin:30% auto 0 auto;
-}
-#letsgo {
-    display:none;
+    height: 42px;
     margin: 30% auto 0 auto;
 }
-#letsgo.show {
-    display:block;
+
+#letsgo {
+    display: none;
+    margin: 30% auto 0 auto;
 }
+
+    #letsgo.show {
+        display: block;
+    }
 
 .windows8 .wBall {
     position: absolute;
@@ -2574,65 +2682,65 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
     height: 40px;
     opacity: 0;
     transform: rotate(225deg);
-        -o-transform: rotate(225deg);
-        -ms-transform: rotate(225deg);
-        -webkit-transform: rotate(225deg);
-        -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
     animation: orbit 6.96s infinite;
-        -o-animation: orbit 6.96s infinite;
-        -ms-animation: orbit 6.96s infinite;
-        -webkit-animation: orbit 6.96s infinite;
-        -moz-animation: orbit 6.96s infinite;
+    -o-animation: orbit 6.96s infinite;
+    -ms-animation: orbit 6.96s infinite;
+    -webkit-animation: orbit 6.96s infinite;
+    -moz-animation: orbit 6.96s infinite;
 }
 
-.windows8 .wBall .wInnerBall{
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: rgb(255,255,255);
-    left:0px;
-    top:0px;
-    border-radius: 5px;
-}
+    .windows8 .wBall .wInnerBall {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: rgb(255,255,255);
+        left: 0px;
+        top: 0px;
+        border-radius: 5px;
+    }
 
 .windows8 #wBall_1 {
     animation-delay: 1.52s;
-        -o-animation-delay: 1.52s;
-        -ms-animation-delay: 1.52s;
-        -webkit-animation-delay: 1.52s;
-        -moz-animation-delay: 1.52s;
+    -o-animation-delay: 1.52s;
+    -ms-animation-delay: 1.52s;
+    -webkit-animation-delay: 1.52s;
+    -moz-animation-delay: 1.52s;
 }
 
 .windows8 #wBall_2 {
     animation-delay: 0.3s;
-        -o-animation-delay: 0.3s;
-        -ms-animation-delay: 0.3s;
-        -webkit-animation-delay: 0.3s;
-        -moz-animation-delay: 0.3s;
+    -o-animation-delay: 0.3s;
+    -ms-animation-delay: 0.3s;
+    -webkit-animation-delay: 0.3s;
+    -moz-animation-delay: 0.3s;
 }
 
 .windows8 #wBall_3 {
     animation-delay: 0.61s;
-        -o-animation-delay: 0.61s;
-        -ms-animation-delay: 0.61s;
-        -webkit-animation-delay: 0.61s;
-        -moz-animation-delay: 0.61s;
+    -o-animation-delay: 0.61s;
+    -ms-animation-delay: 0.61s;
+    -webkit-animation-delay: 0.61s;
+    -moz-animation-delay: 0.61s;
 }
 
 .windows8 #wBall_4 {
     animation-delay: 0.91s;
-        -o-animation-delay: 0.91s;
-        -ms-animation-delay: 0.91s;
-        -webkit-animation-delay: 0.91s;
-        -moz-animation-delay: 0.91s;
+    -o-animation-delay: 0.91s;
+    -ms-animation-delay: 0.91s;
+    -webkit-animation-delay: 0.91s;
+    -moz-animation-delay: 0.91s;
 }
 
 .windows8 #wBall_5 {
     animation-delay: 1.22s;
-        -o-animation-delay: 1.22s;
-        -ms-animation-delay: 1.22s;
-        -webkit-animation-delay: 1.22s;
-        -moz-animation-delay: 1.22s;
+    -o-animation-delay: 1.22s;
+    -ms-animation-delay: 1.22s;
+    -webkit-animation-delay: 1.22s;
+    -moz-animation-delay: 1.22s;
 }
 
 
@@ -2640,7 +2748,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 @keyframes orbit {
     0% {
         opacity: 1;
-        z-index:99;
+        z-index: 99;
         transform: rotate(180deg);
         animation-timing-function: ease-out;
     }
@@ -2649,44 +2757,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
         opacity: 1;
         transform: rotate(300deg);
         animation-timing-function: linear;
-        origin:0%;
+        origin: 0%;
     }
 
     30% {
         opacity: 1;
-        transform:rotate(410deg);
+        transform: rotate(410deg);
         animation-timing-function: ease-in-out;
-        origin:7%;
+        origin: 7%;
     }
 
     39% {
         opacity: 1;
         transform: rotate(645deg);
         animation-timing-function: linear;
-        origin:30%;
+        origin: 30%;
     }
 
     70% {
         opacity: 1;
         transform: rotate(770deg);
         animation-timing-function: ease-out;
-        origin:39%;
+        origin: 39%;
     }
 
     75% {
         opacity: 1;
         transform: rotate(900deg);
         animation-timing-function: ease-out;
-        origin:70%;
+        origin: 70%;
     }
 
     76% {
-    opacity: 0;
-        transform:rotate(900deg);
+        opacity: 0;
+        transform: rotate(900deg);
     }
 
     100% {
-    opacity: 0;
+        opacity: 0;
         transform: rotate(900deg);
     }
 }
@@ -2694,7 +2802,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 @-o-keyframes orbit {
     0% {
         opacity: 1;
-        z-index:99;
+        z-index: 99;
         -o-transform: rotate(180deg);
         -o-animation-timing-function: ease-out;
     }
@@ -2703,44 +2811,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
         opacity: 1;
         -o-transform: rotate(300deg);
         -o-animation-timing-function: linear;
-        -o-origin:0%;
+        -o-origin: 0%;
     }
 
     30% {
         opacity: 1;
-        -o-transform:rotate(410deg);
+        -o-transform: rotate(410deg);
         -o-animation-timing-function: ease-in-out;
-        -o-origin:7%;
+        -o-origin: 7%;
     }
 
     39% {
         opacity: 1;
         -o-transform: rotate(645deg);
         -o-animation-timing-function: linear;
-        -o-origin:30%;
+        -o-origin: 30%;
     }
 
     70% {
         opacity: 1;
         -o-transform: rotate(770deg);
         -o-animation-timing-function: ease-out;
-        -o-origin:39%;
+        -o-origin: 39%;
     }
 
     75% {
         opacity: 1;
         -o-transform: rotate(900deg);
         -o-animation-timing-function: ease-out;
-        -o-origin:70%;
+        -o-origin: 70%;
     }
 
     76% {
-    opacity: 0;
-        -o-transform:rotate(900deg);
+        opacity: 0;
+        -o-transform: rotate(900deg);
     }
 
     100% {
-    opacity: 0;
+        opacity: 0;
         -o-transform: rotate(900deg);
     }
 }
@@ -2748,7 +2856,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 @-ms-keyframes orbit {
     0% {
         opacity: 1;
-        z-index:99;
+        z-index: 99;
         -ms-transform: rotate(180deg);
         -ms-animation-timing-function: ease-out;
     }
@@ -2757,44 +2865,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
         opacity: 1;
         -ms-transform: rotate(300deg);
         -ms-animation-timing-function: linear;
-        -ms-origin:0%;
+        -ms-origin: 0%;
     }
 
     30% {
         opacity: 1;
-        -ms-transform:rotate(410deg);
+        -ms-transform: rotate(410deg);
         -ms-animation-timing-function: ease-in-out;
-        -ms-origin:7%;
+        -ms-origin: 7%;
     }
 
     39% {
         opacity: 1;
         -ms-transform: rotate(645deg);
         -ms-animation-timing-function: linear;
-        -ms-origin:30%;
+        -ms-origin: 30%;
     }
 
     70% {
         opacity: 1;
         -ms-transform: rotate(770deg);
         -ms-animation-timing-function: ease-out;
-        -ms-origin:39%;
+        -ms-origin: 39%;
     }
 
     75% {
         opacity: 1;
         -ms-transform: rotate(900deg);
         -ms-animation-timing-function: ease-out;
-        -ms-origin:70%;
+        -ms-origin: 70%;
     }
 
     76% {
-    opacity: 0;
-        -ms-transform:rotate(900deg);
+        opacity: 0;
+        -ms-transform: rotate(900deg);
     }
 
     100% {
-    opacity: 0;
+        opacity: 0;
         -ms-transform: rotate(900deg);
     }
 }
@@ -2802,7 +2910,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 @-webkit-keyframes orbit {
     0% {
         opacity: 1;
-        z-index:99;
+        z-index: 99;
         -webkit-transform: rotate(180deg);
         -webkit-animation-timing-function: ease-out;
     }
@@ -2811,44 +2919,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
         opacity: 1;
         -webkit-transform: rotate(300deg);
         -webkit-animation-timing-function: linear;
-        -webkit-origin:0%;
+        -webkit-origin: 0%;
     }
 
     30% {
         opacity: 1;
-        -webkit-transform:rotate(410deg);
+        -webkit-transform: rotate(410deg);
         -webkit-animation-timing-function: ease-in-out;
-        -webkit-origin:7%;
+        -webkit-origin: 7%;
     }
 
     39% {
         opacity: 1;
         -webkit-transform: rotate(645deg);
         -webkit-animation-timing-function: linear;
-        -webkit-origin:30%;
+        -webkit-origin: 30%;
     }
 
     70% {
         opacity: 1;
         -webkit-transform: rotate(770deg);
         -webkit-animation-timing-function: ease-out;
-        -webkit-origin:39%;
+        -webkit-origin: 39%;
     }
 
     75% {
         opacity: 1;
         -webkit-transform: rotate(900deg);
         -webkit-animation-timing-function: ease-out;
-        -webkit-origin:70%;
+        -webkit-origin: 70%;
     }
 
     76% {
-    opacity: 0;
-        -webkit-transform:rotate(900deg);
+        opacity: 0;
+        -webkit-transform: rotate(900deg);
     }
 
     100% {
-    opacity: 0;
+        opacity: 0;
         -webkit-transform: rotate(900deg);
     }
 }
@@ -2856,7 +2964,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 @-moz-keyframes orbit {
     0% {
         opacity: 1;
-        z-index:99;
+        z-index: 99;
         -moz-transform: rotate(180deg);
         -moz-animation-timing-function: ease-out;
     }
@@ -2865,44 +2973,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
         opacity: 1;
         -moz-transform: rotate(300deg);
         -moz-animation-timing-function: linear;
-        -moz-origin:0%;
+        -moz-origin: 0%;
     }
 
     30% {
         opacity: 1;
-        -moz-transform:rotate(410deg);
+        -moz-transform: rotate(410deg);
         -moz-animation-timing-function: ease-in-out;
-        -moz-origin:7%;
+        -moz-origin: 7%;
     }
 
     39% {
         opacity: 1;
         -moz-transform: rotate(645deg);
         -moz-animation-timing-function: linear;
-        -moz-origin:30%;
+        -moz-origin: 30%;
     }
 
     70% {
         opacity: 1;
         -moz-transform: rotate(770deg);
         -moz-animation-timing-function: ease-out;
-        -moz-origin:39%;
+        -moz-origin: 39%;
     }
 
     75% {
         opacity: 1;
         -moz-transform: rotate(900deg);
         -moz-animation-timing-function: ease-out;
-        -moz-origin:70%;
+        -moz-origin: 70%;
     }
 
     76% {
-    opacity: 0;
-        -moz-transform:rotate(900deg);
+        opacity: 0;
+        -moz-transform: rotate(900deg);
     }
 
     100% {
-    opacity: 0;
+        opacity: 0;
         -moz-transform: rotate(900deg);
     }
 }
@@ -2912,18 +3020,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 /****** preloader */
 @media screen and (max-width: 768px) {
     .mobile .wrapper {
-        padding: 25px!important;
+        padding: 25px !important;
     }
+
     .mobile .game {
         transform: scale(0.80);
         -webkit-transform-origin: 0% 0%; /* Chrome, Safari, Opera */
         transform-origin: 0% 0%;
     }
 }
+
 @media screen and (max-width: 736px) {
     .mobile .wrapper {
         padding: 0;
     }
+
     .mobile .game {
         transform: scale(0.76);
         -webkit-transform-origin: 0% 0%; /* Chrome, Safari, Opera */
@@ -2935,26 +3046,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
     .mobile .wrapper {
         padding: 0;
     }
+
     .mobile .game {
         transform: scale(0.69);
         -webkit-transform-origin: 0% 0%; /* Chrome, Safari, Opera */
         transform-origin: 0% 0%;
     }
 }
+
 @media screen and (max-width: 640px) {
     .mobile .wrapper {
         padding: 0;
     }
+
     .mobile .game {
         transform: scale(0.66);
         -webkit-transform-origin: 0% 0%; /* Chrome, Safari, Opera */
         transform-origin: 0% 0%;
     }
 }
+
 @media screen and (max-width: 568px) {
     .mobile .wrapper {
         padding: 0;
     }
+
     .mobile .game {
         transform: scale(0.59);
         -webkit-transform-origin: 0% 0%; /* Chrome, Safari, Opera */
@@ -2966,90 +3082,95 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 
 #explainer {
     z-index: 1000000;
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom:0;
+    bottom: 0;
     background: rgba(0,0,0,0.8);
-    color:white;
-    text-align:center;
+    color: white;
+    text-align: center;
     padding: 50px 25px;
     display: none;
 }
 
-#explainer h2 {
-    font-family: 'Impact';
-    font-size: 40px;
-}
-#explainer ul > * {
-    vertical-align: middle;
-}
-#explainer li {
-    width: auto;
-    display: inline-block;
-    clear: both;
-    position: relative;
-    vertical-align: middle;   
-}
-#explainer li:before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -20px;
-    top:16px;
-    margin-right: 10px;
-    width: 10px;
-    height: 10px;
-    position: relative;
-    background:white;
-    border-radius: 10px;
-}
+    #explainer h2 {
+        font-family: 'Impact';
+        font-size: 40px;
+    }
+
+    #explainer ul > * {
+        vertical-align: middle;
+    }
+
+    #explainer li {
+        width: auto;
+        display: inline-block;
+        clear: both;
+        position: relative;
+        vertical-align: middle;
+    }
+
+        #explainer li:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -20px;
+            top: 16px;
+            margin-right: 10px;
+            width: 10px;
+            height: 10px;
+            position: relative;
+            background: white;
+            border-radius: 10px;
+        }
 
 
-#explainer .exit {
-  position: absolute;
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  top:20px;
-  right: 20px;
+    #explainer .exit {
+        position: absolute;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        top: 20px;
+        right: 20px;
+    }
 
-}
+        #explainer .exit:hover::before, #explainer .exit:hover::after {
+            background: #1ebcc5;
+        }
 
-#explainer .exit:hover::before, #explainer .exit:hover::after {
-  background: #1ebcc5;
-}
-#explainer .exit::before, #explainer .exit::after {
-  content: '';
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  margin-top: -1px;
-  background: #fff;
-}
-#explainer .exit::before {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-#explainer .exit::after {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
+        #explainer .exit::before, #explainer .exit::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: #fff;
+        }
 
-#explainer .exit::before, #explainer .exit::after {
-  height: 8px;
-  margin-top: -4px;
-}
+        #explainer .exit::before {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #explainer .exit::after {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        #explainer .exit::before, #explainer .exit::after {
+            height: 8px;
+            margin-top: -4px;
+        }
 
 .pause {
     width: 32px;
@@ -3064,7 +3185,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb822', end
 
 #mapoverlay {
     position: absolute;
-    top:-47px;
+    top: -47px;
     pointer-events: none;
     left: -35px;
+}
+
+footer img {
+    max-width: 180px;
+}
+
+
+.point.done .boom {
+    display: block;
+}
+
+.navbar-nav > li > a {
+    font-size: 17px;
+}
+
+
+
+
+.point.done .boom {
+    display: block;
 }
