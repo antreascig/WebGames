@@ -12,23 +12,15 @@ var $all = $(".hole");
 var monsters = ["monster1", "monster1", "monster1", "monster1", "monster2", "monster2", "monster2", "monster2", "monster3", "monster3", "monster4", "monster5"];
 var justAdded = null;
 var game = {
-    score: 0
+    score: GameScore
 }
 var music = $("#music")[0];
 
-$.custom.Server.GetGameScore(function(res) { // success
-    if (res && res.success && res.score) { // to time einai remaining seconds
-        game.score = res.score;
-    } else { // fail
-
-    }
-}, function() {});
-
-function startTimer(duration, display, redirUrl) {
+function startTimer(duration, display) {
     var timer = duration,
         minutes, seconds;
 
-    setInterval(function() {
+    setInterval(function () {
         if (!isPaused) {
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
@@ -39,7 +31,7 @@ function startTimer(duration, display, redirUrl) {
             if (--timer <= 0) {
                 isPaused = true;
                 localStorage.setItem('timeRemaining', 300);
-                endGame(redirUrl);
+                endGame();
                 // timer = duration;
             }
             timeRemaining = timer;
@@ -51,12 +43,17 @@ function startTimer(duration, display, redirUrl) {
 }
 var success = $("#mysoundclip")[0];
 
-function endGame(redirUrl) {
-    $('.wrapper').fadeOut(2000, function() {
-        window.location.replace(redirUrl);
+function endGame() {
+    $('.wrapper').fadeOut(2000, function () {
+        if (isDemo) {
+            window.location.replace("/Games/ActiveExplainer");
+        }
+        else {
+            window.location.replace("/Games/ActiveGameAfter?status=outoftime");
+        }
     });
 }
-jQuery.fn.center = function() {
+jQuery.fn.center = function () {
     this.css("position", "absolute");
     this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
         $(window).scrollTop()) + "px");
@@ -66,32 +63,22 @@ jQuery.fn.center = function() {
 }
 
 
-$(window).on('resize', function() {
+$(window).on('resize', function () {
     $('.game').center();
 });
 
 
-loader.addCompletionListener(function() {
-    var time = null;
-    $.custom.Server.GetGameTime(
-        function(res) { // success
-            if (res && res.success && res.time) { // to time einai remaining seconds
-                time = res.time;
-                display = $('#time');
-                startTimer(time, display);
+loader.addCompletionListener(function () {
+    var time = RemainingTime;
 
-            } else { // fail
+    display = $('#time');
+    startTimer(time, display);
 
-            }
-        },
-        function() { // fail
-
-        });
     if (isMobile == true) {
         $('body').addClass('mobile');
         $('.windows8').hide();
         $('#letsgo').addClass('show');
-        $('#letsgo').click(function(event) {
+        $('#letsgo').click(function (event) {
             $('#preloader').fadeOut(1000);
             $('.wrapper').fadeIn(2000);
             music.play();
@@ -107,9 +94,9 @@ loader.addCompletionListener(function() {
 });
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     loader.start();
-    $('.gamewrap').on('click', '.item', function(event) {
+    $('.gamewrap').on('click', '.item', function (event) {
         item = $(this);
         itemClue = item.data('clue');
         event.preventDefault();
@@ -226,7 +213,7 @@ function draw(startT, totalT) {
 
     //Repeat if there's still a living particle
     if (stillAlive) {
-        requestAnimationFrame(function() { draw(startT, totalT); });
+        requestAnimationFrame(function () { draw(startT, totalT); });
     } else {
         clog(timeDelta + ": stopped");
     }
@@ -260,7 +247,7 @@ var game = {
 }
 var poof = $("#poof")[0];
 
-watch(game, "score", function() {
+watch(game, "score", function () {
     $('#score span').html(game.score);
 });
 
@@ -287,7 +274,7 @@ var level3 = 3000;
 var level4 = 2000;
 var level5 = 1000;
 var level = level1;
-var addEnemy = function() {
+var addEnemy = function () {
     numItems = $('.enemy').length;
     if (numItems <= 10) {
 
@@ -304,12 +291,12 @@ var addEnemy = function() {
             height: 100
         }, 300);
 
-        setTimeout(function() {
+        setTimeout(function () {
             $('.pos' + randHole.data('hole')).animate({
                 top: "+=100px",
                 height: 0
             }, 300);
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.pos' + randHole.data('hole')).remove();
             }, 500)
 
@@ -321,15 +308,15 @@ var addEnemy = function() {
     }
 }
 
-var launchEnemies = function() {
+var launchEnemies = function () {
     addEnemy()
     var timeoutID = window.setTimeout(launchEnemies, Math.random() * 3000);
 }
 
 
 
-$(document).ready(function() {
-    setInterval(function() {
+$(document).ready(function () {
+    setInterval(function () {
         if (timeRemaining >= 240) {
             level = level1;
         } else if (timeRemaining >= 180 && timeRemaining <= 239) {
@@ -344,7 +331,7 @@ $(document).ready(function() {
     }, 5000);
     launchEnemies();
 
-    $('#weapons').on('click', '.weapon', function(event) {
+    $('#weapons').on('click', '.weapon', function (event) {
         event.preventDefault();
         $('.weapon').removeClass('selected');
         $(this).addClass('selected');
@@ -353,24 +340,24 @@ $(document).ready(function() {
         /* Act on the event */
     });
 
-    $('body').on('click', '.monster1', function(event) {
+    $('body').on('click', '.monster1', function (event) {
         event.preventDefault();
         var that = $(this);
         var position = that.data();
-        setTimeout(function() {
+        setTimeout(function () {
             that.remove();
         }, 250);
 
         game.score += 5;
-        var boom = '<div class="boom position' + position.position + '"><img src="images/boom.gif?' + (new Date).getTime() + '"/></div>';
+        var boom = '<div class="boom position' + position.position + '"><img src="/Content/images/boom.gif?' + (new Date).getTime() + '"/></div>';
         poof.play();
         $('#stage').append(boom);
-        setTimeout(function() {
+        setTimeout(function () {
             $('.boom.position' + position.position).remove();
         }, 700);
     });
 
-    $('body').on('click', '.monster2', function(event) {
+    $('body').on('click', '.monster2', function (event) {
 
         event.preventDefault();
         if (weapon != 2) {
@@ -382,24 +369,24 @@ $(document).ready(function() {
         clicks.click += 1;
         if (clicks.click == 3) {
             $('.monster2').length;
-            $('.monster2').each(function(index, el) {
+            $('.monster2').each(function (index, el) {
                 game.score += 2;
                 var position = $(this).data();
-                var boom = '<img class="boom position' + position.position + '" src="images/boom.gif?' + (new Date).getTime() + '"/>';
+                var boom = '<img class="boom position' + position.position + '" src="/Content/images/boom.gif?' + (new Date).getTime() + '"/>';
                 $('#stage').append(boom);
                 poof.play();
 
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.boom.position' + position.position).remove();
                 }, 700);
             });
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.monster2').remove();
             }, 250)
         }
     });
 
-    $('body').on('click', '.monster3', function(event) {
+    $('body').on('click', '.monster3', function (event) {
         event.preventDefault();
         if (weapon != 3) {
             return;
@@ -407,20 +394,20 @@ $(document).ready(function() {
         game.score += 10;
         var that = $(this);
         var position = that.data();
-        setTimeout(function() {
+        setTimeout(function () {
             that.remove();
         }, 250);
-        var boom = '<img class="boom position' + position.position + '" src="images/boom.gif?' + (new Date).getTime() + '"/>';
+        var boom = '<img class="boom position' + position.position + '" src="/Content/images/boom.gif?' + (new Date).getTime() + '"/>';
         $('#stage').append(boom);
         poof.play();
-        setTimeout(function() {
+        setTimeout(function () {
             $('.boom.position' + position.position).remove();
         }, 700);
 
         /* Act on the event */
     });
 
-    $('body').on('click', '.monster4', function(event) {
+    $('body').on('click', '.monster4', function (event) {
         event.preventDefault();
         if (weapon != 1) {
             return;
@@ -431,49 +418,51 @@ $(document).ready(function() {
         clicks.click += 1;
         if (clicks.click == 5) {
             game.score += 20;
-            setTimeout(function() {
+            setTimeout(function () {
                 that.remove();
             }, 250)
-            var boom = '<img class="boom position' + position.position + '" src="images/boom.gif?' + (new Date).getTime() + '"/>';
+            var boom = '<img class="boom position' + position.position + '" src="/Content/images/boom.gif?' + (new Date).getTime() + '"/>';
             $('#stage').append(boom);
             poof.play();
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.boom.position' + position.position).remove();
             }, 700);
 
         }
     });
-    $('body').on('click', '.monster5', function(event) {
+    $('body').on('click', '.monster5', function (event) {
         $('#flash').animate({ opacity: 1 }, 100).animate({ opacity: 0 }, 100);
         event.preventDefault();
         var that = $(this);
         var position = that.data();
-        setTimeout(function() {
+        setTimeout(function () {
             that.remove();
         }, 250);
 
         game.score -= 5;
-        var boom = '<div class="boom position' + position.position + '"><img src="images/boom.gif?' + (new Date).getTime() + '"/></div>';
+        var boom = '<div class="boom position' + position.position + '"><img src="/Content/images/boom.gif?' + (new Date).getTime() + '"/></div>';
         poof.play();
         $('#stage').append(boom);
-        setTimeout(function() {
+        setTimeout(function () {
             $('.boom.position' + position.position).remove();
         }, 700);
     });
 
-    setInterval(function(){
-      $.custom.Server.SaveGameTime(timeRemaining, 
-        function (res) { // success
-          if (res && res.success) {
-            console.log('Playtime updated');
-          } 
-          else { // fail
-            console.log('Playtime not updated!');
+    if (isDemo) return;
 
-          }
-      }, function () { // fail
-        
-      });
-    },5000);
+    setInterval(function () {
+        $.custom.Server.SaveGameTime(timeRemaining,
+            function (res) { // success
+                if (res && res.success) {
+                    console.log('Playtime updated');
+                }
+                else { // fail
+                    console.log('Playtime not updated!');
+
+                }
+            }, function () { // fail
+
+            });
+    }, 5000);
 
 });

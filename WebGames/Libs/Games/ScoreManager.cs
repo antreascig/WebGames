@@ -40,13 +40,13 @@ namespace WebGames.Libs.Games
 
     public abstract class ScoreManager
     {
-        public static void SetGenericScoreTokens(string GameKey, string UserId, int Tokens, bool Override = false)
-        {
-            if (!GameManager.GameDict.ContainsKey(GameKey)) return;
-            var Game = GameManager.GameDict[GameKey];
+        //public static void SetGenericScoreTokens(string GameKey, string UserId, int Tokens, bool Override = false)
+        //{
+        //    if (!GameManager.GameDict.ContainsKey(GameKey)) return;
+        //    var Game = GameManager.GameDict[GameKey];
 
-            Game.SM.SetUserScore(UserId, Tokens, Override);
-        }
+        //    Game.SM.SetUserScore(UserId, Tokens, Override);
+        //}
 
         public static Dictionary<string, UserScore_Admin> GetUserTotalScores(string UserId)
         {
@@ -115,7 +115,7 @@ namespace WebGames.Libs.Games
             return res;
         }
 
-        public abstract void SetUserScore(string UserId, int Tokens, bool EnableOverride = false);
+        public abstract void SetUserScore(string UserId, int Tokens, long timeStamp, int level, bool EnableOverride = false);
 
         public abstract DataTablesResult GetUsersScoresDT(DataTablesParam dataTableParam);
 
@@ -241,7 +241,7 @@ namespace WebGames.Libs.Games
             }
         }
 
-        public override void SetUserScore(string UserId, int Tokens, bool EnableOverride = false)
+        public override void SetUserScore(string UserId, int Tokens, long timeStamp, int level, bool EnableOverride = false)
         {
             try
             {
@@ -255,6 +255,7 @@ namespace WebGames.Libs.Games
                         {
                             UserId = UserId,
                             Tokens = Tokens,
+                            Levels = level
                         };
                         db.Set<T>().Add(Entity);
                     }
@@ -262,10 +263,10 @@ namespace WebGames.Libs.Games
                     {
                         Entity.Tokens = Tokens;
                     }
-                    else
+                    else if (Entity.timeStamp < timeStamp)
                     {
-                        Entity.Tokens += Tokens;
-                        Entity.Levels += 1;
+                        Entity.Tokens = Tokens;
+                        Entity.Levels = level;
                     }
                     db.SaveChanges();
                 }

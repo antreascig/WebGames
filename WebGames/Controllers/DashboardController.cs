@@ -399,10 +399,11 @@ namespace WebGames.Controllers
                 {
                     return Json(new { success = false }, JsonRequestBehavior.AllowGet);
                 }
+                long timeStamp = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 1);
 
                 foreach (var game in gameTokens)
                 {
-                    GameManager.GameDict[game.Key].SM.SetUserScore(userId, game.Value, true);
+                    GameManager.GameDict[game.Key].SM.SetUserScore(userId, game.Value, timeStamp, 1, true);
                 }
 
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);

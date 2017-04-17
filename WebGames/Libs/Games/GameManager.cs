@@ -24,8 +24,8 @@ namespace WebGames.Libs
 
     public class GameKeys
     {
-        public const string GAME_1 = "GAME_1";
-        public const string GAME_2 = "GAME_2";
+        public const string Adespotabalakia = "adespotabalakia";
+        public const string Juggler = "juggler";
         public const string Mastermind = "mastermind";
         public const string Escape_1 = "escape_1";
         public const string Escape_2 = "escape_2";
@@ -70,12 +70,12 @@ namespace WebGames.Libs
         {
             var Games = new List<GameData>()
             {
-                new GameData() { GameKey = GameKeys.GAME_1, Name = "ΑΤΕΛΕΙΩΤΟ ΣΚΟΙΝΑΚΙ", Folder = GameKeys.GAME_1, SM = new ScoreManager<Game1_UserScore>(GameKeys.GAME_1) },
+                new GameData() { GameKey = GameKeys.Adespotabalakia, Name = "ΑΔΕΣΠΩΤΑ ΜΠΑΛΑΚΙΑ", Folder = "adespotabalakia", Page = "adespotabalakia", SM = new ScoreManager<Game1_UserScore>(GameKeys.Adespotabalakia) },
                 new GameData() { GameKey = GameKeys.Escape_1, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 1", Folder = "escape", Page = "game1", SM = new ScoreManager<Escape_1_UserScore>(GameKeys.Escape_1), LevelAsPage = true },
                 new GameData() { GameKey = GameKeys.Escape_2, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 2", Folder = "escape", Page = "game2", SM = new ScoreManager<Escape_2_UserScore>(GameKeys.Escape_2), LevelAsPage = true },
                 new GameData() { GameKey = GameKeys.Escape_3, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 3", Folder = "escape", Page = "game3", SM = new ScoreManager<Escape_3_UserScore>(GameKeys.Escape_3), LevelAsPage = true },
                 new GameData() { GameKey = GameKeys.Mastermind, Name = "ΜΑΝΤΕΨΕ ΤΙ ΜΑΝΤΕΨΑ", Folder = "mastermind", Page = "mastermind", SM = new ScoreManager<Mastermind_UserScore>(GameKeys.Mastermind) },
-                new GameData() { GameKey = GameKeys.GAME_2, Name = "ΑΔΕΣΠΩΤΑ ΜΠΑΛΑΚΙΑ", Folder = GameKeys.GAME_2, SM = new ScoreManager<Game2_UserScore>(GameKeys.GAME_2) },
+                new GameData() { GameKey = GameKeys.Juggler, Name = "ΑΤΕΛΕΙΩΤΟ ΣΚΟΙΝΑΚΙ", Folder = "juggler", Page = "juggler", SM = new ScoreManager<Game2_UserScore>(GameKeys.Juggler) },
                 new GameData() { GameKey = GameKeys.Whackamole, Name = "WHACK A MOLE", Folder = "whackamole",  Page = "whackamole", SM = new ScoreManager<Whackamole_UserScore>(GameKeys.Whackamole) },
                 new GameData() { GameKey = GameKeys.Questions, Name = "ΚΛΕΙΔΙΑ", Folder = "questions", Page = "questions", SM = new ScoreManager<Questions_UserScore>(GameKeys.Questions) },
             };
@@ -90,7 +90,6 @@ namespace WebGames.Libs
                         if (ExistingGames[game.GameKey].Name != game.Name)
                         {
                             ExistingGames[game.GameKey].Name = game.Name;
-                            db.SaveChanges();
                         }
                     }
                     else
@@ -101,11 +100,15 @@ namespace WebGames.Libs
                             Name = game.Name,
                         };
                         db.Games.Add(GameModel);
-                        db.SaveChanges();
                         game.GameId = GameModel.GameId;
                     }
                     GameDict.Add(game.GameKey, game);
                 }
+                // Remove obsolete games
+                ExistingGames.Values.Where(eg => !Games.Any(g => g.GameKey == eg.GameKey)).ToList().ForEach(g => db.Games.Remove(g));
+
+                db.SaveChanges();
+
             }
         }
 

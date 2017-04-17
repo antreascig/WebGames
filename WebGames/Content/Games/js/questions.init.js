@@ -11,7 +11,7 @@ var correct = $("#correct")[0];
 var wrong = $("#wrong")[0];
 //var questions = null;
 var qcount = null;
-var tries = 8;
+var tries = questions.length;
 var currentQ = null;
 var randomQ = null;
 var correctAnswer = null;
@@ -41,8 +41,6 @@ var success = $("#mysoundclip")[0];
 
 function endGame() {
     $('.wrapper').fadeOut(2000, function () {
-
-        var redirUrl = "";
 
         if (isDemo) {
             window.location.replace("/Games/ActiveExplainer");

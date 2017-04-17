@@ -7,16 +7,16 @@
 <div>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="~/Content/Games/css/style2.css">
+    <link rel="stylesheet" href="~/Content/Games/css/style.css">
 
     <audio preload='auto' loop id="music">
-        <source src="~/Content/music/mastermind/lockbg.mp3" type="audio/mpeg">
+        <source src="/Content/music/lockbg.mp3" type="audio/mpeg">
     </audio>
     <audio id="correct" preload="auto">
-        <source src="~/Content/music/mastermind/correct.mp3"/>
+        <source src="/Content/music/correct.mp3"/>
     </audio>
     <audio id="wrong" preload="auto">
-        <source src="~/Content/music/mastermind/locked.mp3"/>
+        <source src="/Content/music/locked.mp3"/>
     </audio>
     <div id="preloader">
         <div class="windows8">
@@ -140,6 +140,8 @@
             }, 500);
         }
         $(document).ready(function () {
+            var QuestionIndex = 0;
+
             $('.lock').hover(function () {
                 $(this).glow({ radius: "8", color: "#fffb3d" });
             }, function () {
@@ -161,7 +163,14 @@
                     }
                     $('#quiz').fadeIn(500);
                     event.preventDefault();
-                    var randomQ = questions[Math.random() * questions.length | 0];
+
+                    //if (QuestionIndex == questions.length) {
+                    //    // no more questions
+                    //    alert('Δεν έχεις άλλες ερωτήσεις');
+                    //    return;
+                    //}
+
+                    var randomQ = questions[QuestionIndex];
                     $('#question').html(randomQ['question']);
                     $('#question').data('qId', randomQ['id'] );
                     $('#a1').html(randomQ['answer1']);
@@ -170,6 +179,7 @@
                     $('#a4').html(randomQ['answer4']);
                     correctAnswer = randomQ['correct'];
 
+                    QuestionIndex++;
                 } else {
                     return;
                 }

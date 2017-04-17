@@ -16,6 +16,9 @@ namespace WebGames.Models
 
         public int Levels{ get; set; }
 
+        public long timeStamp { get; set; }
+
+        
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
     }

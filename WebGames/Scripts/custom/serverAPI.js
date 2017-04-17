@@ -13,9 +13,11 @@
         self.SendRequest('GET', "/Games/GetGameTime", {}, success, fail, false);
     };
 
-    self.SaveGameScore = function (score, success, fail) {
+    self.SaveGameScore = function (score, level, success, fail) {
         var data = {
-            score: score
+            score: score,
+            level: level,
+            timestamp: new Date().getTime()
         };
         self.SendRequest('GET', "/Games/Save_Game_Score", data, success, fail, false);
     };

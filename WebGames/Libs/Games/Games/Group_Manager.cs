@@ -126,7 +126,7 @@ namespace WebGames.Libs.Games.Games
                 }
             }
 
-            var AtomicGames = new string[] { GameKeys.GAME_1, GameKeys.GAME_2, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3, GameKeys.Whackamole };
+            var AtomicGames = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3, GameKeys.Whackamole };
             var UserScores = ScoreManager.GetUsersTotalScoresForGames(AtomicGames);
 
             var TopUserScores = UserScores.OrderByDescending(s => s.Score).Take(144).ToList();

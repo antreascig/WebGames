@@ -35,13 +35,13 @@
     <link rel="stylesheet" href="/Content/Games/css/jquery.mCustomScrollbar.css">
 
     <audio preload='auto' loop id="music">
-        <source src="/Content/music/mastermind/mastermind.mp3" type="audio/mpeg">
+        <source src="/Content/music/mastermind.mp3" type="audio/mpeg">
     </audio>
     <audio id="deal" preload="auto">
-        <source src="/Content/music/mastermind/deal.mp3" />
+        <source src="/Content/music/deal.mp3" />
     </audio>
     <audio id="win" preload="auto">
-        <source src="/Content/music/mastermind/win.mp3" />
+        <source src="/Content/music/win.mp3" />
     </audio>
     <div id="preloader">
         <div class="windows8">
@@ -142,7 +142,7 @@
         var removeSlot = null;
         var slotClass = null;
         var guess = null;
-        var score = 0;
+        var score = @Model.GameScore;
         var prevGuess = '0';
         var slot1guess = null;
         var slot2guess = null;
@@ -173,9 +173,9 @@
             gameImg6 = loader.addImage('/Content/images/mastermind/card5.png'),
             gameImg7 = loader.addImage('/Content/images/mastermind/card6.png'),
             gameImg8 = loader.addImage('/Content/images/mastermind/x.png'),
-            audio1 = loader.addAudio('/Content/music/mastermind/mastermind.mp3'),
-            audio2 = loader.addAudio('/Content/music/mastermind/deal.mp3'),
-            audio3 = loader.addAudio('/Content/music/mastermind/win.mp3');
+            audio1 = loader.addAudio('/Content/music/mastermind.mp3'),
+            audio2 = loader.addAudio('/Content/music/deal.mp3'),
+            audio3 = loader.addAudio('/Content/music/win.mp3');
 
         // callback that will be run once images are ready
         loader.addCompletionListener(function (param1, param2, param3) {
@@ -303,7 +303,7 @@
                                     @:window.location.replace("/Games/ActiveExplainer");
                                 }
 
-                                $.custom.Server.SaveGameScore(score,
+                                $.custom.Server.SaveGameScore(score, 1,
                                     function (res) { // success
                                         if (res && res.success) {
                                             setTimeout(function () {

@@ -123,7 +123,7 @@ namespace WebGames.Controllers
 
         #endregion
 
-        public ActionResult Save_Game_Score(int score)
+        public ActionResult Save_Game_Score(int score, long timeStamp, int? level = 1)
         {
             var UserId = User.Identity.GetUserId();
 
@@ -134,7 +134,7 @@ namespace WebGames.Controllers
                 return Json(new { success = false, message = "No Game is Active" }, JsonRequestBehavior.AllowGet);
             }
 
-            GameManager.GameDict[ActiveGameKey].SM.SetUserScore(UserId, score, EnableOverride: false); // Cannot override the score - once is set the done
+            GameManager.GameDict[ActiveGameKey].SM.SetUserScore(UserId, score, timeStamp, level.GetValueOrDefault(), EnableOverride: false); // Cannot override the score - once is set the done
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }

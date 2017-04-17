@@ -24,7 +24,7 @@ namespace WebGames.Libs.Games.GameTypes
 
     public class Questions_MetaData
     {
-        public int PointsPerQustion = 100;
+        public int PointsPerQustion = 20;
 
         public Dictionary<int, GameQuestionModel> Questions { get; set; }
     }
@@ -73,7 +73,7 @@ namespace WebGames.Libs.Games.GameTypes
                     {
                         // get the score of the user in order to calculate the required number of questions to retrieve
                         var scores = ScoreManager.GetUserTotalScores(UserId);
-                        var GamesRequired = new string[] { GameKeys.GAME_1, GameKeys.GAME_2, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
+                        var GamesRequired = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
                         var totalScore = scores.Where(s=> GamesRequired.Contains(s.Key) ).Sum(s => s.Value.Score);
                         int NumberOfQuestions = (int) Math.Ceiling( totalScore / GameMetadata.PointsPerQustion );
 
@@ -169,6 +169,7 @@ namespace WebGames.Libs.Games.GameTypes
             try
             {
                 var isCorrect = false;
+                int totalCorrect = 0;
                 using (var db = ApplicationDbContext.Create())
                 {
                     var GameMetadata = (Questions_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Questions_MetaData), db);
@@ -191,9 +192,19 @@ namespace WebGames.Libs.Games.GameTypes
                     var Existing = (User_Questions.Answered ?? "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                     Existing.Add(QuestionId.ToString());
                     User_Questions.Answered = string.Join(",", Existing);
+                    if (isCorrect)
+                    {
+                        User_Questions.Correct += 1;
+                    }
+                    totalCorrect = User_Questions.Correct;
 
                     db.SaveChanges();
                 }
+
+                // save the score
+                long timeStamp = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 1);
+
+                GameManager.GameDict[GameKeys.Questions].SM.SetUserScore(UserId, totalCorrect, timeStamp, 1, false);
                 
                 return isCorrect;
             }

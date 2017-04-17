@@ -16,6 +16,8 @@ namespace WebGames.Models
 
         public string Answered { get; set; } // "1,10,...etc"
 
+        public int Correct { get; set; }
+
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
     }

@@ -8,7 +8,7 @@ var cVal = null;
 var gameTime = null;
 var enteredCode = null;
 var unlockCode = null;
-var score = null;
+var score = GameScore;
 var levelScore = null;
 
 if ($('.game').data('level') == 'level1') {
@@ -16,24 +16,10 @@ if ($('.game').data('level') == 'level1') {
 } else {
 	levelScore = 10;
 }
-$.custom.Server.GetGameScore(
-	function (res) { // success
-	    if (res && res.success && res.score) { // to time einai remaining seconds
-	    	score = res.score;
-	    }
-	    else { // fail
 
-		}
-}, function () { // fail
-	 
-});
-$.custom.Server.Get_Escape_Solution( 
-	function (solution) { // success
-		unlockCode = solution;
-}, function () { // fail
-	
-});
-function startTimer(duration, display, redirUrl) {
+unlockCode = Math.floor(Math.random() * (999 - 100 + 1)) + 100;;
+
+function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
 
     setInterval(function () {
@@ -46,7 +32,7 @@ function startTimer(duration, display, redirUrl) {
 	        display.text(minutes + ":" + seconds);
 	        if (--timer <= 0) {
 	        	isPaused = true;
-                endGame(redirUrl);
+                endGame();
 	            // timer = duration;
 	        }
         	timeRemaining = timer;
@@ -59,7 +45,12 @@ var success = $("#mysoundclip")[0];
 
 function endGame() {
     $('.wrapper').fadeOut(2000, function() {
-        window.location.replace(redirUrl);
+        if (isDemo) {
+            window.location.replace("/Games/ActiveExplainer");
+        }
+        else {
+            window.location.replace("/Games/ActiveGameAfter?status=outoftime");
+        }
     });
 }
 
@@ -75,36 +66,26 @@ jQuery.fn.center = function () {
 
 // callback that will be run once images are ready 
 loader.addCompletionListener(function() {
-var time = null;
-$.custom.Server.GetGameTime(
-	function (res) { // success
-	    if (res && res.success && res.time) { // to time einai remaining seconds
-	    	time = res.time;
-		    display = $('#time');
-		    startTimer(time, display);
-			if (isMobile == true) {
-				$('body').addClass('mobile');
-				$('.windows8').hide();	
-				$('#letsgo').addClass('show');
-				$('#letsgo').click(function(event) {
-					$('#preloader').fadeOut(1000);
-					$('.wrapper').fadeIn(2000);
-					music.play();
-				});
-					
-			} else {
+    var time = null;
+    time = RemainingTime;
+    display = $('#time');
+    startTimer(time, display);
+    if (isMobile == true) {
+        $('body').addClass('mobile');
+        $('.windows8').hide();
+        $('#letsgo').addClass('show');
+        $('#letsgo').click(function (event) {
+            $('#preloader').fadeOut(1000);
+            $('.wrapper').fadeIn(2000);
+            music.play();
+        });
 
-				$('#preloader').fadeOut(1000);
-				$('.wrapper').fadeIn(2000);
-				music.play();
-			}
-	    }
-	    else { // fail
+    } else {
 
-		}
-}, function () { // fail
-	 
-});
+        $('#preloader').fadeOut(1000);
+        $('.wrapper').fadeIn(2000);
+        music.play();
+    }
 
 }); 
 
@@ -126,20 +107,20 @@ $(document).ready(function() {
 	});
 	$('.wrapper').fadeIn(2000);
 	$('.codenum').easyAudioEffects({
-	   ogg : "/music/number.ogg",
-	   mp3 : "/music/number.mp3",
+	   ogg : "/Content/music/number.ogg",
+	   mp3 : "/Content/music/number.mp3",
 	   eventType : "click" // or "click"
 
 	});
 	$('.item').easyAudioEffects({
-	   ogg : "/music/click.ogg",
-	   mp3 : "/music/click.mp3",
+	   ogg : "/Content/music/click.ogg",
+	   mp3 : "/Content/music/click.mp3",
 	   eventType : "click" // or "click"
 
 	});
 	$('.close').easyAudioEffects({
-	   ogg : "/music/close.ogg",
-	   mp3 : "/music/close.mp3",
+	   ogg : "/Content/music/close.ogg",
+	   mp3 : "/Content/music/close.mp3",
 	   eventType : "click" // or "click"
 
 	});
@@ -151,7 +132,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		/* Act on the event */
 		$('.zoom').empty();
-		$('.zoom').append('<img src="/images/cells/' + stage + '/' + level + '/' + itemClue + '.jpg" />');
+		$('.zoom').append('<img src="/Content/images/cells/' + stage + '/' + level + '/' + itemClue + '.jpg" />');
 		$('.popup').fadeIn(500);
 	});
 	$('body').on('click', '.close', function(event) {
@@ -197,19 +178,20 @@ $(document).ready(function() {
 				// alert('woohooo');
 			    success.play();
 				isPaused = true;
-				score += levelScore;
-	    		$.custom.Server.SaveScoreGame(score, 
+                score += levelScore;
+
+                if (isDemo) return;
+
+                $.custom.Server.SaveGameScore(score, parseInt(level),
 					function (res) { // success
 						if (res && res.success) {
-							if (res.IsCorrect) {
-				    			setTimeout(function(){
-						    		$('.wrapper').fadeOut(2000, function() {
-						    			setTimeout(function(){
-						    				location.reload();
-						    			},500);
-						    		});
-				    			},2000);
-							}
+				    		setTimeout(function(){
+						    	$('.wrapper').fadeOut(2000, function() {
+						    		setTimeout(function(){
+						    			location.reload();
+						    		},500);
+						    	});
+				    		},2000);
 						} 
 						else { // fail 
 
