@@ -9,7 +9,7 @@ var numItems = null;
 var weapon = 1;
 var enemy = null;
 var $all = $(".hole");
-var monsters = ["monster1", "monster1", "monster1", "monster1", "monster2", "monster2", "monster2", "monster2", "monster3", "monster3", "monster4", "monster5"];
+var monsters = ["monster1", "monster1", "monster2", "monster2", "monster3", "monster3", "monster4"];
 var justAdded = null;
 var game = {
     score: GameScore
@@ -96,6 +96,16 @@ loader.addCompletionListener(function () {
 
 $(document).ready(function () {
     loader.start();
+    $('.exit').click(function(event) {
+        /* Act on the event */
+        isPaused = false;
+        $('#explainer').hide();
+    });
+    $('.pause').click(function(event) {
+        /* Act on the event */
+        isPaused = true;
+        $('#explainer').show();
+    });
     $('.gamewrap').on('click', '.item', function (event) {
         item = $(this);
         itemClue = item.data('clue');
@@ -342,6 +352,12 @@ $(document).ready(function () {
 
     $('body').on('click', '.monster1', function (event) {
         event.preventDefault();
+        if (weapon != 3) {
+            if (game.score >= 1) {
+               game.score -= 1;
+            }
+            return;
+        }
         var that = $(this);
         var position = that.data();
         setTimeout(function () {
@@ -360,14 +376,14 @@ $(document).ready(function () {
     $('body').on('click', '.monster2', function (event) {
 
         event.preventDefault();
-        if (weapon != 2) {
+        if (weapon != 1) {
+            if (game.score >= 1) {
+               game.score -= 1;
+            }
             return;
         }
         var that = $(this);
         var position = that.data();
-        var clicks = that.data();
-        clicks.click += 1;
-        if (clicks.click == 3) {
             $('.monster2').length;
             $('.monster2').each(function (index, el) {
                 game.score += 2;
@@ -383,40 +399,18 @@ $(document).ready(function () {
             setTimeout(function () {
                 $('.monster2').remove();
             }, 250)
-        }
-    });
-
-    $('body').on('click', '.monster3', function (event) {
-        event.preventDefault();
-        if (weapon != 3) {
-            return;
-        }
-        game.score += 10;
-        var that = $(this);
-        var position = that.data();
-        setTimeout(function () {
-            that.remove();
-        }, 250);
-        var boom = '<img class="boom position' + position.position + '" src="/Content/images/boom.gif?' + (new Date).getTime() + '"/>';
-        $('#stage').append(boom);
-        poof.play();
-        setTimeout(function () {
-            $('.boom.position' + position.position).remove();
-        }, 700);
-
-        /* Act on the event */
     });
 
     $('body').on('click', '.monster4', function (event) {
         event.preventDefault();
-        if (weapon != 1) {
+        if (weapon != 2) {
+            if (game.score >= 1) {
+               game.score -= 1;
+            }
             return;
         }
         var that = $(this);
-        var clicks = that.data();
         var position = that.data();
-        clicks.click += 1;
-        if (clicks.click == 5) {
             game.score += 20;
             setTimeout(function () {
                 that.remove();
@@ -428,9 +422,8 @@ $(document).ready(function () {
                 $('.boom.position' + position.position).remove();
             }, 700);
 
-        }
     });
-    $('body').on('click', '.monster5', function (event) {
+    $('body').on('click', '.monster3', function (event) {
         $('#flash').animate({ opacity: 1 }, 100).animate({ opacity: 0 }, 100);
         event.preventDefault();
         var that = $(this);
@@ -438,8 +431,12 @@ $(document).ready(function () {
         setTimeout(function () {
             that.remove();
         }, 250);
-
-        game.score -= 5;
+        if (game.score >= 1) {
+            game.score -= 5;
+            if (game.score < 0) {
+                game.score = 0;
+            }
+        }
         var boom = '<div class="boom position' + position.position + '"><img src="/Content/images/boom.gif?' + (new Date).getTime() + '"/></div>';
         poof.play();
         $('#stage').append(boom);

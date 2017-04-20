@@ -30,6 +30,8 @@ namespace WebGames.Helpers
         }
         public static void AddExtraEmails()
         {
+            return;
+
             using (var db = ApplicationDbContext.Create())
             {
                 var emails = new List<string>()

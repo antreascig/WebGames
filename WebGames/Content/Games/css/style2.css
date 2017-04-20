@@ -11,15 +11,15 @@ body {
 
 @font-face {
     font-family: 'GFS';
-    src: url('fonts/GFSTheokritos-Regular.eot');
-    src: url('fonts/GFSTheokritos-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/GFSTheokritos-Regular.woff') format('woff'), url('fonts/GFSTheokritos-Regular.ttf') format('truetype');
+    src: url('/Content/fonts/GFSTheokritos-Regular.eot');
+    src: url('/Content/fonts/GFSTheokritos-Regular.eot?#iefix') format('embedded-opentype'), url('/Content/fonts/GFSTheokritos-Regular.woff') format('woff'), url('/Content/fonts/GFSTheokritos-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 .wrapper {
     display: none;
-    background: url('images/bg.jpg') no-repeat center center;
+    background: url('/Content/images/bg.jpg') no-repeat center center;
     background-size: cover;
     padding-top: 25px;
     height: 100vh;
@@ -114,7 +114,7 @@ body {
 }
 
 .logo {
-    background: url(images/cosmoplay.png) no-repeat center center;
+    background: url(/Content/images/cosmoplay.png) no-repeat center center;
     background-size: cover;
     width: 227px;
     height: 49px;
@@ -125,23 +125,23 @@ body {
 }
 
 .cells {
-    background: url(images/cells-stage-01-bg.jpg) no-repeat center center;
+    background: url(/Content/images/cells-stage-01-bg.jpg) no-repeat center center;
     width: 960px;
     height: 540px;
 }
 
 .game.master {
-    background: url(images/mastermind-bg.jpg) no-repeat center center;
+    background: url(/Content/images/mastermind-bg.jpg) no-repeat center center;
     background-size: cover;
 }
 
 .game.questions {
-    background: url(images/locks/bg.jpg) no-repeat center center;
+    background: url(/Content/images/locks/bg.jpg) no-repeat center center;
     background-size: cover;
 }
 
 .game.mole {
-    background: url(images/whack/bg.jpg) no-repeat center center;
+    background: url(/Content/images/whack/bg.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -224,14 +224,14 @@ body {
 #lock {
     width: 114px;
     height: 163px;
-    background: url(images/lock2.png) 0 163px;
+    background: url(/Content/images/lock2.png) 0 163px;
     position: absolute;
     z-index: 2;
     cursor: pointer;
 }
 
     #lock:hover {
-        background: url(images/lock2.png) 0 0px;
+        background: url(/Content/images/lock2.png) 0 0px;
     }
 
 @keyframes shake {
@@ -1750,7 +1750,7 @@ body {
     height: 40px;
     z-index: 10;
     transform: translateZ(100px) rotateZ(0deg) !important;
-    background: url(images/remove.png) no-repeat center center;
+    background: url(/Content/images/remove.png) no-repeat center center;
     background-size: cover;
 }
 
@@ -2265,30 +2265,30 @@ body {
 }
 
 .monster1 {
-    background: url('images/whack/skeleton.gif') no-repeat center center;
+    background: url('/Content/images/whack/skeleton.gif') no-repeat center center;
     height: 117px !important;
     width: 116px;
 }
 
 .monster2 {
-    background: url('images/whack/goblin.gif') no-repeat center center;
+    background: url('/Content/images/whack/goblin.gif') no-repeat center center;
     width: 73px;
 }
 
 .monster3 {
-    background: url('images/whack/box.gif') no-repeat center center;
+    background: url('/Content/images/whack/box.gif') no-repeat center center;
     width: 73px;
 }
 
 .monster4 {
-    background: url('images/whack/zombie.gif') no-repeat center center;
+    background: url('/Content/images/whack/zombie.gif') no-repeat center center;
     width: 100px;
     margin-left: -25px;
     height: 171px !important;
 }
 
 .monster5 {
-    background: url('images/whack/star.gif') no-repeat center center;
+    background: url('/Content/images/whack/star.gif') no-repeat center center;
     width: 73px;
 }
 
@@ -2451,7 +2451,7 @@ body {
 }
 
 .mole #layer1 {
-    background: url(images/whack/layer1.png);
+    background: url(/Content/images/whack/layer1.png);
     display: block;
     position: absolute;
     width: 960px;
@@ -2462,7 +2462,7 @@ body {
 }
 
 .mole #layer2 {
-    background: url(images/whack/layer2.png);
+    background: url(/Content/images/whack/layer2.png);
     display: block;
     position: absolute;
     width: 960px;
@@ -2473,7 +2473,7 @@ body {
 }
 
 .mole #layer3 {
-    background: url(images/whack/layer3.png);
+    background: url(/Content/images/whack/layer3.png);
     display: block;
     position: absolute;
     width: 960px;
@@ -2626,7 +2626,7 @@ body {
 }
 
 #flash {
-    background: url(images/whack/bad.png);
+    background: url(/Content/images/whack/bad.png);
     pointer-events: none;
     position: absolute;
     top: 0;

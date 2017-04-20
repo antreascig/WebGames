@@ -1,4 +1,7 @@
-﻿<div>
+﻿@using Microsoft.AspNet.Identity
+@using WebGames.Helpers
+
+<div>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="~/Content/Games/css/style2.css">
@@ -9,8 +12,7 @@
         <div class="logo"></div>
         <div class="map">
             <img src="/Content/images/mapoverlay.png" id="mapoverlay">
-            <img id="mapuser" src="@( "/Content/" +User.Identity.GetAvatar() + ".png")" />
-
+            <!-- <img id="mapuser" src="@( "/Content/" + User.Identity.GetAvatar() + ".png")" />-->
             <div class="line"><img src="/Content/images/map/lines.png"></div>
             <div class="points">
                 <div class="point done point1" data-fade="1">

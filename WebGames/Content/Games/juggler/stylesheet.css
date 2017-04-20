@@ -3,10 +3,22 @@
 
 
 @font-face {
-    font-family: 'neat_chalkregular';
-    src: url('neat_chalk-webfont.woff2') format('woff2'),
-         url('neat_chalk-webfont.woff') format('woff');
+    font-family: 'gfs_theokritosregular';
+    src: url('gfstheokritos-webfont.woff2') format('woff2'),
+         url('gfstheokritos-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
+
+        @media screen and ( max-width: 768px) {
+            #c2canvasdiv {
+                width:100%!important;
+                height:100%!important;
+
+            }
+            canvas {
+                width:100%!important;
+                height:100%!important;
+            }
+        }

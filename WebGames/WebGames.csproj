@@ -357,6 +357,7 @@
     <Content Include="Content\Games\balakia\images\sprite4-sheet0.png" />
     <Content Include="Content\Games\balakia\images\sprite5-sheet0.png" />
     <Content Include="Content\Games\balakia\images\wall-sheet0.png" />
+    <Content Include="Content\Games\balakia\index.html" />
     <Content Include="Content\Games\balakia\jquery-2.1.1.min.js" />
     <Content Include="Content\Games\balakia\loading-logo.png" />
     <Content Include="Content\Games\balakia\media\after-ball-goes-in-level-change.m4a" />
@@ -408,6 +409,7 @@
     <Content Include="Content\Games\juggler\images\sprite4-sheet0.png" />
     <Content Include="Content\Games\juggler\images\sprite5-sheet0.png" />
     <Content Include="Content\Games\juggler\images\wall-sheet0.png" />
+    <Content Include="Content\Games\juggler\index.html" />
     <Content Include="Content\Games\juggler\jquery-2.1.1.min.js" />
     <Content Include="Content\Games\juggler\loading-logo.png" />
     <Content Include="Content\Games\juggler\media\after-ball-goes-in-level-change.m4a" />
@@ -1052,6 +1054,7 @@
     <Content Include="Views\Games\ActiveGameAfter.cshtml" />
     <Content Include="Views\Games\juggler\Explainer.cshtml" />
     <Content Include="Views\Games\juggler\Map.cshtml" />
+    <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />
