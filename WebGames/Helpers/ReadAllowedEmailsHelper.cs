@@ -28,5 +28,30 @@ namespace WebGames.Helpers
             //    db.SaveChanges();
             //}
         }
+        public static void AddExtraEmails()
+        {
+            using (var db = ApplicationDbContext.Create())
+            {
+                var emails = new List<string>()
+                {
+                    "vdimitrop@ote.gr",
+                     "asanto@ote.gr",
+                     "KAPapadop@cosmote.gr",
+                     "mxeniou@ote.gr",
+                     "ekotoula@cosmote.gr",
+                     "akapsimal@ote.gr",
+                     "aggmpa@ote.gr",
+                     "vassilis@amuse.gr",
+                     "george@amuse.gr",
+                     "vaggelisl@amuse.gr",
+                     "Silia@amuse.gr",
+                     "marilena@amuse.gr"
+                };
+
+
+                db.Alowed_Emails.AddRange(emails.Select(e => new Allowed_Email() { Email = e }));
+                db.SaveChanges();
+            }
+        }
     }
 }

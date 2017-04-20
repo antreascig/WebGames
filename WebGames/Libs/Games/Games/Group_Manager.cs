@@ -18,43 +18,25 @@ namespace WebGames.Libs.Games.Games
         //    }
         //}
 
-        public static bool Groups_Generated = false;
+        //public static bool Groups_Generated = false;
 
         public static int GetUserGroup(string UserId)
         {
             try
             {
-                var GroupNumber = -1;
-                Dictionary<int, List<UserTotalScore>> Groups = null;
 
-                if (Groups_Generated)
+                using (var db = ApplicationDbContext.Create())
                 {
-                    using (var db = ApplicationDbContext.Create())
+                    var User_Group = (from ug in db.User_Groups where ug.UserId == UserId select ug).SingleOrDefault();
+                    if (User_Group != null)
                     {
-                        var User_Group = (from ug in db.User_Groups where ug.UserId == UserId select ug).SingleOrDefault();
-                        if (User_Group != null)
-                        {
-                            return User_Group.GroupNumber;
-                        }
-                        else
-                        {
-                            return -1;
-                        }
+                        return User_Group.GroupNumber;
+                    }
+                    else
+                    {
+                        return -1;
                     }
                 }
-                else
-                {
-                    Groups = GetGroups();
-                    var Group = Groups.Where(g => g.Value.FirstOrDefault(u => u.UserId == UserId) != null);
-                    if (Group.Any())
-                    {
-                        GroupNumber = Group.FirstOrDefault().Key;
-                    }
-
-                    SetGroups(Groups);
-                }
-
-                return GroupNumber;
             }
             catch (Exception exc)
             {
@@ -63,31 +45,27 @@ namespace WebGames.Libs.Games.Games
             }
         }
 
-        private static void SetGroups(Dictionary<int, List<UserTotalScore>> Groups)
+        private static void SetGroups(Dictionary<int, List<string>> Groups)
         {
-            //Should Run Only Once
-            Task.Run(() =>
-            {
-                if (Groups == null) return;
+            if (Groups == null) return;
 
-                using (var db = ApplicationDbContext.Create())
+            using (var db = ApplicationDbContext.Create())
+            {
+                var userScores = new List<User_Group>();
+                foreach (var group in Groups)
                 {
-                    var userScores = new List<User_Group>();
-                    foreach (var group in Groups)
+                    foreach (var userId in group.Value)
                     {
-                        foreach (var user in group.Value)
+                        userScores.Add(new User_Group()
                         {
-                            userScores.Add(new User_Group()
-                            {
-                                UserId = user.UserId,
-                                GroupNumber = group.Key,
-                            });
-                        }
+                            UserId = userId,
+                            GroupNumber = group.Key,
+                        });
                     }
-                    db.User_Groups.AddRange(userScores);
-                    db.SaveChangesAsync();
                 }
-            });
+                db.User_Groups.AddRange(userScores);
+                db.SaveChanges();
+            }
         }
 
         public static Dictionary<int, List<UserTotalScore>> GetGroups()
