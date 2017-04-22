@@ -26,7 +26,7 @@
     <link href="~/Content/DashBoard/css/custom.min.css" rel="stylesheet">
 
     @*<link href="~/Content/pnotify.css" media="all" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="~/Scripts/pnotify.js"></script>*@
+        <script type="text/javascript" src="~/Scripts/pnotify.js"></script>*@
 </head>
 
 <body class="nav-md">
@@ -62,7 +62,8 @@
                                     <a><i class="fa fa-edit"></i> Ρυθμίσεις παιχνιδιών <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: block;">
                                         <li><a href="/Dashboard/GeneralSettings">Γενικές</a></li>
-                                        <li><a href="/Dashboard/QuestionsSettings">ΚΛΕΙΔΙΑ</a></li>
+                                        <li><a href="/Dashboard/QuestionsSettings">Κλειδιά</a></li>
+                                        <li><a href="/Dashboard/GroupsSettings">Ομάδες</a></li>
                                         <li><a href="/Dashboard/Schedule">Πρόγραμμα Παιχνιδιών</a></li>
                                     </ul>
                                 </li>
@@ -124,7 +125,7 @@
                                                     <span aria-hidden="true">×</span>
                                                 </button>
 
-                                                <h4 class="modal-title" >User: <span id="modalUserName"></span></h4>
+                                                <h4 class="modal-title">User: <span id="modalUserName"></span></h4>
 
                                             </div>
                                             <div class="modal-body">
@@ -175,14 +176,14 @@
 
                                                     <!-- /ko -->
                                                 </div>
-
-                                                <div class="modal-footer">
-
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-bottom: 0px;" data-bind="click: CancelEditing">Ακύρωση</button>
-                                                    <button type="button" class="btn btn-info" data-dismiss="modal" data-bind="click: SaveUser">Αποθήκευση</button>
-                                                </div>
-
                                             </div>
+
+                                            <div class="modal-footer">
+
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-bottom: 0px;" data-bind="click: CancelEditing">Ακύρωση</button>
+                                                <button type="button" class="btn btn-info" data-dismiss="modal" data-bind="click: SaveUser">Αποθήκευση</button>
+                                            </div>
+
                                         </div>
                                     </div>
 

@@ -147,7 +147,7 @@ namespace WebGames.Controllers
                     var Date = startingDate.ToString("yyyy-MM-dd");
                     var activeGameDataModel = GameDayScheduleManager.GetActiveGame(startingDate);
                     var ActiveGameKey = activeGameDataModel != null ? activeGameDataModel.ActiveGameKey : "";
-                    if (GameManager.GameDict.ContainsKey(ActiveGameKey ?? "") )
+                    if (GameManager.GameDict.ContainsKey(ActiveGameKey ?? ""))
                     {
                         GameName = GameManager.GameDict[ActiveGameKey].Name;
                     }
@@ -161,7 +161,7 @@ namespace WebGames.Controllers
                     startingDate = startingDate.AddDays(1);
                 } while (i < daysToCheckForActiveGame);
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Logger.Log(exc);
             }
@@ -192,6 +192,13 @@ namespace WebGames.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "sysadmin,admin")]
+        public ActionResult GroupsSettings()
+        {
+            return View();
+        }
+
 
         [Authorize(Roles = "sysadmin,admin")]
         public ActionResult Schedule()
@@ -367,7 +374,7 @@ namespace WebGames.Controllers
             }
 
             var PlayTimeToday = 0;
-            var time = ActivityManager.GetGameTime(userId, DateTime.UtcNow); 
+            var time = ActivityManager.GetGameTime(userId, DateTime.UtcNow);
             if (time != null)
             {
                 PlayTimeToday = time.timeInSeconds;
@@ -440,6 +447,64 @@ namespace WebGames.Controllers
             }
         }
 
+        // Group Settings
+        [Authorize(Roles = "sysadmin,admin")]
+        public ActionResult GetSavedGroups()
+        {
+            try
+            {
+                var user_groups = Group_Manager.GetGroups().SelectMany(g => g.Value.Select(u => new UserGroupVM()
+                {
+                    Rank = -1,
+                    UserId = u.UserId,
+                    User_FullName = u.User_FullName,
+                    Group = g.Key,
+                    Controls = ""
+                }));
+                return Json(new { success = true, user_groups = user_groups }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc);
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Authorize(Roles = "sysadmin,admin")]
+        public ActionResult GetRankedPlayers()
+        {
+            try
+            {
+                var ranked_groups = Group_Manager.GetRankingsBeforeGroups().Take(144).ToList();
+
+                return Json(new { success = true, ranked_groups = ranked_groups }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc);
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult SaveGroups( string user_groupsJSON)
+        {
+            try
+            {
+                List<User_Group> user_groups = Newtonsoft.Json.JsonConvert.DeserializeObject<List<User_Group>>(user_groupsJSON ?? "[]");
+
+                if (user_groups == null)
+                    return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+                Group_Manager.SetGroups(user_groups);
+
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc);
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         // HELPERS
 

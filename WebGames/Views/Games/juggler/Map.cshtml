@@ -11,28 +11,27 @@
             <img src="/Content/images/mapoverlay.png" id="mapoverlay">
             <div class="line"><img src="/Content/images/map/lines.png"></div>
             <div class="points">
-                <div class="point done point1" data-fade="1">
+                <div class="point current point1" data-fade="1">
                     <div class="pop"><img src="/Content/images/map/bubble1.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point done  point2" data-fade="2">
+                <div class="point   point2" data-fade="2">
                     <div class="pop"><img src="/Content/images/map/bubble2.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point done point3" data-fade="3">
+                <div class="point  point3" data-fade="3">
                     <div class="pop"><img src="/Content/images/map/bubble3.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point done point4" data-fade="4" data-url="intro4.html">
+                <div class="point  point4" data-fade="4" data-url="intro4.html">
                     <div class="pop"><img src="/Content/images/map/bubble4.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point done previous point5" data-fade="5" data-url="intro5.html">
-                    <img class="xmark" src="/Content/images/map/x.gif">
+                <div class="point   point5" data-fade="5" data-url="intro5.html">
                     <div class="pop"><img src="/Content/images/map/bubble5.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point current point6" data-fade="6" data-url="intro6.html">
+                <div class="point  point6" data-fade="6" data-url="intro6.html">
                     <div class="pop"><img src="/Content/images/map/bubble6.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
@@ -41,11 +40,11 @@
             <a id="mapgo" href="/Games/ActiveExplainer"><img src="/Content/images/continuebtn.png"></a>
             <a id="mapdemo" href="/Games/activegame?showdemo=true"><img src="/Content/images/demo.png"></a>
             <div class="titles">
-                <div class="title title1"><img src="/Content/images/map/1.png"></div>
+                <div style="display:block" class="title title1"><img src="/Content/images/map/1.png"></div>
                 <div class="title title2"><img src="/Content/images/map/2.png"></div>
                 <div class="title title3"><img src="/Content/images/map/3.png"></div>
                 <div class="title title4"><img src="/Content/images/map/4.png"></div>
-                <div style="display:block" class="title ptitle title5"><img src="/Content/images/map/5.png"></div>
+                <div  class="title ptitle title5"><img src="/Content/images/map/5.png"></div>
                 <div class="title ctitle title6"><img src="/Content/images/map/6.png"></div>
             </div>
         </div>
@@ -71,14 +70,7 @@
             $('.map').center();
             $('.wrapper').fadeIn(1000);
             setTimeout(function () {
-                $('.previous .xmark').fadeOut(500, function () {
-                    $(this).remove();
-                    $('.current').append('<img class="xmark" src="/Content/images/map/x.gif?' + (new Date).getTime() + '"/>');
-                });
-                $('.ptitle').fadeOut(500, function () {
-                    $('.ctitle').fadeIn(500);
-                });
-
+                $('.current').append('<img class="xmark" src="/Content/images/map/x.gif?' + (new Date).getTime() + '"/>');
             }, 2500);
             setTimeout(function () { $('.screen').center(); }, 150);
             //$(".point").on({

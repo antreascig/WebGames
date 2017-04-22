@@ -319,6 +319,7 @@
     </Content>
     <Content Include="Content\acrobat.png" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\DashBoard\js\viewmodels\groupssettings.js" />
     <Content Include="Content\demo\images\plan-02.png" />
     <Content Include="Content\demo\images\screen1.jpg" />
     <Content Include="Content\demo\images\screen2-text.png" />
@@ -1059,6 +1060,7 @@
     <Content Include="Views\Games\juggler\Explainer.cshtml" />
     <Content Include="Views\Games\juggler\Map.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <Content Include="Views\Dashboard\GroupsSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />

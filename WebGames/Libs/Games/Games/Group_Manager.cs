@@ -8,18 +8,17 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games.Games
 {
+    public class UserGroupVM
+    {
+        public int Rank { get; set; }
+        public string UserId { get; set; }
+        public string User_FullName { get; set; }
+        public int Group { get; set; }
+        public string Controls { get; set; }
+    }
+
     public class Group_Manager
     {
-        //public static int GameId
-        //{
-        //    get
-        //    {
-        //        return GameManager.GameDict[GameKeys.GAME_5].GameId;
-        //    }
-        //}
-
-        //public static bool Groups_Generated = false;
-
         public static int GetUserGroup(string UserId)
         {
             try
@@ -45,24 +44,12 @@ namespace WebGames.Libs.Games.Games
             }
         }
 
-        private static void SetGroups(Dictionary<int, List<string>> Groups)
+        public static void SetGroups(List<User_Group> userScores)
         {
-            if (Groups == null) return;
+            if (userScores == null || !userScores.Any()) return;
 
             using (var db = ApplicationDbContext.Create())
             {
-                var userScores = new List<User_Group>();
-                foreach (var group in Groups)
-                {
-                    foreach (var userId in group.Value)
-                    {
-                        userScores.Add(new User_Group()
-                        {
-                            UserId = userId,
-                            GroupNumber = group.Key,
-                        });
-                    }
-                }
                 db.User_Groups.AddRange(userScores);
                 db.SaveChanges();
             }
@@ -99,24 +86,29 @@ namespace WebGames.Libs.Games.Games
                         }
                         res[user.GroupNumber].Add(UserScore);
                     }
-
-                    return res;
                 }
             }
+            return res;
+        }
+
+        public static List<UserGroupVM> GetRankingsBeforeGroups()
+        {
+            var res = new List<UserGroupVM>();
 
             var AtomicGames = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3, GameKeys.Whackamole };
             var UserScores = ScoreManager.GetUsersTotalScoresForGames(AtomicGames);
 
-            var TopUserScores = UserScores.OrderByDescending(s => s.Score).Take(144).ToList();
+            var TopUserScores = UserScores.OrderByDescending(s => s.Score).ToList();
 
             for (var i = 0; i < TopUserScores.Count; i++)
             {
-                int GroupNumber = (int)( i % 12) + 1;
-                if (!res.ContainsKey(GroupNumber))
-                {
-                    res.Add(GroupNumber, new List<UserTotalScore>());
-                }
-                res[GroupNumber].Add(TopUserScores[i]);
+                    res.Add(new UserGroupVM()
+                    {
+                        Rank = i + 1,
+                        UserId = TopUserScores[i].UserId,
+                        User_FullName = TopUserScores[i].User_FullName,
+                        Group = (int)(i % 12) + 1
+                });
             }
             return res;
         }
