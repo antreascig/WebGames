@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using WebGames.Models;
@@ -50,6 +51,10 @@ namespace WebGames.Libs.Games.Games
 
             using (var db = ApplicationDbContext.Create())
             {
+                // Remove all the entries before 
+                db.User_Groups.RemoveRange(db.User_Groups);
+                db.SaveChanges();
+                Thread.Sleep(500);
                 db.User_Groups.AddRange(userScores);
                 db.SaveChanges();
             }
