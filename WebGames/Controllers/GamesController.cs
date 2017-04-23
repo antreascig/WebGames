@@ -92,8 +92,8 @@ namespace WebGames.Controllers
 
             var UserId = User.Identity.GetUserId();
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
-            var CurrentActiveGameKey = GameManager.GetActiveGameInfo(UserId).ActiveGameDataModel.ActiveGameKey;
-            if (!isDemo && CurrentActiveGameKey != GameKeys.Questions)
+            var ActiveGameDataModel = GameManager.GetActiveGameInfo(UserId).ActiveGameDataModel;
+            if (!isDemo && (ActiveGameDataModel== null || ActiveGameDataModel.ActiveGameKey != GameKeys.Questions))
             {
                 return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
             }

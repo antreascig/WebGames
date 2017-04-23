@@ -565,13 +565,19 @@ footer .mails a {
     margin:0;
 }
 
-.demo_index footer {
-    position:absolute;
-    bottom:20px;
+.demo_index footer,
+.demo_mastermind footer,
+.demo_questions footer,
+.demo_juggler footer,
+.demo_adespotabalakia footer,
+.demo_whackamole footer,
+.demo_escape_1 footer {
+    position: absolute;
+    bottom: 20px;
     left: 20px;
     width: 96%;
     margin: 0 auto;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .demo_index .screen a {
