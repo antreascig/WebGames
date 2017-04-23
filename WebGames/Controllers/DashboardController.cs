@@ -486,6 +486,14 @@ namespace WebGames.Controllers
             }
         }
 
+        [Authorize(Roles = "sysadmin,admin")]
+        public DataTablesResult GetRankedPlayersDT(DataTablesParam dataTableParam)
+        {
+            var ranked_groups = Group_Manager.GetRankingsBeforeGroups().AsQueryable();
+
+            return DataTablesResult.Create<UserGroupVM>(ranked_groups, dataTableParam);
+        }
+
         public ActionResult SaveGroups( string user_groupsJSON)
         {
             try

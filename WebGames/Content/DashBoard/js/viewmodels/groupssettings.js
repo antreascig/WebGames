@@ -3,34 +3,17 @@
     var vm = {
 
         User_Groups: ko.observableArray(),
+        init: init,
         GetSavedGroups: GetSavedGroups,
         GetRankedPlayers: GetRankedPlayers,
         SaveGroups: SaveGroups,
         Loading: ko.observable(false),
         ReplacePlayer: ReplacePlayer,
-
-        RefreshGroups: RefreshGroups,
+        ViewReplaceModal: ViewReplaceModal,
         InitDatable: InitDatable,
-        SelectedUser: ko.observable(),
+        SelectedUser: null,
         CancelEditing: CancelEditing,
-        SaveUser: SaveUser,
-        ResetTokens: ResetTokens,
-        resetTime: resetTime
     };
-
-    var columns = [
-        { "title": "Θέση", "visible": false, "searchable": false, "target": 0 },
-        { "title": "UserId", "searchable": false, "visible": false, "target": 1 },
-        { "title": "Όνομα", "searchable": true, "target": 1 },
-        {
-            "title": "Ρυθμίσεις", "searchable": false, "target": 3, createdCell: function (td, cellData, rowData, row, col) {
-                // debugger;
-                var html = '<button type="button" class="btn btn-warning" onclick="newView.ReplacePlayer(' + row + ')">Edit</button>';
-                $(td).html(html)
-            }
-        },
-    ];
-    var table;
 
     function init() {
         vm.GetSavedGroups();
@@ -55,9 +38,9 @@
     }
 
     function GetSavedGroups() {
-        $.custom.Server["SendRequest"]("POST", "/Dashboard/GetSavedGroups", { },
+        $.custom.Server["SendRequest"]("POST", "/Dashboard/GetSavedGroups", {},
             function (res) { //success
-                // debugger
+                 //debugger
                 if (res.success && res.user_groups.length) {
                     SetUserGroups(res.user_groups);
                 }
@@ -86,7 +69,7 @@
     }
 
     function SaveGroups() {
-        var userGroups = vm.User_Groups();
+        var userGroups = ko.mapping.toJS(vm.User_Groups);
         var dataToSave = [];
 
         for (var i = 0; i < userGroups.length; i++) {
@@ -101,7 +84,7 @@
         $.custom.Server["SendRequest"]("POST", "/Dashboard/SaveGroups", { user_groupsJSON: JSON.stringify(dataToSave) },
             function (res) { //success
                 // debugger
-                if (res.success ) {
+                if (res.success) {
                     $.custom['Logger'].Success("Οι Ομάδες Αποθηκεύτηκαν", "");
                 }
                 else {
@@ -111,72 +94,67 @@
             function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
 
     }
-    
 
+    var columns = [
+        { "title": "Θέση", "searchable": true, "visible": true, "target": 0 },
+        { "title": "UserId", "searchable": false, "visible": false, "target": 1 },
+        { "title": "Όνομα", "searchable": true, "target": 2 },
+        { "title": "Group", "searchable": false, "visible": false, "target": 3 },
+        {
+            "title": "Ρυθμίσεις", "searchable": false, "target": 4, createdCell: function (td, cellData, rowData, row, col) {
+                //debugger;
+                var html = '';
+                var id = rowData[1];
+                if (UserGroupDict[id]) {
+                    html = '<div class="alert alert-danger">Already Selected</div>';
+                }
+                else {
+                    html = '<button type="button" class="btn btn-warning" onclick="newView.ReplacePlayer(' + row + ')">Select</button>';
+                }
+                $(td).html(html)
+            }
+        },
+    ];
+
+    var table;
+    var UserGroupDict = null;
     function InitDatable() {
-        table = $('#datatable-users').DataTable({
-            // "ajax": "/Dashboard/" + view.url,
-            "ajax": "/Dashboard/GetUsers",
+        if (table) return;
+        table = $('#datatable-user-replace').DataTable({
+            "ajax": {
+                "url": "/Dashboard/GetRankedPlayersDT",
+                "data": function (d) {
+                    UserGroupDict = {};
+                    var userGroups = vm.User_Groups();
+                    for (var i = 0; i < userGroups.length; i++) {
+                        for (var j = 0; j < userGroups[i].Players.length; j++) {
+                            UserGroupDict[userGroups[i].Players[j].UserId()] = userGroups[i].Group
+                        }
+                    }
+                }
+            },
             "columns": columns
         });
     };
 
-    // General Game Settings
-    function RefreshGroups() {
-        table.ajax.reload();
+    function ViewReplaceModal(User) {
+        $('#usergroupEditorModal').modal();
+        vm.SelectedUser = User;
+
+        InitDatable();
     };
 
     function ReplacePlayer(rowIndex) {
-        var data = table.row(rowIndex).data();
-        var id = data[0];
-        var name = data[1];
-        $('#userEditorModal').modal();
+        var data = table.row(rowIndex).data();      
+        vm.SelectedUser.Rank(data[0]);
+        vm.SelectedUser.UserId(data[1]);
+        vm.SelectedUser.User_FullName(data[2]);
+        vm.SelectedUser = null;
+        $('#usergroupEditorModal').modal('hide');
     };
 
     function CancelEditing() {
-        vm.SelectedUser(null);
-    };
-
-    function ResetTokens(GameData) {
-        GameData.Tokens(GameData.Default());
-    };
-
-    function SaveUser() {
-        var User = vm.SelectedUser();
-        var gameTokens = {};
-        for (var i = 0; i < User.GameScores.length; i++) {
-            var gameData = User.GameScores[i];
-            gameTokens[gameData.Key()] = gameData.Tokens();
-        }
-        $.custom.Server["SendRequest"]("POST", "/Dashboard/SaveUserGameTokens", { userId: User.UserId, gameTokensJSON: JSON.stringify(gameTokens) },
-            function (res) { //success
-                // debugger
-                if (res.success) {
-                    $.custom['Logger'].Success("Τα Tokens Αποθηκεύτηκαν", "");
-                }
-                else {
-                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
-                }
-            },
-            function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
-        vm.SelectedUser(null);
-
-    };
-
-    function resetTime() {
-        var User = vm.SelectedUser();
-        $.custom.Server["SendRequest"]("POST", "/Dashboard/ResetGameTime", { userId: User.UserId },
-            function (res) { //success
-                // debugger
-                if (res.success) {
-                    $.custom['Logger'].Success("Ο χρόνος διαγράφηκε", "");
-                    User.PlayTimeToday('0 λεπτά 0 δευτερόλεπτα');
-                }
-                else {
-                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
-                }
-            },
-            function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
+        vm.SelectedUser = null;
     };
 
     return vm;
@@ -185,6 +163,6 @@
 var newView = new ViewModel();
 // Init
 $(document).ready(function () {
-    //newView.InitDatable();
+    newView.init();
     ko.applyBindings(newView);
 });

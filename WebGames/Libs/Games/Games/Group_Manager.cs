@@ -69,7 +69,8 @@ namespace WebGames.Libs.Games.Games
                 var UserGroups = (from ug in db.User_Groups select ug).Include("User").ToList();
                 if (UserGroups.Any())
                 {
-                    var QuestionsGame = (from game in db.Games where game.GameId == GameManager.GameDict[GameKeys.Questions].GameId select game).SingleOrDefault();
+                    var QuestionGameId = GameManager.GameDict[GameKeys.Questions].GameId;
+                    var QuestionsGame = (from game in db.Games where game.GameId == QuestionGameId select game).SingleOrDefault();
                     // Get the scores 
                     var scores = (from score in db.Questions_Scores select score).ToList();
                     foreach (var user in UserGroups)
