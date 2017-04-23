@@ -216,6 +216,9 @@ $(document).ready(function () {
             }, 1000);
         }
     });
+
+    if (isDemo) return;
+
     setInterval(function () {
         $.custom.Server.SaveGameTime(timeRemaining,
             function (res) { // success

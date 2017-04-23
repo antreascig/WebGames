@@ -1061,6 +1061,28 @@
     <Content Include="Views\Games\juggler\Map.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <Content Include="Views\Dashboard\GroupsSettings.cshtml" />
+    <Content Include="Views\Demo\adespotabalakia\adespotabalakia.cshtml" />
+    <Content Include="Views\Demo\escape\game1-1.cshtml" />
+    <Content Include="Views\Demo\escape\game1-2.cshtml" />
+    <Content Include="Views\Demo\escape\game1-3.cshtml" />
+    <Content Include="Views\Demo\escape\game1-4.cshtml" />
+    <Content Include="Views\Demo\escape\game1-5.cshtml" />
+    <Content Include="Views\Demo\escape\game2-1.cshtml" />
+    <Content Include="Views\Demo\escape\game2-2.cshtml" />
+    <Content Include="Views\Demo\escape\game2-3.cshtml" />
+    <Content Include="Views\Demo\escape\game2-4.cshtml" />
+    <Content Include="Views\Demo\escape\game2-5.cshtml" />
+    <Content Include="Views\Demo\escape\game3-1.cshtml" />
+    <Content Include="Views\Demo\escape\game3-2.cshtml" />
+    <Content Include="Views\Demo\escape\game3-3.cshtml" />
+    <Content Include="Views\Demo\escape\game3-4.cshtml" />
+    <Content Include="Views\Demo\escape\game3-5.cshtml" />
+    <Content Include="Views\Demo\juggler\juggler.cshtml" />
+    <Content Include="Views\Demo\mastermind\Mastermind.cshtml" />
+    <Content Include="Views\Demo\questions\questions.cshtml" />
+    <Content Include="Views\Demo\whackamole\whackamole.cshtml" />
+    <Content Include="Views\Demo\ActiveGameAfter.cshtml" />
+    <Content Include="Views\Demo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />
