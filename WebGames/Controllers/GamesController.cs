@@ -131,9 +131,22 @@ namespace WebGames.Controllers
         {
             var UserId = User.Identity.GetUserId();
 
+            var customGameKey = Request.QueryString["customGameKey"] ?? "";
+            var ActiveGameKey = "";
+            if (customGameKey != "")
+            {
+                ActiveGameKey = customGameKey;
+            }
+            else
+            {
+                var ActiveGameData = GameManager.GetActiveGameInfo(UserId).ActiveGameDataModel;
+                if (ActiveGameKey != null)
+                {
+                    ActiveGameKey = ActiveGameData.ActiveGameKey;
+                }
+            }
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
-            var ActiveGameKey = GameManager.GetActiveGameInfo(UserId).ActiveGameDataModel.ActiveGameKey;
-            if (ActiveGameKey == "")
+            if (ActiveGameKey == "" || !GameManager.GameDict.ContainsKey(ActiveGameKey))
             {
                 return Json(new { success = false, message = "No Game is Active" }, JsonRequestBehavior.AllowGet);
             }

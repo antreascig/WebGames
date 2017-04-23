@@ -484,7 +484,6 @@ footer .text-danger {
     }
 
     .home_info .container {
-        padding-top: 30px;
         text-align: center;
     }
 
@@ -509,8 +508,8 @@ footer .mails p {
 footer .mails a {
     vertical-align: middle;
     padding-right: 10px;
+    color:white;
 }
-
 
 .navbar-nav > li > a {
     font-size: 17px;
@@ -560,9 +559,10 @@ footer .mails a {
 }
 
 .demo_index .body-content {
-    width:100%;
-    padding:0;
-    margin:0;
+    width: 100%;
+    max-width: 2560px;
+    padding: 0;
+    margin: 0
 }
 
 .demo_index footer,
@@ -579,7 +579,17 @@ footer .mails a {
     margin: 0 auto;
     box-sizing: border-box
 }
+.demo_index .body-content,
+.demo_mastermind .body-content,
+.demo_questions .body-content,
+.demo_juggler .body-content,
+.demo_adespotabalakia .body-content,
+.demo_whackamole .body-content,
+.demo_escape_1 .body-content {
+    width: 100%;
+    max-width: 2560px;
 
+}
 .demo_index .screen a {
     display:block;
     position: relative;
@@ -594,8 +604,9 @@ footer .mails a {
 
 .body-content {
     width: 100%;
+    max-width: 960px;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .avatar .STRONGMAN:before {
@@ -640,4 +651,18 @@ footer .mails a {
 
 input[type="radio"]:checked+label:before {
     opacity: 1;
+}
+
+.mobile #c2canvasdiv {
+    width: 100%!important;
+    height: 100%!important
+}
+.mobile #c2canvas {
+    width: 100%;
+    height: 100%
+}
+
+.mobile .navbar,
+.mobile footer {
+    display: none;
 }

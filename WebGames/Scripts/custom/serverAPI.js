@@ -19,6 +19,11 @@
             level: level,
             timestamp: new Date().getTime()
         };
+        //debugger
+        if (window.customGameKey) {
+            data.customGameKey = window.customGameKey;
+        }
+
         self.SendRequest('GET', "/Games/Save_Game_Score", data, success, fail, false);
     };
 

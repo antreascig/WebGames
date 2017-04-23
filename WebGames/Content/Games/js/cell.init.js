@@ -24,7 +24,7 @@ if ($('.game').data('level') == 'level1') {
 
 $('#score span').html(GameScore);
 
-unlockCode = Math.floor(Math.random() * (999 - 100 + 1)) + 100;;
+//unlockCode = Math.floor(Math.random() * (999 - 100 + 1)) + 100;;
 
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -107,12 +107,12 @@ $(document).ready(function () {
     $('.exit').click(function (event) {
         /* Act on the event */
         isPaused = false;
-        $('#explainer').show();
+        $('#explainer').hide();
     });
     $('.pause').click(function (event) {
         /* Act on the event */
         isPaused = true;
-        $('#explainer').hide();
+        $('#explainer').show();
     });
     $('.wrapper').fadeIn(2000);
     $('.codenum').easyAudioEffects({

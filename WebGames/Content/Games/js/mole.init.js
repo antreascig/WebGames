@@ -16,6 +16,14 @@ var game = {
 }
 var music = $("#music")[0];
 
+var game = {
+    score: 0
+}
+var poof = $("#poof")[0];
+
+watch(game, "score", function () {
+    $('#score span').html(game.score);
+});
 function startTimer(duration, display) {
     var timer = duration,
         minutes, seconds;
@@ -44,14 +52,26 @@ function startTimer(duration, display) {
 var success = $("#mysoundclip")[0];
 
 function endGame() {
-    $('.wrapper').fadeOut(2000, function () {
-        if (isDemo) {
-            window.location.replace("/Games/ActiveExplainer");
+    $.custom.Server.SaveGameScore(game.score, 1, function (res) { // success
+        if (res && res.success) {
+            setTimeout(function () {
+                $('.wrapper').fadeOut(2000, function () {
+                    if (isDemo) {
+                        window.location.replace("/Games/ActiveExplainer");
+                    }
+                    else {
+                        window.location.replace("/Games/ActiveGameAfter?status=outoftime");
+                    }
+                });
+            }, 2000);
         }
-        else {
-            window.location.replace("/Games/ActiveGameAfter?status=outoftime");
+        else { // fail
+
         }
+    }, function () { // fail
+
     });
+
 }
 jQuery.fn.center = function () {
     this.css("position", "absolute");
@@ -246,20 +266,7 @@ function clog(s) {
     console.log(s);
 }
 
-var numItems = null;
-var weapon = 1;
-var enemy = null;
-var $all = $(".hole");
-var monsters = ["monster1", "monster1", "monster1", "monster1", "monster2", "monster2", "monster2", "monster2", "monster3", "monster3", "monster4", "monster5"];
-var justAdded = null;
-var game = {
-    score: 0
-}
-var poof = $("#poof")[0];
 
-watch(game, "score", function () {
-    $('#score span').html(game.score);
-});
 
 
 function shuffle(array) {
@@ -341,6 +348,24 @@ $(document).ready(function () {
     }, 5000);
     launchEnemies();
 
+    setInterval(function(){
+        $.custom.Server.SaveGameScore(game.score,1, 
+            function (res) { // success
+                if (res && res.success) {
+                    if (res.IsCorrect) {
+                        console.log('score saved');              
+                    }
+                } 
+                else { // fail 
+                    console.log('score not saved');
+                }
+        }, function () { // fail
+                    console.log('score not saved');           
+        });
+            
+    },15000);
+
+
     $('#weapons').on('click', '.weapon', function (event) {
         event.preventDefault();
         $('.weapon').removeClass('selected');
@@ -384,18 +409,15 @@ $(document).ready(function () {
         }
         var that = $(this);
         var position = that.data();
-            $('.monster2').length;
-            $('.monster2').each(function (index, el) {
-                game.score += 2;
-                var position = $(this).data();
-                var boom = '<img class="boom position' + position.position + '" src="/Content/images/boom.gif?' + (new Date).getTime() + '"/>';
-                $('#stage').append(boom);
-                poof.play();
+            game.score += 5;
+            var position = $(this).data();
+            var boom = '<img class="boom position' + position.position + '" src="/Content/images/boom.gif?' + (new Date).getTime() + '"/>';
+            $('#stage').append(boom);
+            poof.play();
 
-                setTimeout(function () {
-                    $('.boom.position' + position.position).remove();
-                }, 700);
-            });
+            setTimeout(function () {
+                $('.boom.position' + position.position).remove();
+            }, 700);
             setTimeout(function () {
                 $('.monster2').remove();
             }, 250)

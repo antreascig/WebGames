@@ -79,6 +79,7 @@ namespace WebGames.Controllers
             var userId = User.Identity.GetUserId();
             var GameData = GameManager.GameDict[GameKey];
 
+            var scoreData = GameData.SM.GetUserScore(userId);
             var activeGameInfo = new ActiveUserGameInfo()
             {
                 ActiveGameDataModel = new ActiveGameData()
@@ -86,10 +87,10 @@ namespace WebGames.Controllers
                     ActiveGameKey = "",
                     Messages = new Dictionary<string, string>()
                 },
-                ActiveLevel = 1,
+                ActiveLevel = scoreData.Levels + 1,
                 AvailableLevels = GameData.AvailableLevels,
                 Folder = GameData.Folder,
-                GameScore = GameData.SM.GetUserScore(userId).Score,
+                GameScore = scoreData.Score,
                 IsDemo = false,
                 LevelAsPage = GameData.LevelAsPage,
                 Page = GameData.Page,
