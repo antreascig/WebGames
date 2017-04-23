@@ -11,7 +11,7 @@ namespace WebGames.Libs
 {
     public class UserGameManager
     {
-        const int TIME_LIMIT_PER_DAY = 5 * 60; // 300 seconds / 5 minutes
+        const int TIME_LIMIT_PER_DAY = 20 * 60; // 300 seconds / 5 minutes
 
         public static UserGameInfo GetUserRemainingTime(string UserId)
         {

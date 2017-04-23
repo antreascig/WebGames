@@ -36,7 +36,7 @@ namespace WebGames.Models
     {
         [Required(ErrorMessage = "Το UserName είναι υποχρεωτικό.")]
         [DataType(DataType.Text, ErrorMessage="Λάθος UserName - Μπορεί να περιέχει λατινικούς χαρακτήρες και αριθμούς")]
-        [Display(Name = "UserName")]
+        [Display(Name = "UserName - Χρησιμοποιήστε κάτι διαφορετικό από το email σας")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Ο Κωδικός είναι υποχρεωτικός.")]
@@ -52,7 +52,7 @@ namespace WebGames.Models
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Όνομα")]
+        [Display(Name = "Ονοματεπώνυμο")]
         public string FullName { get; set; }
 
         [Required(ErrorMessage ="To Email είναι υποχρεωτικό.")]

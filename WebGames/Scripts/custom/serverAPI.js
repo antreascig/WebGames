@@ -26,10 +26,12 @@
         self.SendRequest('GET', "/Games/Get_Random_Game3_Solution", {}, success, fail, false);
     };
 
-    self.CheckQuestion = function (questionId, answerIndex, success, fail) {
+    self.CheckQuestion = function (questionId, answerIndex, isDemo, success, fail) {
+        isDemo = isDemo || false;
         var data = {
             questionId: questionId,
-            answerIndex: answerIndex
+            answerIndex: answerIndex,
+            isDemo: isDemo
         };
         self.SendRequest('GET', "/Games/CheckQuestion", data, success, fail, false);
     };

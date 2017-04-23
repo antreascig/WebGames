@@ -211,6 +211,7 @@
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\ErrorMessageHelper.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
+    <Compile Include="Helpers\Mailers.cs" />
     <Compile Include="Helpers\QuestionsHelper.cs" />
     <Compile Include="Helpers\ReadAllowedEmailsHelper.cs" />
     <Compile Include="Helpers\TypeHelper.cs" />
@@ -282,6 +283,10 @@
     <Compile Include="Migrations\201704202023330_Last_Game_Score_Names_Fixed.cs" />
     <Compile Include="Migrations\201704202023330_Last_Game_Score_Names_Fixed.Designer.cs">
       <DependentUpon>201704202023330_Last_Game_Score_Names_Fixed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704231911411_no_fk_user_in_scores.cs" />
+    <Compile Include="Migrations\201704231911411_no_fk_user_in_scores.Designer.cs">
+      <DependentUpon>201704231911411_no_fk_user_in_scores.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -704,6 +709,9 @@
     <Content Include="Content\images\locks\8.png" />
     <Content Include="Content\images\locks\9.png" />
     <Content Include="Content\images\locks\bg.jpg" />
+    <Content Include="Content\images\mailers\bottom.jpg" />
+    <Content Include="Content\images\mailers\top.jpg" />
+    <Content Include="Content\images\mailers\welcome.jpg" />
     <Content Include="Content\images\main-bg.jpg" />
     <Content Include="Content\images\map.png" />
     <Content Include="Content\images\mapbg.jpg" />
@@ -951,7 +959,6 @@
     <Content Include="Content\ComingSoon\img\parallels-logo.png" />
     <Content Include="Content\ComingSoon\img\th.png" />
     <Content Include="Content\ComingSoon\img\top-bottom.png" />
-    <Content Include="Views\ComingSoon\Index.cshtml" />
     <Content Include="Content\ComingSoon\screens.css" />
     <Content Include="Content\ComingSoon\test\apacheasp\test.asp" />
     <Content Include="Content\ComingSoon\test\apacheasp\test.html" />
@@ -1083,6 +1090,7 @@
     <Content Include="Views\Demo\whackamole\whackamole.cshtml" />
     <Content Include="Views\Demo\ActiveGameAfter.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
+    <Content Include="Views\ComingSoon\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />
@@ -1132,6 +1140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704202023330_Last_Game_Score_Names_Fixed.resx">
       <DependentUpon>201704202023330_Last_Game_Score_Names_Fixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704231911411_no_fk_user_in_scores.resx">
+      <DependentUpon>201704231911411_no_fk_user_in_scores.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

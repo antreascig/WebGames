@@ -212,7 +212,7 @@ namespace WebGames.Libs.Games
                         Score = 0
                     }).ToList().AsQueryable();
 
-                    var ScoreData = db.Set<T>().Include("User").AsQueryable();
+                    //var ScoreData = db.Set<T>().Include("User").AsQueryable();
                     var res = DataTablesResult.Create(data, dataTableParam, row => new
                     {
                         Rank = row.Rank,

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebGames.Libs;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace WebGames.Controllers
 {
@@ -71,7 +73,7 @@ namespace WebGames.Controllers
             return GetPage(activeGameInfo);
         }
 
-        private static ActiveUserGameInfo GetGameInfo(string GameKey)
+        private ActiveUserGameInfo GetGameInfo(string GameKey)
         {
             var GameData = GameManager.GameDict[GameKey];
             var activeGameInfo = new ActiveUserGameInfo()
@@ -84,8 +86,8 @@ namespace WebGames.Controllers
                 ActiveLevel = 1,
                 AvailableLevels = GameData.AvailableLevels,
                 Folder = GameData.Folder,
-                GameScore = 0,
-                IsDemo = true,
+                GameScore = GameData.SM.GetUserScore(User.Identity.GetUserId()).Score,
+                IsDemo = false,
                 LevelAsPage = GameData.LevelAsPage,
                 Page = GameData.Page,
                 RemainingTime = 5 * 60

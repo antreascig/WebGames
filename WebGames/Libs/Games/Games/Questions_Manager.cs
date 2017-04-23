@@ -51,6 +51,7 @@ namespace WebGames.Libs.Games.GameTypes
             var res = new List<GameQuestionView>();
             var temp = new List<GameQuestionModel>();
             var Ids = new List<int>();
+            var WasAssignedQuestions = false;
             try
             {
                 using (var db = ApplicationDbContext.Create())
@@ -64,6 +65,7 @@ namespace WebGames.Libs.Games.GameTypes
                                                                  // remove any already answered questions
                                                                  .Where(id => !answered.Contains(id))
                                                                  .Select(id => int.Parse(id)) );
+                        WasAssignedQuestions = true;
                     }
 
                     // Retrieve the game's metadata
@@ -78,7 +80,7 @@ namespace WebGames.Libs.Games.GameTypes
                         int NumberOfQuestions = (int) Math.Ceiling( totalScore / GameMetadata.PointsPerQustion );
 
                         // if not any ids stored in db them choose randomly
-                        if ( !Ids.Any() )
+                        if ( !WasAssignedQuestions )
                         {
                             var AllQIds = GameMetadata.Questions.Keys.ToList();
                             var RandomNumGen = new Random(DateTime.UtcNow.Millisecond);

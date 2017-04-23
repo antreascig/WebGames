@@ -166,7 +166,7 @@ namespace WebGames.Controllers
                             //  Comment the following line to prevent log in until the user is confirmed.
                             //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                            string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+                            string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Επιβεβαίωση Λογαριασμού");
 
                             ViewBag.Message = @"Ελέγξτε το email σας και επιβεβαιώστε τον λογαριασμό σας. Η επιβεβαίωση είναι αναγκαία για να συνδεθείτε!";
 
@@ -232,8 +232,9 @@ namespace WebGames.Controllers
 
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password",
-                   "Επαναφέρετε τον κωδικό πρόσβασης κάνοντας κλικ <a href=\"" + callbackUrl + "\">εδώ</a>");
+                var body = string.Format(Mailers.Recover(), callbackUrl, user.FullName);
+                await UserManager.SendEmailAsync(user.Id, "Επαναφορά κωδικού", body);
+
                 TempData["ViewBagLink"] = callbackUrl;
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
@@ -369,8 +370,8 @@ namespace WebGames.Controllers
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
             var callbackUrl = Url.Action("ConfirmEmail", "Account",
                new { userId = userID, code = code }, protocol: Request.Url.Scheme);
-            await UserManager.SendEmailAsync(userID, subject,
-               "Παρακαλώ επιβεβαίωσε το λογαριασμό σου πατώντας <a href=\"" + callbackUrl + "\">εδώ</a>");
+            var body = string.Format(Mailers.Register(), callbackUrl);
+            await UserManager.SendEmailAsync(userID, subject, body);
 
             return callbackUrl;
         }
