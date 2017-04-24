@@ -12,7 +12,7 @@ var level = $('.game').data('level');
 var cVal = null;
 var gameTime = null;
 var enteredCode = null;
-var unlockCode = null;
+//var unlockCode = null;
 var score = GameScore;
 var levelScore = null;
 var music = $("#myAudio")[0];
@@ -183,7 +183,7 @@ $(document).ready(function () {
         enteredCode = parseInt($('#c1').html() + $('#c2').html() + $('#c3').html());
 
 
-        if (enteredCode == unlockCode) {
+        if (enteredCode == window.unlockCode) {
             // alert('woohooo');
             success.play();
             isPaused = true;

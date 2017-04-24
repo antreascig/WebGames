@@ -114,7 +114,7 @@
 
     <script>
             // Init
-        var unlockCode = atob('@(WebGames.Helpers.Base64Helper.GetBase64("728"))');
+        window.unlockCode = atob('@(WebGames.Helpers.Base64Helper.GetBase64("728"))');
 
         var RemainingTime = @Model.RemainingTime;
         var GameScore = @Model.GameScore;

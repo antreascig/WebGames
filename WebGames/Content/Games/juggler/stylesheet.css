@@ -10,15 +10,3 @@
     font-style: normal;
 
 }
-
-        @media screen and ( max-width: 768px) {
-            #c2canvasdiv {
-                width:100%!important;
-                height:100%!important;
-
-            }
-            canvas {
-                width:100%!important;
-                height:100%!important;
-            }
-        }

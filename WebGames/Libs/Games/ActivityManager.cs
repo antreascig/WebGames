@@ -72,7 +72,7 @@ namespace WebGames.Libs.Games
         {
             var localizedDate = DateHelper.GetGreekDate(Day, onlyDate: true);
 
-            var activity = (from act in db.UserDailyActivity where act.UserId == UserId && act.Date == Day select act).SingleOrDefault();
+            var activity = (from act in db.UserDailyActivity where act.UserId == UserId && act.Date == localizedDate select act).SingleOrDefault();
             if (activity == null && CreateIfNotExists)
             {
                 activity = new UserDailyActivity()

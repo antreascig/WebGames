@@ -4262,7 +4262,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			var loaderImage = new Image();
 			loaderImage.crossOrigin = "anonymous";
-			this.setImageSrc(loaderImage, "/Content/Games/balakia/loading-logo.png");
+			this.setImageSrc(loaderImage, "loading-logo.png");
 			this.loaderlogos = {
 				logo: loaderImage
 			};
@@ -25969,8 +25969,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Touch.prototype.cnds.OnTouchObject,
 	cr.system_object.prototype.acts.RestartLayout,
 	cr.system_object.prototype.acts.SetTimescale,
-	cr.plugins_.Touch.prototype.cnds.OnTouchStart,
-	cr.plugins_.Browser.prototype.acts.RequestFullScreen,
 	cr.system_object.prototype.cnds.ForEach,
 	cr.plugins_.Text.prototype.exps.LayerName,
 	cr.plugins_.Text.prototype.exps.X,
