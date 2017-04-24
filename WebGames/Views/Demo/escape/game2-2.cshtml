@@ -114,6 +114,8 @@
 
     <script>
             // Init
+        var unlockCode = atob('@(WebGames.Helpers.Base64Helper.GetBase64("163"))');
+
         window.customGameKey = '@WebGames.Libs.GameKeys.Escape_2';
 
         var RemainingTime = @Model.RemainingTime;

@@ -115,6 +115,8 @@
 
     <script>
             // Init
+        var unlockCode = atob('@(WebGames.Helpers.Base64Helper.GetBase64("125"))');
+
         var RemainingTime = @Model.RemainingTime;
         var GameScore = @Model.GameScore;
         @if(Model.IsDemo) {

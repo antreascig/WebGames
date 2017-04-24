@@ -71,9 +71,9 @@ namespace WebGames.Libs
             var Games = new List<GameData>()
             {
                 new GameData() { GameKey = GameKeys.Adespotabalakia, Name = "ΑΔΕΣΠΟΤΑ ΜΠΑΛΑΚΙΑ", Folder = "adespotabalakia", Page = "adespotabalakia", SM = new ScoreManager<Adespotabalakia_UserScore>(GameKeys.Adespotabalakia) },
-                new GameData() { GameKey = GameKeys.Escape_1, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 1", Folder = "escape", Page = "game1", SM = new ScoreManager<Escape_1_UserScore>(GameKeys.Escape_1), LevelAsPage = true },
-                new GameData() { GameKey = GameKeys.Escape_2, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 2", Folder = "escape", Page = "game2", SM = new ScoreManager<Escape_2_UserScore>(GameKeys.Escape_2), LevelAsPage = true },
-                new GameData() { GameKey = GameKeys.Escape_3, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 3", Folder = "escape", Page = "game3", SM = new ScoreManager<Escape_3_UserScore>(GameKeys.Escape_3), LevelAsPage = true },
+                new GameData() { GameKey = GameKeys.Escape_1, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 1", Folder = "escape", Page = "game1", SM = new ScoreManager<Escape_1_UserScore>(GameKeys.Escape_1), LevelAsPage = true, AvailableLevels = 5 },
+                new GameData() { GameKey = GameKeys.Escape_2, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 2", Folder = "escape", Page = "game2", SM = new ScoreManager<Escape_2_UserScore>(GameKeys.Escape_2), LevelAsPage = true, AvailableLevels = 5 },
+                new GameData() { GameKey = GameKeys.Escape_3, Name = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ 3", Folder = "escape", Page = "game3", SM = new ScoreManager<Escape_3_UserScore>(GameKeys.Escape_3), LevelAsPage = true, AvailableLevels = 5 },
                 new GameData() { GameKey = GameKeys.Mastermind, Name = "ΜΑΝΤΕΨΕ ΤΙ ΜΑΝΤΕΨΑ", Folder = "mastermind", Page = "mastermind", SM = new ScoreManager<Mastermind_UserScore>(GameKeys.Mastermind) },
                 new GameData() { GameKey = GameKeys.Juggler, Name = "ΑΤΕΛΕΙΩΤΟ ΣΚΟΙΝΑΚΙ", Folder = "juggler", Page = "juggler", SM = new ScoreManager<Juggler_UserScore>(GameKeys.Juggler) },
                 new GameData() { GameKey = GameKeys.Whackamole, Name = "WHACK A MOLE", Folder = "whackamole",  Page = "whackamole", SM = new ScoreManager<Whackamole_UserScore>(GameKeys.Whackamole) },

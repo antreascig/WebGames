@@ -16,9 +16,6 @@ var game = {
 }
 var music = $("#music")[0];
 
-var game = {
-    score: 0
-}
 var poof = $("#poof")[0];
 
 watch(game, "score", function () {
@@ -363,7 +360,7 @@ $(document).ready(function () {
                     console.log('score not saved');           
         });
             
-    },15000);
+    },5000);
 
 
     $('#weapons').on('click', '.weapon', function (event) {

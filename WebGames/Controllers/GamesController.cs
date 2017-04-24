@@ -184,7 +184,7 @@ namespace WebGames.Controllers
                 } // no available levels
                 else if (gameInfo.AvailableLevels > 0 && gameInfo.AvailableLevels < gameInfo.ActiveLevel)
                 {
-                    ViewRes = RedirectToAction("ActiveGameAfter", new { status = "outoftime" });
+                    ViewRes = RedirectToAction("ActiveGameAfter", new { status = "success" });
                 }
                 else
                 {

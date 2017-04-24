@@ -15,13 +15,13 @@ namespace WebGames.Libs.Games
 
     public class ActivityManager
     {
-        const int allowedTime = 5 * 60; // 5 minutes
+        public const int ALLOWED_TIME = 20 * 60; // 5 minutes
 
         public static void SyncPlayedTimeForToday(string UserId, int remainingTime, long timeStamp)
         {
-            var timeInSeconds = allowedTime - remainingTime;
+            var timeInSeconds = ALLOWED_TIME - remainingTime;
             if (timeInSeconds < 0) return;
-            if (timeInSeconds > allowedTime) timeInSeconds = allowedTime;
+            if (timeInSeconds > ALLOWED_TIME) timeInSeconds = ALLOWED_TIME;
 
             SavePlayTime(UserId, DateTime.UtcNow.Date, timeInSeconds, timeStamp);
         }
@@ -72,7 +72,7 @@ namespace WebGames.Libs.Games
         {
             var localizedDate = DateHelper.GetGreekDate(Day, onlyDate: true);
 
-            var activity = db.UserDailyActivity.FindAsync(UserId, localizedDate).Result;
+            var activity = (from act in db.UserDailyActivity where act.UserId == UserId && act.Date == Day select act).SingleOrDefault();
             if (activity == null && CreateIfNotExists)
             {
                 activity = new UserDailyActivity()
