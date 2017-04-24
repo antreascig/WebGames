@@ -255,18 +255,21 @@ namespace WebGames.Libs.Games
                         {
                             UserId = UserId,
                             Tokens = Tokens,
-                            Levels = level
+                            Levels = level,
+                            timeStamp = timeStamp
                         };
                         db.Set<T>().Add(Entity);
                     }
                     else if (EnableOverride)
                     {
                         Entity.Tokens = Tokens;
+                        Entity.timeStamp = timeStamp;
                     }
                     else if (Entity.timeStamp < timeStamp)
                     {
                         Entity.Tokens = Tokens;
                         Entity.Levels = level;
+                        Entity.timeStamp = timeStamp;
                     }
                     db.SaveChanges();
                 }

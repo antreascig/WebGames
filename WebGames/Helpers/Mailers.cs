@@ -92,9 +92,7 @@ namespace WebGames.Helpers
                                                         <tr>
                                                             <td>
                                                                 <p align=""left"" style=""font-family: 'Open Sans', Verdana, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color:#ffffff; line-height:17px; margin: 0px 35px 0px 40px;"">
-                                                                    <a style=""text-decoration: none;"" href=""http://www.comsmoplay.gr"">
                                                                     Αγαπητέ/ή {1},
-                                                                    </a>
                                                                 </p>
                                                             </td>
                                                         </tr>
@@ -104,7 +102,7 @@ namespace WebGames.Helpers
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a style=""text-decoration: none;"" href=""http://www.comsmoplay.gr"">
+                                                <a style=""text-decoration: none;"" href=""{0}"">
                                                     <img src=""https://www.amusegr.eu/bottom.jpg"" alt=""""></a>
                                             </td>
                                         </tr>

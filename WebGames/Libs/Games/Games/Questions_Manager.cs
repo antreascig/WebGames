@@ -75,7 +75,7 @@ namespace WebGames.Libs.Games.GameTypes
                     {
                         // get the score of the user in order to calculate the required number of questions to retrieve
                         var scores = ScoreManager.GetUserTotalScores(UserId);
-                        var GamesRequired = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
+                        var GamesRequired = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3, GameKeys.Whackamole };
                         var totalScore = scores.Where(s=> GamesRequired.Contains(s.Key) ).Sum(s => s.Value.Score);
                         int NumberOfQuestions = (int) Math.Ceiling( totalScore / GameMetadata.PointsPerQustion );
 

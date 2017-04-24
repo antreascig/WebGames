@@ -23,7 +23,7 @@ namespace WebGames.Libs.Games
             if (timeInSeconds < 0) return;
             if (timeInSeconds > ALLOWED_TIME) timeInSeconds = ALLOWED_TIME;
 
-            SavePlayTime(UserId, DateTime.UtcNow.Date, timeInSeconds, timeStamp);
+            SavePlayTime(UserId, DateTime.UtcNow, timeInSeconds, timeStamp);
         }
         // timeStamp = JS Date().getTime() - epoch time
         public static void SavePlayTime(string UserId, DateTime Day, int TimePlayed, long jsTimeStamp, bool Override = false)
@@ -84,6 +84,7 @@ namespace WebGames.Libs.Games
                 };
 
                 db.UserDailyActivity.Add(activity);
+                db.SaveChanges();
             }
 
             return activity;

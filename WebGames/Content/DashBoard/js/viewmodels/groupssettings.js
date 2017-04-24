@@ -41,11 +41,13 @@
         $.custom.Server["SendRequest"]("POST", "/Dashboard/GetSavedGroups", {},
             function (res) { //success
                  //debugger
-                if (res.success && res.user_groups.length) {
-                    SetUserGroups(res.user_groups);
+                if (res.success) {
+                    if (res.user_groups.length) {
+                        SetUserGroups(res.user_groups);
+                    }
                 }
                 else {
-                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "")
+                    $.custom['Logger'].Error("Δεν βρέθηκαν ομάδες", "")
                 }
             },
             function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });

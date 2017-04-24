@@ -821,7 +821,7 @@ input[type="radio"]:checked+label:before {
     z-index:100;
 }
 
-.account_login .navbar,.home_index .navbar {
+.account_login .navbar,.home_index .navbar, .home_tnc .navbar, .home_info .navbar {
     display: block
 }
 
@@ -850,8 +850,8 @@ input[type="radio"]:checked+label:before {
     padding-bottom: 50px;
 }
 .account_resetpasswordconfirmation .body-content > div > p a {
-color:white;
-text-decoration: underline;
+    color:white;
+    text-decoration: underline;
 }
 .account_resetpassword .form-horizontal {
     max-width: 480px;
@@ -871,4 +871,16 @@ text-decoration: underline;
     background-color: #40ae49;
     color: #fff;
     font-size: 26px
+}
+
+.paper {
+    background: #f1f1ef url(/Content/images/paper.jpg);
+    background-size:inherit;
+    color:black;
+    box-sizing:border-box;
+    padding: 15px 45px;
+}
+
+.home_info .paper {
+    padding: 45px 45px
 }

@@ -12,7 +12,7 @@ var level = $('.game').data('level');
 var cVal = null;
 var gameTime = null;
 var enteredCode = null;
-var unlockCode = null;
+//var unlockCode = null;
 var score = GameScore;
 var levelScore = null;
 var music = $("#myAudio")[0];
@@ -24,7 +24,7 @@ if ($('.game').data('level') == 'level1') {
 
 $('#score span').html(GameScore);
 
-unlockCode = Math.floor(Math.random() * (999 - 100 + 1)) + 100;;
+//unlockCode = Math.floor(Math.random() * (999 - 100 + 1)) + 100;;
 
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -190,7 +190,7 @@ $(document).ready(function () {
             score += levelScore;
 
             if (isDemo) return;
-            debugger
+            //debugger
             $.custom.Server.SaveGameScore(score, level.substring(5),
                 function (res) { // success
                     if (res && res.success) {
