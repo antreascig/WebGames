@@ -3020,7 +3020,7 @@ body {
 /****** preloader */
 @media screen and (max-width: 768px) {
     .mobile .wrapper {
-        padding: 25px !important;
+        /*padding: 25px !important;*/
     }
 
     .mobile .game {

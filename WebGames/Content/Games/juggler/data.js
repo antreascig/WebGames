@@ -967,5 +967,5 @@
         [
             ["collision.m4a", 4898],
             ["collision.ogg", 7192]
-        ], "/Content/Games/juggler/media/", false, 960, 540, 0, true, true, true, "1.0.0.0", true, false, 1, 2, 22, false, true, 1, true, "New project", 0, []
+        ], "/Content/Games/juggler/media/", false, 960, 540, 4, true, true, true, "1.0.0.0", true, false, 1, 0, 22, false, true, 1, true, "New project", 0, []
     ] }

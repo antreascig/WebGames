@@ -10190,7 +10190,7 @@ window["cr_setSuspended"] = function(s)
 			this.is_else_block = (this.conditions[0].type == null && this.conditions[0].func == cr.system_object.prototype.cnds.Else);
 		}
 	};
-	window["_c2hh_"] = "6C43BA7B339F99502543B39EBCC1A7F39BF30829";
+	window["_c2hh_"] = "25E8D66963893B15C4743C30655665AD81827888";
 	EventBlock.prototype.postInit = function (hasElse/*, prevBlock_*/)
 	{
 		var i, len;
@@ -25918,12 +25918,12 @@ cr.behaviors.Pin = function(runtime)
 cr.getObjectRefTable = function () { return [
 	cr.plugins_.Arr,
 	cr.plugins_.Audio,
-	cr.plugins_.Browser,
 	cr.plugins_.Dictionary,
-	cr.plugins_.Mouse,
+	cr.plugins_.Browser,
 	cr.plugins_.LocalStorage,
-	cr.plugins_.Touch,
+	cr.plugins_.Mouse,
 	cr.plugins_.Text,
+	cr.plugins_.Touch,
 	cr.plugins_.Sprite,
 	cr.behaviors.Physics,
 	cr.behaviors.Pin,

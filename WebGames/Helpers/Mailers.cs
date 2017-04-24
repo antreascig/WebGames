@@ -11,29 +11,31 @@ namespace WebGames.Helpers
         {
             return @"
 
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Welcome</title>
     <meta charset=""utf-8"" />
-    <link href = ""https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=greek"" rel=""stylesheet"">
+    <link href=""https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=greek"" rel=""stylesheet"">
 </head>
 
-<body style = ""background:#000000; font-family: Montserrat, helvetica, san-serif; margin: 0px; padding: 0px; width: 100%; height: 100%;"" >
-    <a style=""text-decoration: none;"" href=""{0}"">
-    <table cellpadding =""0"" cellspacing=""0"" width=""100%"" height=""100%"">
-        <tbody style = ""padding: 0px; margin: 0px; line-height: 100%"" >
+<body style=""background:#000000; font-family: Montserrat, helvetica, san-serif; margin: 0px; padding: 0px; width: 100%; height: 100%;"">
+    <table cellpadding=""0"" cellspacing=""0"" width=""100%"" height=""100%"">
+        <tbody style=""padding: 0px; margin: 0px; line-height: 100%"">
             <tr>
                 <td align=""center"" valign=""top"">
-                    <table style=""width: 600px;"" >
+                    <table style=""width: 600px;"">
                         <tr>
                             <td>
                                 <table width=""600"" cellpadding=""0"" cellspacing=""0"" border=""0"" style=""height: 182px;"">
-                                    <tbody style=""padding: 0px; margin: 0px; line-height: 100%"" >
+                                    <tbody style=""padding: 0px; margin: 0px; line-height: 100%"">
                                         <tr>
                                             <td>
-                                           <img src=""https://amusegr.eu/welcome.jpg"" alt="""">
+                                            <a style=""text-decoration: none;"" href=""{0}"">
+                                                <img src=""https://www.amusegr.eu/welcome.jpg"" alt="""">
+                                            </a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -45,8 +47,8 @@ namespace WebGames.Helpers
             </tr>
         </tbody>
     </table>
-    </a>
 </body>
+
 </html>
             ";
         }
@@ -57,62 +59,68 @@ namespace WebGames.Helpers
             return
             @"
 
-                <!DOCTYPE html>
-                <html>
+<!DOCTYPE html>
+<html>
 
-                <head>
-                    <title>Welcome</title>
-                    <meta charset=""utf-8"" />
-                    <link href=""https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=greek"" rel=""stylesheet"">
-                </head>
+<head>
+    <title>Welcome</title>
+    <meta charset=""utf-8"" />
+    <link href=""https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=greek"" rel=""stylesheet"">
+</head>
 
-                <body style=""background:#000000; font-family: Montserrat, helvetica, san-serif; margin: 0px; padding: 0px; width: 100%; height: 100%;"" >
-                    <a style=""text-decoration: none;"" href=""{0}"">
-                    <table cellpadding=""0"" cellspacing=""0"" width=""100%"" height=""100%"">
-                        <tbody style=""padding: 0px; margin: 0px; line-height: 100%"" >
-                            <tr>
-                                <td align=""center"" valign=""top"">
-                                    <table style = ""width: 600px;"" >
+<body style=""background:#000000; font-family: Montserrat, helvetica, san-serif; margin: 0px; padding: 0px; width: 100%; height: 100%;"">
+    <table cellpadding=""0"" cellspacing=""0"" width=""100%"" height=""100%"">
+        <tbody style=""padding: 0px; margin: 0px; line-height: 100%"">
+            <tr>
+                <td align=""center"" valign=""top"">
+                    <table style=""width: 600px;"">
+                        <tr>
+                            <td>
+                                <table width=""600"" cellpadding=""0"" cellspacing=""0"" border=""0"" style=""height: 182px;"">
+                                    <tbody style=""padding: 0px; margin: 0px; line-height: 100%"">
                                         <tr>
                                             <td>
-                                                <table width=""600"" cellpadding=""0"" cellspacing=""0"" border=""0"" style=""height: 182px;"">
-                                                    <tbody style=""padding: 0px; margin: 0px; line-height: 100%"" >
+                                                <a style=""text-decoration: none;"" href=""{0}"">
+                                                    <img src=""https://www.amusegr.eu/top.jpg"" alt="""">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr style=""background: #000000"">
+                                            <td align=""center"">
+                                                <table width=""600"" cellpadding=""0"" cellspacing=""0"" border=""0"">
+                                                    <tbody style=""padding: 0px; margin: 0px; line-height: 100%"">
                                                         <tr>
                                                             <td>
-                                                           <img src=""https://amusegr.eu/top.jpg"" alt="""">
+                                                                <p align=""left"" style=""font-family: 'Open Sans', Verdana, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color:#ffffff; line-height:17px; margin: 0px 35px 0px 40px;"">
+                                                                    <a style=""text-decoration: none;"" href=""http://www.comsmoplay.gr"">
+                                                                    Αγαπητέ/ή {1},
+                                                                    </a>
+                                                                </p>
                                                             </td>
-                                                        </tr>
-                                                        <tr style=""background: #000000"" >
-                                                            <td align=""center"">
-                                                                <table width=""600"" cellpadding=""0"" cellspacing=""0"" border=""0"">
-                                                                    <tbody style=""padding: 0px; margin: 0px; line-height: 100%"">
-                                                                        <tr>
-                                                                            <td>
-                                                                                <p align=""left"" style=""font-family: 'Open Sans', Verdana, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color:#ffffff; line-height:17px; margin: 0px 35px 0px 40px;"">
-                                                                                    Αγαπητέ/ή {1},
-                                                                                </p>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><img src=""https://amusegr.eu/bottom.jpg"" alt=""""></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </td>
                                         </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
+                                        <tr>
+                                            <td>
+                                                <a style=""text-decoration: none;"" href=""http://www.comsmoplay.gr"">
+                                                    <img src=""https://www.amusegr.eu/bottom.jpg"" alt=""""></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
                     </table>
-                    </a>
-                </body>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
 
-                </html>
+</html>
+
                 ";
         }
 

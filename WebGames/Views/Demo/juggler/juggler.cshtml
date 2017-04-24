@@ -71,7 +71,7 @@
 
         $(window).on('resize', function () {
             if (isMobile == false) {
-                $('#c2canvasdiv').center();
+                // $('#c2canvasdiv').center();
             }
         });
 
@@ -124,12 +124,33 @@
             $('body').addClass('desktop');
         }
         // Start the Construct 2 project running on window load.
-        jQuery(document).ready(function () {
+        function crr_sizeCanvas()
+        {
+            var w = jQuery(window).width();
+            var h = jQuery(window).height();
+            
+            var canvas = document.getElementById("c2canvas");
+            
+            if (canvas)
+            {
+                canvas.width = w;
+                canvas.height = w * 9/20;
+            
+                if (canvas.c2runtime)
+                    canvas.c2runtime.setSize(w, h);
+            }
+            else if (window.c2runtime)
+                window.c2runtime.setSize(w, h);
+        }
+        $(document).ready(function () {
             if (isMobile == false) {
-                $('#c2canvasdiv').center();
+                // $('#c2canvasdiv').center();
             }
 
             // Create new runtime using the c2canvas
+            if (isMobile == true) {
+                // crr_sizeCanvas();
+            }
             cr_createRuntime("c2canvas");
         });
 

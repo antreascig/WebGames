@@ -25,8 +25,19 @@ body {
     background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) top center no-repeat
 }
 
-.account_login, .account_forgotpassword, .account_confirmemail {
+.account_login,
+.games_activegamemap,
+.account_forgotpasswordconfirmation,
+.account_forgotpassword,.account_confirmemail {
     background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center -100px no-repeat
+}
+.games_activegamemap .body-content {
+    color:white;
+    text-align: center!important;
+    padding-top: 350px!important;
+    margin: 0 auto!important;
+    font-size: 30px;
+    font-family:'GFS';
 }
 
 .account_register {
@@ -274,8 +285,8 @@ body {
     font-family: 'GFS';
     font-size: 24px;
     font-weight: normal;
-    display: inline;
-    color: #1479a5
+    color: #1479a5;
+    display:block;
 }
 
 label.STRONGMAN, label.ACROBAT, label.MAGICIAN, label.KOMPER {
@@ -308,7 +319,16 @@ input[type="radio"]:checked + label {
     height: 50px
 }
 
-.account_forgotpassword h2 {
+.account_forgotpasswordconfirmation .body-content {
+    padding-top: 350px;
+    text-align: center;
+    color:white;
+}
+.account_forgotpasswordconfirmation .body-content p {
+    padding-bottom: 80px;
+}
+.account_forgotpassword h2,
+.account_forgotpasswordconfirmation h1 {
     color: #fff;
     font-family: 'GFS';
     text-align: center;
@@ -662,30 +682,193 @@ input[type="radio"]:checked+label:before {
 }
 
 .mobile #c2canvasdiv {
-    top:0!important;
+/*    top:0!important;
     left:0!important;
     width: 100%;
-    height: 100%
+    height: 100%*/
 }
 
 .mobile #c2canvas {
-    width: 100%;
-    height: 100%
+/*    width: 100%;
+    height: 100%*/
 }
 
 .mobile .navbar,.mobile footer {
     display: none
 }
 .desktop #c2canvasdiv {
-    position:relative!important;
+/*    position:relative!important;
     width: 960px!important;
     margin: 0 auto!important;
     left:0!important;
-    height: 540px!important;
+    height: 540px!important;*/
 }
 
 .desktop #c2canvas {
-    position:relative!important;
+/*    position:relative!important;
     width: 960px!important;
-    height: 540px!important;
+    height: 540px!important;*/
+}
+
+@media screen and (max-width: 736px) {
+    .mobile .wrapper {padding: 0px!important;}
+    .game.master,
+    .game.mole {
+        transform: scale(0.76);
+        transform-origin: 0 0;
+    }
+    .navbar,
+    .container footer {
+        display: none
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .mobile .wrapper {padding: 0px!important;}
+    .game.master,
+    .game.mole {
+        transform: scale(0.69);
+        transform-origin: 0 0;
+    }
+    .navbar,
+    .container footer {
+        display: none
+    }
+}
+@media screen and (max-width: 640px) {
+    .mobile .wrapper {padding: 0px!important;}
+    .game.master,
+    .game.mole {
+        transform: scale(0.66);
+        transform-origin: 0 0;
+    }
+    .navbar,
+    .container footer {
+        display: none
+    }
+}
+@media screen and (max-width: 568px) {
+    .mobile .wrapper {padding: 0px!important;}
+    .game.master,
+    .game.mole {
+        transform: scale(0.59);
+        transform-origin: 0 0;
+    }
+    .navbar,
+    .container footer {
+        display: none
+    }
+}
+
+
+.demo_index .row {
+    text-align: center!important;
+    margin: 0;
+}
+.demo_index .row .col-md-3 {
+    width: 100%;
+    box-sizing: border-box;
+    display:block;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.demo_index .row .col-md-3 a {
+    width: 100%;
+    display:block;
+    text-align: center;
+}
+
+.account_login .error-page h1 {
+    display:none;
+}
+.account_login .error-page h2 {
+    display: block;
+    color:white;
+    text-align:center;
+    padding-top: 350px;
+    padding-bottom: 150px;
+    text-shadow: 0 2px 3px black;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-right li img {
+        display:none
+    }
+
+    .navbar-nav>li {
+        padding-left: 0!important;
+        padding-right: 0!important
+    }
+
+    .navbar-nav>li>a {
+        padding-left: 8px;
+        padding-right: 8px
+    }
+    .navbar-collapse {
+        transform: translateY(-50px);
+    }
+
+}
+
+.navbar-inverse .navbar-toggle:hover,.navbar-inverse .navbar-toggle:focus {
+    background-color: transparent
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: transparent;
+    z-index:100;
+}
+
+.account_login .navbar,.home_index .navbar {
+    display: block
+}
+
+.navbar-collapse {
+    padding-left:30px;
+    background: rgba(0,0,0,.7)
+}
+
+.navbar-collapse li {
+    padding: 5px 10px
+}
+
+.account_resetpassword, .account_resetpasswordconfirmation {
+    background: #000 url(https://amusegr.eu/images/main-bg.jpg?v=2) center -100px no-repeat;
+    padding-top: 350px;
+    font-family: 'GFS';
+    text-shadow: 0 0 2px black
+}
+
+.account_resetpassword h2, .account_resetpasswordconfirmation  {
+    text-align: center;
+    color: #fff
+}
+.account_resetpasswordconfirmation .body-content > div > p {
+    font-size: 18px;
+    padding-bottom: 50px;
+}
+.account_resetpasswordconfirmation .body-content > div > p a {
+color:white;
+text-decoration: underline;
+}
+.account_resetpassword .form-horizontal {
+    max-width: 480px;
+    margin: 0 auto
+}
+
+.account_resetpassword .form-horizontal input {
+    height: 50px
+}
+
+.account_resetpassword #UserName {
+    margin-bottom: 0
+}
+
+.account_resetpassword .btn {
+    width: 100%;
+    background-color: #40ae49;
+    color: #fff;
+    font-size: 26px
 }

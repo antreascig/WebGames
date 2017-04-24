@@ -2,8 +2,8 @@
 	"name": "New project",
 	"short_name": "New project",
 	"start_url": "index.html",
-	"display": "standalone",
-	"orientation": "landscape",
+	"display": "fullscreen",
+	"orientation": "any",
 	"icons": [{
 		"src": "icon-16.png",
 		"sizes": "16x16",
