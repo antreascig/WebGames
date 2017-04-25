@@ -5,14 +5,14 @@ namespace WebGames.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "To Email είναι υποχρεωτικό.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "To Email είναι υποχρεωτικό.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -50,7 +50,7 @@ namespace WebGames.Models
         [Compare("Password", ErrorMessage = "Ο κωδικός δεν είναι ίδιος με την επιβεβαίωση κωδικού.")]// The password and confirmation password do not match.
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Το Ονοματεπώνυμο είναι υποχρεωτικός.")]
         [DataType(DataType.Text)]
         [Display(Name = "Ονοματεπώνυμο")]
         public string FullName { get; set; }
@@ -81,7 +81,7 @@ namespace WebGames.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Το UserName είναι υποχρεωτικό.")]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
@@ -101,7 +101,7 @@ namespace WebGames.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "To Email είναι υποχρεωτικό.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

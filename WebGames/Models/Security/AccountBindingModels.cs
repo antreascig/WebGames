@@ -8,12 +8,12 @@ namespace WebGames.Models
 
     public class ChangePasswordBindingModel
     {
-        [Required]
+        [Required(ErrorMessage = "Ο υπάρχων Κωδικός είναι υποχρεωτικός.")]
         [DataType(DataType.Password)]
         [Display(Name = "Υπάρχων password")]
         public string OldPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ο νέος Κωδικός είναι υποχρεωτικός.")]
         [StringLength(100, ErrorMessage = "Ο {0} πρέπει να περιέχει τουλάχιστων {2} χαρακτήρες.", MinimumLength = 6)] // The {0} must be at least {2} characters long.
         [DataType(DataType.Password)]
         [Display(Name = "Νεο password")]
@@ -27,11 +27,11 @@ namespace WebGames.Models
 
     public class RegisterBindingModel
     {
-        [Required]
+        [Required(ErrorMessage = "To Email είναι υποχρεωτικό.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ο Κωδικός είναι υποχρεωτικός.")]
         [StringLength(100, ErrorMessage = "Ο {0} πρέπει να περιέχει τουλάχιστων {2} χαρακτήρες.", MinimumLength = 6)] // The {0} must be at least {2} characters long.
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -45,7 +45,7 @@ namespace WebGames.Models
 
     public class SetPasswordBindingModel
     {
-        [Required]
+        [Required(ErrorMessage = "Ο νέος Κωδικός είναι υποχρεωτικός.")]
         [StringLength(100, ErrorMessage = "Ο {0} πρέπει να περιέχει τουλάχιστων {2} χαρακτήρες.", MinimumLength = 6)] // The {0} must be at least {2} characters long.
         [DataType(DataType.Password)]
         [Display(Name = "Νεο password")]
