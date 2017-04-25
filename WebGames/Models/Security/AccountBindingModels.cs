@@ -28,6 +28,7 @@ namespace WebGames.Models
     public class RegisterBindingModel
     {
         [Required(ErrorMessage = "To Email είναι υποχρεωτικό.")]
+        [EmailAddress(ErrorMessage = "Μη έγκυρο Email")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

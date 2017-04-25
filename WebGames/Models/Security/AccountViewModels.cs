@@ -56,7 +56,7 @@ namespace WebGames.Models
         public string FullName { get; set; }
 
         [Required(ErrorMessage ="To Email είναι υποχρεωτικό.")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Μη έγκυρο Email")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -102,7 +102,7 @@ namespace WebGames.Models
     public class ForgotPasswordViewModel
     {
         [Required(ErrorMessage = "To Email είναι υποχρεωτικό.")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Μη έγκυρο Email")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
