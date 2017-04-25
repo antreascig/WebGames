@@ -9,7 +9,11 @@
         ActiveGameKey: ko.observable(),
         ActiveGroupNumber: ko.observable(''),
         InitGameScoresDT: InitGameScoresDT,
-        InitGroupScoresDT: InitGroupScoresDT
+        InitGroupScoresDT: InitGroupScoresDT,
+
+        ViewGroupScores: ViewGroupScores,
+        SelectedGroup: ko.observable(-1),
+        Close: Close
     };
 
     var columns = [
@@ -27,10 +31,19 @@
         {
             "title": "Controls", "searchable": false, "target": 3, createdCell: function (td, cellData, rowData, row, col) {
                 // debugger;
-                var html = '<button type="button" class="btn btn-warning" disabled>View</button>';
+                var html = '<button type="button" class="btn btn-warning" onclick="newView.ViewGroupScores(' + row + ')">View</button>';
                 $(td).html(html)
             }
         }
+    ];
+
+
+    var specificGroup_Columns = [
+        { "title": "Θέση", "searchable": true, "visible": true, "target": 0 }, // GroupNumber
+        { "title": "UserId", "searchable": false, "visible": false, "target": 1 }, // UserId
+        { "title": "Όνομα", "searchable": true, "target": 2 }, // User_FullName
+        { "title": "Σκορ", "searchable": false, "visible": true, "target": 3 }, // Score
+        { "title": "Ρυθμίσεις", "searchable": false, "visible": false, "target": 4 } // Controls
     ];
 
 
@@ -125,6 +138,41 @@
 
         } else if (table)
             table.ajax.reload();
+    }
+
+    function ViewGroupScores(rowIndex) {
+        var data = group_table.row(rowIndex).data();      
+
+        var Group = data[0];
+
+        vm.SelectedGroup(Group);
+        initSpecificGroupScoresTable();
+        $('#groupScoreModal').modal();
+    }
+
+    var GroupSpecificTable = null;
+
+    function initSpecificGroupScoresTable() {
+        if (GroupSpecificTable)
+        {
+            if (vm.SelectedGroup() > 0 && vm.SelectedGroup() < 13 )
+                GroupSpecificTable.ajax.reload();
+            return;
+        }
+
+        GroupSpecificTable = $('#datatable-user-replace').DataTable({
+            "ajax": {
+                "url": "/Dashboard/GetGroupScores",
+                "data": function(){
+                    return { group: vm.SelectedGroup() };
+                }
+            },
+            "columns": specificGroup_Columns
+        });
+    }
+
+    function Close() {
+        vm.SelectedGroup(-1);
     }
 
     // General Game Settings

@@ -202,7 +202,7 @@ namespace WebGames.Libs.Games
                         Name = o.FullName,
                         Tokens = i.Tokens,
                         Shop = o.Shop
-                    }).ToList().Select(i => new
+                    }).OrderByDescending(s => s.Tokens).ToList().Select(i => new
                     {
                         Rank = counter++,
                         UserId = i.UserId,

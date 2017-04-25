@@ -108,7 +108,7 @@
                 var html = '';
                 var id = rowData[1];
                 if (UserGroupDict[id]) {
-                    html = '<div class="alert alert-danger">Already Selected</div>';
+                    html = '<div class="alert alert-danger">Επιλεγμένος</div>';
                 }
                 else {
                     html = '<button type="button" class="btn btn-warning" onclick="newView.ReplacePlayer(' + row + ')">Select</button>';

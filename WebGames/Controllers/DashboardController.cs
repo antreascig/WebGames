@@ -349,9 +349,15 @@ namespace WebGames.Controllers
                     GroupNumber = g.Key,
                     Score = g.Value.Sum(u => u.Score),
                     Controls = ""
-                }).AsQueryable();
+                }).ToList();
 
-                return DataTablesResult.Create<GroupsViewModel>(data, dataTableParam);
+                // test data 
+                //for (var i=1; i <= 12; i++)
+                //{
+                //    data.Add(new GroupsViewModel() { GroupNumber = i, Score = i * 10, Controls = "" });
+                //}
+
+                return DataTablesResult.Create<GroupsViewModel>(data.AsQueryable(), dataTableParam);
             }
         }
 

@@ -12,6 +12,7 @@ namespace WebGames.Libs
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
         public string Shop { get; set; }
         public string Controls { get; set; }
     }
@@ -36,6 +37,7 @@ namespace WebGames.Libs
                     {
                         Id = row.Id ?? "",
                         Name = row.FullName ?? "",
+                        Email = row.Email,
                         Shop = row.Shop ?? "",
                         Controls = ""
                     }).AsQueryable();
