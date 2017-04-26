@@ -263,7 +263,8 @@ function ServerAPi() {
             type: type,
             url: url,
             data: data,
-            dataType: dataType
+            dataType: dataType,
+            cache: false
         }).done(function (resData) {
             success(resData);
         }).fail(fail);
