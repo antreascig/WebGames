@@ -899,6 +899,9 @@ input[type="radio"]:checked+label:before {
     .container .navbar-collapse .navbar-nav>li>a {
         color: #fff!important
     }
+    html {
+        background:black;
+    }
 }
 
 #cosmologo {
