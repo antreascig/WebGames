@@ -10,8 +10,6 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 @Html.ActionLink("Γειά σου " + User.Identity.GetUserName() + "!", "index", "user", routeValues: null, htmlAttributes: new { title = "User" })
-            </li>
-            <li>
                 <img src="@( "/Content/" +User.Identity.GetAvatar() + ".png")" />
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Αποσύνδεση</a></li>

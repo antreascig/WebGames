@@ -49,8 +49,10 @@
 
     <div id="fb-root"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/Scripts/custom/serverAPI.js"></script>
 
     <script>
+        // window.customGameKey = '@WebGames.Libs.GameKeys.Juggler';
 
         var isMobile = false; //initiate as false
         // device detection
@@ -68,7 +70,9 @@
 
 
         $(window).on('resize', function () {
-            $('#c2canvasdiv').center();
+            if (isMobile == false) {
+                // $('#c2canvasdiv').center();
+            }
         });
 
         // Issue a warning if trying to preview an exported project on disk.
@@ -107,11 +111,46 @@
     <script src="~/Content/Games/juggler/c2runtime.js"></script>
 
     <script>
+    window.scrollTo(0,1);
+
+        var intViewportWidth = window.innerWidth;
+        var scalePerc = null;
+        if (isMobile == true) {
+            cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
+            $('body').addClass('mobile');
+            scalePerc = intViewportWidth / 960 * 100;
+            console.log(scalePerc);
+        } else {
+            $('body').addClass('desktop');
+        }
         // Start the Construct 2 project running on window load.
-        jQuery(document).ready(function () {
-            $('#c2canvasdiv').center();
+        function crr_sizeCanvas()
+        {
+            var w = jQuery(window).width();
+            var h = jQuery(window).height();
+
+            var canvas = document.getElementById("c2canvas");
+
+            if (canvas)
+            {
+                canvas.width = w;
+                canvas.height = w * 9/20;
+
+                if (canvas.c2runtime)
+                    canvas.c2runtime.setSize(w, h);
+            }
+            else if (window.c2runtime)
+                window.c2runtime.setSize(w, h);
+        }
+        $(document).ready(function () {
+            if (isMobile == false) {
+                // $('#c2canvasdiv').center();
+            }
 
             // Create new runtime using the c2canvas
+            if (isMobile == true) {
+                // crr_sizeCanvas();
+            }
             cr_createRuntime("c2canvas");
         });
 
@@ -132,6 +171,71 @@
             console.warn("Failed to register service worker: ", e);
         };
 
+            var gameTime = null;
+            var time = @Model.RemainingTime;
 
+            var score = @Model.GameScore;
+
+        @if(Model.IsDemo) {
+            @:var isDemo = true;
+        }
+        else {
+            @:var isDemo = false;
+        }
+
+            setTimeout(function(){
+
+                cr_getC2Runtime().all_global_vars['1']['data'] = time;
+
+                setInterval(function () {
+                    if (cr_getC2Runtime().all_global_vars['1']['data'] <= 1) {
+                        if (isDemo) {
+                            window.location.replace("/Games/ActiveExplainer");
+                        }
+                        else {
+                            window.location.replace("/Games/ActiveGameAfter?status=outoftime");
+                        }
+                    }
+                }, 1000);
+
+
+                if (isDemo) return;
+
+                setTimeout(function(){
+                    gameTime = Math.round(cr_getC2Runtime().all_global_vars['1']['data']);
+                    cr_getC2Runtime().all_global_vars['1']['data'] = gameTime;
+                    cr_getC2Runtime().all_global_vars['2']['data'] = score;
+                },2000);
+
+                setInterval(function () {
+                    $.custom.Server.SaveGameScore(cr_getC2Runtime().all_global_vars['2']['data'], 1,
+                        function (res) { // success
+                            if (res && res.success) {
+                                    console.log('score saved');
+                            }
+                            else { // fail
+                                console.log('score not saved');
+                            }
+                    }, function () { // fail
+                                console.log('score not saved');
+                    });
+
+
+
+
+                    $.custom.Server.SaveGameTime(Math.round(cr_getC2Runtime().all_global_vars['1']['data']),
+                        function (res) { // success
+                            if (res && res.success) {
+                                console.log('Playtime updated');
+                            }
+                            else { // fail
+                                console.log('Playtime not updated!');
+
+                            }
+                        }, function () { // fail
+
+                        });
+                }, 10000);
+            },3000)
     </script>
 </div>

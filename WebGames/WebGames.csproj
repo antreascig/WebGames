@@ -761,6 +761,7 @@
     <Content Include="Content\images\mastermind\card5.png" />
     <Content Include="Content\images\mastermind\card6.png" />
     <Content Include="Content\images\mastermind\x.png" />
+    <Content Include="Content\images\newbg.jpg" />
     <Content Include="Content\images\outoftime.png" />
     <Content Include="Content\images\paper.jpg" />
     <Content Include="Content\images\pause.png" />

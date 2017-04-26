@@ -14,12 +14,15 @@
     @{
         var pageName = (ViewContext.RouteData.Values["controller"].ToString() + "_" + ViewContext.RouteData.Values["action"].ToString()).ToLower();
     }
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=greek" rel="stylesheet">
+
 </head>
 <body class="@pageName">
     @*used for ajax in AddAntiForgeryToken()*@
     <form id="__AjaxAntiForgeryForm" action="#" method="post">@Html.AntiForgeryToken()</form>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- <div class="navbar navbar-inverse navbar-fixed-top"> -->
+    <div class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -33,7 +36,6 @@
 
                 <ul class="nav navbar-nav" style="display:block!important;">
                     <li>@Html.ActionLink("Κεντρική", "index", "home")</li>
-                    <li>@Html.ActionLink("Οροι & Προϋποθέσεις", "tnc", "home")</li>
                     <li>@Html.ActionLink("Το Παιχνίδι", "info", "home")</li>
 
                 </ul>
@@ -46,7 +48,7 @@
         @RenderBody()
         <footer>
         <img src="/Content/images/cosmoplay.png"> 
-                <div class="mails"><p>Τεχνική Υποστήριξη: <a href="mailto:support@cosmoplay.gr">support@cosmoplay.gr</a></p>
+                <div class="mails"><p>Τεχνική Υποστήριξη: <a href="mailto:support@cosmoplay.gr">support@cosmoplay.gr</a> | </p> <p>@Html.ActionLink("Οροι & Προϋποθέσεις", "tnc", "home") | </p>
                 <p>Πληροφορίες Cosmoplay 2017:</p> <a href="mailto:cosmoplay@cosmoplay.gr">cosmoplay@cosmote.gr</a></div>
         <br>
 

@@ -19,19 +19,17 @@ body {
 
 .wrapper {
     display: none;
-    background: url('/Content/images/bg.jpg') no-repeat center center;
     background-size: cover;
     padding-top: 25px;
     height: 100vh;
 }
 
-    .wrapper.mapwrap {
-        display: none;
-        background: url('/Content/images/map/mapbg.jpg') no-repeat center center;
-        background-size: cover;
-        padding-top: 25px;
-        height: 100vh;
-    }
+.wrapper.mapwrap {
+    display: none;
+    background-size: cover;
+    padding-top: 25px;
+    height: 100vh;
+}
 
 .clock {
     color: white;
@@ -2582,7 +2580,7 @@ body {
 
 .map .line {
     position: absolute;
-    top: 191px;
+    top: 205px;
     left: 149px;
     background: url(/Content/images/map/lines.png) center center no-repeat;
     mix-blend-mode: multiply;

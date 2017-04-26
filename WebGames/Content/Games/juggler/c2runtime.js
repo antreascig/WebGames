@@ -4997,6 +4997,10 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			var curwidth = window.innerWidth;
 			var curheight = window.innerHeight;
+			if (curwidth > 960) {
+				curwidth = 960;
+			}
+
 			if (this.lastWindowWidth !== curwidth || this.lastWindowHeight !== curheight)
 			{
 				this["setSize"](curwidth, curheight);
