@@ -699,6 +699,7 @@
     <Content Include="Content\images\close.png" />
     <Content Include="Content\images\continuebtn.png" />
     <Content Include="Content\images\cosmoplay.png" />
+    <Content Include="Content\images\cosmotelogo.png" />
     <Content Include="Content\images\demo.png" />
     <Content Include="Content\images\lines.png" />
     <Content Include="Content\images\lock.png" />
@@ -762,6 +763,7 @@
     <Content Include="Content\images\mastermind\card6.png" />
     <Content Include="Content\images\mastermind\x.png" />
     <Content Include="Content\images\newbg.jpg" />
+    <Content Include="Content\images\otelogo.png" />
     <Content Include="Content\images\outoftime.png" />
     <Content Include="Content\images\paper.jpg" />
     <Content Include="Content\images\pause.png" />

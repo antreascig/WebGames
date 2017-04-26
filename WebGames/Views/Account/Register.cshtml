@@ -26,11 +26,11 @@
     </div>
     <div class="form-group">
         @* Password *@
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-6 col-sm-6">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.Password) })
         </div>
         @* Confirm Password *@
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-6 col-sm-6">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Html.DisplayNameFor(n => n.ConfirmPassword) })
         </div>
     </div>

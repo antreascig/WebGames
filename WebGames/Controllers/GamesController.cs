@@ -135,7 +135,7 @@ namespace WebGames.Controllers
         {
             var UserId = User.Identity.GetUserId();
 
-            var customGameKey = Request.QueryString["customGameKey"] ?? "";
+            var customGameKey = Request.QueryString["customGameKey"] ?? Request.QueryString["customgame"] ?? "";
             var ActiveGameKey = "";
             if (customGameKey != "")
             {

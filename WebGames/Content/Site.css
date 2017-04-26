@@ -8,10 +8,12 @@
 }
 
 .navbar.navbar-inverse {
-    background: none;
-    border: none
+    background: rgba(244, 239, 199, 0.57);
+    border: none;
 }
-
+.navbar-collapse {
+    padding-top: 0!important;
+}
 .navbar a {
     font-family: 'Open Sans';
     font-weight: bold;
@@ -399,7 +401,7 @@ footer .text-danger {
     margin: 0
 }
 
-.games_activeexplainer .navbar,.games_activegame .navbar,.games_activegamemap .navbar {
+.games_activegameafter .navbar,.games_activeexplainer .navbar,.games_activegame .navbar,.games_activegamemap .navbar {
     position: absolute;
     top: 0;
     left: 0;
@@ -407,7 +409,7 @@ footer .text-danger {
     height: 51px
 }
 
-.games_activeexplainer .navbar .container,.games_activegame .navbar .container,.games_activegamemap .navbar .container {
+.games_activegameafter .navbar .container,.games_activeexplainer .navbar .container,.games_activegame .navbar .container,.games_activegamemap .navbar .container {
     max-width: 960px;
     margin: 0 auto
 }
@@ -472,7 +474,9 @@ footer .text-danger {
 }
 
 footer {
-    text-align: left
+    text-align: left;
+    position:fixed;
+    bottom:10px;
 }
 
 footer img {
@@ -521,11 +525,6 @@ footer .mails a {
     color: #fff
 }
 
-.games_activegameafter .navbar {
-    max-width: 960px;
-    margin: 0 auto
-}
-
 .account_forgotpassword .body-content {
     color: #fff;
     text-align: center;
@@ -538,7 +537,8 @@ footer .mails a {
 }
 
 .games_activegameafter h1 {
-    font-family: 'GFS';
+    font-family: 'Open Sans';
+    font-weight: bold;
     font-size: 36px
 }
 
@@ -594,13 +594,13 @@ footer .mails a {
     width: 100%;
     max-width: 960px;
     padding: 0;
-    margin: 0 auto
+    margin: 0 auto;
 }
-.games_activegame .body-content,
-.games_activegameafter .body-content,
-.games_activeexplainer .body-content {
+
+.games_activegame .body-content,.games_activegameafter .body-content,.games_activeexplainer .body-content {
     max-width: 100%
 }
+
 .avatar .STRONGMAN:before {
     margin: 0 auto;
     content: '';
@@ -661,11 +661,11 @@ input[type="radio"]:checked+label:before {
     display: none
 }
 
-
 .desktop #c2canvasdiv {
     margin-left: auto!important;
     margin-right: auto!important
 }
+
 .desktop #c2canvas {
 }
 
@@ -791,10 +791,6 @@ input[type="radio"]:checked+label:before {
     z-index: 100
 }
 
-.account_login .navbar,.home_index .navbar,.home_tnc .navbar,.home_info .navbar {
-    display: block
-}
-
 .navbar-collapse {
     padding-left: 30px;
     background: transparent
@@ -805,8 +801,8 @@ input[type="radio"]:checked+label:before {
 }
 
 .games_activegamemap {
-        background: url('/Content/images/map/mapbg.jpg') no-repeat center center;
-        background-size: cover;
+    background: url('/Content/images/map/mapbg.jpg') no-repeat center center;
+    background-size: cover
 }
 
 .account_login,.user_index,.account_forgotpasswordconfirmation,.account_forgotpassword,.home_index,.home_info,.account_confirmemail,.account_register,.account_resetpassword,.account_resetpasswordconfirmation,.home_tnc {
@@ -886,4 +882,84 @@ input[type="radio"]:checked+label:before {
 
 .home_info .paper {
     padding: 45px 45px
+}
+
+.account_forgotpassword .navbar,.account_login .navbar,.home_index .navbar,.home_tnc .navbar,.home_info .navbar,.user_index .navbar {
+    display: block
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-collapse {
+        position:absolute!important;
+        z-index: 2;
+        background: rgba(0,0,0,.8);
+        width: 100%
+    }
+
+    .container .navbar-collapse .navbar-nav>li>a {
+        color: #fff!important
+    }
+}
+
+#cosmologo {
+    position: absolute;
+    top: 80px;
+    left: 60px
+}
+
+@media screen and (max-width: 600px) {
+    #cosmologo {
+        display:none
+    }
+}
+
+
+
+
+@media(min-width: 768px) {
+ .account_login #otelogo,
+.user_index #otelogo,
+.account_forgotpasswordconfirmation #otelogo,
+.account_forgotpassword #otelogo,
+.home_index #otelogo,
+.home_info #otelogo,
+.account_confirmemail #otelogo,
+.account_register #otelogo,
+.account_resetpassword #otelogo,
+.account_resetpasswordconfirmation #otelogo,
+.home_tnc #otelogo {
+    display: block!important;
+}
+    #otelogo {
+        
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px
+    }
+}
+
+li.mobileOnly {
+    display:none;
+}
+
+.collapse.in li.mobileOnly {
+    display:block;
+}
+
+.account_login .body-content,
+.user_index .body-content,
+.account_forgotpasswordconfirmation .body-content,
+.account_forgotpassword .body-content,
+.home_index .body-content,
+.home_info .body-content,
+.account_confirmemail .body-content,
+.account_register .body-content,
+.account_resetpassword .body-content,
+.account_resetpasswordconfirmation .body-content,
+.home_tnc .body-content {
+    position:relative;
 }

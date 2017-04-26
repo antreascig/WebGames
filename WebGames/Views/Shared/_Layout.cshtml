@@ -36,6 +36,7 @@
 
                 <ul class="nav navbar-nav" style="display:block!important;">
                     <li>@Html.ActionLink("Κεντρική", "index", "home")</li>
+                    <li class="mobileOnly">@Html.ActionLink("Οροι & Προϋποθέσεις", "tnc", "home")</li>
                     <li>@Html.ActionLink("Το Παιχνίδι", "info", "home")</li>
 
                 </ul>
@@ -45,6 +46,7 @@
         </div>
     </div>
     <div class="container body-content">
+        <img src="/Content/images/otelogo.png" style="display:none;" id="otelogo">
         @RenderBody()
         <footer>
         <img src="/Content/images/cosmoplay.png"> 
