@@ -112,7 +112,7 @@ namespace WebGames.Libs
             }
         }
 
-        public static ActiveUserGameInfo GetActiveGameInfo(string UserId)
+        public static ActiveUserGameInfo GetActiveGameInfo(string UserId, string CustomGameKey)
         {
             var data = new ActiveUserGameInfo()
             {
@@ -125,7 +125,23 @@ namespace WebGames.Libs
             };
 
             // Check for active game data
-            data.ActiveGameDataModel = GameDayScheduleManager.GetActiveGame(DateTime.UtcNow);
+            if ((CustomGameKey ?? "") != "")
+            {
+                data.ActiveGameDataModel = new ActiveGameData()
+                {
+                    ActiveGameKey = CustomGameKey,
+                    Messages = new Dictionary<string, string>()
+                    {
+                        { "success", "Μπράβο!" },
+                        { "fail", "Έχασες!"},
+                        { "outoftime", "Τέλος χρόνου"}
+                    }
+                };
+            }
+            else
+            {
+                data.ActiveGameDataModel = GameDayScheduleManager.GetActiveGame(DateTime.UtcNow);
+            }
             if (data.ActiveGameDataModel != null && !GameDict.ContainsKey(data.ActiveGameDataModel.ActiveGameKey))
             {
                 data.ActiveGameDataModel = null;
@@ -153,8 +169,8 @@ namespace WebGames.Libs
             // Check if level is showed as different page
             data.LevelAsPage = GameDict[ActiveGameKey].LevelAsPage;
 
-            // If Questions game check if user is allowed to play it
-            if (ActiveGameKey == GameKeys.Questions)
+            // If Group game check if user is allowed to play it
+            if (Group_Manager.GroupGames.Contains( ActiveGameKey))
             {
                 var Group = Group_Manager.GetUserGroup(UserId);
                 if (Group == -1)

@@ -15,7 +15,7 @@ namespace WebGames.Libs.Games
 
     public class ActivityManager
     {
-        public const int ALLOWED_TIME = 30 * 60; // 5 minutes
+        public const int ALLOWED_TIME = 5 * 60; // 5 minutes
 
         public static void SyncPlayedTimeForToday(string UserId, int remainingTime, long timeStamp)
         {

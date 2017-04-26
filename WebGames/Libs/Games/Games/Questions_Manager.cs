@@ -74,17 +74,18 @@ namespace WebGames.Libs.Games.GameTypes
                     if (GameMetadata != null && GameMetadata.Questions != null)
                     {
                         // get the score of the user in order to calculate the required number of questions to retrieve
-                        var scores = ScoreManager.GetUserTotalScores(UserId);
-                        var GamesRequired = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3, GameKeys.Whackamole };
-                        var totalScore = scores.Where(s=> GamesRequired.Contains(s.Key) ).Sum(s => s.Value.Score);
-                        int NumberOfQuestions = (int) Math.Ceiling( totalScore / GameMetadata.PointsPerQustion );
-
+                        //var scores = ScoreManager.GetUserTotalScores(UserId);
+                        //var GamesRequired = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3, GameKeys.Whackamole };
+                        //var totalScore = scores.Where(s=> GamesRequired.Contains(s.Key) ).Sum(s => s.Value.Score);
+                        //int NumberOfQuestions = (int)Math.Ceiling(totalScore / GameMetadata.PointsPerQustion);
+                        //int NumberOfQuestions = 400;
                         // if not any ids stored in db them choose randomly
                         if ( !WasAssignedQuestions )
                         {
-                            var AllQIds = GameMetadata.Questions.Keys.ToList();
+                            var AllQIds = GameMetadata.Questions.Where(q => q.Value.Options.Count == 4 ).Select(q => q.Key).ToList();
+                            var NumberOfQuestions = AllQIds.Count;
                             var RandomNumGen = new Random(DateTime.UtcNow.Millisecond);
-                            while (Ids.Count < NumberOfQuestions && NumberOfQuestions < AllQIds.Count )
+                            while (Ids.Count < NumberOfQuestions && NumberOfQuestions <= AllQIds.Count )
                             {
                                 var randIndex = RandomNumGen.Next(0, AllQIds.Count);
                                 var idToAdd = AllQIds[randIndex];

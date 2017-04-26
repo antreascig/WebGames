@@ -16,7 +16,8 @@ namespace WebGames.Controllers
         #region Views
         public ActionResult ActiveGame()
         {
-            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId());
+            var customgame = Request.QueryString["customgame"] ?? "";
+            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId(), customgame);
 
             if (Request.QueryString["showdemo"] == "true")
             {
@@ -30,14 +31,16 @@ namespace WebGames.Controllers
 
         public ActionResult ActiveGameMap()
         {
-            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId());
+            var customgame = Request.QueryString["customgame"] ?? "";
+            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId(), customgame);
 
             return GetPage(activeGameInfo, "Map");
         }
 
         public ActionResult ActiveExplainer()
         {
-            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId());
+            var customgame = Request.QueryString["customgame"] ?? "";
+            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId(), customgame);
 
             return GetPage(activeGameInfo, "Explainer");
         }
@@ -46,7 +49,8 @@ namespace WebGames.Controllers
         {
             var status = Request.QueryString["status"] ?? "";
 
-            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId());
+            var customgame = Request.QueryString["customgame"] ?? "";
+            var activeGameInfo = GameManager.GetActiveGameInfo(User.Identity.GetUserId(), customgame);
 
             if (activeGameInfo.ActiveGameDataModel != null)
             {
@@ -92,7 +96,7 @@ namespace WebGames.Controllers
 
             var UserId = User.Identity.GetUserId();
             // Security - Check if Game is the currently active one - cannot set the score for a non active game
-            var ActiveGameDataModel = GameManager.GetActiveGameInfo(UserId).ActiveGameDataModel;
+            var ActiveGameDataModel = GameManager.GetActiveGameInfo(UserId, null).ActiveGameDataModel;
             if (!isDemo && (ActiveGameDataModel== null || ActiveGameDataModel.ActiveGameKey != GameKeys.Questions))
             {
                 return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
@@ -139,7 +143,7 @@ namespace WebGames.Controllers
             }
             else
             {
-                var ActiveGameData = GameManager.GetActiveGameInfo(UserId).ActiveGameDataModel;
+                var ActiveGameData = GameManager.GetActiveGameInfo(UserId, null).ActiveGameDataModel;
                 if (ActiveGameKey != null)
                 {
                     ActiveGameKey = ActiveGameData.ActiveGameKey;

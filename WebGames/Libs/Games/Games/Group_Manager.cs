@@ -20,6 +20,8 @@ namespace WebGames.Libs.Games.Games
 
     public class Group_Manager
     {
+        public static string[] GroupGames = new string[] { GameKeys.Whackamole, GameKeys.Mastermind };
+
         public static int GetUserGroup(string UserId)
         {
             try
@@ -69,14 +71,14 @@ namespace WebGames.Libs.Games.Games
                 var UserGroups = (from ug in db.User_Groups select ug).Include("User").ToList();
                 if (UserGroups.Any())
                 {
-                    var QuestionGameId = GameManager.GameDict[GameKeys.Questions].GameId;
+                    var MastermindGameId = GameManager.GameDict[GameKeys.Mastermind].GameId;
                     var WhackAMoleGameId = GameManager.GameDict[GameKeys.Whackamole].GameId;
-                    var GroupGames = (from game in db.Games where game.GameId == QuestionGameId || game.GameId == WhackAMoleGameId select game).ToList();
+                    var GroupGames = (from game in db.Games where game.GameId == MastermindGameId || game.GameId == WhackAMoleGameId select game).ToList();
 
-                    var QuestionsGame = GroupGames.FirstOrDefault(g => g.GameKey == GameKeys.Questions);
+                    var MastermindGame = GroupGames.FirstOrDefault(g => g.GameKey == GameKeys.Mastermind);
                     var WhackAMoleGame = GroupGames.FirstOrDefault(g => g.GameKey == GameKeys.Whackamole);
                     // Get the scores 
-                    var QuestionScores = (from score in db.Questions_Scores select score).ToList();
+                    var MastermindScores = (from score in db.Mastermind_Scores select score).ToList();
                     var WhackAMoleScores = (from score in db.Whackamole_Scores select score).ToList();
 
                     foreach (var user in UserGroups)
@@ -88,10 +90,10 @@ namespace WebGames.Libs.Games.Games
 
                         double totalScore = 0;
 
-                        var UserQuestionScoreData = QuestionScores.FirstOrDefault(u => u.UserId == user.UserId);
-                        if (UserQuestionScoreData != null)
+                        var UserMastermindScoreData = MastermindScores.FirstOrDefault(u => u.UserId == user.UserId);
+                        if (UserMastermindScoreData != null)
                         {
-                            totalScore += ScoreManager.CalculateScore(QuestionsGame, UserQuestionScoreData.Tokens);
+                            totalScore += ScoreManager.CalculateScore(MastermindGame, UserMastermindScoreData.Tokens);
                         }
                         var UserWhackaMoleScoreData = WhackAMoleScores.FirstOrDefault(u => u.UserId == user.UserId);
                         if (UserWhackaMoleScoreData != null)
@@ -117,7 +119,7 @@ namespace WebGames.Libs.Games.Games
         {
             var res = new List<UserGroupVM>();
 
-            var AtomicGames = new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
+            var AtomicGames = GameManager.GameDict.Keys.Where(g => !GroupGames.Contains(g)).ToArray();// new string[] { GameKeys.Adespotabalakia, GameKeys.Juggler, GameKeys.Mastermind, GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
             var UserScores = ScoreManager.GetUsersTotalScoresForGames(AtomicGames);
 
             var TopUserScores = UserScores.OrderByDescending(s => s.Score).ToList();
