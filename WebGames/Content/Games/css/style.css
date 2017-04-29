@@ -3183,3 +3183,19 @@ body {
     background-size: cover;
     cursor: pointer;
 }
+
+#nextmessage {
+    color:white;
+    text-align:center;
+    padding-top: 200px;
+    font-size: 18px;
+    z-index: 500;
+    font-family: 'Open Sans';
+}
+#nextmessage span {
+    font-weight: bold;
+    font-size: 36px;
+}
+.overlay.front {
+    z-index: 299;
+}

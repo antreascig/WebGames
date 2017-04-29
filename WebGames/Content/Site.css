@@ -8,9 +8,15 @@
 }
 
 .navbar.navbar-inverse {
-    background: rgba(244, 239, 199, 0.57);
+    background: rgba(244,239,199,.57);
     border: none;
-}
+    background-image: url(https://cosmoplay.gr/Content/images/cosmotelogo.png) !important;
+    background-repeat: no-repeat;
+    background-size: 56px 49px;
+    background-position: 5px;
+	z-index: 10;
+} 
+
 .navbar-collapse {
     padding-top: 0!important;
 }
@@ -122,7 +128,8 @@ body {
 #loginForm {
     width: 400px;
     padding-top: 240px;
-    margin: 0 auto
+    margin: 0 auto;
+	padding-bottom:80px
 }
 
 #loginForm h4 {
@@ -474,9 +481,13 @@ footer .text-danger {
 }
 
 footer {
-    text-align: left;
-    position:fixed;
-    bottom:10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    background: rgba(244,239,199,.95);
+    padding: 2px
 }
 
 footer img {
@@ -487,7 +498,6 @@ footer img {
 
 footer .mails {
     padding: 17px 0 0 10px;
-    float: right;
     font-size: 12px;
     display: inline-block
 }
@@ -806,7 +816,8 @@ input[type="radio"]:checked+label:before {
 }
 
 .account_login,.user_index,.account_forgotpasswordconfirmation,.account_forgotpassword,.home_index,.home_info,.account_confirmemail,.account_register,.account_resetpassword,.account_resetpasswordconfirmation,.home_tnc {
-    background: #c5b186 url(https://cosmoplay.gr/Content/images/newbg.jpg) top center no-repeat
+    background: #c5b186 url(https://cosmoplay.gr/Content/images/newbg.jpg) top center no-repeat;
+	background-position-y: -94px
 }
 
 .account_login .navbar a,.account_forgotpasswordconfirmation .navbar a,.user_index .navbar a,.account_forgotpassword .navbar a,.home_index .navbar a,.home_info .navbar a,.account_confirmemail .navbar a,.account_register .navbar a,.account_resetpassword .navbar a,.account_resetpasswordconfirmation .navbar a,.home_tnc .navbar a {
@@ -906,8 +917,9 @@ input[type="radio"]:checked+label:before {
 
 #cosmologo {
     position: absolute;
-    top: 80px;
-    left: 60px
+    top: 0;
+    left: 0;
+    display: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -933,12 +945,13 @@ input[type="radio"]:checked+label:before {
 .home_tnc #otelogo {
     display: block!important;
 }
-    #otelogo {
-        
-        position: fixed;
-        bottom: 0px;
-        right: 0px;
-    }
+#otelogo {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    width: 94px;
+}
     .navbar-nav>li>a {
         padding-top: 10px;
         padding-bottom: 10px

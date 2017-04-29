@@ -17,9 +17,9 @@ var score = GameScore;
 var levelScore = null;
 var music = $("#myAudio")[0];
 if ($('.game').data('level') == 'level1') {
-    levelScore = 30;
+    levelScore = 70;
 } else {
-    levelScore = 10;
+    levelScore = 70;
 }
 
 $('#score span').html(GameScore);
@@ -188,7 +188,7 @@ $(document).ready(function () {
             success.play();
             isPaused = true;
             score += levelScore;
-
+            $('.overlay').addClass('front').append('<div id="nextmessage"><span>Μπράβο!</span><br/> Υπάρχουν κι άλλες κλειδαριές που σε περιμένουν!</div>').show(500);
             if (isDemo) return;
             //debugger
             $.custom.Server.SaveGameScore(score, level.substring(5),
@@ -200,7 +200,7 @@ $(document).ready(function () {
                                     location.reload();
                                 }, 500);
                             });
-                        }, 2000);
+                        }, 4000);
                     }
                     else { // fail 
 

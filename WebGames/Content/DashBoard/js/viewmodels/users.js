@@ -15,9 +15,10 @@
         { "title": "Id", "visible": false, "searchable": false, "target": 0 },
         { "title": "Όνομα", "searchable": true, "target": 1 },
         { "title": "Email", "searchable": true, "target": 2 },
-        { "title": "Κατάστημα", "searchable": true, "target": 3 },
+        { "title": "UserName", "searchable": true, "target": 3 },
+        { "title": "Κατάστημα", "searchable": true, "target": 4 },
         {
-            "title": "Ρυθμίσεις", "searchable": false, "target": 4, createdCell: function (td, cellData, rowData, row, col) {
+            "title": "Ρυθμίσεις", "searchable": false, "target": 5, createdCell: function (td, cellData, rowData, row, col) {
                 // debugger;
                 var html = '<button type="button" class="btn btn-warning" onclick="newView.EditPlayer(' + row + ')">Edit</button>';
                 $(td).html(html)
