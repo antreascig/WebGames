@@ -55,7 +55,12 @@
                 console.log("error");
             };
         }
+        //debugger
 
+        var customgame = getUrlParameter('customgame');
+        if (customgame) {
+            data.customgame = customgame;
+        }
 
         $.ajax({
             type: type,
@@ -64,6 +69,13 @@
         }).done(function (resData) {
             success(resData);
         }).fail(fail);
+    };
+
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
 }

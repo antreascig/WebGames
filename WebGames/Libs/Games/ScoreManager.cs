@@ -166,7 +166,7 @@ namespace WebGames.Libs.Games
 
                     var Game = (from game in db.Games where game.GameId == GameData.GameId select game).SingleOrDefault();
 
-                    var data = (from score in db.Set<T>() where score.UserId == User.Id select score).SingleOrDefault();
+                    var data = (from score in db.Set<T>() where score.UserId == UserId select score).SingleOrDefault();
 
                     var Tokens = 0;
                     var Levels = 0;
