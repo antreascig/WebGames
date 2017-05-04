@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Mvc.JQuery.DataTables;
+using WebGames.Helpers;
 using WebGames.Libs;
 using WebGames.Libs.Games;
 using WebGames.Libs.Games.Games;
@@ -140,7 +141,7 @@ namespace WebGames.Controllers
 
                 var daysToCheckForActiveGame = 5;
                 var i = -1;
-                var startingDate = DateTime.UtcNow;
+                var startingDate = DateHelper.GetGreekDate( DateTime.UtcNow );
                 var GameName = "";
                 do
                 {
@@ -440,7 +441,9 @@ namespace WebGames.Controllers
                 }
 
                 // calculate timestamp yourDateObject.getTime()
-                long timeStamp = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 1);
+                var date = DateHelper.GetGreekDate(DateTime.UtcNow);
+
+                long timeStamp = (long)(date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 1);
 
                 ActivityManager.SavePlayTime(userId, DateTime.UtcNow, 0, timeStamp, true);
 

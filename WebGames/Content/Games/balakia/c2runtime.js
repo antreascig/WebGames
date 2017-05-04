@@ -4262,7 +4262,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			var loaderImage = new Image();
 			loaderImage.crossOrigin = "anonymous";
-			this.setImageSrc(loaderImage, "loading-logo.png");
+			this.setImageSrc(loaderImage, "/Content/Games/balakia/loading-logo.png");
 			this.loaderlogos = {
 				logo: loaderImage
 			};
@@ -4997,6 +4997,9 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			var curwidth = window.innerWidth;
 			var curheight = window.innerHeight;
+			if (curwidth > 950) {
+				curwidth = 950;
+			}
 			if (this.lastWindowWidth !== curwidth || this.lastWindowHeight !== curheight)
 			{
 				this["setSize"](curwidth, curheight);
@@ -10190,7 +10193,7 @@ window["cr_setSuspended"] = function(s)
 			this.is_else_block = (this.conditions[0].type == null && this.conditions[0].func == cr.system_object.prototype.cnds.Else);
 		}
 	};
-	window["_c2hh_"] = "25E8D66963893B15C4743C30655665AD81827888";
+	window["_c2hh_"] = "6C43BA7B339F99502543B39EBCC1A7F39BF30829";
 	EventBlock.prototype.postInit = function (hasElse/*, prevBlock_*/)
 	{
 		var i, len;
@@ -25918,13 +25921,13 @@ cr.behaviors.Pin = function(runtime)
 cr.getObjectRefTable = function () { return [
 	cr.plugins_.Arr,
 	cr.plugins_.Audio,
-	cr.plugins_.Dictionary,
 	cr.plugins_.Browser,
+	cr.plugins_.Dictionary,
 	cr.plugins_.LocalStorage,
 	cr.plugins_.Mouse,
-	cr.plugins_.Text,
 	cr.plugins_.Touch,
 	cr.plugins_.Sprite,
+	cr.plugins_.Text,
 	cr.behaviors.Physics,
 	cr.behaviors.Pin,
 	cr.system_object.prototype.cnds.IsGroupActive,
@@ -25935,16 +25938,15 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Text.prototype.acts.SetText,
 	cr.system_object.prototype.exps.floor,
 	cr.system_object.prototype.exps.zeropad,
-	cr.plugins_.Sprite.prototype.acts.SetHeight,
-	cr.system_object.prototype.exps.distance,
+	cr.plugins_.Sprite.prototype.acts.SetPosToObject,
+	cr.plugins_.Sprite.prototype.acts.SetAngle,
+	cr.system_object.prototype.exps.angle,
 	cr.plugins_.Touch.prototype.exps.X,
 	cr.plugins_.Touch.prototype.exps.Y,
 	cr.plugins_.Sprite.prototype.exps.X,
 	cr.plugins_.Sprite.prototype.exps.Y,
-	cr.plugins_.Sprite.prototype.acts.SetAngle,
-	cr.system_object.prototype.exps.angle,
-	cr.plugins_.Sprite.prototype.acts.SetPosToObject,
-	cr.plugins_.Sprite.prototype.acts.SetVisible,
+	cr.plugins_.Sprite.prototype.acts.SetHeight,
+	cr.system_object.prototype.exps.distance,
 	cr.system_object.prototype.cnds.CompareVar,
 	cr.system_object.prototype.acts.ScrollToObject,
 	cr.behaviors.Physics.prototype.acts.SetPreventRotate,
@@ -25957,32 +25959,32 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Sprite.prototype.exps.Angle,
 	cr.system_object.prototype.cnds.Else,
 	cr.behaviors.Physics.prototype.cnds.IsSleeping,
-	cr.system_object.prototype.acts.GoToLayout,
-	cr.plugins_.Sprite.prototype.cnds.OnCollision,
 	cr.behaviors.Physics.prototype.acts.SetImmovable,
 	cr.system_object.prototype.acts.Wait,
-	cr.plugins_.Audio.prototype.acts.SetPaused,
+	cr.plugins_.Sprite.prototype.acts.Destroy,
+	cr.system_object.prototype.acts.RestartLayout,
 	cr.system_object.prototype.cnds.OnLayoutStart,
+	cr.system_object.prototype.acts.SetTimescale,
 	cr.system_object.prototype.acts.CreateObject,
 	cr.plugins_.Sprite.prototype.cnds.CompareInstanceVar,
-	cr.plugins_.Sprite.prototype.acts.Destroy,
+	cr.plugins_.Browser.prototype.acts.GoToURL,
 	cr.plugins_.Touch.prototype.cnds.OnTouchObject,
-	cr.system_object.prototype.acts.RestartLayout,
-	cr.system_object.prototype.acts.SetTimescale,
 	cr.system_object.prototype.cnds.ForEach,
 	cr.plugins_.Text.prototype.exps.LayerName,
 	cr.plugins_.Text.prototype.exps.X,
 	cr.plugins_.Text.prototype.exps.Y,
+	cr.plugins_.Text.prototype.cnds.IsBoolInstanceVarSet,
+	cr.plugins_.Sprite.prototype.cnds.IsOverlapping,
+	cr.system_object.prototype.acts.GoToLayoutByName,
+	cr.plugins_.Text.prototype.exps.Text,
 	cr.plugins_.Dictionary.prototype.cnds.CompareValue,
 	cr.plugins_.Text.prototype.cnds.CompareText,
 	cr.system_object.prototype.cnds.TriggerOnce,
 	cr.plugins_.LocalStorage.prototype.acts.SetItem,
 	cr.plugins_.Text.prototype.acts.SetBoolInstanceVar,
-	cr.plugins_.Text.prototype.cnds.IsBoolInstanceVarSet,
-	cr.plugins_.Sprite.prototype.cnds.IsOverlapping,
-	cr.system_object.prototype.acts.GoToLayoutByName,
-	cr.plugins_.Text.prototype.exps.Text,
+	cr.plugins_.Sprite.prototype.cnds.OnCollision,
 	cr.plugins_.Dictionary.prototype.acts.AddKey,
+	cr.system_object.prototype.acts.GoToLayout,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemMissing,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemExists,
 	cr.plugins_.LocalStorage.prototype.acts.GetItem,

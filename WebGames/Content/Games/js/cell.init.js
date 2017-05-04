@@ -189,7 +189,10 @@ $(document).ready(function () {
             isPaused = true;
             score += levelScore;
             $('.overlay').addClass('front').append('<div id="nextmessage"><span>Μπράβο!</span><br/> Υπάρχουν κι άλλες κλειδαριές που σε περιμένουν!</div>').show(500);
-            if (isDemo) return;
+            if (isDemo) {
+                endGame();
+                return;
+            }
             //debugger
             $.custom.Server.SaveGameScore(score, level.substring(5),
                 function (res) { // success

@@ -6,6 +6,12 @@ using WebGames.Models;
 
 namespace WebGames.Libs.Games.GameTypes
 {
+    public class QuestionAnswer
+    {
+        public bool IsCorrect { get; set; }
+        public int CorrectAnswer { get; set; }
+    }
+
     public class GameQuestionView
     {
         public int QuestionId { get; set; }
@@ -167,27 +173,29 @@ namespace WebGames.Libs.Games.GameTypes
             }
         }
 
-        public static bool CheckAndSaveQuestionAnswer(string UserId, int QuestionId, int AnswerIndex)
+        public static QuestionAnswer CheckAndSaveQuestionAnswer(string UserId, int QuestionId, int AnswerIndex)
         {
             try
             {
-                var isCorrect = false;
+                var IsCorrect = false;
+                int CorrectAnswer = -1;
                 int totalCorrect = 0;
                 using (var db = ApplicationDbContext.Create())
                 {
                     var GameMetadata = (Questions_MetaData)GameHelper.GetGameMetaData(GameId, typeof(Questions_MetaData), db);
                     // Check that is the correct question
-                    if (GameMetadata == null
-                        || GameMetadata.Questions == null
-                        || !GameMetadata.Questions.ContainsKey(QuestionId)
-                        || GameMetadata.Questions[QuestionId].QuestionId != QuestionId
-                        || GameMetadata.Questions[QuestionId].AnswerIndex != AnswerIndex)
+                    if (GameMetadata != null
+                        || GameMetadata.Questions != null
+                        || GameMetadata.Questions.ContainsKey(QuestionId)
+                        || GameMetadata.Questions[QuestionId].QuestionId == QuestionId )
                     {
-                        isCorrect = false;
+                        CorrectAnswer = GameMetadata.Questions[QuestionId].AnswerIndex;
+
+                        IsCorrect = CorrectAnswer == AnswerIndex;
                     }
                     else
                     {
-                        isCorrect = true;
+                        IsCorrect = false;
                     }
 
                     // Save question is as answered
@@ -195,7 +203,7 @@ namespace WebGames.Libs.Games.GameTypes
                     var Existing = (User_Questions.Answered ?? "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                     Existing.Add(QuestionId.ToString());
                     User_Questions.Answered = string.Join(",", Existing);
-                    if (isCorrect)
+                    if (IsCorrect)
                     {
                         User_Questions.Correct += 1;
                     }
@@ -209,12 +217,12 @@ namespace WebGames.Libs.Games.GameTypes
 
                 GameManager.GameDict[GameKeys.Questions].SM.SetUserScore(UserId, totalCorrect, timeStamp, 1, false);
                 
-                return isCorrect;
+                return new QuestionAnswer() { IsCorrect = IsCorrect, CorrectAnswer = CorrectAnswer };
             }
             catch (Exception exc)
             {
                 Logger.Log(exc.Message, LogType.ERROR);
-                return false;
+                return new QuestionAnswer() { IsCorrect = false, CorrectAnswer = -1 };
             }
         }
    

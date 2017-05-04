@@ -13,10 +13,10 @@
         <source src="/Content/music/lockbg.mp3" type="audio/mpeg">
     </audio>
     <audio id="correct" preload="auto">
-        <source src="/Content/music/correct.mp3"/>
+        <source src="/Content/music/correct.mp3" />
     </audio>
     <audio id="wrong" preload="auto">
-        <source src="/Content/music/locked.mp3"/>
+        <source src="/Content/music/locked.mp3" />
     </audio>
     <div id="preloader">
         <div class="windows8">
@@ -40,20 +40,21 @@
     </div>
     <div class="wrapper">
         <div class="game questions stage1">
+            <div id="score">SCORE: <span>@Model.GameScore</span></div>
             <div class="logo"></div>
-                        <div class="pause"></div>
+            <div class="pause"></div>
             <div id="explainer">
                 <span class="exit"></span>
-<h2>Κλειδιά</h2>
-        
-<p>Έφτασες στην Πύλη του Circus και πρέπει να ξεκλειδώσεις τα λουκέτα που σε χωρίζουν από τον έξω κόσμο! Ανάλογα με τους βαθμούς που έχεις αποκτήσει από την έως τώρα πορεία σου στο παιχνίδι, έχεις μαζέψει και έναν αντίστοιχο αριθμό κλειδιών. Κάθε κλειδί που έχεις συλλέξει, αντιστοιχεί και σε ένα λουκέτο της πύλης του μαγεμένου Circus.</p>
-<p>Όσα περισσότερα κλειδιά έχεις, τόσο πιο πολλές ερωτήσεις έχεις τη δυνατότητα να απαντήσεις. Απάντησε σωστά και κέρδισε πόντους.</p>
-<ul>
-  <li>Πάτησε πάνω στις κλειδαριές και διάβασε τις ερωτήσεις που εμφανίζονται</li><br>
-  <li>Επίλεξε τη σωστή απάντηση</li>
-</ul>
-<p>Εάν δεν χρησιμοποιήσεις όλα σου τα κλειδιά στα 5 λεπτά που έχεις διαθέσιμα σήμερα, επέστρεψε αύριο για να ξεκλειδώσεις περισσότερα λουκέτα.</p>
-<p>Εάν χρησιμοποιήσεις όλα σου τα κλειδιά, επέστρεψε την Πέμπτη 18 Μαΐου για να μάθεις αν η ομάδα σου έχει περάσει στον τριήμερο τελικό!</p>
+                <h2>Κλειδιά</h2>
+
+                <p>Το circus ζητάει να μάθει τα πάντα και έχει βαλθεί να σου κάνει ερωτήσεις!</p>
+                <ul>
+                    <li>Επίλεξε μια κλειδαριά για να ανοίξεις μια ερώτηση.</li>
+                    <br>
+                    <li>Πόσες ερωτήσεις μπορείς να απαντήσεις στο χρόνο που σου δίνεται;</li>
+                    <br>
+                    <li>Με κάθε σωστή απάντηση κερδίζεις 3 πόντους</li>
+                </ul>
             </div>
             <div id="time" class="clock"></div>
             <div class="gamewrap">
@@ -93,7 +94,7 @@
                     <img class="lock" id="lock32" src="~/Content/images/locks/21.png">
 
                 </div>
-                <div id="attempts">Έχεις <div id="s1">άλλες</div> <span></span> <div id="s2">ερωτήσεις</div></div>
+                <div id="attempts" style="display: none;">Έχεις <div id="s1">άλλες</div> <span></span> <div id="s2">ερωτήσεις</div></div>
                 <div id="success">
                     <div class="message">
                         <h1>FIN!</h1>
@@ -157,16 +158,16 @@
         }
         $(document).ready(function () {
             var QuestionIndex = 0;
-    $('.exit').click(function(event) {
-        /* Act on the event */
-        isPaused = false;
-        $('#explainer').hide();
-    });
-    $('.pause').click(function(event) {
-        /* Act on the event */
-        isPaused = true;
-        $('#explainer').show();
-    });
+            $('.exit').click(function(event) {
+                /* Act on the event */
+                isPaused = false;
+                $('#explainer').hide();
+            });
+            $('.pause').click(function(event) {
+                /* Act on the event */
+                isPaused = true;
+                $('#explainer').show();
+            });
             $('.lock').hover(function () {
                 $(this).glow({ radius: "8", color: "#fffb3d" });
             }, function () {
@@ -177,7 +178,7 @@
             $('body').on('click', '.lock', function (event) {
 
                 if (tries > 0) {
-                    $(this).addClass('clicked');
+                    // $(this).addClass('clicked');
                 }
                 if (tries >= 1) {
                     tries--;
@@ -212,10 +213,11 @@
             $('body').on('click', '.answer', function (event) {
                 event.preventDefault();
                 $('#quiz').addClass('blocked');
-
-                function HandleQuestions(isCorrect) {
+                var self = this;
+                function HandleQuestions(isCorrect, correctIndex) {
                     if (isCorrect) {
-                        $(this).addClass('correct');
+                        $('#score span').text(Number($('#score span').text()) + 3);
+                        $(self).addClass('correct');
                         correct.play();
                         if (tries == 0) {
                             setTimeout(function () {
@@ -232,7 +234,8 @@
                         }
                     } else {
                         wrong.play();
-                        $(this).addClass('wrong');
+                        $(self).addClass('wrong');
+                        $('#a' + correctIndex).addClass('correct');
                         if (tries == 0) {
                             setTimeout(function () {
                                 $('#quiz').fadeOut(500);
@@ -256,13 +259,13 @@
 
                 if (isDemo) {
                     var isCorrect = $(this).data('answer') == correctAnswer;
-                    HandleQuestions(isCorrect);
+                    HandleQuestions(isCorrect, correctAnswer);
                 }
                 else {
                     $.custom.Server.CheckQuestion(qId, answer, true,
                         function (res) { // success
                             if (res && res.success) { // to time einai remaining seconds
-                                HandleQuestions(res.isCorrect);
+                                HandleQuestions(res.isCorrect, res.correctAnswer);
                             }
                             else { // fail
 
@@ -271,7 +274,7 @@
 
                         });
                 }
-                
+
             });
         });
     </script>

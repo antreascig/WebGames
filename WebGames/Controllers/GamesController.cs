@@ -24,6 +24,7 @@ namespace WebGames.Controllers
                 activeGameInfo.IsDemo = true;
                 activeGameInfo.GameScore = 0;
                 activeGameInfo.RemainingTime = 1 * 60; // 1 minute
+                activeGameInfo.ActiveLevel = 1;
             }
 
             return GetPage(activeGameInfo);
@@ -104,9 +105,9 @@ namespace WebGames.Controllers
                 return Json(new { success = false, message = "Game is not active" }, JsonRequestBehavior.AllowGet);
             }
 
-            var IsCorrect = Questions_Manager.CheckAndSaveQuestionAnswer(UserId, questionId, answerIndex); // Cannot override the score - once is set the done
+            var res = Questions_Manager.CheckAndSaveQuestionAnswer(UserId, questionId, answerIndex); // Cannot override the score - once is set the done
 
-            return Json(new { success = true, isCorrect = IsCorrect }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, isCorrect = res.IsCorrect, correctAnswer = res.CorrectAnswer }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetPlayerQuestions()

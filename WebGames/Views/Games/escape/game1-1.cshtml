@@ -48,7 +48,7 @@
   <li>Κάποια από τα αντικείμενα κρύβουν μυστικούς αριθμούς</li><br/>
   <li>Σ’ ένα από τα αντικείμενα θα βρεις το χάρτη με το μαγικό συνδυασμό</li><br/>
   <li>Αφού βρεις όλους τους αριθμούς και τον συνδυασμό, επίλεξε το λουκέτο πάνω αριστερά, τοποθέτησε τον τριψήφιο κωδικό στα κουτάκια και «Ξεκλείδωσε» το κλουβί</li><br/>
-  <li>Για κάθε απόδραση κερδίζεις 75 πόντους</li>
+  <li>Για κάθε απόδραση κερδίζεις 70 πόντους</li>
 </ul>            </div>
             <div id="score">SCORE: <span>@Model.GameScore</span></div>
             <div class="overlay"></div>
@@ -117,11 +117,12 @@
         var GameScore = @Model.GameScore;
         @if(Model.IsDemo) {
             @:var isDemo = true;
+            @:window.unlockCode = '464';
         }
         else {
             @:var isDemo = false;
         }
     </script>
 
-    <script src="/Content/Games/js/cell.init.js"></script>
+    <script src="/Content/Games/js/cell.init.js?v=3"></script>
 </div>

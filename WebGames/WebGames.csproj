@@ -344,7 +344,9 @@
     <Content Include="Content\Games\balakia\icon-32.png" />
     <Content Include="Content\Games\balakia\images\background-sheet0.png" />
     <Content Include="Content\Games\balakia\images\ball-sheet0.png" />
+    <Content Include="Content\Games\balakia\images\ballthrowingobjdirection-sheet0.png" />
     <Content Include="Content\Games\balakia\images\brandinglogo-sheet0.png" />
+    <Content Include="Content\Games\balakia\images\bravo-sheet0.png" />
     <Content Include="Content\Games\balakia\images\btnplay-sheet0.png" />
     <Content Include="Content\Games\balakia\images\flatobject-sheet0.png" />
     <Content Include="Content\Games\balakia\images\hat-sheet0.png" />
@@ -359,15 +361,20 @@
     <Content Include="Content\Games\balakia\images\obstacle1-sheet0.png" />
     <Content Include="Content\Games\balakia\images\obstacle4level9-sheet0.png" />
     <Content Include="Content\Games\balakia\images\overlay-sheet0.png" />
+    <Content Include="Content\Games\balakia\images\pausebutton-sheet0.png" />
     <Content Include="Content\Games\balakia\images\pauseoverlay-sheet0.png" />
+    <Content Include="Content\Games\balakia\images\pausex-sheet0.png" />
     <Content Include="Content\Games\balakia\images\pivotoing-sheet0.png" />
     <Content Include="Content\Games\balakia\images\restart-sheet0.png" />
+    <Content Include="Content\Games\balakia\images\restartx-sheet0.png" />
     <Content Include="Content\Games\balakia\images\score-sheet0.png" />
     <Content Include="Content\Games\balakia\images\sprite2-sheet0.png" />
     <Content Include="Content\Games\balakia\images\sprite3-sheet0.png" />
     <Content Include="Content\Games\balakia\images\sprite4-sheet0.png" />
     <Content Include="Content\Games\balakia\images\sprite5-sheet0.png" />
+    <Content Include="Content\Games\balakia\images\tryagain-sheet0.png" />
     <Content Include="Content\Games\balakia\images\wall-sheet0.png" />
+    <Content Include="Content\Games\balakia\images\winx-sheet0.png" />
     <Content Include="Content\Games\balakia\index.html" />
     <Content Include="Content\Games\balakia\jquery-2.1.1.min.js" />
     <Content Include="Content\Games\balakia\loading-logo.png" />
@@ -433,6 +440,7 @@
     <Content Include="Content\Games\juggler\images\sprite3-sheet0.png" />
     <Content Include="Content\Games\juggler\images\sprite4-sheet0.png" />
     <Content Include="Content\Games\juggler\images\sprite5-sheet0.png" />
+    <Content Include="Content\Games\juggler\images\turret-sheet0.png" />
     <Content Include="Content\Games\juggler\images\wall-sheet0.png" />
     <Content Include="Content\Games\juggler\index.html" />
     <Content Include="Content\Games\juggler\jquery-2.1.1.min.js" />
@@ -878,6 +886,10 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\custom\jquery.dataTables.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pnotify.js" />
     <Content Include="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -934,6 +946,7 @@
     <Content Include="Content\Games\juggler\media\collision.ogg" />
     <Content Include="Content\Games\juggler\media\juggler.ogg" />
     <None Include="Properties\PublishProfiles\WebGamesTest - Web Deploy.pubxml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\custom\app.js" />
     <Content Include="Scripts\bootstrap.js" />

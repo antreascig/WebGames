@@ -2022,6 +2022,7 @@ body {
 
     #quiz .answer.wrong {
         background: red;
+        height: 55px;
     }
 
 .blocked button {

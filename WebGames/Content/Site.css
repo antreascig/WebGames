@@ -573,7 +573,8 @@ footer .mails a {
     left: 20px;
     width: 96%;
     margin: 0 auto;
-    box-sizing: border-box
+    box-sizing: border-box;
+	display:none
 }
 
 .demo_index .body-content,.demo_mastermind .body-content,.demo_questions .body-content,.demo_juggler .body-content,.demo_adespotabalakia .body-content,.demo_whackamole .body-content,.demo_activegameafter .body-content,.demo_escape_1 .body-content {
@@ -895,7 +896,7 @@ input[type="radio"]:checked+label:before {
     padding: 45px 45px
 }
 
-.account_forgotpassword .navbar,.account_login .navbar,.home_index .navbar,.home_tnc .navbar,.home_info .navbar,.user_index .navbar {
+.account_forgotpassword .navbar,.games_activegamemap .navbar,.account_login .navbar,.home_index .navbar,.home_tnc .navbar,.home_info .navbar,.user_index .navbar {
     display: block
 }
 
