@@ -211,6 +211,7 @@
     <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\ErrorMessageHelper.cs" />
+    <Compile Include="Helpers\GroupHelper.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\Mailers.cs" />
     <Compile Include="Helpers\QuestionsHelper.cs" />
@@ -288,6 +289,10 @@
     <Compile Include="Migrations\201704231911411_no_fk_user_in_scores.cs" />
     <Compile Include="Migrations\201704231911411_no_fk_user_in_scores.Designer.cs">
       <DependentUpon>201704231911411_no_fk_user_in_scores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705082009239_User_Group_FullName.cs" />
+    <Compile Include="Migrations\201705082009239_User_Group_FullName.Designer.cs">
+      <DependentUpon>201705082009239_User_Group_FullName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -1180,6 +1185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704231911411_no_fk_user_in_scores.resx">
       <DependentUpon>201704231911411_no_fk_user_in_scores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705082009239_User_Group_FullName.resx">
+      <DependentUpon>201705082009239_User_Group_FullName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

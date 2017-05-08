@@ -23,7 +23,8 @@ namespace WebGames
 
             //Helpers.ReadAllowedEmailsHelper.InitAllowedEmails();
             //QuestionsHelper.ReadAndSaveQuestions();
-            Helpers.ReadAllowedEmailsHelper.AddExtraEmails();
+            //Helpers.ReadAllowedEmailsHelper.AddExtraEmails();
+            //GroupHelper.Generate();
         }
     }
 }

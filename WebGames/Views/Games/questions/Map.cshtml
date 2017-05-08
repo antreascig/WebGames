@@ -23,20 +23,20 @@
                     <div class="pop"><img src="/Content/images/map/bubble2.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point done point3" data-fade="3">
+                <div class="point previous done point3" data-fade="3">
                     <div class="pop"><img src="/Content/images/map/bubble3.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point done point4" data-fade="4" data-url="intro4.html">
+                <div class="point current point4" data-fade="4" data-url="intro4.html">
+                    <img class="xmark" src="/Content/images/map/x.gif">
                     <div class="pop"><img src="/Content/images/map/bubble4.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point done previous point5" data-fade="5" data-url="intro5.html">
-                    <img class="xmark" src="/Content/images/map/x.gif">
+                <div class="point   point5" data-fade="5" data-url="intro5.html">
                     <div class="pop"><img src="/Content/images/map/bubble5.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
-                <div class="point current point6" data-fade="6" data-url="intro6.html">
+                <div class="point  point6" data-fade="6" data-url="intro6.html">
                     <div class="pop"><img src="/Content/images/map/bubble6.png" alt=""></div>
                     <div class="boom"></div><img src="/Content/images/map/dot.png">
                 </div>
@@ -48,27 +48,30 @@
                 <div class="title title1"><img src="/Content/images/map/1.png"></div>
                 <div class="title title2"><img src="/Content/images/map/2.png"></div>
                 <div class="title title3"><img src="/Content/images/map/3.png"></div>
-                <div class="title title4"><img src="/Content/images/map/4.png"></div>
-                <div style="display:block" class="title ptitle title5"><img src="/Content/images/map/5.png"></div>
+                <div style="display:block" class="title ptitle title4"><img src="/Content/images/map/4.png"></div>
+                <div  class="title  title5"><img src="/Content/images/map/5.png"></div>
                 <div class="title ctitle title6"><img src="/Content/images/map/6.png"></div>
             </div>
         </div>
     </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <style>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>    <style>
         .mapuser {
             display: block;
             width: 100px;
-            top: 387px;
-            left: 454px;
+            top: 269px;
+            left: 318px;
             position: Absolute;
+            z-index:100
         }
     </style>
     <script>
 
-        $('.navbar-nav img').clone().detach().addClass('mapuser').appendTo('.map').delay(1000).animate({ top: 419, left: 538 }, 1500);
+        $('.navbar-nav img').clone().detach().addClass('mapuser').appendTo('.map').delay(1000).animate({ top: 312, left: 418 }, 1500);
         jQuery.fn.center = function () {
             this.css("position", "absolute");
             this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +

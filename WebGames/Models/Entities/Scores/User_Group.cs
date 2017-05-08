@@ -14,6 +14,8 @@ namespace WebGames.Models
 
         public int GroupNumber { get; set; }
 
+        public string User_FullName { get; set; }
+
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
     }

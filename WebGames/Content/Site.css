@@ -421,7 +421,7 @@ footer .text-danger {
     margin: 0 auto
 }
 
-.games_activeexplainer footer,.games_activegame footer,.games_activegamemap footer {
+.games_activeexplainer footer,.games_activegame footer {
     display: none
 }
 
@@ -812,7 +812,7 @@ input[type="radio"]:checked+label:before {
 }
 
 .games_activegamemap {
-    background: url('/Content/images/map/mapbg.jpg') no-repeat center center;
+    background: url('/Content/images/bg.jpg') no-repeat center center;
     background-size: cover
 }
 

@@ -29,4 +29,32 @@
         </tbody>
     </table>
 
+    @if (false && @Model.GroupScore != null)
+    {
+
+        <span id="teamMembers" style="color: white;font-size: 20px;">
+            Η ομάδα σου είναι @( string.Join(", ", Model.GroupScore.UsersInGroup.Where(u => Model.UserId != u.UserId).Select(u=> u.User_Name)) )
+        </span>
+
+        <br />
+        <br />
+
+        <table class="table table-striped table-hover">
+
+            <thead>
+                <tr>
+                    <th>Ομαδικό Σκορ</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>@Model.GroupScore.TotalScore</td>
+                </tr>
+
+            </tbody>
+        </table>
+    }
+
 </div>

@@ -35,6 +35,7 @@ namespace WebGames.Libs.Games
     {
         public string UserId { get; set; }
         public string User_FullName { get; set; }
+        public string User_Name { get; set; }
         public double Score { get; set; }
     }
 
@@ -80,14 +81,19 @@ namespace WebGames.Libs.Games
             return res;
         }
 
-        public static List<UserTotalScore> GetUsersTotalScoresForGames(string[] selectedGameKeys )
+        public static List<UserTotalScore> GetUsersTotalScoresForGames(string[] selectedGameKeys, string[] UserIds = null )
         {
             var res = new List<UserTotalScore>();
 
             using (var db = ApplicationDbContext.Create())
             {
                 var Games = (from game in db.Games select game).ToList();
-                var Users = (from user in db.Users select new { UserId = user.Id, Full_Name = user.FullName }).ToList();
+                var q = db.Users.AsQueryable();
+                if (UserIds != null)
+                {
+                    q = q.Where(user => UserIds.Contains(user.Id)).AsQueryable();
+                }
+                var Users = q.Select(user => new { UserId = user.Id, Full_Name = user.FullName, UserName = user.UserName }).ToList();
                 var ScoreDict = Users.ToDictionary(k => k.UserId, v => (double)0);
 
                 foreach( var gameKey in selectedGameKeys)
@@ -109,7 +115,8 @@ namespace WebGames.Libs.Games
                 {
                     UserId = u.UserId,
                     User_FullName = u.Full_Name,
-                    Score = ScoreDict[u.UserId]
+                    Score = ScoreDict[u.UserId],
+                    User_Name = u.UserName
                 }));
             }
             return res;

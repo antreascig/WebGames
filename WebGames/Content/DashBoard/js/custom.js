@@ -203,47 +203,47 @@ function Logger() {
     self.Success = function (text, title) {
         alert(text);
         return;
-        new PNotify({
-            title: title,
-            text: text,
-            type: 'success',
-            styling: 'bootstrap3'
-        });
+        //new PNotify({
+        //    title: title,
+        //    text: text,
+        //    type: 'success',
+        //    styling: 'bootstrap3'
+        //});
     };
 
     self.Info = function (text, title) {
         alert(text);
         return;
-        new PNotify({
-            title: title,
-            text: text,
-            type: 'info',
-            styling: 'bootstrap3'
-        });
+        //new PNotify({
+        //    title: title,
+        //    text: text,
+        //    type: 'info',
+        //    styling: 'bootstrap3'
+        //});
     };
 
     self.Error = function (text, title) {
         alert(text);
         return;
-        new PNotify({
-            title: title,
-            text: text,
-            type: 'error',
-            styling: 'bootstrap3'
-        });
+        //new PNotify({
+        //    title: title,
+        //    text: text,
+        //    type: 'error',
+        //    styling: 'bootstrap3'
+        //});
     };
 
     self.Dark = function (text, title) {
         alert(text);
         return;
-        new PNotify({
-            title: title,
-            text: text,
-            type: 'dark',
-            styling: 'bootstrap3'
-        });
+        //new PNotify({
+        //    title: title,
+        //    text: text,
+        //    type: 'dark',
+        //    styling: 'bootstrap3'
+        //});
     };
-};
+}
 
 if (!$.custom) {
     $.custom = {};

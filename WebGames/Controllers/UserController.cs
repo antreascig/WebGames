@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using WebGames.Libs;
 using WebGames.Libs.Games;
+using WebGames.Libs.Games.Games;
 using WebGames.Models;
 using WebGames.Models.ViewModels;
 
@@ -41,9 +42,9 @@ namespace WebGames.Controllers
 
         public ActionResult Index()
         {
-            var model = new UserScoreInfo { GameScores = new List<UserScore>() };
-
             var userId = User.Identity.GetUserId();
+
+            var model = new UserScoreInfo { UserId = userId, GameScores = new List<UserScore>(), GroupScore = null };
 
             var EscapeKeys = new string[] { GameKeys.Escape_1, GameKeys.Escape_2, GameKeys.Escape_3 };
             double EscapeScore = 0;
@@ -62,6 +63,8 @@ namespace WebGames.Controllers
             }
 
             model.GameScores.Add(new UserScore() { GameId = -1, GameName = "ΚΛΟΥΒΙΑ ΚΛΟΥΒΙΑ", Score = EscapeScore });
+
+            model.GroupScore = Group_Manager.GetUserGroupScore(userId);
 
             return View(model);
         }

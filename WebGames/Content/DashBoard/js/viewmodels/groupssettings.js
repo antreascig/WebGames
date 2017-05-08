@@ -12,24 +12,27 @@
         ViewReplaceModal: ViewReplaceModal,
         InitDatable: InitDatable,
         SelectedUser: null,
-        CancelEditing: CancelEditing,
+        CancelEditing: CancelEditing
     };
 
     function init() {
+        vm.User_Groups([]);
         vm.GetSavedGroups();
-
     }
 
     function SetUserGroups(user_groups) {
 
         var Groups = [];
-        for (var i = 0; i < 12; i++) {
-            Groups.push({ Group: i + 1, Players: [] });
-        }
         //debugger
         for (var i = 0; i < user_groups.length; i++) {
             var GroupIndex = user_groups[i].Group - 1;
             var asObs = ko.mapping.fromJS(user_groups[i]);
+            if (!Groups[GroupIndex] ) {
+                Groups.push({ Group: user_groups[i].Group, Players: [] });
+            }
+            //if (Groups[GroupIndex]) {
+            //    debugger
+            //}
             Groups[GroupIndex].Players.push(asObs);
         }
         vm.User_Groups(Groups);
@@ -38,19 +41,27 @@
     }
 
     function GetSavedGroups() {
+        vm.Loading(true);
+
         $.custom.Server["SendRequest"]("POST", "/Dashboard/GetSavedGroups", {},
             function (res) { //success
                  //debugger
+                //vm.Loading(false);
+
                 if (res.success) {
                     if (res.user_groups.length) {
                         SetUserGroups(res.user_groups);
                     }
                 }
                 else {
-                    $.custom['Logger'].Error("Δεν βρέθηκαν ομάδες", "")
+                    $.custom['Logger'].Error("Δεν βρέθηκαν ομάδες", "");
                 }
+                vm.Loading(false);
             },
-            function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
+            function (error, hrx, code) {
+                $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
+                vm.Loading(false);
+            });
     }
 
     function GetRankedPlayers() {
@@ -60,50 +71,60 @@
                 // debugger
                 vm.Loading(false);
 
-                if (res.success && res.ranked_groups.length) {
-                    SetUserGroups(res.ranked_groups);
+                if (res.success) {
+                    if (res.ranked_groups.length) {
+                        SetUserGroups(res.ranked_groups);
+                    }
                 }
                 else {
-                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "")
+                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
                 }
             },
-            function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
+            function (error, hrx, code) {
+                $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
+                vm.Loading(false);
+            });
     }
 
     function SaveGroups() {
         var userGroups = ko.mapping.toJS(vm.User_Groups);
-        var dataToSave = [];
+        var dataToSave = {};
 
         for (var i = 0; i < userGroups.length; i++) {
             for (var j = 0; j < userGroups[i].Players.length; j++) {
-                dataToSave.push({
-                    UserId: userGroups[i].Players[j].UserId,
-                    GroupNumber: userGroups[i].Group
-                });
+                if (!dataToSave[userGroups[i].Group]) {
+                    dataToSave[userGroups[i].Group] = [];
+                }
+                dataToSave[userGroups[i].Group].push( userGroups[i].Players[j].UserId );
             }
         }
 
-        $.custom.Server["SendRequest"]("POST", "/Dashboard/SaveGroups", { user_groupsJSON: JSON.stringify(dataToSave) },
+        var data = encodeURIComponent(JSON.stringify(dataToSave));
+
+        $.custom.Server["SendRequest"]("POST", "/Dashboard/SaveGroups", { groups: data },
             function (res) { //success
                 // debugger
                 if (res.success) {
                     $.custom['Logger'].Success("Οι Ομάδες Αποθηκεύτηκαν", "");
                 }
                 else {
-                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "")
+                    $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
                 }
             },
-            function (error, hrx, code) { $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "") });
+            function (error, hrx, code) {
+                $.custom['Logger'].Error("Κατι δεν πηγε σωστά", "");
+            });
 
     }
 
     var columns = [
         { "title": "Θέση", "searchable": true, "visible": true, "target": 0 },
         { "title": "UserId", "searchable": false, "visible": false, "target": 1 },
-        { "title": "Όνομα", "searchable": true, "target": 2 },
+        { "title": "Όνομα", "searchable": true, "visible": true, "target": 2 },
         { "title": "Group", "searchable": false, "visible": false, "target": 3 },
+        { "title": "Σκορ", "searchable": false, "visible": false, "target": 4 },
         {
-            "title": "Ρυθμίσεις", "searchable": false, "target": 4, createdCell: function (td, cellData, rowData, row, col) {
+            "title": "Ρυθμίσεις", "searchable": false, "target": 5, createdCell: function (td, cellData, rowData, row, col) {
                 //debugger;
                 var html = '';
                 var id = rowData[1];
@@ -113,9 +134,9 @@
                 else {
                     html = '<button type="button" class="btn btn-warning" onclick="newView.ReplacePlayer(' + row + ')">Select</button>';
                 }
-                $(td).html(html)
+                $(td).html(html);
             }
-        },
+        }
     ];
 
     var table;
@@ -130,21 +151,21 @@
                     var userGroups = vm.User_Groups();
                     for (var i = 0; i < userGroups.length; i++) {
                         for (var j = 0; j < userGroups[i].Players.length; j++) {
-                            UserGroupDict[userGroups[i].Players[j].UserId()] = userGroups[i].Group
+                            UserGroupDict[userGroups[i].Players[j].UserId()] = userGroups[i].Group;
                         }
                     }
                 }
             },
             "columns": columns
         });
-    };
+    }
 
     function ViewReplaceModal(User) {
         $('#usergroupEditorModal').modal();
         vm.SelectedUser = User;
 
         InitDatable();
-    };
+    }
 
     function ReplacePlayer(rowIndex) {
         var data = table.row(rowIndex).data();      
@@ -153,18 +174,18 @@
         vm.SelectedUser.User_FullName(data[2]);
         vm.SelectedUser = null;
         $('#usergroupEditorModal').modal('hide');
-    };
+    }
 
     function CancelEditing() {
         vm.SelectedUser = null;
-    };
+    }
 
     return vm;
-};
+}
 
 var newView = new ViewModel();
 // Init
 $(document).ready(function () {
-    newView.init();
     ko.applyBindings(newView);
+    newView.init();
 });

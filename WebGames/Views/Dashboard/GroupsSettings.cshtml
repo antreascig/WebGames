@@ -146,7 +146,7 @@
                                 </table>
                                 <!-- /ko -->
 
-                                <!-- ko if: User_Groups() && User_Groups().length -->
+                                <!-- ko if: User_Groups() && User_Groups().length > 0 -->
 
                                 <div class="row">
                                     <!-- ko foreach: User_Groups -->
@@ -170,6 +170,7 @@
                                                             </td>
 
                                                         </tr>
+
                                                         <!-- /ko -->
 
                                                     </tbody>
@@ -177,11 +178,10 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- /ko -->
                                 </div>
+                        
                                 
-
                                 <!-- /ko -->
 
                                 @*  User Replacement Modal *@
@@ -245,7 +245,7 @@
     <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="~/Content/DashBoard/js/custom.js"></script>
-    <script src="~/Content/DashBoard/js/viewmodels/groupssettings.js"></script>
+    <script src="~/Content/DashBoard/js/viewmodels/groupssettings.js?v=4.0"></script>
 
 </body>
 

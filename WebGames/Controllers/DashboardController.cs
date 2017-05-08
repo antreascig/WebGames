@@ -327,7 +327,7 @@ namespace WebGames.Controllers
         public DataTablesResult GetGroupScores(string group, DataTablesParam dataTableParam)
         {
 
-            var groups = Group_Manager.GetGroups();
+            var groups = Group_Manager.GetGroupScores();
 
             int groupNumber;
             if (int.TryParse(group, out groupNumber))
@@ -462,7 +462,7 @@ namespace WebGames.Controllers
         {
             try
             {
-                var user_groups = Group_Manager.GetGroups().SelectMany(g => g.Value.Select(u => new UserGroupVM()
+                var user_groups = Group_Manager.GetGroupScores().OrderBy(u => u.Key).SelectMany(g => g.Value.Select(u => new UserGroupVM()
                 {
                     Rank = -1,
                     UserId = u.UserId,
@@ -484,7 +484,7 @@ namespace WebGames.Controllers
         {
             try
             {
-                var ranked_groups = Group_Manager.GetRankingsBeforeGroups().Take(144).ToList();
+                var ranked_groups = Group_Manager.GetRankingsBeforeGroups().ToList();
 
                 return Json(new { success = true, ranked_groups = ranked_groups }, JsonRequestBehavior.AllowGet);
             }
@@ -503,16 +503,18 @@ namespace WebGames.Controllers
             return DataTablesResult.Create<UserGroupVM>(ranked_groups, dataTableParam);
         }
 
-        public ActionResult SaveGroups( string user_groupsJSON)
+        public ActionResult SaveGroups( string groups)
         {
             try
             {
-                List<User_Group> user_groups = Newtonsoft.Json.JsonConvert.DeserializeObject<List<User_Group>>(user_groupsJSON ?? "[]");
+                groups = Server.UrlDecode(groups ?? "");
+                var user_groups = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<int, List<string>>>(groups ?? "[]");
 
                 if (user_groups == null)
                     return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
-                Group_Manager.SetGroups(user_groups);
+                var asList = user_groups.SelectMany(g => g.Value.Select(u => new User_Group() { UserId = u, GroupNumber = g.Key })).ToList();
+                Group_Manager.SetGroups(asList);
 
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
