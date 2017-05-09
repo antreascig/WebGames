@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WebGames.Libs;
 using WebGames.Libs.Games;
+using WebGames.Libs.Games.Games;
 using WebGames.Libs.Games.GameTypes;
 
 namespace WebGames.Controllers
@@ -62,6 +63,23 @@ namespace WebGames.Controllers
             {
                 return View("NoActiveGame");
             }
+        }
+
+        public ActionResult Group()
+        {
+            var UserId = User.Identity.GetUserId();
+
+            var UserName = User.Identity.GetUserName();
+
+            var UserGroup = Group_Manager.GetUserTeam(UserId);
+
+            if (UserGroup != null)
+            {
+                UserGroup.UsersInGroup = (UserGroup.UsersInGroup ?? new List<string>()).Where(u => u != UserName).ToList();
+            }
+            //UserGroup = null;
+
+            return View("Group", UserGroup);
         }
         #endregion
 

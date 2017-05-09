@@ -1133,6 +1133,7 @@
     <Content Include="Views\Demo\ActiveGameAfter.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\ComingSoon\Index.cshtml" />
+    <Content Include="Views\Games\Group.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Games\" />

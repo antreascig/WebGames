@@ -19,6 +19,12 @@ namespace WebGames.Libs.Games.Games
         public string Controls { get; set; }
     }
 
+    public class Group_Team
+    {
+        public int Group { get; set; }
+        public List<string> UsersInGroup { get; set; }
+    }
+
     public class GroupScore
     {
         public int Group { get; set; }
@@ -61,6 +67,30 @@ namespace WebGames.Libs.Games.Games
             }
         }
 
+        public static Group_Team GetUserTeam(string UserId)
+        {
+            try
+            {
+
+                using (var db = ApplicationDbContext.Create())
+                {
+                    var User_Group = (from ug in db.User_Groups where ug.UserId == UserId select ug).SingleOrDefault();
+                    if (User_Group == null) return null;
+
+                    var Group = User_Group.GroupNumber;
+
+                    var Group_Users = (from ug in db.User_Groups where ug.GroupNumber == Group select ug).Include("Users").Select(u => u.User.UserName).ToList();
+
+                    var res = new Group_Team() { Group = Group, UsersInGroup = Group_Users };
+                    return res;
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc);
+                throw exc;
+            }
+        }
 
         public static GroupScore GetUserGroupScore(string UserId)
         {
