@@ -17,6 +17,7 @@ namespace WebGames.Helpers
     {
         public static void Generate()
         {
+            return;
             Application excel;
             Workbook worKbooK;
             Worksheet worKsheeT;
@@ -148,10 +149,18 @@ namespace WebGames.Helpers
                 //excel is not zero based!!
                 for (int i = 2; i <= rowCount; i++) // start from 2nd line - first has the headers
                 {
+                    int groupNumber = -1;
+                    var name = xlRange.Cells[i, 2].Value2.ToString();
+
+                    var groupCell = xlRange.Cells[i, 3];
+                    if (groupCell.Value2 == null ||  !int.TryParse(groupCell.Value2.ToString(), out groupNumber)) 
+                        continue;
+
+                    if (groupNumber == 0) groupNumber = -1;
                     User_Groups.Add(new User_Group()
                     {
-                        UserId = xlRange[i][1],
-                        GroupNumber = xlRange[i][5],
+                        UserId = xlRange.Cells[i, 1].Value2,
+                        GroupNumber = groupNumber,
                     });
                 }
 

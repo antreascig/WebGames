@@ -375,9 +375,9 @@ $(document).ready(function () {
     $('body').on('click', '.monster1', function (event) {
         event.preventDefault();
         if (weapon != 3) {
-            if (game.score >= 1) {
-               game.score -= 1;
-            }
+            // if (game.score >= 1) {
+            //    game.score -= 1;
+            // }
             return;
         }
         var that = $(this);
@@ -386,7 +386,7 @@ $(document).ready(function () {
             that.remove();
         }, 250);
 
-        game.score += 5;
+        game.score += 1;
         var boom = '<div class="boom position' + position.position + '"><img src="/Content/images/boom.gif?' + (new Date).getTime() + '"/></div>';
         poof.play();
         $('#stage').append(boom);
@@ -399,14 +399,14 @@ $(document).ready(function () {
 
         event.preventDefault();
         if (weapon != 1) {
-            if (game.score >= 1) {
-               game.score -= 1;
-            }
+            // if (game.score >= 1) {
+            //    game.score -= 1;
+            // }
             return;
         }
         var that = $(this);
         var position = that.data();
-            game.score += 5;
+            game.score += 1;
             var position = $(this).data();
             var boom = '<img class="boom position' + position.position + '" src="/Content/images/boom.gif?' + (new Date).getTime() + '"/>';
             $('#stage').append(boom);
@@ -423,14 +423,14 @@ $(document).ready(function () {
     $('body').on('click', '.monster4', function (event) {
         event.preventDefault();
         if (weapon != 2) {
-            if (game.score >= 1) {
-               game.score -= 1;
-            }
+            // if (game.score >= 1) {
+            //    game.score -= 1;
+            // }
             return;
         }
         var that = $(this);
         var position = that.data();
-            game.score += 20;
+            game.score += 1;
             setTimeout(function () {
                 that.remove();
             }, 250)
@@ -451,7 +451,7 @@ $(document).ready(function () {
             that.remove();
         }, 250);
         if (game.score >= 1) {
-            game.score -= 5;
+            game.score -= 1;
             if (game.score < 0) {
                 game.score = 0;
             }

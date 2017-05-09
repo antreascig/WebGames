@@ -75,7 +75,7 @@ namespace WebGames.Libs.Games.Games
                 using (var db = ApplicationDbContext.Create())
                 {
                     var User_Group = (from ug in db.User_Groups where ug.UserId == UserId select ug).SingleOrDefault();
-                    if (User_Group == null) return null;
+                    if (User_Group == null || User_Group.GroupNumber == -1) return null;
 
                     var Group = User_Group.GroupNumber;
 
@@ -100,7 +100,7 @@ namespace WebGames.Libs.Games.Games
                 using (var db = ApplicationDbContext.Create())
                 {
                     var User_Group = (from ug in db.User_Groups where ug.UserId == UserId select ug).SingleOrDefault();
-                    if (User_Group == null) return null;
+                    if (User_Group == null || User_Group.GroupNumber == -1) return null;
 
                     var Group = User_Group.GroupNumber;
 
@@ -169,6 +169,8 @@ namespace WebGames.Libs.Games.Games
                 {
                     db.User_Groups.AddRange(userScores);
                 }
+
+                //db.User_Groups.AddRange(ToDelete);
 
                 db.SaveChanges();
             }

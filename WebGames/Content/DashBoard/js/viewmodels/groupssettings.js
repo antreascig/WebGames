@@ -27,12 +27,13 @@
         for (var i = 0; i < user_groups.length; i++) {
             var GroupIndex = user_groups[i].Group - 1;
             var asObs = ko.mapping.fromJS(user_groups[i]);
+
+            if (GroupIndex < 0) continue;
+
             if (!Groups[GroupIndex] ) {
                 Groups.push({ Group: user_groups[i].Group, Players: [] });
             }
-            //if (Groups[GroupIndex]) {
-            //    debugger
-            //}
+
             Groups[GroupIndex].Players.push(asObs);
         }
         vm.User_Groups(Groups);

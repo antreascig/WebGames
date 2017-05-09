@@ -175,7 +175,7 @@ namespace WebGames.Libs
                 var Group = Group_Manager.GetUserGroup(UserId);
                 if (Group == -1)
                 {
-                    data.ActiveGameDataModel.ActiveGameKey = "";
+                    data.ActiveGameDataModel = null;
                 }
             }
 
