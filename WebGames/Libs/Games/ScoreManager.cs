@@ -81,7 +81,7 @@ namespace WebGames.Libs.Games
             return res;
         }
 
-        public static List<UserTotalScore> GetUsersTotalScoresForGames(string[] selectedGameKeys, string[] UserIds = null )
+        public static List<UserTotalScore> GetUsersTotalScoresForGames(IEnumerable<string> selectedGameKeys, string[] UserIds = null )
         {
             var res = new List<UserTotalScore>();
 

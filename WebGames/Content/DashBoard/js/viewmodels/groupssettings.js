@@ -23,19 +23,25 @@
     function SetUserGroups(user_groups) {
 
         var Groups = [];
+        var GroupDict = {};
         //debugger
         for (var i = 0; i < user_groups.length; i++) {
-            var GroupIndex = user_groups[i].Group - 1;
+            var GroupIndex = user_groups[i].Group;
             var asObs = ko.mapping.fromJS(user_groups[i]);
 
-            if (GroupIndex < 0) continue;
-
-            if (!Groups[GroupIndex] ) {
-                Groups.push({ Group: user_groups[i].Group, Players: [] });
+            if (!GroupDict[GroupIndex] ) {
+                GroupDict[GroupIndex] = { Group: GroupIndex, Players: [] };
             }
 
-            Groups[GroupIndex].Players.push(asObs);
+            GroupDict[GroupIndex].Players.push(asObs);
         }
+
+        for (var groupIndex in GroupDict) {
+            //if (groupIndex == -1) continue;
+            Groups.push(GroupDict[groupIndex]);
+        }
+
+
         vm.User_Groups(Groups);
         console.log(Groups);
         //ko.mapping.fromJS(user_groups, vm.User_Groups);
@@ -130,10 +136,10 @@
                 var html = '';
                 var id = rowData[1];
                 if (UserGroupDict[id]) {
-                    html = '<div class="alert alert-danger">Επιλεγμένος</div>';
+                    //html = '<div class="alert alert-danger">Επιλεγμένος</div>';
                 }
                 else {
-                    html = '<button type="button" class="btn btn-warning" onclick="newView.ReplacePlayer(' + row + ')">Select</button>';
+                    //html = '<button type="button" class="btn btn-warning" onclick="newView.ReplacePlayer(' + row + ')">Επιλογή</button>';
                 }
                 $(td).html(html);
             }

@@ -25,6 +25,8 @@ namespace WebGames
             //QuestionsHelper.ReadAndSaveQuestions();
             //Helpers.ReadAllowedEmailsHelper.AddExtraEmails();
             //GroupHelper.SetFromFile();
+            //GroupHelper.ExportSavedGroups(includeScore: true);
+            //GroupHelper.ExportGroupsRanking();
         }
     }
 }

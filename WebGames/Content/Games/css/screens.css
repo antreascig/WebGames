@@ -25,6 +25,14 @@ body * {
     right:0;
     transition: all ease 0.2s
 }
+
+@media screen and (max-width: 480px) {
+	.games_group .screen a {
+	    display:block;
+	    position: relative;
+	    transition: all ease 0.2s
+	}
+}
 .screen a:hover {
     transform: scale(1.06)
 }

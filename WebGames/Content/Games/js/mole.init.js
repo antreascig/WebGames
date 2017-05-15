@@ -49,16 +49,15 @@ function startTimer(duration, display) {
 var success = $("#mysoundclip")[0];
 
 function endGame() {
+                    if (isDemo) {
+                        window.location.replace("/Games/ActiveExplainer");
+                        return;
+                    }
     $.custom.Server.SaveGameScore(game.score, 1, function (res) { // success
         if (res && res.success) {
             setTimeout(function () {
                 $('.wrapper').fadeOut(2000, function () {
-                    if (isDemo) {
-                        window.location.replace("/Games/ActiveExplainer");
-                    }
-                    else {
-                        window.location.replace("/Games/ActiveGameAfter?status=outoftime");
-                    }
+                    window.location.replace("/Games/ActiveGameAfter?status=outoftime");
                 });
             }, 2000);
         }
@@ -346,6 +345,7 @@ $(document).ready(function () {
     launchEnemies();
 
     setInterval(function(){
+        if (isDemo) return;
         $.custom.Server.SaveGameScore(game.score,1, 
             function (res) { // success
                 if (res && res.success) {

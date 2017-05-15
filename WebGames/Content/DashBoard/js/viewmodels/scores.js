@@ -39,7 +39,7 @@
 
 
     var specificGroup_Columns = [
-        { "title": "Θέση", "searchable": true, "visible": true, "target": 0 }, // GroupNumber
+        { "title": "Ομάδα", "searchable": true, "visible": true, "target": 0 }, // GroupNumber
         { "title": "UserId", "searchable": false, "visible": false, "target": 1 }, // UserId
         { "title": "Όνομα", "searchable": true, "target": 2 }, // User_FullName
         { "title": "Σκορ", "searchable": false, "visible": true, "target": 3 }, // Score
