@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ComingSoonController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Libs\Games\GameManager.cs" />
     <Compile Include="Libs\Games\Games\Questions_Manager.cs" />
     <Compile Include="Libs\Games\Games\Group_Manager.cs" />
+    <Compile Include="Libs\Games\Games\Winner_Manager.cs" />
     <Compile Include="Libs\Games\ScoreManager.cs" />
     <Compile Include="Libs\Logger.cs" />
     <Compile Include="Libs\Security\SecurityManager.cs" />
@@ -316,6 +318,7 @@
     <Compile Include="Models\Entities\Scores\Whackamole_UserScore.cs" />
     <Compile Include="Models\ViewModels\DashboardModels.cs" />
     <Compile Include="Models\ViewModels\GameSettings.cs" />
+    <Compile Include="Models\ViewModels\HomeIndexViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -891,6 +894,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\custom\jquery.dataTables.js" />
+    <Content Include="Files\winner_info.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -915,7 +921,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="App_Data\questions.xlsx" />
     <Content Include="Content\music\click.ogg" />
     <Content Include="Content\music\click.xmp" />
     <Content Include="Content\music\close.ogg" />

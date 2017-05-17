@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebGames.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+using WebGames.Libs.Games.Games;
 
 namespace WebGames.Controllers
 {
@@ -41,10 +44,16 @@ namespace WebGames.Controllers
 
             if (User.IsInRole("sysadmin") || User.IsInRole("admin"))
             {
+
                 return RedirectToAction("Index", "Dashboard");
             }
+            var UserId = User.Identity.GetUserId();
+            var model = new HomeIndexViewModel()
+            {
+                IsWinner = Winner_Manager.IsUserWinner(UserId)
+            };
 
-            return View();
+            return View(model);
         }
 
         public ActionResult Info()
