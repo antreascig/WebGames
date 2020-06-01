@@ -264,3 +264,6 @@ paket-files/
 __pycache__/
 *.pyc
 /WebGames/settings.json
+/WebGames/Scripts/esm
+/WebGames/Scripts/src
+/WebGames/Scripts/umd
